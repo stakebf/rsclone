@@ -541,3 +541,6 @@
 {"Method":"GET","Path":"/users","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-08 20:36:07"}
 {"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-08 20:36:07"}
 {"message":"Uncaught Exception: listen EADDRINUSE: address already in use :::4000","level":"error","timestamp":"2021-01-08 20:49:46"}
+{"Method":"GET","Path":"/","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-09 10:29:54"}
+{"Method":"GET","Path":"/favicon.ico","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-09 10:29:55"}
+{"Method":"GET","Path":"/public/trello-logo-blue.svg","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-09 10:30:05"}
