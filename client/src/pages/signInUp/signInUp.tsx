@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {Link /* , Redirect */} from 'react-router-dom';
+import Form from './form'
 
 import classes from './signInUp.module.scss';
 
@@ -23,6 +24,11 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
           btn: {
             name: 'Войти',
             bg: 'green'
+          },
+          errorMessage: {
+            email: 'Неверный адрес электронной почты',
+            username: '',
+            password: 'Неверный пароль'
           }
         };
       case 'register':
@@ -34,6 +40,11 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
           btn: {
             name: 'Зарегистрироваться',
             bg: 'blue'
+          },
+          errorMessage: {
+            email: 'Недопустимый адрес электронной почты',
+            username: 'Длина имени должна быть не менее 3 символов',
+            password: 'Длина пароля должна быть не менее 8 символов'
           }
         };
       default:
@@ -53,6 +64,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
       <main className={classes.main}>
         <section className={classes.container}>
         <h1 className={classes.title}>{settings.head}</h1>
+          <Form settings={settings} />
           <hr className={classes.borderHR}/>
           <Link className={classes.link} to={`/${settings.linkTo}`}>
             {settings.linkWord}
