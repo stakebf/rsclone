@@ -1,0 +1,31 @@
+.field {
+  width: 100%;
+  padding: 0.5em;
+  font-size: 14px;
+  border: 2px solid #dfe1e6;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 44px;
+  transition: background-color 0.2s ease-in-out 0s, border-color 0.2s ease-in-out 0s;
+  outline: none;
+  &:focus {
+    border: 2px solid #4c9aff;
+  }
+  &.error {
+    border: 2px solid #d13f3f;
+  }
+}
+
+.error-message {
+  visibility: hidden;
+  color: rgb(231, 85, 85);
+  font-size: 13px;
+  height: 20px;
+  line-height: 20px;
+  margin: 2px 0;
+  position: relative;
+  text-align: center;
+  &.show {
+    visibility: visible;
+  }
+}

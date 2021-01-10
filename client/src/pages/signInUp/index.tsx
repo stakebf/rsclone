@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {Link /* , Redirect */} from 'react-router-dom';
-import Form from './form'
+import Form from './components/form';
 
 import classes from './signInUp.module.scss';
 
 type SignInUpProps = {
-  type: string
-}
+  type: string;
+};
 
 const SignInUp: React.FC<SignInUpProps> = ({type}) => {
   useEffect(() => {
@@ -26,9 +26,9 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             bg: 'green'
           },
           errorMessage: {
-            email: 'Неверный адрес электронной почты',
+            email: '',
             username: '',
-            password: 'Неверный пароль'
+            password: 'Неверный адрес электронной почты или пароль'
           }
         };
       case 'register':
@@ -43,8 +43,19 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
           },
           errorMessage: {
             email: 'Недопустимый адрес электронной почты',
-            username: 'Длина имени должна быть не менее 3 символов',
+            username: 'Длина имени должна быть не менее 2 символов',
             password: 'Длина пароля должна быть не менее 8 символов'
+          },
+          validMethod: {
+            isEmailValid: function (email: string): boolean {
+              return /.+@.+\..+/i.test(email);
+            },
+            isUsernameValid: function (username: string): boolean {
+              return /.{2,}/i.test(username);
+            },
+            isPasswordValid: function (password: string): boolean {
+              return /.{8,}/i.test(password);
+            }
           }
         };
       default:
@@ -55,17 +66,13 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
   return (
     <>
       <header className={classes.header}>
-        <img
-          alt="Trello"
-          className={classes.logo}
-          src="/svg/trello-logo-blue.svg"
-        ></img>
+        <img alt="Trello" className={classes.logo} src="/svg/trello-logo-blue.svg"></img>
       </header>
       <main className={classes.main}>
         <section className={classes.container}>
-        <h1 className={classes.title}>{settings.head}</h1>
+          <h1 className={classes.title}>{settings.head}</h1>
           <Form settings={settings} />
-          <hr className={classes.borderHR}/>
+          <hr className={classes.borderHR} />
           <Link className={classes.link} to={`/${settings.linkTo}`}>
             {settings.linkWord}
           </Link>
