@@ -6,6 +6,7 @@ import SignInUp from '../../pages/SignInUp';
 import Home from '../../pages/Home';
 import Page404 from '../../pages/Page404';
 import BoardPanel from '../BoardPanel';
+import Columns from '../Columns';
 // import classes from './App.module.scss';
 
 const App: React.FC = () => {
@@ -25,6 +26,11 @@ const App: React.FC = () => {
         <Route path="/login" render={() => <SignInUp type="login" />} />
         <Route path="/register" render={() => <SignInUp type="register" />} />
 
+        <Route 
+          path="/CurrentBoard" 
+          exact
+          render={() => <Columns />} 
+        />
         <Route render={() => <Page404 />} />
       </Switch>
     </>
