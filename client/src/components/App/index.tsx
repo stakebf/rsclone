@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Main from '../../pages/Main';
 import Page404 from '../../pages/Page404';
+import About from '../../pages/About';
 // import classes from './App.module.scss';
 
 const App: React.FC = () => {
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         render={() => <Main />} 
       />
 
+      <Route path="/about" render={() => <About />} />
       <Route render={() => <Page404 />} />
     </Switch>
   );
