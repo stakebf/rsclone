@@ -1,13 +1,14 @@
 import React from 'react';
-import classes from './Page404.module.scss';
+import { Result, Button } from 'antd';
 
 const Page404: React.FC = () => {
   return (
-    <div className={classes.wrapper}>
-      <h1 className={classes.title}>WTF are you doing man (not user friendly message) :)</h1>
-      <span className={classes.errorNumber}>404</span>
-      <span className={classes.errorText}>Page not found</span>
-    </div>
+    <Result
+      status="404"
+      title="404"
+      subTitle="Sorry, the page you visited does not exist."
+      extra={<a href="/"><Button type="primary">Back Home</Button></a>}
+    />
   )
 };
 

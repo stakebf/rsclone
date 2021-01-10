@@ -26,14 +26,18 @@
         align-items: center;
         text-decoration: none;
         font-weight: bold;
+        
         &:visited,
         &:link {
           color: black;
         }
+        
         &:hover {
           color: rgb(255, 255, 255);
         }
+        
         .logoGit {
+            font-size: 20px;
             margin-right: 5px;
         }
     }    

@@ -8,6 +8,7 @@
     }
 
     p {
+        margin: 0;
         font-size: 25px;
     }
 
@@ -18,7 +19,13 @@
     ul {
         font-size: 25px;
         li {
-            margin: 5px 20px 5px;
+            margin: 0px 20px 0px;
         }
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

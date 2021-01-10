@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './Footer.module.scss';
+import { GithubOutlined } from '@ant-design/icons';
 
 const Footer: React.FC = () => {
-  const logoGit = '/svg/github.svg';
   const logoRSS = '/svg/rs_school.svg';
 
   type nameDeveloper = {
@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
     return (
         <div className='developer'>
             <a href={git} target='_blank' rel='noopener noreferrer'>
-                <img src={logoGit} alt="Logo git" className={classes.logoGit} />
+                <GithubOutlined className={classes.logoGit}/>
                 {name}
             </a>
         </div>
