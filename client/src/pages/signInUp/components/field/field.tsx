@@ -14,7 +14,6 @@ type FieldProps = {
 
 const Field: React.FC<FieldProps> = (props) => {
   const {type, placeholder, error, value, setValue, errorMessage, disabled} = props;
-  console.log(classes);
 
   return (
     <>

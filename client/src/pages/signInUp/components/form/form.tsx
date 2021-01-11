@@ -1,8 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import MainApiService from '../../../../services/MainApiService';
-import Field from '../field';
+import Field from '../field/field';
 
 import classes from './form.module.scss';
+
+interface IDataForUser {
+  email: string;
+  username: string;
+  password: string;
+  setDisabledForm: React.Dispatch<React.SetStateAction<boolean>>;
+  setErrorEmail: React.Dispatch<React.SetStateAction<boolean>>;
+  setErrorUsername: React.Dispatch<React.SetStateAction<boolean>>;
+  setErrorPassword: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 interface ISettings {
   head: string;
@@ -18,11 +27,8 @@ interface ISettings {
     username: string;
     password: string;
   };
-  validMethod?: {
-    isEmailValid(email: string): boolean;
-    isUsernameValid(username: string): boolean;
-    isPasswordValid(password: string): boolean;
-  };
+  sendUserToLogin?(dataForUser: IDataForUser): void;
+  sendUserToRegister?(dataForUser: IDataForUser): void;
 }
 
 type FormProps = {
@@ -30,8 +36,6 @@ type FormProps = {
 };
 
 const Form: React.FC<FormProps> = ({settings}) => {
-  const service = new MainApiService();
-
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -57,50 +61,22 @@ const Form: React.FC<FormProps> = ({settings}) => {
     settings
   ]);
 
-  const sendUserToRegister = (): void => {
-    if (settings.validMethod) {
-      const {isEmailValid, isUsernameValid, isPasswordValid} = settings.validMethod;
-
-      if (!isEmailValid(email) || !isUsernameValid(username) || !isPasswordValid(password)) {
-      } else {
-        setDisabledForm(true);
-
-        service
-          .postUserToRegister({login: email, name: username, password: password})
-          .then((data) => console.log(data))
-          .catch((error) => console.log(error))
-          .finally(() => setDisabledForm(false));
-      }
-      (function showErrors(): void {
-        setErrorEmail(isEmailValid(email) ? false : true);
-        setErrorUsername(isUsernameValid(username) ? false : true);
-        setErrorPassword(isPasswordValid(password) ? false : true);
-      })();
-    }
-  };
-
-  const sendUserToLogin = (): void => {
-    setDisabledForm(true);
-    service
-      .postUserToLogin({login: email, password: password})
-      .then((data) => {
-        setErrorEmail(false);
-        setErrorPassword(false);
-        console.log(data);
-      })
-      .catch(() => {
-        setErrorEmail(true);
-        setErrorPassword(true);
-      })
-      .finally(() => setDisabledForm(false));
-  };
-
   const sendForm = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    if (settings.isUsername) {
-      sendUserToRegister();
-    } else {
-      sendUserToLogin();
+    const dataForUser = {
+      email,
+      username,
+      password,
+      setDisabledForm,
+      setErrorEmail,
+      setErrorUsername,
+      setErrorPassword
+    };
+
+    if (settings.sendUserToLogin) {
+      settings.sendUserToLogin(dataForUser);
+    } else if (settings.sendUserToRegister) {
+      settings.sendUserToRegister(dataForUser);
     }
   };
 
