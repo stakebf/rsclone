@@ -45,12 +45,14 @@ const Form: React.FC<FormProps> = ({settings}) => {
   const [disabledForm, setDisabledForm] = useState(false);
 
   useEffect(() => {
-    setEmail('');
-    setPassword('');
-    setUsername('');
-    setErrorEmail(false);
-    setErrorUsername(false);
-    setErrorPassword(false);
+    return () => {
+      setEmail('');
+      setPassword('');
+      setUsername('');
+      setErrorEmail(false);
+      setErrorUsername(false);
+      setErrorPassword(false);
+    };
   }, [
     setEmail,
     setPassword,
