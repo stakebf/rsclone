@@ -22,7 +22,7 @@ type SignInUpProps = {
 const SignInUp: React.FC<SignInUpProps> = ({type}) => {
   const service = new MainApiService();
 
-  const [isRedirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const settings = ((type) => {
     switch (type) {
@@ -51,9 +51,11 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                 localStorage.setItem('token', token);
                 setRedirect(true);
               })
-              .catch(() => {
-                setErrorEmail(true);
-                setErrorPassword(true);
+              .catch((error) => {
+                if (error.message === 'Bad login/password combination') {
+                  setErrorEmail(true);
+                  setErrorPassword(true);
+                }
               })
               .finally(() => setDisabledForm(false));
           }
@@ -69,34 +71,39 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             bg: 'blue'
           },
           errorMessage: {
-            email: 'Недопустимый адрес электронной почты',
+            email: 'Некорректный адресэлектронной почты',
             username: 'Длина имени должна быть не менее 2 символов',
             password: 'Длина пароля должна быть не менее 8 символов'
           },
           validMethods: {
-            isEmailValid: (email: string): boolean => /.+@.+\..+/i.test(email),
+            isEmailValid: (email: string): boolean => /@/i.test(email),
             isUsernameValid: (username: string): boolean => /.{2,}/i.test(username),
             isPasswordValid: (password: string): boolean => /.{8,}/i.test(password)
           },
           sendUserToRegister(dataForUser: IDataForUser): void {
             const {isEmailValid, isUsernameValid, isPasswordValid} = this.validMethods;
-            const {email, username, password, setDisabledForm} = dataForUser;
+            const {email, username, password, setDisabledForm, setErrorEmail} = dataForUser;
 
             if (isEmailValid(email) && isUsernameValid(username) && isPasswordValid(password)) {
               setDisabledForm(true);
 
               service
                 .postUserToRegister({login: email, name: username, password: password})
-                .then(({token}) => {
+                .then((token) => {
                   localStorage.setItem('token', token);
                   setRedirect(true);
                 })
-                .catch((error) => console.error(error))
+                .catch((error) => {
+                  if (error.message === 'User already exist') {
+                    this.errorMessage.email = 'Адрес электронной почты уже зарегистрирован';
+                    setErrorEmail(true);
+                  }
+                })
                 .finally(() => setDisabledForm(false));
             }
 
             (function showErrors(): void {
-              const {setErrorEmail, setErrorUsername, setErrorPassword} = dataForUser;
+              const {setErrorUsername, setErrorPassword} = dataForUser;
 
               setErrorEmail(isEmailValid(email) ? false : true);
               setErrorUsername(isUsernameValid(username) ? false : true);
@@ -109,7 +116,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
     }
   })(type);
 
-  if (isRedirect) return <Redirect to="/" />;
+  if (redirect) return <Redirect to="/" />;
 
   return (
     <>
@@ -117,7 +124,11 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
         <img alt="Trello" className={classes.logo} src="/svg/trello-logo-blue.svg"></img>
       </header>
       <main className={classes.main}>
-        <img className={classes.img} src="/svg/trello-left.abecab36.svg" alt="trello-left.abecab36" />
+        <img
+          className={classes.img}
+          src="/svg/trello-left.abecab36.svg"
+          alt="trello-left.abecab36"
+        />
         <section className={classes.container}>
           <h1 className={classes.title}>{settings.head}</h1>
           <Form settings={settings} />
@@ -126,7 +137,11 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             {settings.linkWord}
           </Link>
         </section>
-        <img className={classes.img} src="/svg/trello-right.2222cb95.svg" alt="trello-right.2222cb95" />
+        <img
+          className={classes.img}
+          src="/svg/trello-right.2222cb95.svg"
+          alt="trello-right.2222cb95"
+        />
       </main>
     </>
   );
