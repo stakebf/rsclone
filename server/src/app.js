@@ -42,7 +42,6 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-
 app.use('/login', loginRouter);
 
 app.use('/users', userRouter);
@@ -58,6 +57,5 @@ app.use(errors.handleError, (err, req, res, next) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
-
 
 module.exports = app;
