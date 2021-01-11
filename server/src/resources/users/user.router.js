@@ -3,6 +3,7 @@ const { OK, NO_CONTENT } = require('http-status-codes');
 const User = require('./user.model');
 const usersService = require('./user.service');
 const usersSchemas = require('./users.schema');
+const { registerUser } = require('../login/login.service')
 const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
 
@@ -25,10 +26,21 @@ router.route('/').post(
   catchErrors(validator.validateSchemaPost(usersSchemas.schemaForPost)),
   catchErrors(async (req, res) => {
     const requestData = req.body;
-    const user = await usersService.createUser(requestData);
-    res.status(OK).json(User.toResponse(user));
+    const token = await registerUser(requestData)
+    res.status(OK).json(token);
+    // res.status(OK).json(User.toResponse(user));
   })
 );
+
+// router.route('/register').post(
+//   catchErrors(validator.validateSchemaPost(usersSchemas.schemaForPost)),
+//   catchErrors(async (req, res) => {
+//     const requestData = req.body;
+//     const user = await usersService.createUser(requestData);
+//     const token = await registerUser(user)
+//     res.status(OK).json(token);
+//   })
+// );
 
 router.route('/:id').put(
   catchErrors(validator.validateSchemaPut(usersSchemas.schemaForPut)),
