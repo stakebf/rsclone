@@ -117,6 +117,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
         <img alt="Trello" className={classes.logo} src="/svg/trello-logo-blue.svg"></img>
       </header>
       <main className={classes.main}>
+        <img className={classes.img} src="/svg/trello-left.abecab36.svg" alt="trello-left.abecab36" />
         <section className={classes.container}>
           <h1 className={classes.title}>{settings.head}</h1>
           <Form settings={settings} />
@@ -125,6 +126,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             {settings.linkWord}
           </Link>
         </section>
+        <img className={classes.img} src="/svg/trello-right.2222cb95.svg" alt="trello-right.2222cb95" />
       </main>
     </>
   );

@@ -25,7 +25,14 @@
   margin: 2px 0;
   position: relative;
   text-align: center;
+  white-space: nowrap;
   &.show {
     visibility: visible;
+  }
+}
+
+@media (max-width: 993px) {
+  .error-message {
+    font-size: 12px;
   }
 }
