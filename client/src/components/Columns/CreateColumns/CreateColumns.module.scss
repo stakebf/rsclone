@@ -1,3 +1,36 @@
 .container {
-  background: red;
+
+  .btnAddColumn {
+    width: 270px;
+    text-align: left;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+  }
+
+  .creationWrapper {
+    transition: all .5s;
+    background-color: #ebecf0;
+    padding: 5px;
+    width: 270px;
+    animation: smoothShow .5s ease-in-out;  
+
+    .creationInput {
+      width: 260px;
+      margin-bottom: 5px;
+      padding: 0 5px;
+    }
+  }
+}
+
+@keyframes smoothShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
