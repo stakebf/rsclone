@@ -23,6 +23,10 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
   const service = new MainApiService();
 
   const [redirect, setRedirect] = useState(false);
+  const [errorServer, setErrorServer] = useState(false);
+  const [errorMessageServer, setErrorMessageServer] = useState(
+    'Ошибка сервера повторите попытку позже'
+  );
 
   const settings = ((type) => {
     switch (type) {
@@ -36,13 +40,13 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             name: 'Войти',
             bg: 'green'
           },
-          errorMessage: {
+          errorMessageValid: {
             email: '',
             username: '',
-            password: 'Неверный адрес электронной почты или пароль'
+            password: ''
           },
           sendUserToLogin(dataForUser: IDataForUser): void {
-            const {email, password, setDisabledForm, setErrorEmail, setErrorPassword} = dataForUser;
+            const {email, password, setDisabledForm} = dataForUser;
 
             setDisabledForm(true);
             service
@@ -53,9 +57,11 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
               })
               .catch((error) => {
                 if (error.message === 'Bad login/password combination') {
-                  setErrorEmail(true);
-                  setErrorPassword(true);
+                  setErrorMessageServer('Неверный адрес электронной почты или пароль');
+                } else {
+                  setErrorMessageServer('Ошибка сервера повторите попытку позже');
                 }
+                setErrorServer(true);
               })
               .finally(() => setDisabledForm(false));
           }
@@ -70,19 +76,19 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             name: 'Зарегистрироваться',
             bg: 'blue'
           },
-          errorMessage: {
-            email: 'Некорректный адресэлектронной почты',
+          errorMessageValid: {
+            email: 'Некорректный адрес электронной почты',
             username: 'Длина имени должна быть не менее 2 символов',
             password: 'Длина пароля должна быть не менее 8 символов'
           },
           validMethods: {
-            isEmailValid: (email: string): boolean => /@/i.test(email),
+            isEmailValid: (email: string): boolean => /.+@.+\..+/i.test(email),
             isUsernameValid: (username: string): boolean => /.{2,}/i.test(username),
             isPasswordValid: (password: string): boolean => /.{8,}/i.test(password)
           },
           sendUserToRegister(dataForUser: IDataForUser): void {
             const {isEmailValid, isUsernameValid, isPasswordValid} = this.validMethods;
-            const {email, username, password, setDisabledForm, setErrorEmail} = dataForUser;
+            const {email, username, password, setDisabledForm} = dataForUser;
 
             if (isEmailValid(email) && isUsernameValid(username) && isPasswordValid(password)) {
               setDisabledForm(true);
@@ -95,15 +101,17 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                 })
                 .catch((error) => {
                   if (error.message === 'User already exist') {
-                    this.errorMessage.email = 'Адрес электронной почты уже зарегистрирован';
-                    setErrorEmail(true);
+                    setErrorMessageServer('Адрес электронной почты уже зарегистрирован');
+                  } else {
+                    setErrorMessageServer('Ошибка сервера повторите попытку позже');
                   }
+                  setErrorServer(true);
                 })
                 .finally(() => setDisabledForm(false));
             }
 
             (function showErrors(): void {
-              const {setErrorUsername, setErrorPassword} = dataForUser;
+              const {setErrorEmail, setErrorUsername, setErrorPassword} = dataForUser;
 
               setErrorEmail(isEmailValid(email) ? false : true);
               setErrorUsername(isUsernameValid(username) ? false : true);
@@ -130,6 +138,9 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
           alt="trello-left.abecab36"
         />
         <section className={classes.container}>
+          <p className={`${classes['error-message']} ${errorServer ? classes.show : ''}`}>
+            {errorServer ? errorMessageServer : ''}
+          </p>
           <h1 className={classes.title}>{settings.head}</h1>
           <Form settings={settings} />
           <hr className={classes.borderHR} />

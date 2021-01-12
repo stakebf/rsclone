@@ -22,7 +22,7 @@ interface ISettings {
     name: string;
     bg: string;
   };
-  errorMessage: {
+  errorMessageValid: {
     email: string;
     username: string;
     password: string;
@@ -93,7 +93,7 @@ const Form: React.FC<FormProps> = ({settings}) => {
         error={errorEmail}
         value={email}
         setValue={setEmail}
-        errorMessage={settings.errorMessage.email}
+        errorMessage={settings.errorMessageValid.email}
         disabled={disabledForm}
       />
       {settings.isUsername && (
@@ -104,7 +104,7 @@ const Form: React.FC<FormProps> = ({settings}) => {
             error={errorUsername}
             value={username}
             setValue={setUsername}
-            errorMessage={settings.errorMessage.username}
+            errorMessage={settings.errorMessageValid.username}
             disabled={disabledForm}
           />
         </>
@@ -115,7 +115,7 @@ const Form: React.FC<FormProps> = ({settings}) => {
         error={errorPassword}
         value={password}
         setValue={setPassword}
-        errorMessage={settings.errorMessage.password}
+        errorMessage={settings.errorMessageValid.password}
         disabled={disabledForm}
       />
       <button
