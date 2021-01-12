@@ -5,16 +5,6 @@ import Form from './components/form';
 
 import classes from './signInUp.module.scss';
 
-interface IDataForUser {
-  email: string;
-  username: string;
-  password: string;
-  setDisabledForm(value: boolean): void;
-  setErrorEmail(value: boolean): void;
-  setErrorUsername(value: boolean): void;
-  setErrorPassword(value: boolean): void;
-}
-
 type SignInUpProps = {
   type: string;
 };
@@ -25,12 +15,29 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
   const [isRedirect, setRedirect] = useState(false);
   const [errorServer, setErrorServer] = useState(false);
   const [errorMessageServer, setErrorMessageServer] = useState('');
+  const [errorValidEmail, setErrorValidEmail] = useState(false);
+  const [errorValidUsername, setErrorValidUsername] = useState(false);
+  const [errorValidPassword, setErrorValidPassword] = useState(false);
+  const [disabledForm, setDisabledForm] = useState(false);
 
   useEffect(() => {
     return () => {
       setErrorServer(false);
+      setErrorValidEmail(false);
+      setErrorValidUsername(false);
+      setErrorValidPassword(false);
     };
-  }, [setErrorServer, type]);
+  }, [setErrorServer, setErrorValidEmail, setErrorValidUsername, setErrorValidPassword, type]);
+
+  const isEmailValid = (email: string): boolean => /.+@.+\..+/i.test(email);
+  const isUsernameValid = (username: string): boolean => /.{2,}/i.test(username);
+  const isPasswordValid = (password: string): boolean => /.{8,}/i.test(password);
+
+  function showErrors(email: string, username: string, password: string): void {
+    setErrorValidEmail(isEmailValid(email) ? false : true);
+    setErrorValidUsername(isUsernameValid(username) ? false : true);
+    setErrorValidPassword(isPasswordValid(password) ? false : true);
+  }
 
   const settings = ((type) => {
     switch (type) {
@@ -49,9 +56,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             username: '',
             password: ''
           },
-          sendUserToLogin(dataForUser: IDataForUser): void {
-            const {email, password, setDisabledForm} = dataForUser;
-
+          sendUserToLogin(email: string, password: string): void {
             setDisabledForm(true);
             service
               .postUserToLogin({login: email, password: password})
@@ -85,18 +90,9 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             username: 'Длина имени должна быть не менее 2 символов',
             password: 'Длина пароля должна быть не менее 8 символов'
           },
-          validMethods: {
-            isEmailValid: (email: string): boolean => /.+@.+\..+/i.test(email),
-            isUsernameValid: (username: string): boolean => /.{2,}/i.test(username),
-            isPasswordValid: (password: string): boolean => /.{8,}/i.test(password)
-          },
-          sendUserToRegister(dataForUser: IDataForUser): void {
-            const {isEmailValid, isUsernameValid, isPasswordValid} = this.validMethods;
-            const {email, username, password, setDisabledForm} = dataForUser;
-
+          sendUserToRegister(email: string, username: string, password: string): void {
             if (isEmailValid(email) && isUsernameValid(username) && isPasswordValid(password)) {
               setDisabledForm(true);
-
               service
                 .postUserToRegister({login: email, name: username, password: password})
                 .then((token) => {
@@ -114,13 +110,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                 .finally(() => setDisabledForm(false));
             }
 
-            (function showErrors(): void {
-              const {setErrorEmail, setErrorUsername, setErrorPassword} = dataForUser;
-
-              setErrorEmail(isEmailValid(email) ? false : true);
-              setErrorUsername(isUsernameValid(username) ? false : true);
-              setErrorPassword(isPasswordValid(password) ? false : true);
-            })();
+            showErrors(email, username, password);
           }
         };
       default:
@@ -147,7 +137,14 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             {errorServer ? errorMessageServer : ''}
           </p>
           <h1 className={classes.title}>{settings.head}</h1>
-          <Form settings={settings} />
+          <Form
+            settings={settings}
+            errorEmail={errorValidEmail}
+            errorUsername={errorValidUsername}
+            errorPassword={errorValidPassword}
+            disabledForm={disabledForm}
+            type={type}
+          />
           <hr className={classes.borderHR} />
           <Link className={classes.link} to={`/${settings.linkTo}`}>
             {settings.linkWord}
