@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 
 import Main from '../../pages/Main';
 import SignInUp from '../../pages/SignInUp/signInUp';
-import Boards from '../../pages/Boards/boards';
+import Boards from '../../pages/Boards';
 import Page404 from '../../pages/Page404';
 // import classes from './App.module.scss';
 
