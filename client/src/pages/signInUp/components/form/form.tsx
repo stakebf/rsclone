@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Field from '../field/field';
+import Field from '../field';
 
 import classes from './form.module.scss';
 
@@ -7,10 +7,10 @@ interface IDataForUser {
   email: string;
   username: string;
   password: string;
-  setDisabledForm: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorEmail: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorUsername: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorPassword: React.Dispatch<React.SetStateAction<boolean>>;
+  setDisabledForm(value: boolean): void;
+  setErrorEmail(value: boolean): void;
+  setErrorUsername(value: boolean): void;
+  setErrorPassword(value: boolean): void;
 }
 
 interface ISettings {
@@ -18,7 +18,7 @@ interface ISettings {
   linkWord: string;
   linkTo: string;
   isUsername: boolean;
-  btn: {
+  btnSend: {
     name: string;
     bg: string;
   };
@@ -123,11 +123,11 @@ const Form: React.FC<FormProps> = ({settings}) => {
         disabled={disabledForm}
         className={`
         ${classes['btn-send']} 
-        ${classes[settings.btn.bg]} 
+        ${classes[settings.btnSend.bg]} 
         ${disabledForm ? classes.disabled : ''}
         `}
       >
-        {settings.btn.name}
+        {settings.btnSend.name}
       </button>
     </form>
   );

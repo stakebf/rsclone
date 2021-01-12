@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
 import Main from '../../pages/Main';
-import SignInUp from '../../pages/signInUp/signInUp';
+import SignInUp from '../../pages/SignInUp';
 import Page404 from '../../pages/Page404';
 // import classes from './App.module.scss';
 

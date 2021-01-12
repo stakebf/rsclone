@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import MainApiService from '../../services/MainApiService';
-import Form from './components/form/form';
+import Form from './components/form';
 
 import classes from './signInUp.module.scss';
 
@@ -9,10 +9,10 @@ interface IDataForUser {
   email: string;
   username: string;
   password: string;
-  setDisabledForm: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorEmail: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorUsername: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorPassword: React.Dispatch<React.SetStateAction<boolean>>;
+  setDisabledForm(value: boolean): void;
+  setErrorEmail(value: boolean): void;
+  setErrorUsername(value: boolean): void;
+  setErrorPassword(value: boolean): void;
 }
 
 type SignInUpProps = {
@@ -22,11 +22,15 @@ type SignInUpProps = {
 const SignInUp: React.FC<SignInUpProps> = ({type}) => {
   const service = new MainApiService();
 
-  const [redirect, setRedirect] = useState(false);
+  const [isRedirect, setRedirect] = useState(false);
   const [errorServer, setErrorServer] = useState(false);
-  const [errorMessageServer, setErrorMessageServer] = useState(
-    'Ошибка сервера повторите попытку позже'
-  );
+  const [errorMessageServer, setErrorMessageServer] = useState('');
+
+  useEffect(() => {
+    return () => {
+      setErrorServer(false);
+    };
+  }, [setErrorServer, type]);
 
   const settings = ((type) => {
     switch (type) {
@@ -36,7 +40,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
           linkWord: 'Зарегистрировать аккаунт',
           linkTo: 'register',
           isUsername: false,
-          btn: {
+          btnSend: {
             name: 'Войти',
             bg: 'green'
           },
@@ -59,7 +63,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                 if (error.message === 'Bad login/password combination') {
                   setErrorMessageServer('Неверный адрес электронной почты или пароль');
                 } else {
-                  setErrorMessageServer('Ошибка сервера повторите попытку позже');
+                  setErrorMessageServer('Произошел технический сбой! Попробуйте позже');
                 }
                 setErrorServer(true);
               })
@@ -72,7 +76,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
           linkWord: 'Уже есть аккаунт? Войти',
           linkTo: 'login',
           isUsername: true,
-          btn: {
+          btnSend: {
             name: 'Зарегистрироваться',
             bg: 'blue'
           },
@@ -103,7 +107,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                   if (error.message === 'User already exist') {
                     setErrorMessageServer('Адрес электронной почты уже зарегистрирован');
                   } else {
-                    setErrorMessageServer('Ошибка сервера повторите попытку позже');
+                    setErrorMessageServer('Произошел технический сбой! Попробуйте позже');
                   }
                   setErrorServer(true);
                 })
@@ -124,13 +128,14 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
     }
   })(type);
 
-  if (redirect) return <Redirect to="/" />;
+  if (isRedirect) return <Redirect to="/" />;
 
   return (
     <>
       <header className={classes.header}>
         <img alt="Trello" className={classes.logo} src="/svg/trello-logo-blue.svg"></img>
       </header>
+
       <main className={classes.main}>
         <img
           className={classes.img}
