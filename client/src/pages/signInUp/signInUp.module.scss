@@ -23,6 +23,18 @@
     border-radius: 3px;
     padding: 25px 40px;
     box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+    .error-message {
+      display: none;
+      padding: 10px;
+      color: #fbedeb;
+      font-size: 14px;
+      background: #eb5a46;
+      border-radius: 4px;
+      text-align: center;
+      &.show {
+        display: block;
+      }
+    }
     .title {
       text-align: center;
       color: #5e6c84;
@@ -57,7 +69,7 @@
 @media (max-width: 993px) {
   .main {
     .container {
-      padding: 10px 25px 25px 25px;
+      padding: 25px;
     }
   }
 }
