@@ -4,25 +4,50 @@ import { Button } from 'antd';
 
 import classes from './CreateColumns.module.scss';
 
-/* interface ColumnsInfo {
-  columns: Columns
+interface Board {
+  id?: string,
+  title?: string,
+  usersList?: string[],
+  columns?: [
+    {
+      columnId?: string,
+      columnTitle?: string,
+      order?: number,
+      cards?: [
+        {
+          cartId?: string,
+          cartTitle?: string,
+          userId?: string,
+          cartDescription?: string,
+          cardOrder?: number,
+          todo?: [
+            {
+              todoId?: string,
+              todoTitle?: string,
+              isComplete?: boolean
+            }
+          ],
+          cartComments?: [
+            {
+              commentId?: string,
+              userName?: string,
+              date?: string,
+              message?: string
+            }
+          ],
+          tags?: string[],
+          background?: string
+        }
+      ]
+    }
+  ]
 }
-
-interface Columns {
-  a():string,
-  num?: number  
-}
-
-const columnsInfo: ColumnsInfo = {
-  columns: {
-    a: () => '552',
-    num: 55
-  }
-} */
 
 const CreateColumns: React.FC = () => {
   const [isCreation, setIsCreation] = useState<boolean>(false);
   const [columnName, setColumnName] = useState<string>('');
+  // const [columns, setColumns] = useState<Array<{ id: number, title: string }>>([]);
+  const [board, setBoard] = useState<Board>({})
 
   const btnAddClassNames: Array<any> = [classes.btnAddColumn, isCreation ? classes.hide : ''];
 
