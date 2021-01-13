@@ -45,3 +45,5 @@
 {"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-12 18:16:54"}
 {"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-12 18:16:54"}
 {"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-12 18:17:22"}
+{"Method":"GET","Path":"/user/favicon.ico","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-13 13:39:38"}
+{"Method":"GET","Path":"/user/favicon.ico","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-13 13:39:38"}

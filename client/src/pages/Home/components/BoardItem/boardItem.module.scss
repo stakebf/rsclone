@@ -1,0 +1,26 @@
+.item {
+  width: 23%;
+  margin: 1%;
+  border-radius: 4px;
+  background-color: #97a0af;
+  background-size: cover;
+  background-position: 50%;
+  cursor: pointer;
+  .content-item {
+    height: 96px;
+    padding: 8px;
+    color: #fff;
+    line-height: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 0.2s ease-in-out;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    .title-item {
+      font-size: 16px;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
