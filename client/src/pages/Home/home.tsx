@@ -1,16 +1,33 @@
-import React from 'react';
-import Boards from './components/Boards';
+import React, {useState} from 'react';
+import BoardList from './components/BoardList';
 
 import classes from './home.module.scss';
 
 const Home: React.FC = () => {
-  const dataBoards = [
-    {id: 1, bg: '/images/bg_board_1.jpg', name: 'moon'},
-    {id: 2, bg: '/images/bg_board_2.jpg', name: 'wood'},
-    {id: 3, bg: '/images/bg_board_3.jpg', name: 'space'},
-    {id: 4, bg: '/images/bg_board_4.jpg', name: 'winter'},
-    {id: 5, bg: '/images/bg_board_5.jpg', name: 'target'}
-  ];
+  const [dataBoards, setDataBoards] = useState([
+    {id: 1, bg: '/images/bg_board_1.jpg', name: 'moon', isImg: true},
+    {id: 2, bg: '/images/bg_board_2.jpg', name: 'wood', isImg: true},
+    {id: 3, bg: '/images/bg_board_3.jpg', name: 'space', isImg: true},
+    {id: 4, bg: '/images/bg_board_4.jpg', name: 'winter', isImg: true},
+    {id: 5, bg: 'rgb(137, 96, 158)', name: 'purple', isImg: false},
+    {id: 6, bg: 'rgb(0, 121, 191)', name: 'blue', isImg: false},
+    {id: 7, bg: 'rgb(210, 144, 52)', name: 'orange', isImg: false},
+    {id: 8, bg: 'rgb(81, 152, 57)', name: 'green', isImg: false},
+    {id: 9, bg: 'rgb(176, 70, 50)', name: 'red', isImg: false}
+  ]);
+
+  const createBoard = (name: string, bg: string, isImg: boolean) => {
+    return {
+      bg,
+      name,
+      isImg,
+      id: ++dataBoards.length
+    };
+  };
+
+  const onAddedBoard = (name: string, bg: string, isImg: boolean): void => {
+    setDataBoards([...dataBoards, createBoard(name, bg, isImg)]);
+  };
 
   return (
     <div className={classes.container}>
@@ -26,7 +43,7 @@ const Home: React.FC = () => {
           </li>
         </ul>
       </div>
-      <Boards dataBoards={dataBoards} />
+      <BoardList dataBoards={dataBoards} onAddedBoard={onAddedBoard} />
     </div>
   );
 };
