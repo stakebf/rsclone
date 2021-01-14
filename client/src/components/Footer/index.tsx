@@ -1,11 +1,9 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg'
+import { ReactComponent as RSschool } from './rs_school.svg';
 import classes from './Footer.module.scss';
 import { GithubOutlined } from '@ant-design/icons';
 
 const Footer: React.FC = () => {
-  const logoRSS = '/svg/rs_school.svg';
-
   type nameDeveloper = {
     name: string
   }
@@ -32,7 +30,7 @@ const Footer: React.FC = () => {
         <Developer name='rgrishchuk' />
       </div>
       <a href='https://rs.school/js/' target='_blank' rel='noopener noreferrer'>
-        <ReactSVG src={logoRSS} className={classes.logoRSS} />
+        <RSschool className={classes.logoRSS} />
       </a>
     </footer>
   );
