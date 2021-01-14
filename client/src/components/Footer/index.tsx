@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactSVG } from 'react-svg'
 import classes from './Footer.module.scss';
 import { GithubOutlined } from '@ant-design/icons';
 
@@ -14,8 +15,8 @@ const Footer: React.FC = () => {
     return (
         <div className='developer'>
             <a href={git} target='_blank' rel='noopener noreferrer'>
-                <GithubOutlined className={classes.logoGit}/>
-                {name}
+              <GithubOutlined className={classes.logoGit}/>
+              {name}
             </a>
         </div>
     );
@@ -25,13 +26,13 @@ const Footer: React.FC = () => {
     <footer className={classes.footer}>
       <span className={classes.year}>&#169; 2021</span>
       <div className={classes.git}>
-          <Developer name='stakebf' />
-          <Developer name='mashalarchenko' />
-          <Developer name='musakius' />
-          <Developer name='rgrishchuk' />
+        <Developer name='stakebf' />
+        <Developer name='mashalarchenko' />
+        <Developer name='musakius' />
+        <Developer name='rgrishchuk' />
       </div>
       <a href='https://rs.school/js/' target='_blank' rel='noopener noreferrer'>
-          <img className={classes.logoRSS} src={logoRSS} alt='logo RSS' />
+        <ReactSVG src={logoRSS} className={classes.logoRSS} />
       </a>
     </footer>
   );

@@ -14,8 +14,19 @@
         font-style: oblique;
 
         .logoApp {
-            font-size: 30px;
+            font-size: 25px;
             margin-right: 5px;
+        }
+
+        a {
+            &:visited,
+            &:link {
+            color: black;
+            }
+        
+            &:hover {
+            color: rgb(255, 255, 255);
+            }
         }
     }
 }
