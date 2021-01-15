@@ -11,9 +11,7 @@
       .tab {
         display: flex;
         align-items: center;
-        padding: 8px;
         margin: 5px 0;
-        color: #172b4d;
         font-weight: 700;
         border-radius: 4px;
         transition: 0.2s ease-in-out;
@@ -29,9 +27,16 @@
         &:hover {
           background-color: rgba(9, 30, 66, 0.08);
         }
-        .icon {
-          width: 12px;
-          margin-right: 10px;
+        .link {
+          display: block;
+          width: 100%;
+          padding: 8px;
+          text-decoration: none;
+          color: #172b4d;
+          .icon {
+            width: 12px;
+            margin-right: 10px;
+          }
         }
       }
     }

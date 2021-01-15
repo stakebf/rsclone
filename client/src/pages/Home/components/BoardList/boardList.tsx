@@ -64,7 +64,7 @@ const BoardList: React.FC = () => {
       <div className={classes['all-boards']}>
         <div className={classes.block}>
           <div className={classes.head}>
-            <img className={classes['icon-user']} src="svg/user-regular.svg" alt="user-regular" />
+            <img className={classes['icon-user']} src="/svg/user-regular.svg" alt="user-regular" />
             <h4 className={classes['head-title']}>Ваши доски</h4>
           </div>
           <div className={classes['content']}>
