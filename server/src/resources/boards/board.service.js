@@ -9,6 +9,8 @@ const createBoard = board => boardsRepo.createBoard(board);
 
 const updateBoard = (id, param) => boardsRepo.updateBoard(id, param);
 
+const addColumnToBoard = (id, param) => boardsRepo.addColumnToBoard(id, param);
+
 const deleteBoard = async id => {
   await taskService.deleteTaskfromBoard(id);
   return boardsRepo.deleteBoard(id);
@@ -19,5 +21,6 @@ module.exports = {
   getBoardById,
   createBoard,
   updateBoard,
-  deleteBoard
+  deleteBoard,
+  addColumnToBoard
 };

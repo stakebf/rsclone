@@ -9,6 +9,7 @@ const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
 const loginRouter = require('./resources/login/login.router');
+const columnRouter = require('./resources/columns/column.router');
 const authorizate = require('./common/authorizate');
 const errors = require('./errors');
 const { requestLogger } = require('./common/logger');
@@ -50,6 +51,8 @@ app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 
 boardRouter.use('/:boardId/tasks', taskRouter);
+
+boardRouter.use('/:boardId/columns', columnRouter);
 
 app.use(errors.handleError, (err, req, res, next) => {
   errors.handleInternalError(err, req, res, next);
