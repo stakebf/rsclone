@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
     const git='https://github.com/' + name;
     return (
         <div className='developer'>
-            <a href={git} target='_blank' rel='noopener noreferrer'>
+            <a className={classes.link} href={git} target='_blank' rel='noopener noreferrer'>
               <GithubOutlined className={classes.logoGit}/>
               {name}
             </a>
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
         <Developer name='musakius' />
         <Developer name='rgrishchuk' />
       </div>
-      <a href='https://rs.school/js/' target='_blank' rel='noopener noreferrer'>
+      <a className={classes.link} href='https://rs.school/js/' target='_blank' rel='noopener noreferrer'>
         <RSschool className={classes.logoRSS} />
       </a>
     </footer>

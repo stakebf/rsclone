@@ -5,7 +5,7 @@
     align-items: center;
     background: rgb(87, 186, 243);
 
-    &__title {
+    .title {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -18,7 +18,7 @@
             margin-right: 5px;
         }
 
-        a {
+        .link {
             &:visited,
             &:link {
             color: black;
