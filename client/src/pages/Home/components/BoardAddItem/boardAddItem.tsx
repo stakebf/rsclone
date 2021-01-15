@@ -1,33 +1,36 @@
 import React, {useState, useEffect} from 'react';
-import SelectBgItem from './selectBgItem';
+import TypeBgItem from './typeBgItem';
 
-import classes from './addBoardItem.module.scss';
+import classes from './boardAddItem.module.scss';
 
-type AddBoardItemProps = {
+interface ITypesBoards {
+  id: number;
+  bg: string;
+  check: boolean;
+  isImg: boolean;
+}
+
+type BoardAddItemProps = {
   onAddedBoard(name: string, bg: string, isImg: boolean): void;
   setShowPopup(value: boolean): void;
+  typesBoard: ITypesBoards[];
+  setTypesBoard(s: any): void;
 };
 
-const AddBoardItem: React.FC<AddBoardItemProps> = ({onAddedBoard, setShowPopup}) => {
+const BoardAddItem: React.FC<BoardAddItemProps> = ({
+  onAddedBoard,
+  setShowPopup,
+  typesBoard,
+  setTypesBoard
+}) => {
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [currentItemBg, setCurrentItemBg] = useState('rgb(0, 0, 0)');
   const [currentItem_isImg, setCurrentItem_isImg] = useState(false);
   const [name, setName] = useState('');
-  const [dataAddBoard, setDataAddBoard] = useState([
-    {id: 1, bg: '/images/bg_board_1.jpg', check: true, isImg: true},
-    {id: 2, bg: '/images/bg_board_2.jpg', check: false, isImg: true},
-    {id: 3, bg: '/images/bg_board_3.jpg', check: false, isImg: true},
-    {id: 4, bg: '/images/bg_board_4.jpg', check: false, isImg: true},
-    {id: 5, bg: 'rgb(137, 96, 158)', check: false, isImg: false},
-    {id: 6, bg: 'rgb(0, 121, 191)', check: false, isImg: false},
-    {id: 7, bg: 'rgb(210, 144, 52)', check: false, isImg: false},
-    {id: 8, bg: 'rgb(81, 152, 57)', check: false, isImg: false},
-    {id: 9, bg: 'rgb(176, 70, 50)', check: false, isImg: false}
-  ]);
 
   useEffect(() => {
-    setCurrentItemBg(dataAddBoard[0].bg);
-    setCurrentItem_isImg(dataAddBoard[0].isImg);
+    setCurrentItemBg(typesBoard[0].bg);
+    setCurrentItem_isImg(typesBoard[0].isImg);
   }, [setCurrentItemBg, setCurrentItem_isImg]);
 
   const setValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -47,21 +50,21 @@ const AddBoardItem: React.FC<AddBoardItemProps> = ({onAddedBoard, setShowPopup})
   };
 
   const onToggle = (id: number) => {
-    const newDataAddBoard = dataAddBoard.map((elem) => {
+    const newTypeBoard = typesBoard.map((elem) => {
       elem.check = elem.id === id ? true : false;
       return elem;
     });
-    setDataAddBoard(newDataAddBoard);
+    setTypesBoard(newTypeBoard);
 
-    const item = dataAddBoard.find((item) => item.id === id);
+    const item = typesBoard.find((item) => item.id === id);
     if (item) {
       setCurrentItemBg(item.bg);
       setCurrentItem_isImg(item.isImg);
     }
   };
 
-  const elementsSelectBg = dataAddBoard.map((item) => {
-    return <SelectBgItem key={item.id} item={item} onToggle={onToggle} />;
+  const elementsSelectBg = typesBoard.map((item) => {
+    return <TypeBgItem key={item.id} item={item} onToggle={onToggle} />;
   });
 
   return (
@@ -116,4 +119,4 @@ const AddBoardItem: React.FC<AddBoardItemProps> = ({onAddedBoard, setShowPopup})
   );
 };
 
-export default AddBoardItem;
+export default BoardAddItem;

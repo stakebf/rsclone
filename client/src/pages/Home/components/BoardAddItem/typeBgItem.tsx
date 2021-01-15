@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './addBoardItem.module.scss';
+import classes from './boardAddItem.module.scss';
 
 interface IElemDataAddBoard {
   id: number;
@@ -9,12 +9,12 @@ interface IElemDataAddBoard {
   bg: string;
 }
 
-type SelectBgItemProps = {
+type TypeBgItemProps = {
   item: IElemDataAddBoard;
   onToggle(id: number): void;
 };
 
-const SelectBgItem: React.FC<SelectBgItemProps> = ({item, onToggle}) => {
+const TypeBgItem: React.FC<TypeBgItemProps> = ({item, onToggle}) => {
   const {id, isImg, check, bg} = item;
   return (
     <li
@@ -31,4 +31,4 @@ const SelectBgItem: React.FC<SelectBgItemProps> = ({item, onToggle}) => {
   );
 };
 
-export default SelectBgItem;
+export default TypeBgItem;
