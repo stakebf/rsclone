@@ -1,11 +1,11 @@
 import React from 'react';
-import CreateColumns from './CreateColumns';
+import ColumnCreator from './ColumnsCreator';
 import './Columns.scss';
 
 const Columns: React.FC = () => {
   return (
     <div>
-       <CreateColumns />
+       <ColumnCreator />
     </div>
   );
 };

@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  overflow-x: auto;
+  position: relative;
+  min-width: 300px;
+  min-height: 50px;
+
+  .btnAddColumn {
+    width: 270px;
+    text-align: left;
+    margin-left: 5px;
+    transition: all .3s;
+    position: absolute;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
+      // margin: 0;
+      position: absolute;
+    }
+  }
+
+  .creationWrapper {
+    transition: all .5s;
+    background-color: #ebecf0;
+    padding: 5px;
+    width: 270px;
+    // margin-left: -270px;
+    animation: smoothShow .5s ease-in-out;  
+
+    .creationInput {
+      width: 260px;
+      margin-bottom: 5px;
+      padding: 0 5px;
+    }
+  }
+}
+
+@keyframes smoothShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
