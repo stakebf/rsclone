@@ -11,6 +11,7 @@
   flex-shrink: 0;
   margin-right: 5px;
   padding: 5px;
+  overflow: hidden;
 
   &:first-child {
     margin-left: 5px;
@@ -20,7 +21,44 @@
     margin-right: 0;
   }
 
+  .content {
+    width: 260px;
+  }
+
   .btnCreateCard {
     width: 100%;
+    position: relative;
+    left: 0;
+
+    &.hide {
+      opacity: 0;
+      height: 0;
+      pointer-events: none;
+      position: absolute;
+      left: -400px;
+    }
+  }
+
+  .creationWrapper {
+    transition: all .5s;
+    background-color: #ebecf0;
+    padding: 5px;
+    width: 250px;
+    animation: smoothShow .5s ease-in-out;  
+
+    .creationInput {
+      width: 250px;
+      margin-bottom: 5px;
+      padding: 0 5px;
+    }
+  }
+}
+
+@keyframes smoothShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -5,6 +5,18 @@
   min-width: 300px;
   min-height: 50px;
 
+  &::-webkit-scrollbar {
+    height: 10px;
+    background: #222222;
+    border-radius: 0;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    height: 10px;
+    background: #717171;
+    border-radius: 0;
+  }
+
   .btnAddColumn {
     width: 270px;
     text-align: left;
@@ -25,6 +37,7 @@
     background-color: #ebecf0;
     padding: 5px;
     width: 270px;
+    align-self: flex-start;
     // margin-left: -270px;
     animation: smoothShow .5s ease-in-out;  
 

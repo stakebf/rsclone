@@ -2,7 +2,8 @@ import {
   FETCH_BOARD_START,
   FETCH_BOARD_SUCCESS,
   FETCH_BOARD_ERROR,
-  ADD_NEW_COLUMN
+  ADD_NEW_COLUMN,
+  ADD_NEW_CARD
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -53,5 +54,17 @@ export const addColumn = (column) => {
   return {
     type: ADD_NEW_COLUMN,
     payload: column
+  };
+}
+
+export const addCard = (columnId, card) => {
+  // тут будет запрос на сервер...
+  console.log('addCard', card);
+  return {
+    type: ADD_NEW_CARD,
+    payload: {
+      columnId,
+      card
+    }
   };
 }

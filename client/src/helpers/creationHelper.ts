@@ -4,9 +4,11 @@ export interface ColumnProps {
   columnId?: string, 
   columnTitle?: string,
   order?: number
+  cards?: []
 }
 
 export interface CardProps {
+  columnId?: string,
   cardId?: string,
   cardTitle?: string,
   userId?: string,
@@ -14,12 +16,19 @@ export interface CardProps {
   cardOrder?: number
 }
 
-const createBoard = (id: string, title: string):Board => {
-  return {
-    id,
-    title
-  };
-};
+export interface CardInfoProps {
+  columnId?: string,
+  cardId?: string,
+  cardTitle?: string,
+  userId?: string,
+  cartDescription?: string,
+  cardOrder?: number,
+  todo?: any[],
+  cardComments?: any[],
+  tags?: any[],
+  background?: string,
+  closeCardInfo: () => void
+}
 
 const createColumn = (
     columnId: string, 
@@ -36,9 +45,9 @@ const createColumn = (
 const createCard = (
     cardId: string,
     cardTitle: string,
-    userId: string,
-    cardDescription: string,
-    cardOrder: number,
+    userId?: string,
+    cardDescription?: string,
+    cardOrder?: number,
   ):CardProps => {
   return {
       cardId,
@@ -76,7 +85,6 @@ const createCardComment = (
 }
 
 export {
-  createBoard,
   createColumn,
   createCard,
   createTodo,

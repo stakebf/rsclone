@@ -1,38 +1,33 @@
 import React, { useEffect, useState } from 'react';
+
+import { connect } from 'react-redux';
 import { PlusCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
-import { 
-  createBoard,
-  createColumn,
-  createCard,
-  createTodo,
-  createCardComment
-} from '../../../helpers/creationHelper';
-import { Board } from './Board';
+import { fetchBoard, addColumn } from '../../../redux/actions';
+import { createColumn } from '../../../helpers/creationHelper';
+// import { Board } from './Board';
+import { Store } from '../../../redux/store/store';
 import classes from './ColumnsCreator.module.scss';
 import Column from './Column';
 
-const ColumnCreator: React.FC = () => {
-  // const [boards, setBoard] = useState<Board>({});
-  const [board, setBoard] = useState<Board>({
-    id: 'sime board ID',
-    title: 'board title',
-    usersList: [],
-  });
-  const [columns, setColumns] = useState<any[]>([]);
-  const [cards, setCards] = useState<any[]>([]);
-  const [todos, setTodos] = useState<any[]>([]);
-  const [cardComments, setCardComments] = useState<any[]>([]);
-  
+/* interface Props {
+  board?: Board,
+  fetchBoard?: any
+}; */
+
+let incr = 0;
+
+const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, addColumn }) => {
   const [isCreation, setIsCreation] = useState<boolean>(false);
   const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
-    // забираем борд
-  }, []);
+    // забираем борд fetchBoard(тут будем вытягивать :id борда из урла)
+    fetchBoard('1');
+  }, [fetchBoard]);
 
-  const btnAddClassNames: Array<any> = [classes.btnAddColumn, isCreation ? classes.hide : ''];
+  const btnAddClassNames: Array<string> = [classes.btnAddColumn, isCreation ? classes.hide : ''];
 
   const createColumnsClickHandler = (e: React.SyntheticEvent):void => {
     console.log(e);
@@ -52,7 +47,6 @@ const ColumnCreator: React.FC = () => {
     setIsCreation(false);
   }
 
-  
   const inputNnameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>):void => {
     const { value } = e.target;
     setTitle(value);
@@ -73,14 +67,15 @@ const ColumnCreator: React.FC = () => {
 
   const endOfCreation = ():void => {
     setIsCreation(false);
-    setColumns([...columns, createColumn('someID', title, 0)]); // потом переделать это При попадании на страницу - эти данные будут сразу
+    addColumn([createColumn(`someID${++incr}`, title, 0)]); // потом переделать это При попадании на страницу - эти данные будут сразу, я их по запросу буду забирать
     console.log('addColumnClickHandler - createBoard', title);
     setTitle('');
   }
 
   return (
     <div className={classes.container}>
-      {!!columns.length && columns.map((column) => {
+      {console.log(columns)}
+      {!!columns.length && columns.map((column: any) => {
         return (
           <Column 
             {...column}
@@ -134,4 +129,17 @@ const ColumnCreator: React.FC = () => {
   );
 };
 
-export default ColumnCreator;
+const mapStateToProps = (state: Store) => {
+  return {
+    board: state.board
+  }
+}
+
+const mapDispatchStateToProps = (dispatch: any) => {
+  return {
+    fetchBoard: (boardId: string) => dispatch(fetchBoard(boardId)),
+    addColumn: (column:any[]) => dispatch(addColumn(column))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchStateToProps)(ColumnCreator);
