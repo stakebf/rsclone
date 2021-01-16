@@ -5,17 +5,19 @@ const columnSchema = new mongoose.Schema(
   {
     title: String,
     order: Number,
+    boardId: String,
     _id: {
       type: String,
       default: uuid
-    }
+    },
+    taskList: Array,
   },
   { versionKey: false }
 );
 
-columnSchema.statics.toResponse = board => {
-  const { id, title, order } = board;
-  return { id, title, order };
+columnSchema.statics.toResponse = column => {
+  const { id, title, order, taskList, boardId } = column;
+  return { id, title, order, taskList, boardId };
 };
 
 const Column = mongoose.model('Column', columnSchema);

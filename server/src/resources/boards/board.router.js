@@ -16,7 +16,7 @@ router.route('/').get(
 router.route('/:id').get(
   catchErrors(async (req, res) => {
     const { id } = req.params;
-    const board = await boardsService.getBoardById(id);
+    const board = await boardsService.getAllBoardData(id);
     res.status(OK).json(Board.toResponse(board));
   })
 );

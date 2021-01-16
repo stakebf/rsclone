@@ -49,6 +49,17 @@ components:
           type: string
         userId:
           type: string
+    Columns:
+      required:
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+        order:
+          type: number
+        taskList:
+          type: array 
   responses:
     UnauthorizedError:
       description: Access token is missing or invalid
@@ -523,3 +534,69 @@ paths:
                 description: JWT Token
         403:
           description: Incorrect login or password
+  /boards/{boardId}/columns:
+    parameters:
+      - name: boardId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - Columns
+      summary: Get all Columns
+      description: Gets all Columns
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Columns"
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      tags:
+        - Columns
+      summary: Create Column
+      description: Creates a new Column
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: example
+              properties:
+                title:
+                  type: string
+                  description: The board's name
+                columns:
+                  type: array
+                  description: The board's column list
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                      order:
+                        type: integer
+                  required:
+                    - title
+                    - order
+              required:
+                - title
+                - columns
+      responses:
+        200:
+          description: The board has been created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Board"
+        400:
+          description: Bad request
+        401:
+          $ref: '#/components/responses/UnauthorizedError'   

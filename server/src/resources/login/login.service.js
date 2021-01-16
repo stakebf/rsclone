@@ -17,7 +17,10 @@ const loginUser = async (login, password) => {
   }
   const payload = { userId: user.id, login };
   const token = await jwt.sign(payload, JWT_SECRET_KEY);
-  return token;
+  return {
+    token,
+    userId
+  };
 };
 
 const registerUser = async (requestData) => {
@@ -29,7 +32,10 @@ const registerUser = async (requestData) => {
     await userService.createUser(requestData);
     const payload = { id, login };
     const token = jwt.sign(payload, JWT_SECRET_KEY);
-    return token;
+    return {
+      token,
+      userId
+    };
   }
 };
 
