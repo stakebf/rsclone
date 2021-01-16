@@ -50,9 +50,9 @@ app.use('/users', userRouter);
 
 app.use('/boards', boardRouter);
 
-boardRouter.use('/:boardId/tasks', taskRouter);
-
 boardRouter.use('/:boardId/columns', columnRouter);
+
+columnRouter.use('/:columnId/tasks', taskRouter);
 
 app.use(errors.handleError, (err, req, res, next) => {
   errors.handleInternalError(err, req, res, next);

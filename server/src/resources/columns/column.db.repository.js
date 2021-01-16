@@ -9,6 +9,8 @@ const getAll = async boardId => {
   return findByBoardId(boardId);
 };
 
+// const getAllColumnData = async ()
+
 const getColumnById = async id => {
   const column = await Column.findById(id);
   if (Column === null) {
@@ -42,10 +44,33 @@ const deleteColumn = async id => {
   return deletedColumn;
 };
 
+const deleteColumnFromBoard = async boardId => {
+  const deletedColumn = await findByBoardId(boardId);
+  if (deletedColumn.length !== 0) {
+    await Column.deleteMany({ boardId });
+    return deletedColumn;
+  }
+  return [];
+};
+
+const addTaskToColumn = async (id, taskData) => {
+  const updateColumn = await Column.findByIdAndUpdate(id, {
+    taskList: taskData
+  }, {
+    new: true
+  });
+  if (updateColumn === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updateColumn;
+};
+
 module.exports = {
   getAll,
   getColumnById,
   createColumn,
   updateColumn,
-  deleteColumn
+  deleteColumn,
+  deleteColumnFromBoard,
+  addTaskToColumn
 };
