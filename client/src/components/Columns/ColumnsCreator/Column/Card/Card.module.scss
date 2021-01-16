@@ -1,0 +1,28 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  word-break: break-word;
+  transition: all .3s;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #fff;
+  cursor: pointer;
+
+  &:first-child {
+    margin-top: 5px;
+  }
+
+  .editIcon {
+    opacity: 0;
+    transition: all .3s;
+  }
+
+  &:hover {
+    & .editIcon {
+      opacity: 1;
+    }
+
+    background-color: rgba(9,30,66,.08);
+  }
+}

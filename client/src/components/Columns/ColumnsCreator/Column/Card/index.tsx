@@ -9,11 +9,21 @@ const Card:React.FC<CardProps> = ({cardId, cardTitle, userId, cardDescription, c
     <div
       className={classes.card}
       onClick={() => {
-        console.log('onClick - Card menu');
+        console.log(`
+          cardId - ${cardId}\n
+          cardTitle - ${cardTitle}\n
+          cardId - ${cardId}\n
+        `);
       }}
     >
       <span>{cardTitle}</span>
-      <EditOutlined />
+      <EditOutlined 
+        style={{
+          alignSelf: 'flex-end',
+          marginBottom: '3px'
+        }}
+        className={classes.editIcon}
+      />
     </div>
   );
 };
