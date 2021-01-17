@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Button, Dropdown, Menu } from 'antd';
 import { PlusCircleOutlined, CloseCircleOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 import { Store } from '../../../../redux/store/store';
-import { addCard } from '../../../../redux/actions';
+import { addCard, renameColumn, removeColumn } from '../../../../redux/actions';
 import Card from './Card';
-import { createCard, ColumnProps } from '../../../../helpers/creationHelper';
+import { createCard } from '../../../../helpers/creationHelper';
 import classes from './Column.module.scss';
 
-let incr = 0;
+let incr = 0; // TODO: потом убрать 
 
-const Column:React.FC<any> = ({ columnId, columnTitle, order, cards = [], addCard }) => {
-  // console.log('props', columnId, columnTitle, order);
-  // const [cards, setCards] = useState<any[]>([]);
+const Column:React.FC<any> = ({ 
+    columnId, 
+    columnTitle, 
+    order, 
+    cards = [], 
+    addCard,
+    renameColumn,
+    removeColumn
+   }) => {
   const [title, setTitle] = useState<string>('');
   const [isCreation, setIsCreation] = useState<boolean>(false);
+  const [newColumnTitle, setNewColumnTitle] = useState<string>('');
+  const [isColumnRename, setIsColumnRename] = useState<boolean>(false);
 
   const btnAddClassNames: Array<any> = [classes.btnCreateCard, isCreation ? classes.hide : ''];
 
@@ -25,57 +33,115 @@ const Column:React.FC<any> = ({ columnId, columnTitle, order, cards = [], addCar
     }
 
     endOfCreation();
-  }
+  };
 
   const closeCreationClickHandler = ():void => {
     setIsCreation(false);
-  }
+  };
 
-  
   const inputNnameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>):void => {
-    const { value } = e.target;
-    setTitle(value);
-    // console.log(value);
-  }
+    setTitle(e.target.value);
+  };
 
   const createCardKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
     if (e.key === 'Enter') {
       endOfCreation();
     }
-  }
+  };
 
   const closeCreateCardKeydownHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
     if (e.key ===  'Escape') {
       setIsCreation(false);
     }
-  }
+  };
 
   const endOfCreation = ():void => {
     setIsCreation(false);
     addCard(columnId, createCard(`someID${++incr}`, title, '1', '', 5)); // потом переделать это При попадании на страницу - эти данные будут сразу
-    // console.log('addCardClickHandler - createBoard', title);
     setTitle('');
+  };
+
+  const renameColumnKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
+    if (e.key === 'Enter') {
+      if (!newColumnTitle.trim() || columnTitle === newColumnTitle) {
+        return;
+      }
+
+      renameColumn(columnId, newColumnTitle);
+    }
+  };
+
+  const closerenameColumnKeydownHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
+    if (e.key ===  'Escape') {
+      setIsColumnRename(false);
+    }
+  };
+
+  const renameColumnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>):void => {
+    console.log(e.target.value);
+    setNewColumnTitle(e.target.value);
   }
+
+  const renameColumnClickHandler = () => {
+    setNewColumnTitle(columnTitle);
+    setIsColumnRename(true);
+  };
+
+  const removeColumnClickHandler = () => {
+    removeColumn(columnId);
+  };
+
+  const editMenu = (
+    <Menu 
+      style={{textAlign: 'center'}}
+    >
+      <Menu.Item>
+        <Button 
+          type="primary" 
+          ghost
+          onClick={renameColumnClickHandler}
+        >
+          Переименовать
+        </Button>
+      </Menu.Item>
+      <Menu.Item>
+        <Button 
+          onClick={removeColumnClickHandler}
+          danger
+        >
+          Удалить колонку
+        </Button>
+      </Menu.Item>
+  </Menu>
+  );
 
   return (
     <div
       className={classes.column}
     >
       <div className={classes.columnEdit}>
-        <Button 
-          type="default"
-          onClick={addCardClickHandler}
-        >
-          <EllipsisOutlined />
-        </Button>
+        <Dropdown overlay={editMenu} placement="bottomLeft" arrow>
+          <Button><EllipsisOutlined /></Button>
+        </Dropdown>
       </div>
-      <span className={classes.columnTitle}>{columnTitle}</span>
+      {!isColumnRename && <span 
+        className={classes.columnTitle}
+        onClick={renameColumnClickHandler}
+      >{columnTitle}</span>}
+      {isColumnRename && <input 
+        className={classes.columnTitleInput} 
+        onKeyPress={renameColumnKeypressHandler}
+        onKeyDown={closerenameColumnKeydownHandler}
+        onChange={renameColumnChangeHandler}
+        value={newColumnTitle}
+        placeholder='Введите название колонки'
+        autoFocus
+      />}
       <span>{columnId}</span>
       <span>{order}</span>
 
       <div className={classes.content}>
         {!!cards.length && cards.map((card:any) => {
-          // console.log('1.MYcards DESCRIPTION', card.description);
           return (
             <Card 
               {...card}
@@ -94,7 +160,6 @@ const Column:React.FC<any> = ({ columnId, columnTitle, order, cards = [], addCar
           }}
           className={btnAddClassNames.join(' ')}
           onClick={() => {
-            // console.log('create Card');
             setIsCreation(true);
           }}
         >
@@ -145,7 +210,9 @@ const mapStateToProps = (state: Store) => {
 
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
-    addCard: (columnId:string, card:any[]) => dispatch(addCard(columnId, card))
+    addCard: (columnId:string, card:any[]) => dispatch(addCard(columnId, card)),
+    renameColumn: (columnId:string, newTitle:string) => dispatch(renameColumn(columnId, newTitle)),
+    removeColumn: (columnId:string) => dispatch(removeColumn(columnId)),
   }
 }
 

@@ -4,8 +4,20 @@ import {
   FETCH_BOARD_ERROR,
   ADD_NEW_COLUMN,
   ADD_NEW_CARD,
-  ADD_DESCRIPTION
+  ADD_DESCRIPTION,
+  RENAME_COLUMN,
+  REMOVE_COLUMN
 } from '../actions/actionTypes';
+
+const getCurrentColumn = (state, action) => {
+  const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
+  const copy = {...state.board.columns[columnIndex]};
+
+  return {
+    columnIndex,
+    copy
+  }
+}
 
 const initialState = {
   loading: false,
@@ -20,14 +32,15 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case FETCH_BOARD_START:
+    case FETCH_BOARD_START: {
       return {
         ...state,
         loading: true,
         error: null,
       };
+    }
     
-    case FETCH_BOARD_SUCCESS:
+    case FETCH_BOARD_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -35,15 +48,17 @@ const reducer = (state = initialState, action) => {
           ...action.payload
         }
       };
+    }
     
-    case FETCH_BOARD_ERROR:
+    case FETCH_BOARD_ERROR: {
       return {
         ...state,
         loading: false,
         error: action.payload
       };
+    }
     
-    case ADD_NEW_COLUMN:
+    case ADD_NEW_COLUMN: {
       return {
         ...state,
         loading: false,
@@ -55,10 +70,47 @@ const reducer = (state = initialState, action) => {
           ]
         }
       };
+    }
     
-    case ADD_NEW_CARD:
-      const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
-      const copy = {...state.board.columns[columnIndex]};
+    case RENAME_COLUMN: {
+      // const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
+      // const copy = {...state.board.columns[columnIndex]};
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      copy.columnTitle = action.payload.columnTitle; 
+
+      return {
+        ...state,
+        loading: false,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+    
+    case REMOVE_COLUMN: {
+      const columns = state.board.columns.filter((item) => item.columnId !== action.payload);
+
+      return {
+        ...state,
+        loading: false,
+        board: {
+          ...state.board,
+          columns: [
+            ...columns
+          ]
+        }
+      };
+    }
+    
+    case ADD_NEW_CARD: {
+      // const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
+      // const copy = {...state.board.columns[columnIndex]};
+      const { columnIndex, copy } = getCurrentColumn(state, action);
 
       let cards;
       if (state.board.columns[columnIndex].cards) {
@@ -81,11 +133,13 @@ const reducer = (state = initialState, action) => {
           ]
         }
       };
+    }
     
-    case ADD_DESCRIPTION:
-      const columnIndexDesc = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
-      const columnCopyDesc = {...state.board.columns[columnIndexDesc]};
-      const card = columnCopyDesc.cards.find((item) => item.cardId === action.payload.cardId);
+    case ADD_DESCRIPTION: {
+      // const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
+      // const copy = {...state.board.columns[columnIndex]};
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.cards.find((item) => item.cardId === action.payload.cardId);
       /* columnId, 
       cardId,
       cardDescription */
@@ -99,12 +153,13 @@ const reducer = (state = initialState, action) => {
         board: {
           ...state.board,
           columns: [
-            ...state.board.columns.slice(0, columnIndexDesc),
-            {...columnCopyDesc},
-            ...state.board.columns.slice(columnIndexDesc + 1),
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
           ]
         }
       };
+    }
 
     default: 
       return state;

@@ -43,6 +43,18 @@
   .columnTitle {
     word-break: break-all;
     width: 210px;
+    min-height: 25px;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+      background-color: rgba(9,30,66,.08);
+    }
+  }
+
+  .columnTitleInput {
+    padding: 0 5px;
+    width: 220px;
   }
 
   .content {
