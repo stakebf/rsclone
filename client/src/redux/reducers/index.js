@@ -6,7 +6,9 @@ import {
   ADD_NEW_CARD,
   ADD_DESCRIPTION,
   RENAME_COLUMN,
-  REMOVE_COLUMN
+  REMOVE_COLUMN,
+  RENAME_CARD,
+  REMOVE_CARD
 } from '../actions/actionTypes';
 
 const getCurrentColumn = (state, action) => {
@@ -73,8 +75,6 @@ const reducer = (state = initialState, action) => {
     }
     
     case RENAME_COLUMN: {
-      // const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
-      // const copy = {...state.board.columns[columnIndex]};
       const { columnIndex, copy } = getCurrentColumn(state, action);
       copy.columnTitle = action.payload.columnTitle; 
 
@@ -108,8 +108,6 @@ const reducer = (state = initialState, action) => {
     }
     
     case ADD_NEW_CARD: {
-      // const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
-      // const copy = {...state.board.columns[columnIndex]};
       const { columnIndex, copy } = getCurrentColumn(state, action);
 
       let cards;
@@ -134,19 +132,54 @@ const reducer = (state = initialState, action) => {
         }
       };
     }
+
+    case RENAME_CARD: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const cardIndex = copy.cards.findIndex((item) => item.cardId === action.payload.cardId);
+      copy.cards[cardIndex].cardTitle = action.payload.newCardTitle;
+
+      return {
+        ...state,
+        loading: false,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+    
+    case REMOVE_CARD: {
+      const { columnIndex } = getCurrentColumn(state, action);
+      const cards = state.board.columns[columnIndex].cards.filter((item) => item.cardId !== action.payload.cardId);
+
+      return {
+        ...state,
+        loading: false,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {
+              ...state.board.columns[columnIndex],
+              cards: [
+                ...cards
+              ]
+            },
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
     
     case ADD_DESCRIPTION: {
-      // const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
-      // const copy = {...state.board.columns[columnIndex]};
       const { columnIndex, copy } = getCurrentColumn(state, action);
       const card = copy.cards.find((item) => item.cardId === action.payload.cardId);
-      /* columnId, 
-      cardId,
-      cardDescription */
-      // console.log('ADD_DESCRIPTION',columnIndexDesc,columnCopyDesc,card);
-      
       card.cardDescription = action.payload.cardDescription;
-      // console.log('ADDEDDDDDDDD',card);
+
       return {
         ...state,
         loading: false,

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
-import { CloseCircleOutlined, PlusCircleOutlined, EditOutlined } from '@ant-design/icons';
+import { 
+  CloseCircleOutlined, 
+  PlusCircleOutlined, 
+  EditOutlined,
+  AlignLeftOutlined
+} from '@ant-design/icons';
 
 import classes from './Description.module.scss';
 import { addDescription } from '../../../../../../redux/actions';
@@ -54,7 +59,9 @@ const Description:React.FC<any> = ({ columnId, cardId, cardDescription, cardOrde
   return (
     <div className={classes.description}>
       <div className={classes.descriptionWrapper}>
-        <h3 className={classes.descriptionTitle}>Description</h3>
+        <h3 className={classes.descriptionTitle}>
+        <AlignLeftOutlined /> Описание
+        </h3>
         {!isEditDescription && <Button 
           type="default"
           style={{

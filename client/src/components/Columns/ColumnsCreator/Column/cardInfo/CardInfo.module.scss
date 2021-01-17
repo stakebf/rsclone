@@ -19,6 +19,44 @@
     background-color: #fff;
     border-radius: 5px;
     padding: 5px;
+    margin: 5px;
+
+    .cardTitleWrapper {
+      display: flex;
+      align-items: center;
+
+      .cardIcon {
+        align-self: flex-start;
+        margin: 9px 5px 0 0;
+        font-size: 20px;
+      }
+    }
+
+    .cardTitle {
+      transition: all .3s;
+      cursor: pointer;
+      word-break: break-all;
+
+      &:hover {
+        background-color: rgba(9, 30, 66, 0.08);
+      }
+    }
+
+    .deleteIcon {
+      font-size: 20px;
+      color: red;
+      margin-bottom: 5px;
+      border: 1px solid red;
+      border-radius: 3px;
+      padding: 2px;
+    }
+
+    .cardTitleInput {
+      display: flex;
+      width: 100%;
+      margin: 5px 0 10px;
+      padding: 0 5px;
+    }
 
     .btnClose {
       position: absolute;

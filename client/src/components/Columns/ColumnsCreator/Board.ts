@@ -45,3 +45,55 @@ export interface Board {
     ]
   }
 }
+
+/* export interface Board {
+  id?: string,
+  title?: string,
+  usersList?: any[],
+  columns?: any[]
+} */
+
+/* export interface Board {
+  board: {
+    id?: string,
+    title?: string,
+    usersList?: any[],
+    columns?: [
+      {
+        id?: string,
+        title?: string,
+        // order?: number,
+        taskList?: [
+          {
+            id?: string,
+            title?: string,
+            description?: string,
+            // cardOrder?: number,
+            userList?: any[],
+            todos?: {
+              title?: string,
+              id?: string,
+              todo: [
+              {
+                id?: string,
+                title?: string,
+                isComplete?: boolean
+              }
+            ]},
+            commetns?: [
+              {
+                id?: string,
+                userName?: string,
+                date?: string,
+                message?: string
+              }
+            ],
+            tags?: string[],
+            background?: string
+          }
+        ]
+      }
+    ]
+  }
+}
+ */

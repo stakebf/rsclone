@@ -6,7 +6,9 @@ import {
   ADD_NEW_CARD,
   ADD_DESCRIPTION,
   RENAME_COLUMN,
-  REMOVE_COLUMN
+  REMOVE_COLUMN,
+  RENAME_CARD,
+  REMOVE_CARD
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -87,6 +89,29 @@ export const addCard = (columnId, card) => {
     payload: {
       columnId,
       card
+    }
+  };
+}
+
+export const renameCard = (columnId, cardId, newCardTitle) => {
+  // тут будет запрос на сервер...
+  return {
+    type: RENAME_CARD,
+    payload: {
+      columnId, 
+      cardId, 
+      newCardTitle
+    }
+  };
+}
+
+export const removeCard = (columnId, cardId) => {
+  // тут будет запрос на сервер...
+  return {
+    type: REMOVE_CARD,
+    payload: {
+      columnId, 
+      cardId
     }
   };
 }

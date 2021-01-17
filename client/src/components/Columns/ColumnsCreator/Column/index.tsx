@@ -71,14 +71,13 @@ const Column:React.FC<any> = ({
     }
   };
 
-  const closerenameColumnKeydownHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
+  const closeRenameColumnKeydownHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
     if (e.key ===  'Escape') {
       setIsColumnRename(false);
     }
   };
 
   const renameColumnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>):void => {
-    console.log(e.target.value);
     setNewColumnTitle(e.target.value);
   }
 
@@ -131,7 +130,7 @@ const Column:React.FC<any> = ({
       {isColumnRename && <input 
         className={classes.columnTitleInput} 
         onKeyPress={renameColumnKeypressHandler}
-        onKeyDown={closerenameColumnKeydownHandler}
+        onKeyDown={closeRenameColumnKeydownHandler}
         onChange={renameColumnChangeHandler}
         value={newColumnTitle}
         placeholder='Введите название колонки'
@@ -146,7 +145,7 @@ const Column:React.FC<any> = ({
             <Card 
               {...card}
               columnId={columnId}
-              key={`${card.cardId}_${card.cardTitle}`}
+              key={`${card.cardId}`}
             />
           )
         })}
