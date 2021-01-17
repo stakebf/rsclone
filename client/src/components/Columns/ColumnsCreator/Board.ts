@@ -20,7 +20,7 @@ export interface Board {
             cardId?: string,
             cardTitle?: string,
             userId?: string,
-            cartDescription?: string,
+            cardDescription?: string,
             cardOrder?: number,
             todo?: [
               {

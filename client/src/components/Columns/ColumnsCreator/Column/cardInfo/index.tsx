@@ -1,30 +1,43 @@
 import React from 'react';
+import { Button } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
+
 import classes from './CardInfo.module.scss';
+import Description from './Description';
 
-import { CardInfoProps } from '../../../../../helpers/creationHelper';
-
-const CardInfo:React.FC<CardInfoProps> = ({ 
+const CardInfo:React.FC<any> = ({ 
     columnId,
     closeCardInfo, 
     cardId,
     cardTitle,
-    userId,
-    cartDescription,
+    cardDescription = '',
     cardOrder,
+    userId,
     todo = [],
     cardComments = [],
     tags = [],
-    background}) => {
+    background },
+    ) => {
 
   return (
     <div className={classes.popup}>
       <div className={classes.contentWrapper}>
-        <h2>some title</h2>
+        <Button 
+          danger
+          className={classes.btnClose}
+          onClick={closeCardInfo}
+        >
+          <CloseCircleOutlined />
+        </Button>
+        <h2>{cardTitle}</h2>
         <div>
           <div>
-            <div>
-              <h3>Description</h3>
-            </div>
+            <Description 
+              columnId={columnId}
+              cardId={cardId}
+              cardDescription={cardDescription}
+              cardOrder={cardOrder}
+            />
             <div>
               <h3>Todos</h3>
             </div>

@@ -21,13 +21,14 @@ export interface CardInfoProps {
   cardId?: string,
   cardTitle?: string,
   userId?: string,
-  cartDescription?: string,
+  cardDescription?: string,
   cardOrder?: number,
   todo?: any[],
   cardComments?: any[],
   tags?: any[],
   background?: string,
-  closeCardInfo: () => void
+  closeCardInfo: () => void,
+  addDescription: (columnId?:string, cardId?:string, cardDescription?:string) => any
 }
 
 const createColumn = (

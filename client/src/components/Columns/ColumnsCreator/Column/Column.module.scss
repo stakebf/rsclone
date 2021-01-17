@@ -21,6 +21,30 @@
     margin-right: 0;
   }
 
+  .columnEdit {
+    align-self: flex-end;
+    position: absolute;
+
+    button {
+      width: 35px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      &:hover {
+        background-color: rgba(9,30,66,.08);
+        color: #fff;
+        border: 1px solid #fff;
+      }
+    }
+  }
+
+  .columnTitle {
+    word-break: break-all;
+    width: 210px;
+  }
+
   .content {
     width: 260px;
   }

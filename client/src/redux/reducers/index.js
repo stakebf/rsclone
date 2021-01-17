@@ -3,7 +3,8 @@ import {
   FETCH_BOARD_SUCCESS,
   FETCH_BOARD_ERROR,
   ADD_NEW_COLUMN,
-  ADD_NEW_CARD
+  ADD_NEW_CARD,
+  ADD_DESCRIPTION
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -80,6 +81,30 @@ const reducer = (state = initialState, action) => {
           ]
         }
       };
+    
+    case ADD_DESCRIPTION:
+      const columnIndexDesc = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
+      const columnCopyDesc = {...state.board.columns[columnIndexDesc]};
+      const card = columnCopyDesc.cards.find((item) => item.cardId === action.payload.cardId);
+      /* columnId, 
+      cardId,
+      cardDescription */
+      // console.log('ADD_DESCRIPTION',columnIndexDesc,columnCopyDesc,card);
+      
+      card.cardDescription = action.payload.cardDescription;
+      // console.log('ADDEDDDDDDDD',card);
+      return {
+        ...state,
+        loading: false,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndexDesc),
+            {...columnCopyDesc},
+            ...state.board.columns.slice(columnIndexDesc + 1),
+          ]
+        }
+      };
 
     default: 
       return state;
@@ -98,7 +123,7 @@ export default reducer;
       cardId?: string,
       cardTitle?: string,
       userId?: string,
-      cartDescription?: string,
+      cardDescription?: string,
       cardOrder?: number,
       todo?: [
         {

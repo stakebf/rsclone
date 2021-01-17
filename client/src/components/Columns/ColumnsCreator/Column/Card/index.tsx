@@ -26,11 +26,12 @@ const Card:React.FC<CardProps> = ({
   }
   
   const showCardInfo = () => {
-    console.log(`
-      cardId - ${cardId}\n
-      cardTitle - ${cardTitle}\n
-      cardId - ${cardId}\n
-    `);
+    // console.log(`
+      // cardId - ${cardId}\n
+      // cardTitle - ${cardTitle}\n
+      // cardId - ${cardId}\n
+      // cardDescription - ${cardDescription}\n
+    // `);
     setIsOpen(true);
   }
 

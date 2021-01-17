@@ -17,6 +17,7 @@ import Column from './Column';
 }; */
 
 let incr = 0;
+const COLUMN_LENGTH = 275;
 
 const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, addColumn }) => {
   const [isCreation, setIsCreation] = useState<boolean>(false);
@@ -30,9 +31,9 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, add
   const btnAddClassNames: Array<string> = [classes.btnAddColumn, isCreation ? classes.hide : ''];
 
   const createColumnsClickHandler = (e: React.SyntheticEvent):void => {
-    console.log(e);
+    // console.log(e);
     setIsCreation(true);
-    console.log(isCreation);
+    // console.log(isCreation);
   }
 
   const addColumnClickHandler = ():void => {
@@ -50,7 +51,7 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, add
   const inputNnameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>):void => {
     const { value } = e.target;
     setTitle(value);
-    console.log(value);
+    // console.log(value);
   }
 
   const createColumnKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
@@ -68,13 +69,12 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, add
   const endOfCreation = ():void => {
     setIsCreation(false);
     addColumn([createColumn(`someID${++incr}`, title, 0)]); // потом переделать это При попадании на страницу - эти данные будут сразу, я их по запросу буду забирать
-    console.log('addColumnClickHandler - createBoard', title);
+    // console.log('addColumnClickHandler - createBoard', title);
     setTitle('');
   }
 
   return (
     <div className={classes.container}>
-      {console.log(columns)}
       {!!columns.length && columns.map((column: any) => {
         return (
           <Column 
@@ -88,7 +88,7 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, add
         onClick={createColumnsClickHandler}
         className={btnAddClassNames.join(' ')}
         style={{
-          left: `${columns.length * 275}px`
+          left: `${columns.length * COLUMN_LENGTH}px`
         }}
       >
         <PlusCircleOutlined />

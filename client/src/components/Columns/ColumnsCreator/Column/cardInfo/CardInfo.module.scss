@@ -13,10 +13,22 @@
   translate: all .4s;
   
   .contentWrapper {
+    position: relative;
     max-width: 768px;
     min-width: 300px;
     background-color: #fff;
     border-radius: 5px;
+    padding: 5px;
+
+    .btnClose {
+      position: absolute;
+      right: 5px;
+      width: 30px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
   }
 }
 
