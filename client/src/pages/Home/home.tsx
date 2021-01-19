@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import BoardList from './components/BoardList';
 import MainFeed from './components/MainFeed';
 
@@ -14,30 +14,40 @@ type HomeProps = {
 const Home: React.FC<HomeProps> = ({type, userId}) => {
   const [listMenu, setListMenu] = useState([
     {
-      id: 1,
       name: 'Доски',
       linkTo: '/user123/boards',
       icon: '/svg/brands.svg',
-      isSelect: true
+      isSelect: false,
+      type: 'boards'
     },
-    {id: 2, name: 'Главная страница', linkTo: '/', icon: '/svg/pulse.svg', isSelect: false}
+    {
+      name: 'Главная страница',
+      linkTo: '/',
+      icon: '/svg/pulse.svg',
+      isSelect: false,
+      type: 'main'
+    }
   ]);
 
-  const onToggleMenu = (id: number) => {
+  const onToggleMenu = (type: string) => {
     const newListMenu = listMenu.map((elem) => {
-      elem.isSelect = elem.id === id ? true : false;
+      elem.isSelect = elem.type === type ? true : false;
       return elem;
     });
     setListMenu(newListMenu);
   };
 
-  const elementsMenu = listMenu.map((item) => {
-    const {id, name, icon, isSelect, linkTo} = item;
+  useEffect(() => {
+    onToggleMenu(type);
+  }, [type]);
+
+  const elementsMenu = listMenu.map((item, i) => {
+    const {name, icon, isSelect, linkTo, type} = item;
     return (
       <li
-        key={id}
+        key={i}
         onClick={() => {
-          onToggleMenu(id);
+          onToggleMenu(type);
         }}
         className={`${classes.tab} ${isSelect ? classes.active : ''}`}
       >
@@ -51,10 +61,10 @@ const Home: React.FC<HomeProps> = ({type, userId}) => {
 
   return (
     <div className={classes.container}>
-      <div className={classes['control-panel']}>
+      <div className={classes['menu-panel']}>
         <ul className={classes['list-tabs']}>{elementsMenu}</ul>
       </div>
-      {type === 'main' ? <MainFeed /> : <BoardList />}
+      <div className={classes.content}>{type === 'main' ? <MainFeed /> : <BoardList />}</div>
     </div>
   );
 };

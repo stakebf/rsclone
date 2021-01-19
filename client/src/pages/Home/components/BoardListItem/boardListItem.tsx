@@ -1,19 +1,19 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import classes from './boardItem.module.scss';
+import classes from './boardListItem.module.scss';
 
-interface IBoardItem {
+interface IBoardListItem {
   id: number;
   bg: string;
   name: string;
   isImg: boolean;
 }
 
-type BoardItemProps = {
-  item: IBoardItem;
+type BoardListItemProps = {
+  item: IBoardListItem;
 };
 
-const BoardItem: React.FC<BoardItemProps> = ({item}) => {
+const BoardListItem: React.FC<BoardListItemProps> = ({item}) => {
   const {bg, name, isImg, id} = item;
   return (
     <li
@@ -27,4 +27,4 @@ const BoardItem: React.FC<BoardItemProps> = ({item}) => {
   );
 };
 
-export default BoardItem;
+export default BoardListItem;

@@ -1,5 +1,5 @@
 import React, {useState, useEffect /* useMemo */} from 'react';
-import BoardItem from '../BoardItem';
+import BoardItem from '../BoardListItem';
 import BoardAddItem from '../BoardAddItem';
 
 import classes from './boardList.module.scss';
@@ -62,24 +62,22 @@ const BoardList: React.FC = () => {
   return (
     <>
       <div className={classes['all-boards']}>
-        <div className={classes.block}>
-          <div className={classes.head}>
-            <img className={classes['icon-user']} src="/svg/user-regular.svg" alt="user-regular" />
-            <h4 className={classes['head-title']}>Ваши доски</h4>
-          </div>
-          <div className={classes['content']}>
-            <ul className={classes['list-boards']}>
-              {elements}
-              <li
-                className={classes['add-item-list']}
-                onClick={() => {
-                  setShowPopup(true);
-                }}
-              >
-                <span>Создать доску</span>
-              </li>
-            </ul>
-          </div>
+        <div className={classes.head}>
+          <img className={classes['head-icon']} src="/svg/user.svg" alt="user" />
+          <h4 className={classes['head-title']}>Ваши доски</h4>
+        </div>
+        <div className={classes['content']}>
+          <ul className={classes['list-boards']}>
+            {elements}
+            <li
+              className={classes['add-item-list']}
+              onClick={() => {
+                setShowPopup(true);
+              }}
+            >
+              <span>Создать доску</span>
+            </li>
+          </ul>
         </div>
       </div>
       {showPopup && (
