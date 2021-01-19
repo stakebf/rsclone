@@ -10,7 +10,6 @@ router.route('/').get(
   catchErrors(async (req, res) => {
     const { boardId } = req.params;
     const columns = await columnsService.getAll(boardId);
-    console.log(columns)
     res.status(OK).json(columns.map(Column.toResponse));
   })
 );
@@ -28,7 +27,6 @@ router.route('/').post(
   catchErrors(async (req, res) => {
     const requestData = req.body;
     const { boardId } = req.params;
-    console.log(req.params)
     const column = await columnsService.createColumn(requestData, boardId);
     res.status(OK).json(Column.toResponse(column));
   })

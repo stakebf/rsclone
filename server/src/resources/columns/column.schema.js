@@ -10,7 +10,7 @@ const schemaForPost = Joi.object().keys({
 });
 
 const schemaForPut = Joi.object().keys({
-  id: Joi.string()
+  columnId: Joi.string()
     .required()
     .error(new Error('Field id is required')),
   order: Joi.string(),

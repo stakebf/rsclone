@@ -8,11 +8,12 @@ const compression = require('compression');
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
+const todosRouter = require('./resources/todos/todos.router');
 const loginRouter = require('./resources/login/login.router');
 const columnRouter = require('./resources/columns/column.router');
 const authorizate = require('./common/authorizate');
 const errors = require('./errors');
-const { requestLogger } = require('./common/logger');
+const { requestLogger, boardLogger } = require('./common/logger');
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 
 const app = express();
@@ -48,11 +49,13 @@ app.use('/login', loginRouter);
 
 app.use('/users', userRouter);
 
-app.use('/boards', boardRouter);
+app.use('/boards', boardLogger, boardRouter);
 
 boardRouter.use('/:boardId/columns', columnRouter);
 
-columnRouter.use('/:columnId/tasks', taskRouter);
+app.use('/:columnId/tasks', taskRouter);
+
+taskRouter.use('/:taskId/todos', todosRouter)
 
 app.use(errors.handleError, (err, req, res, next) => {
   errors.handleInternalError(err, req, res, next);

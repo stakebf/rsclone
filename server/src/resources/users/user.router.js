@@ -26,8 +26,9 @@ router.route('/').post(
   catchErrors(validator.validateSchemaPost(usersSchemas.schemaForPost)),
   catchErrors(async (req, res) => {
     const requestData = req.body;
-    const token = await registerUser(requestData)
-    res.status(OK).json(token);
+    const {token, id} = await registerUser(requestData);
+    console.log(token, id)
+    res.status(OK).json({token, id});
     // res.status(OK).json(User.toResponse(user));
   })
 );

@@ -1,13 +1,20 @@
 const boardsRepo = require('./board.db.repository');
 const columnsService = require('../columns/column.service');
 const taskService = require('../tasks/task.service');
+const userService = require('../users/user.service');
+
 
 
 const getAll = () => boardsRepo.getAll();
 
 const getBoardById = id => boardsRepo.getBoardById(id);
 
-const createBoard = board => boardsRepo.createBoard(board);
+const createBoard = async board => {
+  const newBoard = await boardsRepo.createBoard(board);
+  const {admin, id} = newBoard;
+  await userService.addBoardToUser(admin, id);
+  return newBoard;
+};
 
 const updateBoard = (id, param) => boardsRepo.updateBoard(id, param);
 
@@ -20,8 +27,8 @@ const deleteBoard = async id => {
 
 const getAllBoardData = async boardId => {
   const columns = await columnsService.getAll(boardId);
- boardsRepo.addColumnToBoard(boardId, columns);
- return boardsRepo.getAllBoardData(boardId);
+  boardsRepo.addColumnToBoard(boardId, columns);
+  return boardsRepo.getAllBoardData(boardId);
 }
 
 module.exports = {
