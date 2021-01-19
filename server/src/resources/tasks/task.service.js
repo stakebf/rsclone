@@ -1,17 +1,27 @@
 const tasksRepo = require('./task.db.repository');
+const columnService = require('../columns/column.service');
 
-const getAll = boardId => tasksRepo.getAll(boardId);
 
-const getTaskById = (id, boardId) => tasksRepo.getTaskById(id, boardId);
+const getAll = columnId => tasksRepo.getAll(columnId);
 
-const createTask = task => tasksRepo.createTask(task);
+const getTaskById = (id, columnId) => tasksRepo.getTaskById(id, columnId);
 
-const updateTask = (id, boardId, param) =>
-  tasksRepo.updateTask(id, boardId, param);
+const createTask = async (task, columnId) => {
+  const newTask = tasksRepo.createTask(task);
+  const allTasksOnColumn = await tasksRepo.getAll(columnId);
+  console.log(allTasksOnColumn, 'allTasksOnColumn');
+  columnService.addTaskToColumn(columnId, allTasksOnColumn);
+  return newTask;
 
-const deleteTask = (id, boardId) => tasksRepo.deleteTask(id, boardId);
 
-const deleteTaskfromBoard = boardId => tasksRepo.deleteTaskfromBoard(boardId);
+}
+
+const updateTask = (id, columnId, param) =>
+  tasksRepo.updateTask(id, columnId, param);
+
+const deleteTask = (id, columnId) => tasksRepo.deleteTask(id, columnId);
+
+const deleteTaskFromColumn = columnId => tasksRepo.deleteTaskFromColumn(columnId);
 
 const unassignTask = userId => tasksRepo.unassignTask(userId);
 
@@ -21,6 +31,6 @@ module.exports = {
   createTask,
   updateTask,
   deleteTask,
-  deleteTaskfromBoard,
-  unassignTask
+  unassignTask,
+  deleteTaskFromColumn
 };
