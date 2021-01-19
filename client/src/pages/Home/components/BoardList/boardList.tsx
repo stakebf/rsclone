@@ -1,6 +1,7 @@
-import React, {useState, useEffect /* useMemo */} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import BoardItem from '../BoardListItem';
 import BoardAddItem from '../BoardAddItem';
+import MainApiService from '../../../../services/MainApiService';
 
 import classes from './boardList.module.scss';
 
@@ -29,7 +30,13 @@ const BoardList: React.FC = () => {
     {id: 9, bg: 'rgb(176, 70, 50)', check: false, isImg: false}
   ]);
 
+  const api = useMemo(() => new MainApiService(), []);
+
   /* const x = useMemo(() => typesBoard, []); */
+
+  useEffect(() => {
+    api.getBoards().then((data) => console.log(data));
+  }, [api]);
 
   useEffect(() => {
     if (!showPopup) {

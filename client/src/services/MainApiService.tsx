@@ -7,6 +7,24 @@ class MainApiService {
     return await res.json();
   }
 
+  // Get
+
+  _getResource = async (url: string) => {
+    const response = await fetch(url, {
+      headers: {
+        // authorization: token
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`Could not fetch ${url}, received ${response.status}`);
+    }
+    return await response.json();
+  };
+
+  getBoards = async () => {
+    return await this._getResource('boards');
+  };
+
   // Post
 
   _postResource = async (url: string, data = {}) => {
