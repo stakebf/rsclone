@@ -1,4 +1,5 @@
 const Task = require('./task.model.js');
+
 const NotFoundError = require('../../errors/NotFoundError');
 
 const findByUserId = async userId => {
@@ -13,7 +14,6 @@ const findByColumnId = columnId => {
 
 const getAll = async columnId => {
   const tasksOnColumn = findByColumnId(columnId);
-  console.log(tasksOnColumn, 'tasksOnColumn', columnId)
   if (tasksOnColumn === null) {
     throw new NotFoundError(`Task with id ${id} not found`);
   }
@@ -47,6 +47,7 @@ const updateTask = async (id, columnId, dataForUpdate) => {
   return findTask;
 };
 
+
 const deleteTask = async (id, columnId) => {
   const columnTask = await findBycolumnId(columnId);
   if (columnTask.length === 0) {
@@ -77,6 +78,19 @@ const unassignTask = async userId => {
   return findByUserId(userId);
 };
 
+const addTodoToTask = async (id, todosData) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, {
+    todos: todosData
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${id} not found`);
+  }
+  return updatedTask;
+};
+
+
 module.exports = {
   getAll,
   getTaskById,
@@ -84,5 +98,6 @@ module.exports = {
   updateTask,
   deleteTask,
   unassignTask,
-  deleteTaskFromColumn
+  deleteTaskFromColumn,
+  addTodoToTask
 };

@@ -16,8 +16,8 @@ const columnSchema = new mongoose.Schema(
 );
 
 columnSchema.statics.toResponse = column => {
-  const { id, title, order, taskList, boardId } = column;
-  return { id, title, order, taskList, boardId };
+  const { _id, title, order, taskList, boardId } = column;
+  return { _id, title, order, taskList, boardId };
 };
 
 const Column = mongoose.model('Column', columnSchema);

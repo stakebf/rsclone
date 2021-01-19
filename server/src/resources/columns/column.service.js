@@ -3,7 +3,6 @@ const taskService = require('../tasks/task.service');
 // const boardService = require('../boards/board.service');
 
 const getAll = boardId => {
-  console.log(boardId, 'INTO GET ALL')
   return columnsRepo.getAll(boardId);
 }
 
