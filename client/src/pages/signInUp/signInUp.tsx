@@ -1,19 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import MainApiService from '../../services/MainApiService';
-import Form from './components/form/form';
+import Form from './components/form';
 
 import classes from './signInUp.module.scss';
-
-interface IDataForUser {
-  email: string;
-  username: string;
-  password: string;
-  setDisabledForm: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorEmail: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorUsername: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorPassword: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 type SignInUpProps = {
   type: string;
@@ -22,11 +12,32 @@ type SignInUpProps = {
 const SignInUp: React.FC<SignInUpProps> = ({type}) => {
   const service = new MainApiService();
 
-  const [redirect, setRedirect] = useState(false);
+  const [isRedirect, setRedirect] = useState(false);
   const [errorServer, setErrorServer] = useState(false);
-  const [errorMessageServer, setErrorMessageServer] = useState(
-    'Ошибка сервера повторите попытку позже'
-  );
+  const [errorMessageServer, setErrorMessageServer] = useState('');
+  const [errorValidEmail, setErrorValidEmail] = useState(false);
+  const [errorValidUsername, setErrorValidUsername] = useState(false);
+  const [errorValidPassword, setErrorValidPassword] = useState(false);
+  const [disabledForm, setDisabledForm] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setErrorServer(false);
+      setErrorValidEmail(false);
+      setErrorValidUsername(false);
+      setErrorValidPassword(false);
+    };
+  }, [setErrorServer, setErrorValidEmail, setErrorValidUsername, setErrorValidPassword, type]);
+
+  const isEmailValid = (email: string): boolean => /.+@.+\..+/i.test(email);
+  const isUsernameValid = (username: string): boolean => /.{2,}/i.test(username);
+  const isPasswordValid = (password: string): boolean => /.{8,}/i.test(password);
+
+  function showErrors(email: string, username: string, password: string): void {
+    setErrorValidEmail(isEmailValid(email) ? false : true);
+    setErrorValidUsername(isUsernameValid(username) ? false : true);
+    setErrorValidPassword(isPasswordValid(password) ? false : true);
+  }
 
   const settings = ((type) => {
     switch (type) {
@@ -36,7 +47,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
           linkWord: 'Зарегистрировать аккаунт',
           linkTo: 'register',
           isUsername: false,
-          btn: {
+          btnSend: {
             name: 'Войти',
             bg: 'green'
           },
@@ -45,9 +56,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             username: '',
             password: ''
           },
-          sendUserToLogin(dataForUser: IDataForUser): void {
-            const {email, password, setDisabledForm} = dataForUser;
-
+          sendUserToLogin(email: string, password: string): void {
             setDisabledForm(true);
             service
               .postUserToLogin({login: email, password: password})
@@ -59,7 +68,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                 if (error.message === 'Bad login/password combination') {
                   setErrorMessageServer('Неверный адрес электронной почты или пароль');
                 } else {
-                  setErrorMessageServer('Ошибка сервера повторите попытку позже');
+                  setErrorMessageServer('Произошел технический сбой! Попробуйте позже');
                 }
                 setErrorServer(true);
               })
@@ -72,7 +81,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
           linkWord: 'Уже есть аккаунт? Войти',
           linkTo: 'login',
           isUsername: true,
-          btn: {
+          btnSend: {
             name: 'Зарегистрироваться',
             bg: 'blue'
           },
@@ -81,18 +90,9 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             username: 'Длина имени должна быть не менее 2 символов',
             password: 'Длина пароля должна быть не менее 8 символов'
           },
-          validMethods: {
-            isEmailValid: (email: string): boolean => /.+@.+\..+/i.test(email),
-            isUsernameValid: (username: string): boolean => /.{2,}/i.test(username),
-            isPasswordValid: (password: string): boolean => /.{8,}/i.test(password)
-          },
-          sendUserToRegister(dataForUser: IDataForUser): void {
-            const {isEmailValid, isUsernameValid, isPasswordValid} = this.validMethods;
-            const {email, username, password, setDisabledForm} = dataForUser;
-
+          sendUserToRegister(email: string, username: string, password: string): void {
             if (isEmailValid(email) && isUsernameValid(username) && isPasswordValid(password)) {
               setDisabledForm(true);
-
               service
                 .postUserToRegister({login: email, name: username, password: password})
                 .then((token) => {
@@ -103,20 +103,14 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                   if (error.message === 'User already exist') {
                     setErrorMessageServer('Адрес электронной почты уже зарегистрирован');
                   } else {
-                    setErrorMessageServer('Ошибка сервера повторите попытку позже');
+                    setErrorMessageServer('Произошел технический сбой! Попробуйте позже');
                   }
                   setErrorServer(true);
                 })
                 .finally(() => setDisabledForm(false));
             }
 
-            (function showErrors(): void {
-              const {setErrorEmail, setErrorUsername, setErrorPassword} = dataForUser;
-
-              setErrorEmail(isEmailValid(email) ? false : true);
-              setErrorUsername(isUsernameValid(username) ? false : true);
-              setErrorPassword(isPasswordValid(password) ? false : true);
-            })();
+            showErrors(email, username, password);
           }
         };
       default:
@@ -124,13 +118,14 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
     }
   })(type);
 
-  if (redirect) return <Redirect to="/" />;
+  if (isRedirect) return <Redirect to="/" />;
 
   return (
     <>
       <header className={classes.header}>
         <img alt="Trello" className={classes.logo} src="/svg/trello-logo-blue.svg"></img>
       </header>
+
       <main className={classes.main}>
         <img
           className={classes.img}
@@ -142,7 +137,14 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             {errorServer ? errorMessageServer : ''}
           </p>
           <h1 className={classes.title}>{settings.head}</h1>
-          <Form settings={settings} />
+          <Form
+            settings={settings}
+            errorEmail={errorValidEmail}
+            errorUsername={errorValidUsername}
+            errorPassword={errorValidPassword}
+            disabledForm={disabledForm}
+            type={type}
+          />
           <hr className={classes.borderHR} />
           <Link className={classes.link} to={`/${settings.linkTo}`}>
             {settings.linkWord}
