@@ -4,12 +4,12 @@ const connectToDb = require('./db/db.client');
 
 process
   .on('uncaughtException', err => {
-    logger.error(`Uncaught Exception: ${err.message}`);
+    logger.error(`Uncaught Exception: ${err.message}  ${err}`);
     const exit = process.exit;
     exit(1);
   })
   .on('unhandledRejection', err => {
-    logger.error(`Unhandled Promise Rejection: ${err.message}`);
+    logger.error(`Unhandled Promise Rejection: ${err.message}  ${err}`);
     const exit = process.exit;
     exit(1);
   });

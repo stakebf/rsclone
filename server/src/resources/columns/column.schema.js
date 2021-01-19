@@ -4,16 +4,18 @@ const schemaForPost = Joi.object().keys({
   title: Joi.string()
     .required()
     .error(new Error('Field title is required')),
-  columns: Joi.array(),
-  userList: Joi.array()
+  order: Joi.string(),
+  boardId: Joi.string(),
+  taskList: Joi.array()
 });
 
 const schemaForPut = Joi.object().keys({
   id: Joi.string()
     .required()
     .error(new Error('Field id is required')),
-  title: Joi.string(),
-  columns: Joi.array()
+  order: Joi.string(),
+  boardId: Joi.string(),
+  taskList: Joi.array()
 });
 
 module.exports = { schemaForPost, schemaForPut };
