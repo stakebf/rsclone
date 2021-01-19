@@ -23,18 +23,18 @@ const loginUser = async (login, password) => {
   };
 };
 
-const registerUser = async (requestData) => {
+const registerUser = async requestData => {
   const { id, login } = requestData;
   const user = await userService.getUserByProps(login);
   if (user) {
-    throw new ForbittenError('User already exist')
+    throw new ForbittenError('User already exist');
   } else {
     await userService.createUser(requestData);
     const payload = { id, login };
     const token = jwt.sign(payload, JWT_SECRET_KEY);
     return {
       token,
-      userId
+      id
     };
   }
 };

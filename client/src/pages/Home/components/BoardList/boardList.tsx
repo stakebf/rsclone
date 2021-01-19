@@ -35,6 +35,9 @@ const BoardList: React.FC = () => {
   /* const x = useMemo(() => typesBoard, []); */
 
   useEffect(() => {
+    api
+      .postBoards({title: 'board1' , bg: 'rgb(137, 96, 158)', admin: 'user'})
+      .then((data) => console.log(data));
     api.getBoards().then((data) => console.log(data));
   }, [api]);
 

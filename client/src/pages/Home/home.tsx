@@ -8,10 +8,10 @@ import classes from './home.module.scss';
 
 type HomeProps = {
   type: string;
-  userId?: any;
+  /* userId?: any; */
 };
 
-const Home: React.FC<HomeProps> = ({type, userId}) => {
+const Home: React.FC<HomeProps> = ({type /* , userId */}) => {
   const [listMenu, setListMenu] = useState([
     {
       name: 'Доски',

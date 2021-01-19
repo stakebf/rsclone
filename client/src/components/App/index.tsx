@@ -14,10 +14,11 @@ const App: React.FC = () => {
         {true /* isToken */ ? <Home type="main" /> : <Main />}
       </Route>
 
-      <Route
+      {/* <Route
         path="/:userId/boards"
         render={({match}) => <Home userId={match.params.userId} type="boards" />}
-      />
+      /> */}
+      <Route path="/boards" render={() => <Home type="boards" />} />
       <Route path="/login" render={() => <SignInUp type="login" />} />
       <Route path="/register" render={() => <SignInUp type="register" />} />
 

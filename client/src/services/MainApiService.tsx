@@ -50,6 +50,10 @@ class MainApiService {
   postUserToRegister = async (data = {}) => {
     return await this._postResource('users', data);
   };
+
+  postBoards = async (data = {}) => {
+    return await this._postResource('boards', data);
+  };
 }
 
 export default MainApiService;
