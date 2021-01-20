@@ -15,7 +15,7 @@ type BoardItemProps = {
 };
 
 const BoardListItem: React.FC<BoardItemProps> = ({item, onFavorite}) => {
-  const {background, title, id} = item;
+  const {background, title, id, isFavorite} = item;
   return (
     <li
       className={classes.item}
@@ -34,7 +34,7 @@ const BoardListItem: React.FC<BoardItemProps> = ({item, onFavorite}) => {
             onFavorite(item);
           }}
           className={classes['content__star']}
-          src="/svg/star-regular.svg"
+          src={isFavorite ? '/svg/star-solid-yellow.svg' : '/svg/star-regular-yellow.svg'}
           alt="star-regular"
         />
       </div>

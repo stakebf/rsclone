@@ -37,8 +37,12 @@
       right: 7px;
       width: 16px;
       transition: 0.2s ease-in-out;
+      cursor: pointer;
       &:hover {
         transform: scale(1.1);
+      }
+      &.disabled {
+        cursor: progress;
       }
     }
   }

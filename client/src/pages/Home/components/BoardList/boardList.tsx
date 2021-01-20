@@ -30,8 +30,11 @@ const BoardList: React.FC = () => {
   const api = useMemo(() => new MainApiService(), []);
 
   useEffect(() => {
-    api.getBoards().then((data) => setDataBoards(data));
-  }, [api, setDataBoards]);
+    api
+      .getBoardsAll()
+      .then((data) => setDataBoards(data))
+      .catch((error) => console.log(error));
+  }, [api, setDataBoards, dataBoards]);
 
   useEffect(() => {
     if (!showPopup) {
@@ -43,52 +46,72 @@ const BoardList: React.FC = () => {
     }
   }, [setTypesBoard, showPopup]);
 
-  const onAddedBoard = (title: string, background: string): void => {
+  const onAddedBoard = (title: string, background: string) => {
     api
-      .postBoards({
+      .postBoard({
         title,
         background,
-        admin: '5419127b-4546-4e6f-ad44-cf9ffebb0d29', // TODO idUSre
+        admin: localStorage.getItem('userId'),
         isFavorite: false
       })
-      .catch((error) => console.log(error));
-    api
-      .getBoards()
-      .then((data) => setDataBoards(data))
       .catch((error) => console.log(error));
   };
 
   const onFavorite = (item: IBoardItem) => {
-    const {background, title, id, isFavorite} = item;
-    api.putBoards({isFavorite: !isFavorite}, id).then((data) => console.log(data));
-    console.log(id);
+    const {id, isFavorite} = item;
+    api.putBoard({isFavorite: !isFavorite}, id).catch((error) => console.log(error));
   };
 
-  const elements = dataBoards.map((item) => {
-    const {id} = item;
-    return <BoardItem key={id} item={item} onFavorite={onFavorite} />;
+  const elementsAll = dataBoards.map((item: IBoardItem) => {
+    return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
   });
+
+  const elementsFavorite = () => {
+    const dataFavorite = dataBoards.filter((item: IBoardItem) => item.isFavorite === true);
+
+    return dataFavorite.map((item: IBoardItem) => {
+      return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
+    });
+  };
 
   return (
     <>
       <div className={classes['all-boards']}>
-        <div className={classes.head}>
-          <img className={classes['head-icon']} src="/svg/user.svg" alt="user" />
-          <h4 className={classes['head-title']}>Ваши доски</h4>
-        </div>
-        <div className={classes['content']}>
-          <ul className={classes['list-boards']}>
-            {elements}
-            <li
-              className={classes['add-item-list']}
-              onClick={() => {
-                setShowPopup(true);
-              }}
-            >
-              <span>Создать доску</span>
-            </li>
-          </ul>
-        </div>
+        {elementsFavorite().length > 0 ? (
+          <>
+            <div className={classes.head}>
+              <img
+                className={classes['head-icon']}
+                style={{width: '20px'}}
+                src="/svg/star-solid.svg"
+                alt="star"
+              />
+              <h4 className={classes['head-title']}>Отмеченные доски</h4>
+            </div>
+            <div className={classes['content']}>
+              <ul className={classes['list-boards']}>{elementsFavorite()}</ul>
+            </div>
+          </>
+        ) : null}
+        <>
+          <div className={classes.head}>
+            <img className={classes['head-icon']} src="/svg/user.svg" alt="user" />
+            <h4 className={classes['head-title']}>Ваши доски</h4>
+          </div>
+          <div className={classes['content']}>
+            <ul className={classes['list-boards']}>
+              {elementsAll}
+              <li
+                className={classes['add-item-list']}
+                onClick={() => {
+                  setShowPopup(true);
+                }}
+              >
+                <span>Создать доску</span>
+              </li>
+            </ul>
+          </div>
+        </>
       </div>
       {showPopup && (
         <BoardAddItem

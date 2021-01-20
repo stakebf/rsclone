@@ -21,7 +21,7 @@ class MainApiService {
     return await response.json();
   };
 
-  getBoards = async () => {
+  getBoardsAll = async () => {
     return await this._getResource('boards');
   };
 
@@ -51,7 +51,7 @@ class MainApiService {
     return await this._postResource('users', data);
   };
 
-  postBoards = async (data = {}) => {
+  postBoard = async (data = {}) => {
     return await this._postResource('boards', data);
   };
 
@@ -72,7 +72,7 @@ class MainApiService {
     return await response.json();
   };
 
-  putBoards = async (data = {}, id: string) => {
+  putBoard = async (data = {}, id: string) => {
     return await this._getPut(`boards/${id}`, data);
   };
 }
