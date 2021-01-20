@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CloseOutlined, SearchOutlined  } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
 import { Input, AutoComplete } from 'antd';
 import { SelectProps } from 'antd/es/select'
 import classes from './Complete.module.scss';
