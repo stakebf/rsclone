@@ -4,9 +4,8 @@ import classes from './boardAddItem.module.scss';
 
 interface IElemDataAddBoard {
   id: number;
-  isImg: boolean;
   check: boolean;
-  bg: string;
+  background: string;
 }
 
 type TypeBgItemProps = {
@@ -15,14 +14,18 @@ type TypeBgItemProps = {
 };
 
 const TypeBgItem: React.FC<TypeBgItemProps> = ({item, onToggle}) => {
-  const {id, isImg, check, bg} = item;
+  const {id, check, background} = item;
   return (
     <li
       onClick={() => {
         onToggle(id);
       }}
       className={classes.item}
-      style={isImg ? {backgroundImage: `url(${bg})`} : {backgroundColor: bg}}
+      style={
+        background.endsWith('jpg' || 'jpeg' || 'png')
+          ? {backgroundImage: `url(${background})`}
+          : {backgroundColor: background}
+      }
     >
       <div className={`${classes['item-overlay']} ${check ? classes['active'] : ''}`}>
         {check && <img className={classes['img-check']} src="/svg/check.svg" alt="check" />}

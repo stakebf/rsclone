@@ -5,13 +5,12 @@ import classes from './boardAddItem.module.scss';
 
 interface ITypesBoards {
   id: number;
-  bg: string;
+  background: string;
   check: boolean;
-  isImg: boolean;
 }
 
 type BoardAddItemProps = {
-  onAddedBoard(name: string, bg: string, isImg: boolean): void;
+  onAddedBoard(name: string, background: String): void;
   setShowPopup(value: boolean): void;
   typesBoard: ITypesBoards[];
   setTypesBoard(s: any): void;
@@ -25,13 +24,11 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
 }) => {
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [currentItemBg, setCurrentItemBg] = useState('rgb(0, 0, 0)');
-  const [currentItem_isImg, setCurrentItem_isImg] = useState(false);
   const [name, setName] = useState('');
 
   useEffect(() => {
-    setCurrentItemBg(typesBoard[0].bg);
-    setCurrentItem_isImg(typesBoard[0].isImg);
-  }, [setCurrentItemBg, setCurrentItem_isImg]);
+    setCurrentItemBg(typesBoard[0].background);
+  }, [setCurrentItemBg]);
 
   const setValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setName(e.target.value);
@@ -39,7 +36,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
   };
 
   const onSend = (): void => {
-    onAddedBoard(name, currentItemBg, currentItem_isImg);
+    onAddedBoard(name, currentItemBg);
     setShowPopup(false);
   };
 
@@ -58,8 +55,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
 
     const item = typesBoard.find((item) => item.id === id);
     if (item) {
-      setCurrentItemBg(item.bg);
-      setCurrentItem_isImg(item.isImg);
+      setCurrentItemBg(item.background);
     }
   };
 
@@ -77,7 +73,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
         <div
           className={classes['popup-board']}
           style={
-            currentItem_isImg
+            currentItemBg.endsWith('jpg' || 'jpeg' || 'png')
               ? {backgroundImage: `url(${currentItemBg})`}
               : {backgroundColor: currentItemBg}
           }

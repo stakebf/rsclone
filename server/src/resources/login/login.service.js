@@ -15,7 +15,9 @@ const loginUser = async (login, password) => {
       throw new ForbittenError('Bad login/password combination');
     }
   }
-  const payload = { userId: user.id, login };
+
+  const userId = user.id;
+  const payload = { userId, login };
   const token = await jwt.sign(payload, JWT_SECRET_KEY);
   return {
     token,
@@ -29,7 +31,8 @@ const registerUser = async requestData => {
   if (user) {
     throw new ForbittenError('User already exist');
   } else {
-    await userService.createUser(requestData);
+    const newUser = await userService.createUser(requestData);
+    const { id } = newUser;
     const payload = { id, login };
     const token = jwt.sign(payload, JWT_SECRET_KEY);
     return {

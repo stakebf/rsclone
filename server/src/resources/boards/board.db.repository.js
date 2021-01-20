@@ -5,8 +5,6 @@ const getAll = async () => {
   return Board.find({});
 };
 
-
-
 const getBoardById = async id => {
   const board = await Board.findById(id);
   if (board === null) {
@@ -20,8 +18,15 @@ const getAllBoardData = async boardId => {
   return boardData;
 }
 
-const createBoard = async newBoard => {
-  return Board.create(newBoard);
+const createBoard = async newBoardData => {
+  const { admin } = newBoardData;
+  const newBoard = await Board.create({
+    ...newBoardData
+  });
+
+  newBoard.userList.push(admin);
+
+  return newBoard;
 };
 
 const updateBoard = async (id, dataForUpdate) => {

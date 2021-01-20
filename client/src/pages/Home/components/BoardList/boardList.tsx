@@ -1,45 +1,37 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import BoardItem from '../BoardListItem';
+import BoardItem from '../BoardItem';
 import BoardAddItem from '../BoardAddItem';
 import MainApiService from '../../../../services/MainApiService';
 
 import classes from './boardList.module.scss';
 
+interface IBoardItem {
+  id: string;
+  background: string;
+  title: string;
+  isFavorite: boolean;
+}
+
 const BoardList: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const [currentBoards, setCurrentBoards] = useState([
-    {id: 1, bg: '/images/bg_board_1.jpg', name: 'moon', isImg: true},
-    {id: 2, bg: '/images/bg_board_2.jpg', name: 'wood', isImg: true},
-    {id: 3, bg: '/images/bg_board_3.jpg', name: 'space', isImg: true},
-    {id: 4, bg: '/images/bg_board_4.jpg', name: 'winter', isImg: true},
-    {id: 5, bg: 'rgb(137, 96, 158)', name: 'purple', isImg: false},
-    {id: 6, bg: 'rgb(0, 121, 191)', name: 'blue', isImg: false},
-    {id: 7, bg: 'rgb(210, 144, 52)', name: 'orange', isImg: false},
-    {id: 8, bg: 'rgb(81, 152, 57)', name: 'green', isImg: false},
-    {id: 9, bg: 'rgb(176, 70, 50)', name: 'red', isImg: false}
-  ]);
+  const [dataBoards, setDataBoards] = useState([]);
   const [typesBoard, setTypesBoard] = useState([
-    {id: 1, bg: '/images/bg_board_1.jpg', check: true, isImg: true},
-    {id: 2, bg: '/images/bg_board_2.jpg', check: false, isImg: true},
-    {id: 3, bg: '/images/bg_board_3.jpg', check: false, isImg: true},
-    {id: 4, bg: '/images/bg_board_4.jpg', check: false, isImg: true},
-    {id: 5, bg: 'rgb(137, 96, 158)', check: false, isImg: false},
-    {id: 6, bg: 'rgb(0, 121, 191)', check: false, isImg: false},
-    {id: 7, bg: 'rgb(210, 144, 52)', check: false, isImg: false},
-    {id: 8, bg: 'rgb(81, 152, 57)', check: false, isImg: false},
-    {id: 9, bg: 'rgb(176, 70, 50)', check: false, isImg: false}
+    {id: 1, background: '/images/bg_board_1.jpg', check: true},
+    {id: 2, background: '/images/bg_board_2.jpg', check: false},
+    {id: 3, background: '/images/bg_board_3.jpg', check: false},
+    {id: 4, background: '/images/bg_board_4.jpg', check: false},
+    {id: 5, background: 'rgb(137, 96, 158)', check: false},
+    {id: 6, background: 'rgb(0, 121, 191)', check: false},
+    {id: 7, background: 'rgb(210, 144, 52)', check: false},
+    {id: 8, background: 'rgb(81, 152, 57)', check: false},
+    {id: 9, background: 'rgb(176, 70, 50)', check: false}
   ]);
 
   const api = useMemo(() => new MainApiService(), []);
 
-  /* const x = useMemo(() => typesBoard, []); */
-
   useEffect(() => {
-    api
-      .postBoards({title: 'board1' , bg: 'rgb(137, 96, 158)', admin: 'user'})
-      .then((data) => console.log(data));
-    api.getBoards().then((data) => console.log(data));
-  }, [api]);
+    api.getBoards().then((data) => setDataBoards(data));
+  }, [api, setDataBoards]);
 
   useEffect(() => {
     if (!showPopup) {
@@ -51,22 +43,30 @@ const BoardList: React.FC = () => {
     }
   }, [setTypesBoard, showPopup]);
 
-  const createBoard = (name: string, bg: string, isImg: boolean) => {
-    return {
-      bg,
-      name,
-      isImg,
-      id: ++currentBoards.length
-    };
+  const onAddedBoard = (title: string, background: string): void => {
+    api
+      .postBoards({
+        title,
+        background,
+        admin: '5419127b-4546-4e6f-ad44-cf9ffebb0d29', // TODO idUSre
+        isFavorite: false
+      })
+      .catch((error) => console.log(error));
+    api
+      .getBoards()
+      .then((data) => setDataBoards(data))
+      .catch((error) => console.log(error));
   };
 
-  const onAddedBoard = (name: string, bg: string, isImg: boolean): void => {
-    setCurrentBoards([...currentBoards, createBoard(name, bg, isImg)]);
+  const onFavorite = (item: IBoardItem) => {
+    const {background, title, id, isFavorite} = item;
+    api.putBoards({isFavorite: !isFavorite}, id).then((data) => console.log(data));
+    console.log(id);
   };
 
-  const elements = currentBoards.map((item) => {
+  const elements = dataBoards.map((item) => {
     const {id} = item;
-    return <BoardItem key={id} item={item} />;
+    return <BoardItem key={id} item={item} onFavorite={onFavorite} />;
   });
 
   return (

@@ -8,14 +8,13 @@ import classes from './home.module.scss';
 
 type HomeProps = {
   type: string;
-  /* userId?: any; */
 };
 
-const Home: React.FC<HomeProps> = ({type /* , userId */}) => {
+const Home: React.FC<HomeProps> = ({type}) => {
   const [listMenu, setListMenu] = useState([
     {
       name: 'Доски',
-      linkTo: '/user123/boards',
+      linkTo: '/boards',
       icon: '/svg/brands.svg',
       isSelect: false,
       type: 'boards'
