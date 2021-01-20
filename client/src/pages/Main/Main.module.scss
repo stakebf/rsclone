@@ -1,5 +1,15 @@
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .main {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .content {
@@ -10,6 +20,7 @@
     justify-content: center;
     
     .img {
+        margin-left: 10px;
         width: 650px;
         border-radius: 10px;
     }
@@ -40,6 +51,7 @@
 }
 
 .buttons {
+    // align-self: flex-end;
     display: flex;
     align-items: center;
     justify-content: center;

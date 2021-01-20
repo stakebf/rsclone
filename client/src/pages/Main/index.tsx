@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   return (
-    <div>
-      <Header />
+    <div className={classes.wrapper}>
+      <Header type="main"/>
       <div className={classes.main}>
         <Carousel className={classes.carousel} autoplay autoplaySpeed={5000}>
           <div>

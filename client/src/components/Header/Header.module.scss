@@ -5,6 +5,21 @@
     align-items: center;
     background: rgb(87, 186, 243);
 
+    .left, .right {
+        width: 45%;
+        display: flex;
+        align-items: center;
+    }
+
+    .left_wrapper {
+        width: 100%;
+        display: flex;
+    }
+
+    .right {
+        justify-content: flex-end;
+    }
+
     .title {
         display: flex;
         align-items: center;
@@ -29,4 +44,17 @@
             }
         }
     }
+}
+
+.home, .boards {
+    font-size: 20px;
+}
+
+.btn_home, .btn_boards {
+    margin-right: 4px;
+    font-size: 14px;
+}
+
+.profile:hover {
+    cursor: pointer;
 }

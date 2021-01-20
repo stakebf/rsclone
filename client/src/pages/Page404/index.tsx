@@ -1,5 +1,6 @@
 import React from 'react';
 import { Result, Button } from 'antd';
+import './404.scss';
 
 const Page404: React.FC = () => {
   return (

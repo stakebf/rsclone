@@ -1,0 +1,27 @@
+.user {
+    display: flex;
+    padding: 10px;
+}
+
+.userInfo {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.email {
+    font-size: 12px;
+    color: #b3bac5;
+}
+
+.link {
+    padding: 10px;
+    margin: 0;
+    color: black;
+    width: 100%;
+
+    &:hover {
+        background-color: #f7f3f3;
+        color: black;
+    }
+}
