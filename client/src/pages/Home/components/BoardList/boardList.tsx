@@ -1,9 +1,11 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useState, useEffect, useMemo, useCallback} from 'react';
 import BoardItem from '../BoardItem';
 import BoardAddItem from '../BoardAddItem';
 import MainApiService from '../../../../services/MainApiService';
+import {Spin} from 'antd';
 
 import classes from './boardList.module.scss';
+import 'antd/dist/antd.css';
 
 interface IBoardItem {
   id: string;
@@ -14,8 +16,9 @@ interface IBoardItem {
 
 const BoardList: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [dataBoards, setDataBoards] = useState([]);
-  const [typesBoard, setTypesBoard] = useState([
+  const [typesBoards, setTypesBoards] = useState([
     {id: 1, background: '/images/bg_board_1.jpg', check: true},
     {id: 2, background: '/images/bg_board_2.jpg', check: false},
     {id: 3, background: '/images/bg_board_3.jpg', check: false},
@@ -29,22 +32,29 @@ const BoardList: React.FC = () => {
 
   const api = useMemo(() => new MainApiService(), []);
 
-  useEffect(() => {
+  const getDataBoardAll = useCallback(() => {
+    setLoading(true);
     api
       .getBoardsAll()
       .then((data) => setDataBoards(data))
-      .catch((error) => console.log(error));
-  }, [api, setDataBoards, dataBoards]);
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  }, [api, setDataBoards, setLoading]);
+
+  useEffect(() => {
+    getDataBoardAll();
+    return () => setDataBoards([]);
+  }, [getDataBoardAll, setDataBoards]);
 
   useEffect(() => {
     if (!showPopup) {
-      const newTypeBoard = typesBoard.map((elem, i) => {
+      const newTypeBoard = typesBoards.map((elem, i) => {
         elem.check = i === 0 ? true : false;
         return elem;
       });
-      setTypesBoard(newTypeBoard);
+      setTypesBoards(newTypeBoard);
     }
-  }, [setTypesBoard, showPopup]);
+  }, [setTypesBoards, showPopup]);
 
   const onAddedBoard = (title: string, background: string) => {
     api
@@ -55,11 +65,13 @@ const BoardList: React.FC = () => {
         isFavorite: false
       })
       .catch((error) => console.log(error));
+    getDataBoardAll();
   };
 
   const onFavorite = (item: IBoardItem) => {
     const {id, isFavorite} = item;
     api.putBoard({isFavorite: !isFavorite}, id).catch((error) => console.log(error));
+    getDataBoardAll();
   };
 
   const elementsAll = dataBoards.map((item: IBoardItem) => {
@@ -73,6 +85,13 @@ const BoardList: React.FC = () => {
       return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
     });
   };
+
+  if (loading)
+    return (
+      <div className={classes.spinner}>
+        <Spin />
+      </div>
+    );
 
   return (
     <>
@@ -117,8 +136,8 @@ const BoardList: React.FC = () => {
         <BoardAddItem
           onAddedBoard={onAddedBoard}
           setShowPopup={setShowPopup}
-          typesBoard={typesBoard}
-          setTypesBoard={setTypesBoard}
+          typesBoards={typesBoards}
+          setTypesBoards={setTypesBoards}
         />
       )}
     </>

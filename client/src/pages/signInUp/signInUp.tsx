@@ -120,7 +120,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
     }
   })(type);
 
-  if (isRedirect) return <Redirect to="/" />;
+  if (isRedirect) return <Redirect to="/boards" />;
 
   return (
     <>

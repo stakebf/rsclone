@@ -124,7 +124,7 @@ const MainFeed: React.FC = () => {
     <div className={classes['main-feed']}>
       <div className={classes['main-feed__head']}>
         <img className={classes['icon']} src="/svg/heart.svg" alt="heart" />
-        <h3 className={classes['title']}>Важные события</h3>
+        <h4 className={classes['title']}>Важные события</h4>
       </div>
       <ul className={classes['main-feed__list']}>{elements}</ul>
     </div>

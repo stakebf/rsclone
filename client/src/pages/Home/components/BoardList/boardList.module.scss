@@ -38,6 +38,12 @@
   }
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
 @media (max-width: 900px) {
   .all-boards {
     .content {

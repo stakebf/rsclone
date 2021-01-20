@@ -12,22 +12,22 @@ interface ITypesBoards {
 type BoardAddItemProps = {
   onAddedBoard(name: string, background: String): void;
   setShowPopup(value: boolean): void;
-  typesBoard: ITypesBoards[];
-  setTypesBoard(s: any): void;
+  typesBoards: ITypesBoards[];
+  setTypesBoards(s: any): void;
 };
 
 const BoardAddItem: React.FC<BoardAddItemProps> = ({
   onAddedBoard,
   setShowPopup,
-  typesBoard,
-  setTypesBoard
+  typesBoards,
+  setTypesBoards
 }) => {
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [currentItemBg, setCurrentItemBg] = useState('rgb(0, 0, 0)');
   const [name, setName] = useState('');
 
   useEffect(() => {
-    setCurrentItemBg(typesBoard[0].background);
+    setCurrentItemBg(typesBoards[0].background);
   }, [setCurrentItemBg]);
 
   const setValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -47,19 +47,19 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
   };
 
   const onToggle = (id: number) => {
-    const newTypeBoard = typesBoard.map((elem) => {
+    const newTypeBoard = typesBoards.map((elem) => {
       elem.check = elem.id === id ? true : false;
       return elem;
     });
-    setTypesBoard(newTypeBoard);
+    setTypesBoards(newTypeBoard);
 
-    const item = typesBoard.find((item) => item.id === id);
+    const item = typesBoards.find((item) => item.id === id);
     if (item) {
       setCurrentItemBg(item.background);
     }
   };
 
-  const elementsSelectBg = typesBoard.map((item) => {
+  const elementsSelectBg = typesBoards.map((item) => {
     return <TypeBgItem key={item.id} item={item} onToggle={onToggle} />;
   });
 
