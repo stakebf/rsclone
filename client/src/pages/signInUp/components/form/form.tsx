@@ -1,24 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import Field from '../field/field';
+import Field from '../field';
 
 import classes from './form.module.scss';
-
-interface IDataForUser {
-  email: string;
-  username: string;
-  password: string;
-  setDisabledForm: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorEmail: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorUsername: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorPassword: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 interface ISettings {
   head: string;
   linkWord: string;
   linkTo: string;
   isUsername: boolean;
-  btn: {
+  btnSend: {
     name: string;
     bg: string;
   };
@@ -27,58 +17,46 @@ interface ISettings {
     username: string;
     password: string;
   };
-  sendUserToLogin?(dataForUser: IDataForUser): void;
-  sendUserToRegister?(dataForUser: IDataForUser): void;
+  sendUserToLogin?(email: string, password: string): void;
+  sendUserToRegister?(email: string, username: string, password: string): void;
 }
 
 type FormProps = {
   settings: ISettings;
+  errorEmail: boolean;
+  errorUsername: boolean;
+  errorPassword: boolean;
+  disabledForm: boolean;
+  type: string;
 };
 
-const Form: React.FC<FormProps> = ({settings}) => {
+const Form: React.FC<FormProps> = ({
+  settings,
+  errorEmail,
+  errorUsername,
+  errorPassword,
+  disabledForm,
+  type
+}) => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [errorUsername, setErrorUsername] = useState(false);
-  const [errorPassword, setErrorPassword] = useState(false);
-  const [disabledForm, setDisabledForm] = useState(false);
 
   useEffect(() => {
     return () => {
       setEmail('');
       setPassword('');
       setUsername('');
-      setErrorEmail(false);
-      setErrorUsername(false);
-      setErrorPassword(false);
     };
-  }, [
-    setEmail,
-    setPassword,
-    setUsername,
-    setErrorEmail,
-    setErrorUsername,
-    setErrorPassword,
-    settings
-  ]);
+  }, [setEmail, setPassword, setUsername, type]);
 
   const sendForm = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const dataForUser = {
-      email,
-      username,
-      password,
-      setDisabledForm,
-      setErrorEmail,
-      setErrorUsername,
-      setErrorPassword
-    };
 
     if (settings.sendUserToLogin) {
-      settings.sendUserToLogin(dataForUser);
+      settings.sendUserToLogin(email, password);
     } else if (settings.sendUserToRegister) {
-      settings.sendUserToRegister(dataForUser);
+      settings.sendUserToRegister(email, username, password);
     }
   };
 
@@ -123,11 +101,11 @@ const Form: React.FC<FormProps> = ({settings}) => {
         disabled={disabledForm}
         className={`
         ${classes['btn-send']} 
-        ${classes[settings.btn.bg]} 
+        ${classes[settings.btnSend.bg]} 
         ${disabledForm ? classes.disabled : ''}
         `}
       >
-        {settings.btn.name}
+        {settings.btnSend.name}
       </button>
     </form>
   );
