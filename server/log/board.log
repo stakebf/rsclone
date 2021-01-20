@@ -1,0 +1,467 @@
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:32:51"}
+{"Method":"POST","Path":"/users","Query params":"{}","Body":"{\"login\":\"rtyrty@rret.trry\",\"name\":\"rttyrtyrtyrt\",\"password\":\"rtyrtyrtyrtty\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:33:10"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"bg\":\"rgb(137, 96, 158)\",\"admin\":\"user\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:42:49"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"bg\":\"rgb(137, 96, 158)\",\"admin\":\"user\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:42:49"}
+{"error code":"Bad Request","url":"Ocured an error in path /boards","message":"\"Error in POST request. \\\"bg\\\" is not allowed\"","stack":"InvalidRequestError: Error in POST request. \"bg\" is not allowed\n    at D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\validator\\validator.js:11:13\n    at D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\errors\\catchError.js:3:18\n    at Layer.handle [as handle_request] (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at Route.dispatch (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\route.js:112:3)\n    at Layer.handle [as handle_request] (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:281:22\n    at Function.process_params (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at Function.handle (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:47:12)\n    at Layer.handle [as handle_request] (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (D:\\EPAM-RS\\week-0\\rsclone\\server\\node_modules\\express\\lib\\router\\index.js:275:10)","level":"error","timestamp":"2021-01-19 21:42:49"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:42:49"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:42:49"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:43:56"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:43:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:43:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:43:56"}
+{"error code":"Not Found","url":"Ocured an error in path /boards","message":"\"User with id user not found\"","stack":"NotFoundError: User with id user not found\n    at Object.addBoardToUser (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:48:11)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)\n    at async Object.createBoard (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.service.js:15:3)\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.router.js:28:19\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-01-19 21:43:56"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:44:00"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:44:00"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:44:00"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:44:00"}
+{"error code":"Not Found","url":"Ocured an error in path /boards","message":"\"User with id user not found\"","stack":"NotFoundError: User with id user not found\n    at Object.addBoardToUser (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:48:11)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)\n    at async Object.createBoard (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.service.js:15:3)\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.router.js:28:19\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-01-19 21:44:00"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user123\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:24"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user123\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:24"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:24"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:24"}
+{"error code":"Not Found","url":"Ocured an error in path /boards","message":"\"User with id user123 not found\"","stack":"NotFoundError: User with id user123 not found\n    at Object.addBoardToUser (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:48:11)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)\n    at async Object.createBoard (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.service.js:15:3)\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.router.js:28:19\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-01-19 21:45:24"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:55"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:56"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user123\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:56"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user123\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:56"}
+{"error code":"Not Found","url":"Ocured an error in path /boards","message":"\"User with id user123 not found\"","stack":"NotFoundError: User with id user123 not found\n    at Object.addBoardToUser (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:48:11)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)\n    at async Object.createBoard (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.service.js:15:3)\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.router.js:28:19\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-01-19 21:45:56"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user123\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:59"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"user123\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:59"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:59"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:45:59"}
+{"error code":"Not Found","url":"Ocured an error in path /boards","message":"\"User with id user123 not found\"","stack":"NotFoundError: User with id user123 not found\n    at Object.addBoardToUser (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:48:11)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)\n    at async Object.createBoard (D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.service.js:15:3)\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\resources\\boards\\board.router.js:28:19\n    at async D:\\EPAM-RS\\week-0\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-01-19 21:45:59"}
+{"Method":"POST","Path":"/users","Query params":"{}","Body":"{\"login\":\"sdfsdfsf@fgdfg.fghfg\",\"name\":\"fghfghfgh\",\"password\":\"fghfghfghfgh\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:48:02"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:48:28"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:48:28"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:48:28"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:48:28"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:54:48"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:54:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:54:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:54:48"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:54:51"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\"}","level":"info","message":"Request log","timestamp":"2021-01-19 21:54:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:54:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:54:52"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:55:02"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:55:02"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:55:02"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:55:02"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:55:05"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 21:55:05"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:55:05"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 21:55:05"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:12"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:12"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:12"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:12"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:29"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:29"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:29"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:29"}
+{"Method":"GET","Path":"/undefined","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:37"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:51"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:09:51"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:13:52"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:13:52"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:13:52"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:13:52"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:14:39"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:14:39"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:14:39"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:14:39"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:16:59"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:17:06"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:17:11"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-19 22:17:11"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:17:11"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-19 22:17:11"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:19"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:19"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:44"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:52"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:52"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:52"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:24:52"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:12"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:12"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:12"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:12"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:15"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:15"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:23"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:23"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:23"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:23"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:27"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:36"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:36"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:36"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:54"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:54"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:54"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:26:54"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:17"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:17"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:18"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:18"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:19"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:19"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:22"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:22"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:22"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:22"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:31"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:31"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:31"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:37:31"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:39:34"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:39:34"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:39:34"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:40:18"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:40:18"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:02"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:02"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:02"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:02"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:08"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:08"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:08"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:08"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:14"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:14"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:14"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:14"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:20"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:20"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:20"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:41:20"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:42:37"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:42:37"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:42:37"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:42:37"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:44:08"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:44:08"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:44:08"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:44:08"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:50:13"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:50:13"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:50:14"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:50:14"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:50:49"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:50:49"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:50:49"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:50:49"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:51:57"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"board1\",\"background\":\"rgb(137, 96, 158)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:51:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:51:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:51:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:12"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:12"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:14"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:14"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:25"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:25"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:38"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:38"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:46"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:52:46"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:09"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:09"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:18"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:18"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:20"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:20"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:28"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:28"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"123\",\"background\":\"rgb(81, 152, 57)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:35"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"123\",\"background\":\"rgb(81, 152, 57)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:35"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:38"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:53:38"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:43"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:43"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"444\",\"background\":\"rgb(176, 70, 50)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:48"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"444\",\"background\":\"rgb(176, 70, 50)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:54:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:30"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:30"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:52"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:52"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:55"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:55"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:55:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:57:53"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:57:53"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:57:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:57:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:58:38"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:58:38"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:58:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:58:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:58:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:58:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:58:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:58:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:59:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:59:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:59:28"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:59:28"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:59:37"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:59:37"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:59:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 08:59:56"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"sdsd\",\"background\":\"rgb(210, 144, 52)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:00:03"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"sdsd\",\"background\":\"rgb(210, 144, 52)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:00:03"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:00:03"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:00:03"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:00:54"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:00:54"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:00:55"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:00:55"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:07:21"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:07:21"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:07:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:07:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:09:11"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:09:11"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:12:03"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:12:03"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:13:14"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:13:28"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:13:36"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:13:40"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:14:13"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:32:47"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:32:47"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:34:31"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:34:31"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:34:38"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"ываыва\",\"background\":\"/images/bg_board_3.jpg\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:34:39"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"ываыва\",\"background\":\"/images/bg_board_3.jpg\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:34:39"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:34:39"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"выаыва\",\"background\":\"rgb(210, 144, 52)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:38:18"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"выаыва\",\"background\":\"rgb(210, 144, 52)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:38:18"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:38:18"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:38:18"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"выаыва\",\"background\":\"/images/bg_board_4.jpg\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:38:26"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"выаыва\",\"background\":\"/images/bg_board_4.jpg\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:38:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:38:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:38:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:39:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:39:51"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:41:09"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:41:32"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:41:32"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:42:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:42:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:46:01"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:46:01"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:46:06"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:46:06"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:46:30"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:46:30"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"Цштек\",\"background\":\"/images/bg_board_2.jpg\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:47:13"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"Цштек\",\"background\":\"/images/bg_board_2.jpg\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:47:13"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:47:13"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:47:13"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"лл\",\"background\":\"rgb(81, 152, 57)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:54:55"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"лл\",\"background\":\"rgb(81, 152, 57)\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:54:55"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:54:55"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:54:55"}
+{"Method":"GET","Path":"/user123/favicon.ico","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:38"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:38"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:39"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:39"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:41"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"жж\",\"background\":\"/images/bg_board_4.jpg\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:51"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"жж\",\"background\":\"/images/bg_board_4.jpg\",\"admin\":\"5419127b-4546-4e6f-ad44-cf9ffebb0d29\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:55:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:56:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 09:56:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:02:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:02:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:03:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:03:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:04:24"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:04:24"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:05:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:06:23"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:06:23"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:06:50"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:06:50"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:07:12"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:07:12"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:11:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:11:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:14:00"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:14:00"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:14:53"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:14:53"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:16:25"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:16:25"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:18:21"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:18:21"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:19:07"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:19:07"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:19:54"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:19:54"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:20:50"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:20:50"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:45:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:45:26"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:55:23"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 10:55:23"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:03:06"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:03:06"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:10:34"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:10:34"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:14:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:14:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:18"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:18"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:46"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:46"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:47"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:47"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:53"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:53"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:15:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:04"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:04"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:05"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:05"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:31"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:31"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:35"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:36"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:16:54"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:17:57"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:17:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:18:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:18:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:21:50"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:21:50"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:01"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:01"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:17"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:17"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:39"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:39"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:53"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:53"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:54"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:22:56"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:03"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:03"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:08"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:09"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:09"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:14"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:14"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:25"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:25"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:34"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:34"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:54"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:23:54"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:12"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:13"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:15"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:18"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:18"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:46"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:46"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:51"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:24:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:26:06"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:26:06"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:26:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:26:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:26:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:26:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:27:11"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:27:11"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:27:23"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:27:23"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:27:28"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:27:28"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:08"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:31"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:31"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:36"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:42"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:42"}
+{"Method":"GET","Path":"/babel/parser/lib/index.js","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:47"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:28:48"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:05"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:05"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:11"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:11"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:15"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:15"}
+{"Method":"PUT","Path":"/boards/8a656a4f-ce70-4cdd-9c70-429e6860662f","Query params":"{}","Body":"{\"background\":\"rgb(137, 96, 158)\",\"title\":\"nNEW B\",\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:17"}
+{"Method":"PUT","Path":"/boards/8a656a4f-ce70-4cdd-9c70-429e6860662f","Query params":"{}","Body":"{\"background\":\"rgb(137, 96, 158)\",\"title\":\"nNEW B\",\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:17"}
+{"Method":"PUT","Path":"/boards/4fd99759-9e48-45c4-bcf2-07551548c7c3","Query params":"{}","Body":"{\"background\":\"rgb(81, 152, 57)\",\"title\":\"лл\",\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:35"}
+{"Method":"PUT","Path":"/boards/4fd99759-9e48-45c4-bcf2-07551548c7c3","Query params":"{}","Body":"{\"background\":\"rgb(81, 152, 57)\",\"title\":\"лл\",\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:35"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:53"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:53"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:59"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:29:59"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:30:03"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:30:03"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:30:07"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-01-20 11:30:07"}
+{"Method":"PUT","Path":"/boards/71805112-e966-4341-a065-56150230af94","Query params":"{}","Body":"{\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:30:12"}
+{"Method":"PUT","Path":"/boards/71805112-e966-4341-a065-56150230af94","Query params":"{}","Body":"{\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:30:12"}
+{"Method":"PUT","Path":"/boards/71805112-e966-4341-a065-56150230af94","Query params":"{}","Body":"{\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:30:19"}
+{"Method":"PUT","Path":"/boards/71805112-e966-4341-a065-56150230af94","Query params":"{}","Body":"{\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:30:19"}
+{"Method":"PUT","Path":"/boards/0b0794c8-5fb7-4806-a06c-a84f73a81915","Query params":"{}","Body":"{\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:31:37"}
+{"Method":"PUT","Path":"/boards/0b0794c8-5fb7-4806-a06c-a84f73a81915","Query params":"{}","Body":"{\"isFavorite\":true}","level":"info","message":"Request log","timestamp":"2021-01-20 11:31:37"}

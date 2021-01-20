@@ -25,11 +25,11 @@ const loginUser = async (login, password) => {
   };
 };
 
-const registerUser = async (requestData) => {
-  const { login } = requestData;
+const registerUser = async requestData => {
+  const { id, login } = requestData;
   const user = await userService.getUserByProps(login);
   if (user) {
-    throw new ForbittenError('User already exist')
+    throw new ForbittenError('User already exist');
   } else {
     const newUser = await userService.createUser(requestData);
     const { id } = newUser;

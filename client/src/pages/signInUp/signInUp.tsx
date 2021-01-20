@@ -60,8 +60,9 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             setDisabledForm(true);
             service
               .postUserToLogin({login: email, password: password})
-              .then(({token}) => {
+              .then(({token, userId}) => {
                 localStorage.setItem('token', token);
+                localStorage.setItem('userId', userId);
                 setRedirect(true);
               })
               .catch((error) => {
@@ -95,8 +96,9 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
               setDisabledForm(true);
               service
                 .postUserToRegister({login: email, name: username, password: password})
-                .then((token) => {
+                .then(({token, id}) => {
                   localStorage.setItem('token', token);
+                  localStorage.setItem('userId', id);
                   setRedirect(true);
                 })
                 .catch((error) => {
