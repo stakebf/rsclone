@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {HeartOutlined} from '@ant-design/icons';
 import classes from './mainFeed.module.scss';
 
 interface IDataComments {
@@ -123,7 +124,7 @@ const MainFeed: React.FC = () => {
   return (
     <div className={classes['main-feed']}>
       <div className={classes['main-feed__head']}>
-        <img className={classes['icon']} src="/svg/heart.svg" alt="heart" />
+        <HeartOutlined className={classes['icon']} />
         <h4 className={classes['title']}>Важные события</h4>
       </div>
       <ul className={classes['main-feed__list']}>{elements}</ul>

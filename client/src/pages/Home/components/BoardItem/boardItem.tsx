@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {StarOutlined} from '@ant-design/icons';
+
 import classes from './boardItem.module.scss';
 
 interface IBoardItem {
@@ -29,13 +31,11 @@ const BoardListItem: React.FC<BoardItemProps> = ({item, onFavorite}) => {
         <Link className={classes['content__block-link']} to={`/${id}`}>
           <h5 className={classes['title']}>{title}</h5>
         </Link>
-        <img
+        <StarOutlined
           onClick={() => {
             onFavorite(item);
           }}
-          className={classes['content__star']}
-          src={isFavorite ? '/svg/star-solid-yellow.svg' : '/svg/star-regular-yellow.svg'}
-          alt="star-regular"
+          className={`${classes['content__star']} ${isFavorite ? classes['active'] : ''}`}
         />
       </div>
     </li>

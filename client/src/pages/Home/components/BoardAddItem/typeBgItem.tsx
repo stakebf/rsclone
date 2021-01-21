@@ -1,4 +1,5 @@
 import React from 'react';
+import {CheckOutlined} from '@ant-design/icons';
 
 import classes from './boardAddItem.module.scss';
 
@@ -28,7 +29,7 @@ const TypeBgItem: React.FC<TypeBgItemProps> = ({item, onToggle}) => {
       }
     >
       <div className={`${classes['item-overlay']} ${check ? classes['active'] : ''}`}>
-        {check && <img className={classes['img-check']} src="/svg/check.svg" alt="check" />}
+        {check && <CheckOutlined className={classes['img-check']} />}
       </div>
     </li>
   );

@@ -3,6 +3,7 @@ import BoardItem from '../BoardItem';
 import BoardAddItem from '../BoardAddItem';
 import MainApiService from '../../../../services/MainApiService';
 import {Spin} from 'antd';
+import {StarOutlined, UserOutlined} from '@ant-design/icons';
 
 import classes from './boardList.module.scss';
 import 'antd/dist/antd.css';
@@ -99,12 +100,7 @@ const BoardList: React.FC = () => {
         {elementsFavorite().length > 0 ? (
           <>
             <div className={classes.head}>
-              <img
-                className={classes['head-icon']}
-                style={{width: '20px'}}
-                src="/svg/star-solid.svg"
-                alt="star"
-              />
+              <StarOutlined className={classes['head-icon']} />
               <h4 className={classes['head-title']}>Отмеченные доски</h4>
             </div>
             <div className={classes['content']}>
@@ -114,7 +110,7 @@ const BoardList: React.FC = () => {
         ) : null}
         <>
           <div className={classes.head}>
-            <img className={classes['head-icon']} src="/svg/user.svg" alt="user" />
+            <UserOutlined className={classes['head-icon']} />
             <h4 className={classes['head-title']}>Ваши доски</h4>
           </div>
           <div className={classes['content']}>

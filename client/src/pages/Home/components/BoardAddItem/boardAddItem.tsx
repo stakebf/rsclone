@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import TypeBgItem from './typeBgItem';
+import {CloseOutlined} from '@ant-design/icons';
 
 import classes from './boardAddItem.module.scss';
 
@@ -86,20 +87,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
             placeholder="Добавить заголовок доски"
             autoFocus
           />
-          <svg
-            className={classes['btn-close']}
-            role="presentation"
-            focusable="false"
-            viewBox="0 0 24 24"
-            data-close-popup
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M10.586 12L5.293 6.707a1 1 0 011.414-1.414L12 10.586l5.293-5.293a1 1 0 111.414 1.414L13.414 12l5.293 5.293a1 1 0 01-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 01-1.414-1.414L10.586 12z"
-              fill="currentColor"
-            ></path>
-          </svg>
+          <CloseOutlined className={classes['btn-close']} />
         </div>
         <ul className={classes['list-bg']}>{elementsSelectBg}</ul>
         <button
