@@ -1,19 +1,24 @@
 import { Board } from '../components/Columns/ColumnsCreator/Board';
 
 export interface ColumnProps {
-  columnId?: string, 
-  columnTitle?: string,
+  id?: string, 
+  title?: string,
   order?: number
   cards?: []
 }
 
 export interface CardProps {
-  columnId?: string,
-  cardId?: string,
-  cardTitle?: string,
-  userId?: string,
-  cardDescription?: string,
-  cardOrder?: number
+  columnId: string,
+  id: string,
+  title: string,
+  description?: string,
+  userList?: any[],
+  order?: number,
+  todos: {
+    title?: string,
+    id?: string,
+    todo: any[]
+  }
 }
 
 export interface CardInfoProps {
@@ -32,41 +37,53 @@ export interface CardInfoProps {
 }
 
 const createColumn = (
-    columnId: string, 
-    columnTitle: string,
+    id: string, 
+    title: string,
     order: number
   ):ColumnProps => {
   return {
-      columnId,
-      columnTitle,
+      id,
+      title,
       order
   };
 };
 
 const createCard = (
-    cardId: string,
-    cardTitle: string,
-    userId?: string,
-    cardDescription?: string,
-    cardOrder?: number,
-  ):CardProps => {
+    id: string,
+    title: string,
+    description: string,
+    userList: any[],
+    order: number,
+    todos: object
+  ) => {
   return {
-      cardId,
-      cardTitle,
-      userId,
-      cardDescription,
-      cardOrder
+      id,
+      title,
+      description,
+      userList,
+      order,
+      todos
   };
 };
 
-const createTodo = (
+const createTodos = (
   todoId?: string,
   todoTitle?: string,
-  isComplete?: boolean
-):object => {
+) => {
   return {
     todoId,
     todoTitle,
+  }
+}
+
+const createTodo = (
+  id?: string,
+  title?: string,
+  isComplete?: boolean
+) => {
+  return {
+    id,
+    title,
     isComplete
   }
 }
@@ -76,7 +93,7 @@ const createCardComment = (
   userName?: string,
   date?: string,
   message?: string
-):object => {
+) => {
   return {
     commentId,
     userName,
@@ -88,6 +105,7 @@ const createCardComment = (
 export {
   createColumn,
   createCard,
+  createTodos,
   createTodo,
   createCardComment,
 }

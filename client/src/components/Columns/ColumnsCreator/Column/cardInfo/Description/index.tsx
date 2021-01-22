@@ -11,15 +11,15 @@ import {
 import classes from './Description.module.scss';
 import { addDescription } from '../../../../../../redux/actions';
 
-const Description:React.FC<any> = ({ columnId, cardId, cardDescription, cardOrder, addDescription }) => {
-  const [description, setDescription] = useState<string>(cardDescription);
+const Description:React.FC<any> = ({ columnId, taskId, description, order, addDescription }) => {
+  const [taskDescription, setTaskDescription] = useState<string>(description);
   const [prevDescription, setPrevDescription] = useState<string>('');
   const [isEditDescription, setIsEditDescription] = useState<boolean>(false);
 
   const descriptionChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
     const { value } = e.target;
     // console.loglog(value);
-    setDescription(value);
+    setTaskDescription(value);
   };
 
   const descriptionFocusHandler = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
@@ -30,21 +30,21 @@ const Description:React.FC<any> = ({ columnId, cardId, cardDescription, cardOrde
 
   const closeDescriptionKeydownHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>):void => {
     if (e.key ===  'Escape') {
-      setDescription(prevDescription);
+      setTaskDescription(prevDescription);
       setIsEditDescription(false);
     }
   };
 
   const addDescriptionClickHandler = ():void => {
-    setPrevDescription(description);
+    setPrevDescription(taskDescription);
     setIsEditDescription(true);
   };
 
   const saveDescriptionClickHandler = ():void => {
-    setPrevDescription(description);
+    setPrevDescription(taskDescription);
 
-    if (description.trim() !== prevDescription.trim()) {
-      addDescription(columnId, cardId, description);
+    if (taskDescription.trim() !== prevDescription.trim()) {
+      addDescription(columnId, taskId, taskDescription);
     }
 
     setIsEditDescription(false);
@@ -52,7 +52,7 @@ const Description:React.FC<any> = ({ columnId, cardId, cardDescription, cardOrde
   }
 
   const closeEditDescriptionClickHandler = ():void => {
-    setDescription(prevDescription);
+    setTaskDescription(prevDescription);
     setIsEditDescription(false);
   }
 
@@ -64,18 +64,15 @@ const Description:React.FC<any> = ({ columnId, cardId, cardDescription, cardOrde
         </h3>
         {!isEditDescription && <Button 
           type="default"
-          style={{
-            backgroundColor: 'green', 
-            color: '#fff'
-          }}
+          className={classes.btnChangeDescription}
           onClick={addDescriptionClickHandler}
         >
-          {!description.trim() && <span><PlusCircleOutlined /> Добавить</span>}
-          {description.trim() && <span><EditOutlined /> Изменить</span>}
+          {!taskDescription.trim() && <span><PlusCircleOutlined /> Добавить</span>}
+          {taskDescription.trim() && <span><EditOutlined /> Изменить</span>}
         </Button>}
       </div>
-      {description.trim() && !isEditDescription && <pre className={classes.descriptionText}>
-        {description}
+      {taskDescription.trim() && !isEditDescription && <pre className={classes.descriptionText}>
+        {taskDescription}
       </pre>}
       {isEditDescription && <div>
           <textarea 
@@ -83,18 +80,14 @@ const Description:React.FC<any> = ({ columnId, cardId, cardDescription, cardOrde
             onChange={descriptionChangeHandler}
             onKeyDown={closeDescriptionKeydownHandler}
             onFocus={descriptionFocusHandler}
-            value={description}
+            value={taskDescription}
             autoFocus
             placeholder='Введите описание карточки'
           />
           <Button 
             type="default"
-            style={{
-              backgroundColor: 'green', 
-              color: '#fff',
-              marginRight: '5px'
-            }}
             onClick={saveDescriptionClickHandler}
+            className={classes.btnChangeDescription}
           >
             <PlusCircleOutlined />
             Сохранить
@@ -102,6 +95,7 @@ const Description:React.FC<any> = ({ columnId, cardId, cardDescription, cardOrde
           <Button 
             danger
             onClick={closeEditDescriptionClickHandler}
+            className={classes.btnCloseDescription}
           >
             <CloseCircleOutlined />
           </Button>

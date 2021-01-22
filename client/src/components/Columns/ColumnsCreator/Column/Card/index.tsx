@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { EditOutlined } from '@ant-design/icons';
-import { connect } from 'react-redux';
+import { EditOutlined, CheckSquareOutlined } from '@ant-design/icons';
 
 import { CardProps } from '../../../../../helpers/creationHelper';
 import classes from './Card.module.scss';
@@ -10,19 +9,21 @@ import CardInfo from '../CardInfo';
 
 const Card:React.FC<CardProps> = ({
     columnId,
-    cardId, 
-    cardTitle, 
-    userId, 
-    cardDescription, 
-    cardOrder }) => {
+    id, 
+    title, 
+    description = '', 
+    userList,
+    order,
+    todos }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const cardInfo = {
     columnId,
-    cardId, 
-    cardTitle, 
-    userId, 
-    cardDescription, 
-    cardOrder
+    id, 
+    title, 
+    description, 
+    userList,
+    order,
+    todos
   }
   
   const showCardInfo = () => {
@@ -43,12 +44,18 @@ const Card:React.FC<CardProps> = ({
         className={classes.card}
         onClick={showCardInfo}
       >
-        <span>{cardTitle}</span>
+        <div className={classes.titleWrapper}>
+          <span>{title}</span>
+          <span>
+            {!!todos.todo.length && <>
+              <CheckSquareOutlined 
+                className={classes.checkIcon}
+              />
+              {`${todos.todo.length && todos.todo.filter((item) => item.isComplete).length}/${todos.todo.length}`}
+            </>}
+          </span>
+        </div>
         <EditOutlined 
-          style={{
-            alignSelf: 'flex-end',
-            marginBottom: '3px'
-          }}
           className={classes.editIcon}
         />
       </div>
@@ -57,3 +64,4 @@ const Card:React.FC<CardProps> = ({
 };
 
 export default Card;
+

@@ -12,15 +12,15 @@ import classes from './Column.module.scss';
 let incr = 0; // TODO: потом убрать 
 
 const Column:React.FC<any> = ({ 
-    columnId, 
-    columnTitle, 
-    order, 
-    cards = [], 
+    id,
+    title,
+    order,
+    taskList = [],
     addCard,
     renameColumn,
     removeColumn
    }) => {
-  const [title, setTitle] = useState<string>('');
+  const [columnTitle, setColumnTitle] = useState<string>('');
   const [isCreation, setIsCreation] = useState<boolean>(false);
   const [newColumnTitle, setNewColumnTitle] = useState<string>('');
   const [isColumnRename, setIsColumnRename] = useState<boolean>(false);
@@ -28,7 +28,7 @@ const Column:React.FC<any> = ({
   const btnAddClassNames: Array<any> = [classes.btnCreateCard, isCreation ? classes.hide : ''];
 
   const addCardClickHandler = ():void => {
-    if (!title) {
+    if (!columnTitle) {
       return;
     }
 
@@ -40,7 +40,7 @@ const Column:React.FC<any> = ({
   };
 
   const inputNnameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>):void => {
-    setTitle(e.target.value);
+    setColumnTitle(e.target.value);
   };
 
   const createCardKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
@@ -57,17 +57,20 @@ const Column:React.FC<any> = ({
 
   const endOfCreation = ():void => {
     setIsCreation(false);
-    addCard(columnId, createCard(`someID${++incr}`, title, '1', '', 5)); // потом переделать это При попадании на страницу - эти данные будут сразу
-    setTitle('');
+    addCard(id, createCard(`someID_card${++incr}`, columnTitle, '', [], 5, {title: '', id: `id${incr}`, todo: []})); // ! потом переделать это При попадании на страницу - эти данные будут сразу
+    // ! так же - тут будет сразу отправляться запрос на create для todos: {title: '', todo: []};
+    setColumnTitle('');
   };
 
   const renameColumnKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
     if (e.key === 'Enter') {
-      if (!newColumnTitle.trim() || columnTitle === newColumnTitle) {
+      // console.log(title, newColumnTitle);
+      if (!newColumnTitle.trim() || title === newColumnTitle) {
         return;
       }
 
-      renameColumn(columnId, newColumnTitle);
+      renameColumn(id, newColumnTitle);
+      setIsColumnRename(false);
     }
   };
 
@@ -82,12 +85,12 @@ const Column:React.FC<any> = ({
   }
 
   const renameColumnClickHandler = () => {
-    setNewColumnTitle(columnTitle);
+    setNewColumnTitle(title);
     setIsColumnRename(true);
   };
 
   const removeColumnClickHandler = () => {
-    removeColumn(columnId);
+    removeColumn(id);
   };
 
   const editMenu = (
@@ -126,7 +129,7 @@ const Column:React.FC<any> = ({
       {!isColumnRename && <span 
         className={classes.columnTitle}
         onClick={renameColumnClickHandler}
-      >{columnTitle}</span>}
+      >{title}</span>}
       {isColumnRename && <input 
         className={classes.columnTitleInput} 
         onKeyPress={renameColumnKeypressHandler}
@@ -136,16 +139,16 @@ const Column:React.FC<any> = ({
         placeholder='Введите название колонки'
         autoFocus
       />}
-      <span>{columnId}</span>
+      <span>{id}</span>
       <span>{order}</span>
 
       <div className={classes.content}>
-        {!!cards.length && cards.map((card:any) => {
+        {!!taskList.length && taskList.map((task:any) => {
           return (
             <Card 
-              {...card}
-              columnId={columnId}
-              key={`${card.cardId}`}
+              {...task}
+              columnId={id}
+              key={`${task.id}`}
             />
           )
         })}
@@ -209,9 +212,9 @@ const mapStateToProps = (state: Store) => {
 
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
-    addCard: (columnId:string, card:any[]) => dispatch(addCard(columnId, card)),
-    renameColumn: (columnId:string, newTitle:string) => dispatch(renameColumn(columnId, newTitle)),
-    removeColumn: (columnId:string) => dispatch(removeColumn(columnId)),
+    addCard: (id:string, card:any[]) => dispatch(addCard(id, card)),
+    renameColumn: (id:string, newTitle:string) => dispatch(renameColumn(id, newTitle)),
+    removeColumn: (id:string) => dispatch(removeColumn(id)),
   }
 }
 

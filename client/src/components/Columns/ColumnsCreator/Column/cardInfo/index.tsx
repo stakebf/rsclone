@@ -16,28 +16,28 @@ import Todo from './Todo';
 
 const CardInfo:React.FC<any> = ({ 
     columnId,
-    closeCardInfo, 
-    cardId,
-    cardTitle,
-    cardDescription = '',
-    cardOrder,
-    userId,
-    todo = [],
+    id,
+    title,
+    description,
+    order,
+    todos,
     cardComments = [],
     tags = [],
+    userList = [],
     background,
-    renameCard, removeCard },
-    ) => {
+    closeCardInfo, 
+    renameCard, removeCard }) => {
   const [newCardTitle, setNewCardTitle] = useState<string>('');
   const [isCardRename, setIsCardRename] = useState<boolean>(false);
 
   const renameCardKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
     if (e.key === 'Enter') {
-      if (!newCardTitle.trim() || cardTitle === newCardTitle) {
+      if (!newCardTitle.trim() || title === newCardTitle) {
         return;
       }
 
-      renameCard(columnId, cardId, newCardTitle);
+      renameCard(columnId, id, newCardTitle);
+      // console.log(title);
       setIsCardRename(false);
     }
   };
@@ -53,14 +53,13 @@ const CardInfo:React.FC<any> = ({
   }
 
   const renameCardClickHandler = () => {
-    setNewCardTitle(cardTitle);
+    setNewCardTitle(title);
     setIsCardRename(true);
   };
 
   const removeCardClickHandler = () => {
-    // eslint-disable-next-line no-restricted-globals
     setIsCardRename(false);
-    removeCard(columnId, cardId);
+    removeCard(columnId, id);
   };
 
   return (
@@ -76,8 +75,8 @@ const CardInfo:React.FC<any> = ({
         <Popconfirm
           title="Вы действительно хотите удалить эту карточку"
           onConfirm={removeCardClickHandler}
-          okText="Yes"
-          cancelText="No"
+          okText="Да"
+          cancelText="Нет"
         >
           <DeleteOutlined className={classes.deleteIcon}/>
         </Popconfirm>
@@ -87,7 +86,7 @@ const CardInfo:React.FC<any> = ({
             className={classes.cardTitle}
             onClick={renameCardClickHandler}  
           >
-            {cardTitle}
+            {title}
           </h2>}
           {isCardRename && <input 
             className={classes.cardTitleInput} 
@@ -103,11 +102,15 @@ const CardInfo:React.FC<any> = ({
           <div>
             <Description 
               columnId={columnId}
-              cardId={cardId}
-              cardDescription={cardDescription}
-              cardOrder={cardOrder}
+              taskId={id}
+              description={description}
+              order={order}
             />
-            <Todo />
+            <Todo 
+              columnId={columnId} 
+              taskId={id}
+              todos={todos}
+            />
             <div>
               <h3><OrderedListOutlined /> Действия</h3>
             </div>
@@ -131,10 +134,10 @@ const mapDispatchStateToProps = (dispatch: any) => {
   return {
     renameCard: (
       columnId:string, 
-      cardId:string, 
+      taskId:string, 
       newCardTitle:string
-    ) => dispatch(renameCard(columnId, cardId, newCardTitle)),
-    removeCard: (columnId:string, cardId:string) => dispatch(removeCard(columnId, cardId))
+    ) => dispatch(renameCard(columnId, taskId, newCardTitle)),
+    removeCard: (columnId:string, taskId:string) => dispatch(removeCard(columnId, taskId))
   }
 }
 

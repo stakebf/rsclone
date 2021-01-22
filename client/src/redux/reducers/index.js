@@ -8,18 +8,24 @@ import {
   RENAME_COLUMN,
   REMOVE_COLUMN,
   RENAME_CARD,
-  REMOVE_CARD
+  REMOVE_CARD,
+  ADD_TODOS_TITLE,
+  ADD_TODO,
+  SET_TODO_COMPLETE,
+  REMOVE_TODO,
+  CHANGE_TODO_TITLE,
+  CHANGE_TODOS_TITLE
 } from '../actions/actionTypes';
 
 const getCurrentColumn = (state, action) => {
-  const columnIndex = state.board.columns.findIndex((item) => item.columnId === action.payload.columnId);
+  const columnIndex = state.board.columns.findIndex((item) => item.id === action.payload.id);
   const copy = {...state.board.columns[columnIndex]};
 
   return {
     columnIndex,
     copy
   }
-}
+};
 
 const initialState = {
   loading: false,
@@ -63,7 +69,6 @@ const reducer = (state = initialState, action) => {
     case ADD_NEW_COLUMN: {
       return {
         ...state,
-        loading: false,
         board: {
           ...state.board,
           columns: [
@@ -76,11 +81,10 @@ const reducer = (state = initialState, action) => {
     
     case RENAME_COLUMN: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      copy.columnTitle = action.payload.columnTitle; 
+      copy.title = action.payload.title;
 
       return {
         ...state,
-        loading: false,
         board: {
           ...state.board,
           columns: [
@@ -93,11 +97,10 @@ const reducer = (state = initialState, action) => {
     }
     
     case REMOVE_COLUMN: {
-      const columns = state.board.columns.filter((item) => item.columnId !== action.payload);
+      const columns = state.board.columns.filter((item) => item.id !== action.payload);
 
       return {
         ...state,
-        loading: false,
         board: {
           ...state.board,
           columns: [
@@ -110,18 +113,17 @@ const reducer = (state = initialState, action) => {
     case ADD_NEW_CARD: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
 
-      let cards;
-      if (state.board.columns[columnIndex].cards) {
-        cards = [...state.board.columns[columnIndex].cards, {...action.payload.card}];
+      let taskList;
+      if (state.board.columns[columnIndex].taskList) {
+        taskList = [...state.board.columns[columnIndex].taskList, {...action.payload.task}];
       } else {
-        cards = [{...action.payload.card}];
+        taskList = [{...action.payload.task}];
       }
       
-      copy.cards = [...cards];
+      copy.taskList = [...taskList];
 
       return {
         ...state,
-        loading: false,
         board: {
           ...state.board,
           columns: [
@@ -135,12 +137,11 @@ const reducer = (state = initialState, action) => {
 
     case RENAME_CARD: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const cardIndex = copy.cards.findIndex((item) => item.cardId === action.payload.cardId);
-      copy.cards[cardIndex].cardTitle = action.payload.newCardTitle;
+      const cardIndex = copy.taskList.findIndex((item) => item.id === action.payload.taskId);
+      copy.taskList[cardIndex].title = action.payload.newTaskTitle;
 
       return {
         ...state,
-        loading: false,
         board: {
           ...state.board,
           columns: [
@@ -154,18 +155,17 @@ const reducer = (state = initialState, action) => {
     
     case REMOVE_CARD: {
       const { columnIndex } = getCurrentColumn(state, action);
-      const cards = state.board.columns[columnIndex].cards.filter((item) => item.cardId !== action.payload.cardId);
+      const cards = state.board.columns[columnIndex].taskList.filter((item) => item.id !== action.payload.taskId);
 
       return {
         ...state,
-        loading: false,
         board: {
           ...state.board,
           columns: [
             ...state.board.columns.slice(0, columnIndex),
             {
               ...state.board.columns[columnIndex],
-              cards: [
+              taskList: [
                 ...cards
               ]
             },
@@ -177,12 +177,131 @@ const reducer = (state = initialState, action) => {
     
     case ADD_DESCRIPTION: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.cards.find((item) => item.cardId === action.payload.cardId);
-      card.cardDescription = action.payload.cardDescription;
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      card.description = action.payload.description;
 
       return {
         ...state,
-        loading: false,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+    
+    case ADD_TODOS_TITLE: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      card.todos.title = action.payload.title;
+
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+    
+    case ADD_TODO: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      card.todos.todo = [
+        ...card.todos.todo,
+        {
+          id: action.payload.todoId,
+          title: action.payload.title,
+          isComplete: action.payload.isComplete
+        }
+      ];
+
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+
+    case SET_TODO_COMPLETE: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const currentTodo = card.todos.todo.find((item) => item.id === action.payload.todoId);
+      currentTodo.isComplete = action.payload.isComplete;
+      console.log(copy);
+
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+
+    case REMOVE_TODO: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      card.todos.todo = card.todos.todo.filter((item) => item.id !== action.payload.todoId);
+
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+
+    case CHANGE_TODO_TITLE: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const currentTodo = card.todos.todo.find((item) => item.id === action.payload.todoId);
+      currentTodo.title = action.payload.title;
+
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+
+    case CHANGE_TODOS_TITLE: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      console.log(card);
+      card.todos.title = '';
+      card.todos.todo = [];
+
+      return {
+        ...state,
         board: {
           ...state.board,
           columns: [

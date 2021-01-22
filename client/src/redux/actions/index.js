@@ -8,7 +8,13 @@ import {
   RENAME_COLUMN,
   REMOVE_COLUMN,
   RENAME_CARD,
-  REMOVE_CARD
+  REMOVE_CARD,
+  ADD_TODOS_TITLE,
+  ADD_TODO,
+  SET_TODO_COMPLETE,
+  REMOVE_TODO,
+  CHANGE_TODO_TITLE,
+  CHANGE_TODOS_TITLE
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -62,69 +68,153 @@ export const addColumn = (column) => {
   };
 }
 
-export const renameColumn = (columnId, columnTitle) => {
+export const renameColumn = (id, title) => {
   // тут будет запрос на сервер...
   return {
     type: RENAME_COLUMN,
     payload: {
-      columnId,
-      columnTitle
+      id,
+      title
     }
   };
 }
 
-export const removeColumn = (columnId) => {
+export const removeColumn = (id) => {
   // тут будет запрос на сервер...
   return {
     type: REMOVE_COLUMN,
-    payload: columnId
+    payload: id
   };
 }
 
-export const addCard = (columnId, card) => {
+export const addCard = (id, task) => {
   // тут будет запрос на сервер...
   // console.log('addCard', card);
   return {
     type: ADD_NEW_CARD,
     payload: {
-      columnId,
-      card
+      id,
+      task
     }
   };
 }
 
-export const renameCard = (columnId, cardId, newCardTitle) => {
+export const renameCard = (id, taskId, newTaskTitle) => { // !: id = columnId
   // тут будет запрос на сервер...
+  // console.log(id, 
+  //   taskId, 
+  //   newTaskTitle);
   return {
     type: RENAME_CARD,
     payload: {
-      columnId, 
-      cardId, 
-      newCardTitle
+      id, 
+      taskId, 
+      newTaskTitle
     }
   };
 }
 
-export const removeCard = (columnId, cardId) => {
+export const removeCard = (id, taskId) => {
   // тут будет запрос на сервер...
   return {
     type: REMOVE_CARD,
     payload: {
-      columnId, 
-      cardId
+      id, 
+      taskId
     }
   };
 }
 
-export const addDescription = (columnId, cardId, cardDescription) => {
+export const addDescription = (id, taskId, description) => {
   // тут будет запрос на сервер...
   // console.log('addDescription', columnId, cardId, cardDescription);
   return {
     type: ADD_DESCRIPTION,
     payload: {
-      columnId,
-      cardId,
-      cardDescription
+      id,
+      taskId,
+      description
+    }
+  };
+}
+
+export const addTodosTitle = (id, taskId, title) => {
+  // тут будет запрос на сервер...
+  return {
+    type: ADD_TODOS_TITLE,
+    payload: {
+      id,
+      taskId,
+      title
+    }
+  };
+}
+
+let incrForTodo = 0; // ! потом удалить
+export const addTodo = (id, taskId, title, isComplete) => {
+  //  ! потом изменить
+  // тут будет запрос на сервер...
+  return {
+    type: ADD_TODO,
+    payload: {
+      id,
+      taskId,
+      todoId: ++incrForTodo,
+      title,
+      isComplete
+    }
+  };
+}
+
+export const setTodoComplete = (id, taskId, todoId, isComplete) => {
+  //  ! потом изменить
+  // тут будет запрос на сервер...
+  console.log(id, taskId, todoId, isComplete);
+  return {
+    type: SET_TODO_COMPLETE,
+    payload: {
+      id,
+      taskId,
+      todoId,
+      isComplete
+    }
+  };
+}
+
+export const removeTodo = (id, taskId, todoId, isComplete) => {
+  // тут будет запрос на сервер...
+  return {
+    type: REMOVE_TODO,
+    payload: {
+      id,
+      taskId,
+      todoId
+    }
+  };
+}
+
+export const changeTodoTitle = (id, taskId, title, isComplete, todoId) => {
+  // тут будет запрос на сервер...
+  return {
+    type: CHANGE_TODO_TITLE,
+    payload: {
+      id,
+      taskId,
+      todoId,
+      title,
+      isComplete
+    }
+  };
+}
+
+export const removeTodos = (id, taskId) => {
+  console.log('id, taskId', id, taskId);
+  // тут будет запрос на сервер...
+  return {
+    type: CHANGE_TODOS_TITLE,
+    payload: {
+      id,
+      taskId
     }
   };
 }

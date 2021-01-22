@@ -13,9 +13,20 @@
     margin-top: 5px;
   }
 
+  .titleWrapper {
+    display: flex;
+    flex-direction: column;
+
+    .checkIcon {
+      margin-right: 5px;
+    }
+  }
+
   .editIcon {
     opacity: 0;
     transition: all .3s;
+    align-self: flex-end;
+    margin-bottom: 3px;
   }
 
   &:hover {

@@ -4,6 +4,7 @@
     word-break: break-word;
     white-space: pre-wrap;   
     max-height: 100px;
+    margin: 10px;
 
     &::-webkit-scrollbar {
       width: 5px;
@@ -45,5 +46,24 @@
       background: #717171;
       border-radius: 0;
     }
+  }
+
+  .btnChangeDescription {
+    background-color: #eaecf0;
+    color: black;
+    box-shadow: none;
+    border: none;
+
+    &:hover {
+      background-color: rgba(9,30,66,.08);
+      color: black;
+      box-shadow: none;
+      border: none;
+    }
+  }
+
+  .btnCloseDescription {
+    background-color: #f4f5f7;
+    margin-left: 10px;
   }
 }

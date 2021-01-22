@@ -10,34 +10,50 @@ export interface Board {
     id?: string,
     title?: string,
     usersList?: any[],
+    background?: string, // ! background for board
     columns?: [
       {
-        columnId?: string,
-        columnTitle?: string,
-        order?: number,
-        cards?: [
+        id?: string,
+        title?: string,
+        // order?: number,
+        taskList?: [
           {
-            cardId?: string,
-            cardTitle?: string,
-            userId?: string,
-            cardDescription?: string,
-            cardOrder?: number,
-            todo?: [
+            id?: string,
+            title?: string,
+            description?: string,
+            // order?: number,
+            userList?: [
               {
-                todoId?: string,
-                todoTitle?: string,
-                isComplete?: boolean
+                id: string,
+                userName: string,
+                email: string,
+                login: string
               }
             ],
-            cardComments?: [
+            todos?: {
+              title?: string,
+              id?: string,
+              todo: [
               {
-                commentId?: string,
+                id?: string,
+                title?: string,
+                isComplete?: boolean
+              }
+            ]},
+            comments?: [
+              {
+                id?: string,
                 userName?: string,
                 date?: string,
                 message?: string
               }
             ],
-            tags?: string[],
+            tags?: [
+              {
+                id?: string,
+                color: string
+              }
+            ],
             background?: string
           }
         ]
@@ -83,6 +99,53 @@ export interface Board {
             commetns?: [
               {
                 id?: string,
+                userName?: string,
+                date?: string,
+                message?: string
+              }
+            ],
+            tags?: string[],
+            background?: string
+          }
+        ]
+      }
+    ]
+  }
+}
+ */
+
+
+
+ /* 
+  an old version
+
+  export interface Board {
+  board: {
+    id?: string,
+    title?: string,
+    usersList?: any[],
+    columns?: [
+      {
+        columnId?: string,
+        columnTitle?: string,
+        order?: number,
+        cards?: [
+          {
+            cardId?: string,
+            cardTitle?: string,
+            userId?: string,
+            cardDescription?: string,
+            cardOrder?: number,
+            todo?: [
+              {
+                todoId?: string,
+                todoTitle?: string,
+                isComplete?: boolean
+              }
+            ],
+            cardComments?: [
+              {
+                commentId?: string,
                 userName?: string,
                 date?: string,
                 message?: string

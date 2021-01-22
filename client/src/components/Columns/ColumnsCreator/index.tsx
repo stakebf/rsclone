@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
 import { connect } from 'react-redux';
 import { PlusCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 import { fetchBoard, addColumn } from '../../../redux/actions';
 import { createColumn } from '../../../helpers/creationHelper';
-// import { Board } from './Board';
 import { Store } from '../../../redux/store/store';
 import classes from './ColumnsCreator.module.scss';
 import Column from './Column';
-
-/* interface Props {
-  board?: Board,
-  fetchBoard?: any
-}; */
 
 let incr = 0;
 const COLUMN_LENGTH = 275;
@@ -75,15 +68,11 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, add
 
   return (
     <div className={classes.container}>
-      {!!columns.length && columns.map((column: any) => {
-        return (
-          <Column 
-            {...column}
-            key={`${column.columnId}_${column.columnTitle}`}
-          />
-        )
-      })}
-      <Button 
+      {!!columns.length && columns.map((item:any) => <Column 
+        {...item}
+        key={`${item.id}_${incr}`}
+      />)}
+      <Button
         type="default"
         onClick={createColumnsClickHandler}
         className={btnAddClassNames.join(' ')}

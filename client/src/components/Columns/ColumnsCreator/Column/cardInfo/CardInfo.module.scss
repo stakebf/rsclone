@@ -10,13 +10,13 @@
   justify-content: center;
   align-items: center;
   animation: showPopup .4s ease-in;
-  translate: all .4s;
+  transition: all .4s;
   
   .contentWrapper {
     position: relative;
     max-width: 768px;
     min-width: 300px;
-    background-color: #fff;
+    background-color: #f4f5f7;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -47,8 +47,14 @@
       color: red;
       margin-bottom: 5px;
       border: 1px solid red;
+      background-color: #f4f5f7;
       border-radius: 3px;
       padding: 2px;
+      transition: all .3s ease-in-out;
+
+      &:hover {
+        opacity: .6;
+      }
     }
 
     .cardTitleInput {
@@ -60,6 +66,7 @@
 
     .btnClose {
       position: absolute;
+      background-color: #f4f5f7;
       right: 5px;
       width: 30px;
       height: 25px;
@@ -73,10 +80,10 @@
 @keyframes showPopup {
   0% {
     opacity: 0;
-    transform: rotate(0deg) scale(0);
+    transform: scale(0);
   }
   100% {
-    transform: rotate(720deg) scale(1);
+    transform: scale(1);
     opacity: 1;
   }
 }
