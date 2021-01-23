@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { PlusCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
-import { fetchBoard, addColumn } from '../../../redux/actions';
+import { fetchBoard, addColumn, setCurrentUser } from '../../../redux/actions';
 import { createColumn } from '../../../helpers/creationHelper';
 import { Store } from '../../../redux/store/store';
 import classes from './ColumnsCreator.module.scss';
@@ -12,14 +12,16 @@ import Column from './Column';
 let incr = 0;
 const COLUMN_LENGTH = 275;
 
-const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, addColumn }) => {
+const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, addColumn, setCurrentUser }) => {
   const [isCreation, setIsCreation] = useState<boolean>(false);
   const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
-    // забираем борд fetchBoard(тут будем вытягивать :id борда из урла)
+    // ! забираем борд fetchBoard(тут будем вытягивать :id борда из урла)
+    // ! так же тут делаем запрос на получение текущего юзера (Забирать из LoacalStorage ID) и закинуть в setCurrentUser
     fetchBoard('1');
-  }, [fetchBoard]);
+    setCurrentUser('1');
+  }, [fetchBoard, setCurrentUser]);
 
   const btnAddClassNames: Array<string> = [classes.btnAddColumn, isCreation ? classes.hide : ''];
 
@@ -127,7 +129,8 @@ const mapStateToProps = (state: Store) => {
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
     fetchBoard: (boardId: string) => dispatch(fetchBoard(boardId)),
-    addColumn: (column:any[]) => dispatch(addColumn(column))
+    addColumn: (column:any[]) => dispatch(addColumn(column)),
+    setCurrentUser: (userId: string) => dispatch(setCurrentUser(userId))
   }
 }
 

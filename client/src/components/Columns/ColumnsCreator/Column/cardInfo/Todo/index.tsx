@@ -34,9 +34,6 @@ const Todo:React.FC<any> = ({
   const [newTodoTitle, setNewTodoTitle] = useState<string>('');
   const [isTodoEdit, setIsTodoEdit] = useState<boolean>(false);
   const [editableTodoId, setEditableTodoId] = useState<string>('');
-/*   const currentTask = columns
-    .find((item:any) => item.id === columnId).taskList
-    .find((item:any) => item.id === taskId); */
 
   // ! при ринейме - нельзя чтобы был пустой todos = '', Так же - это будет update
   const todosChangeHandler:any = (e: React.ChangeEvent<HTMLInputElement>, setItem:any):void => {

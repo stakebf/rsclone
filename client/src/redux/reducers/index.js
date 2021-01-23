@@ -15,7 +15,11 @@ import {
   REMOVE_TODO,
   CHANGE_TODO_TITLE,
   CHANGE_TODOS_TITLE,
-  SET_DATE
+  SET_DATE,
+  SET_CURRENT_USER,
+  ADD_NEW_COMMENT,
+  REMOVE_COMMENT,
+  EDIT_COMMENT
 } from '../actions/actionTypes';
 
 const getCurrentColumn = (state, action) => {
@@ -28,12 +32,27 @@ const getCurrentColumn = (state, action) => {
   }
 };
 
+const updateState = (state, columnIndex, copy) => {
+  return {
+    ...state,
+    board: {
+      ...state.board,
+      columns: [
+        ...state.board.columns.slice(0, columnIndex),
+        {...copy},
+        ...state.board.columns.slice(columnIndex + 1),
+      ]
+    }
+  };
+};
+
 const initialState = {
   loading: false,
   error: null,
   board: {
     id: '',
     title: '',
+    currentUser: {},
     usersList: [],
     columns: []
   }
@@ -84,17 +103,7 @@ const reducer = (state = initialState, action) => {
       const { columnIndex, copy } = getCurrentColumn(state, action);
       copy.title = action.payload.title;
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
     
     case REMOVE_COLUMN: {
@@ -123,17 +132,7 @@ const reducer = (state = initialState, action) => {
       
       copy.taskList = [...taskList];
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
 
     case RENAME_CARD: {
@@ -141,17 +140,7 @@ const reducer = (state = initialState, action) => {
       const cardIndex = copy.taskList.findIndex((item) => item.id === action.payload.taskId);
       copy.taskList[cardIndex].title = action.payload.newTaskTitle;
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
     
     case REMOVE_CARD: {
@@ -181,17 +170,7 @@ const reducer = (state = initialState, action) => {
       const card = copy.taskList.find((item) => item.id === action.payload.taskId);
       card.description = action.payload.description;
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
     
     case ADD_TODOS_TITLE: {
@@ -199,17 +178,7 @@ const reducer = (state = initialState, action) => {
       const card = copy.taskList.find((item) => item.id === action.payload.taskId);
       card.todos.title = action.payload.title;
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
     
     case ADD_TODO: {
@@ -224,17 +193,7 @@ const reducer = (state = initialState, action) => {
         }
       ];
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
 
     case SET_TODO_COMPLETE: {
@@ -244,17 +203,7 @@ const reducer = (state = initialState, action) => {
       currentTodo.isComplete = action.payload.isComplete;
       console.log(copy);
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
 
     case REMOVE_TODO: {
@@ -262,17 +211,7 @@ const reducer = (state = initialState, action) => {
       const card = copy.taskList.find((item) => item.id === action.payload.taskId);
       card.todos.todo = card.todos.todo.filter((item) => item.id !== action.payload.todoId);
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
 
     case CHANGE_TODO_TITLE: {
@@ -281,17 +220,7 @@ const reducer = (state = initialState, action) => {
       const currentTodo = card.todos.todo.find((item) => item.id === action.payload.todoId);
       currentTodo.title = action.payload.title;
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
 
     case CHANGE_TODOS_TITLE: {
@@ -301,17 +230,7 @@ const reducer = (state = initialState, action) => {
       card.todos.title = '';
       card.todos.todo = [];
 
-      return {
-        ...state,
-        board: {
-          ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
-        }
-      };
+      return updateState(state, columnIndex, copy);
     }
 
     case SET_DATE: {
@@ -320,17 +239,58 @@ const reducer = (state = initialState, action) => {
       card.date = action.payload.date;
       console.log(action.payload.date);
 
+      return updateState(state, columnIndex, copy);
+    }
+
+    case SET_CURRENT_USER: {
+      console.log(action.payload);
       return {
         ...state,
         board: {
           ...state.board,
-          columns: [
-            ...state.board.columns.slice(0, columnIndex),
-            {...copy},
-            ...state.board.columns.slice(columnIndex + 1),
-          ]
+          currentUser: {
+            ...action.payload
+          }
         }
       };
+    }
+
+    case ADD_NEW_COMMENT: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const { userName, userId, date, commentId, message } = action.payload;
+
+      card.comments = [
+        ...card.comments,
+        {
+          message,
+          userName,
+          userId,
+          date,
+          id: commentId
+        }
+      ];
+
+      return updateState(state, columnIndex, copy);
+    }
+
+    case REMOVE_COMMENT: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      card.comments = card.comments.filter((item) => item.id !== action.payload.commentId);
+
+      return updateState(state, columnIndex, copy);
+    }
+
+    case EDIT_COMMENT: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const currentComment = card.comments.find((item) => item.id === action.payload.commentId);
+      currentComment.date = action.payload.date;
+      currentComment.message = action.payload.message;
+      console.log('currentComment', currentComment);
+
+      return updateState(state, columnIndex, copy);
     }
 
     default: 
@@ -339,37 +299,3 @@ const reducer = (state = initialState, action) => {
 }
 
 export default reducer;
-
-/* 
-{
-  columnId?: string,
-  columnTitle?: string,
-  order?: number,
-  cards?: [
-    {
-      cardId?: string,
-      cardTitle?: string,
-      userId?: string,
-      cardDescription?: string,
-      cardOrder?: number,
-      todo?: [
-        {
-          todoId?: string,
-          todoTitle?: string,
-          isComplete?: boolean
-        }
-      ],
-      cardComments?: [
-        {
-          commentId?: string,
-          userName?: string,
-          date?: string,
-          message?: string
-        }
-      ],
-      tags?: string[],
-      background?: string
-    }
-  ]
-}
-*/

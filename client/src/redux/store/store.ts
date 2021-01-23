@@ -4,6 +4,7 @@ export interface Store {
   board: {
     id: string,
     title: string,
+    currentUser: any,
     usersList: any[],
     columns: any[]
   }

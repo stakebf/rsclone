@@ -15,7 +15,11 @@ import {
   REMOVE_TODO,
   CHANGE_TODO_TITLE,
   CHANGE_TODOS_TITLE,
-  SET_DATE
+  SET_DATE,
+  SET_CURRENT_USER,
+  ADD_NEW_COMMENT,
+  REMOVE_COMMENT,
+  EDIT_COMMENT
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -227,6 +231,67 @@ export const setDate = (id, taskId, date) => {
     payload: {
       id,
       taskId,
+      date
+    }
+  };
+}
+
+export const setCurrentUser = (id) => {
+  // тут будет запрос на сервер...
+  // ! потом заменить MOK user На реальные данные с сервера по id
+  const MOK_USER = {
+    userName: 'Alex',
+    email: 'alex@alex.ru',
+    login: 'alex-alex',
+    id
+  };
+  return {
+    type: SET_CURRENT_USER,
+    payload: MOK_USER
+  };
+}
+
+let comInc = 0;
+export const addComment = (id, taskId, message, userName, userId, date) => {
+  // тут будет запрос на сервер...
+
+  return {
+    type: ADD_NEW_COMMENT,
+    payload: {
+      id,
+      taskId,
+      message,
+      userName,
+      userId,
+      date,
+      commentId: `${++comInc}`
+    }
+  };
+}
+
+export const removeComment = (id, taskId, commentId) => {
+  // тут будет запрос на сервер...
+
+  return {
+    type: REMOVE_COMMENT,
+    payload: {
+      id,
+      taskId,
+      commentId
+    }
+  };
+}
+
+export const editComment = (id, taskId, commentId, message, date) => {
+  // тут будет запрос на сервер...
+
+  return {
+    type: EDIT_COMMENT,
+    payload: {
+      id,
+      taskId,
+      commentId,
+      message,
       date
     }
   };

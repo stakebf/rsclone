@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EditOutlined, CheckSquareOutlined, FieldTimeOutlined } from '@ant-design/icons';
+import { EditOutlined, CheckSquareOutlined, FieldTimeOutlined, CommentOutlined } from '@ant-design/icons';
 
 import { CardProps } from '../../../../../helpers/creationHelper';
 import getColorByDate from '../../../../../helpers/dateHelper';
@@ -16,7 +16,8 @@ const Card:React.FC<CardProps> = ({
     userList,
     order,
     date,
-    todos }) => {
+    todos,
+    comments = [] }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const cardInfo = {
     columnId,
@@ -26,7 +27,8 @@ const Card:React.FC<CardProps> = ({
     userList,
     order,
     date,
-    todos
+    todos,
+    comments
   }
   
   const showCardInfo = () => {
@@ -63,6 +65,12 @@ const Card:React.FC<CardProps> = ({
                 className={classes.timeIcon}
               />
               {date}
+            </span>}
+            {!!comments.length && <span className={classes.commentsComponent}>
+              <CommentOutlined 
+                className={classes.commentIcon}
+              />
+              {comments.length}
             </span>}
           </div>
         </div>

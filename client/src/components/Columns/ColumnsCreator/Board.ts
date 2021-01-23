@@ -25,7 +25,7 @@ export interface Board {
             userList?: [
               {
                 id: string,
-                userName: string,
+                name: string,
                 email: string,
                 login: string
               }
@@ -43,7 +43,8 @@ export interface Board {
             comments?: [
               {
                 id?: string,
-                userName?: string,
+                userId: string,
+                userName: string,
                 date?: string,
                 message?: string
               }

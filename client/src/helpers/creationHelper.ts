@@ -19,7 +19,8 @@ export interface CardProps {
     id?: string,
     todo: any[]
   },
-  date: string
+  date: string,
+  comments: any[]
 }
 
 export interface CardInfoProps {
@@ -30,7 +31,7 @@ export interface CardInfoProps {
   cardDescription?: string,
   cardOrder?: number,
   todo?: any[],
-  cardComments?: any[],
+  comments?: any[],
   tags?: any[],
   background?: string,
   closeCardInfo: () => void,
@@ -56,7 +57,8 @@ const createCard = (
     userList: any[],
     order: number,
     todos: object,
-    date: string
+    date: string,
+    comments: any[]
   ) => {
   return {
       id,
@@ -65,7 +67,8 @@ const createCard = (
       userList,
       order,
       todos,
-      date
+      date,
+      comments
   };
 };
 

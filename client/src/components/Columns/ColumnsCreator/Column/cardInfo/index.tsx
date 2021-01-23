@@ -15,6 +15,7 @@ import classes from './CardInfo.module.scss';
 import Description from './Description';
 import Todo from './Todo';
 import DatePicker from './DateSetter';
+import Comments from './Comments';
 
 const CardInfo:React.FC<any> = ({ 
     columnId,
@@ -23,7 +24,7 @@ const CardInfo:React.FC<any> = ({
     description,
     order,
     todos,
-    cardComments = [],
+    comments,
     tags = [],
     userList = [],
     background,
@@ -119,16 +120,11 @@ const CardInfo:React.FC<any> = ({
               taskId={id}
               todos={todos}
             />
-          </div>
-          <div>
-            <h3><CommentOutlined /> Comments</h3>
-            <ul>
-              <li>li 1</li>
-              <li>li 2</li>
-              <li>li 3</li>
-              <li>li 4</li>
-              <li>li 5</li>
-            </ul>
+            <Comments 
+              columnId={columnId}
+              taskId={id}
+              comments={comments}
+            />
           </div>
         </div>
       </div>

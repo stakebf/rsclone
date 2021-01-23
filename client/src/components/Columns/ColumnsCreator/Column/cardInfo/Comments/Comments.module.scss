@@ -1,0 +1,99 @@
+.wrapper {
+  
+  .avatarWrapper {
+    margin-right: 10px;
+    margin-top: 4px;
+    
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background: orange;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  }
+  
+  .inputBlock {
+    display: flex;
+
+    .inputWrapper {
+      width: 100%;
+      transition: all .3s;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      overflow: hidden;
+      height: 40px;
+      background: #fff;
+      border: 1px solid black;
+      border-radius: 3px;
+      
+
+      &.focused {
+        height: 80px;
+      }
+
+
+      .commentInput {
+        width: 100%;
+        border: none;
+        padding: 8px;
+      }
+
+      .btnAddComment {
+        margin-top: 8px;
+        border: 1px solid transparent;
+       
+        &:hover {
+          background-color: rgba(9, 30, 66, 0.08);
+          color: black;
+          border-color: rgba(9, 30, 66, 0.08);
+        }
+      }
+    }
+  }
+
+  .usersCommentsWrapper {
+    display: flex;
+    
+    &:not(:last-child) {
+      margin: 10px;
+    }
+
+    &:last-child {
+      margin: 10px 10px 0;
+    }
+
+    .userName {
+      margin-right: 5px;
+    }
+
+    .btnEditComment,
+    .btnRemoveComment {
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 12px;
+      margin-right: 25px;
+      cursor: pointer;
+      transition: all .3s;
+
+      &:hover {
+        opacity: .6;
+      }
+    }
+
+    .commentItemEditInput {
+      width: 100%;
+      padding: 5px;
+      height: 30px;
+      margin-top: 4px;
+    }
+  }
+}
+
+.focused {
+  height: 50px;
+}
