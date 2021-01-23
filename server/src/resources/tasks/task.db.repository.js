@@ -61,6 +61,33 @@ const addCommentToTask = async (id, comment) => {
   return updateColumn;
 };
 
+const addTagToTask = async (id, tag) => {
+  const updateColumn = await Task.findByIdAndUpdate(id, {
+    $push: {
+      tags: tag
+    }
+  }, {
+    new: true
+  });
+  if (updateColumn === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updateColumn;
+};
+
+
+const addTodoToTask = async (id, todosData) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, {
+    todos: todosData
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${id} not found`);
+  }
+  return updatedTask;
+};
+
 const updateCommentInTask = async (commentId, data) => {
   const updatedBoard = await Task.findOneAndUpdate({
     'comments._id': commentId
@@ -108,18 +135,6 @@ const unassignTask = async userId => {
   return findByUserId(userId);
 };
 
-const addTodoToTask = async (id, todosData) => {
-  const updatedTask = await Task.findByIdAndUpdate(id, {
-    todos: todosData
-  }, {
-    new: true
-  });
-  if (updatedTask === null) {
-    throw new NotFoundError(`Task with id ${id} not found`);
-  }
-  return updatedTask;
-};
-
 
 module.exports = {
   getAll,
@@ -131,5 +146,6 @@ module.exports = {
   deleteTaskFromColumn,
   addTodoToTask,
   addCommentToTask,
-  updateCommentInTask
+  updateCommentInTask,
+  addTagToTask
 };

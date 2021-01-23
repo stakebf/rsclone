@@ -12,6 +12,7 @@ const todosRouter = require('./resources/todos/todos.router');
 const commentsRouter = require('./resources/comments/comments.router');
 const loginRouter = require('./resources/login/login.router');
 const columnRouter = require('./resources/columns/column.router');
+const tagsRouter = require('./resources/tags/tags.router');
 const authorizate = require('./common/authorizate');
 const errors = require('./errors');
 const { requestLogger, boardLogger } = require('./common/logger');
@@ -59,6 +60,9 @@ app.use('/:columnId/tasks', taskRouter);
 taskRouter.use('/:taskId/todos', todosRouter);
 
 taskRouter.use('/:taskId/comments', commentsRouter);
+
+taskRouter.use('/:taskId/tags', tagsRouter);
+
 
 
 app.use(errors.handleError, (err, req, res, next) => {

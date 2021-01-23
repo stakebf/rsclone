@@ -28,6 +28,12 @@ const addCommentToTask = async (id, comment) => {
   await columnService.updateTaskOnColumn(columnId, id, updatedTask);
 }
 
+const addTagToTask = async (id, tag) => {
+  const updatedTask = await tasksRepo.addTagToTask(id, tag);
+  const { columnId } = updatedTask;
+  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+}
+
 const updateCommentInTask = async (commentId, data) => {
   const updatedTask = await tasksRepo.updateCommentInTask(commentId, data);
   const { columnId, id } = updatedTask;
@@ -44,5 +50,6 @@ module.exports = {
   deleteTaskFromColumn,
   addTodoToTask,
   addCommentToTask,
-  updateCommentInTask
+  updateCommentInTask,
+  addTagToTask
 };

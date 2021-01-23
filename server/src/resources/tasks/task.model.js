@@ -11,6 +11,7 @@ const taskSchema = new mongoose.Schema(
     todos: Object,
     comments: Array,
     date: String,
+    tags: Array,
     _id: {
       type: String,
       default: uuid
@@ -20,8 +21,8 @@ const taskSchema = new mongoose.Schema(
 );
 
 taskSchema.statics.toResponse = task => {
-  const { id, title, order, description, userList, columnId, todos, comments, date } = task;
-  return { id, title, order, description, userList, columnId, todos, comments, date };
+  const { id, title, order, description, userList, columnId, todos, comments, date, tags } = task;
+  return { id, title, order, description, userList, columnId, todos, comments, date, tags };
 };
 
 taskSchema.statics.fromRequest = (columnId, requestData) => {
