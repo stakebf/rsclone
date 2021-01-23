@@ -33,9 +33,8 @@ const createTask = newTask => {
 
 };
 
-const updateTask = async (id, columnId, dataForUpdate) => {
-  const findTask = await Task.findOneAndUpdate(
-    { _id: id, columnId },
+const updateTask = async (id, dataForUpdate) => {
+  const findTask = await Task.findByIdAndUpdate(id,
     dataForUpdate,
     {
       new: true

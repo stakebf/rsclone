@@ -3,6 +3,7 @@ const { OK, NO_CONTENT } = require('http-status-codes');
 const Board = require('./board.model');
 const boardsService = require('./board.service');
 const userService = require('../users/user.service');
+const columnsService = require('../columns/column.service');
 const boardSchemas = require('./board.schema');
 const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
@@ -48,6 +49,7 @@ router.route('/:id').delete(
   catchErrors(async (req, res) => {
     const { id } = req.params;
     await boardsService.deleteBoard(id);
+    await columnsService.deleteColumnFromBoard(id);
     res
       .status(NO_CONTENT)
       .json(`Board with id ${id} has been succesfully deleted`);
