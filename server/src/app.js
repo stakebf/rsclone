@@ -9,6 +9,7 @@ const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
 const todosRouter = require('./resources/todos/todos.router');
+const commentsRouter = require('./resources/comments/comments.router');
 const loginRouter = require('./resources/login/login.router');
 const columnRouter = require('./resources/columns/column.router');
 const authorizate = require('./common/authorizate');
@@ -55,7 +56,10 @@ boardRouter.use('/:boardId/columns', columnRouter);
 
 app.use('/:columnId/tasks', taskRouter);
 
-taskRouter.use('/:taskId/todos', todosRouter)
+taskRouter.use('/:taskId/todos', todosRouter);
+
+taskRouter.use('/:taskId/comments', commentsRouter);
+
 
 app.use(errors.handleError, (err, req, res, next) => {
   errors.handleInternalError(err, req, res, next);

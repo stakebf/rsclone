@@ -1,12 +1,5 @@
 const Todos = require('./todos.model');
-
 const NotFoundError = require('../../errors/NotFoundError');
-
-const findByUserId = async userId => {
-  const TodosByUser = Task.find({ userId });
-  const task = await Task.updateMany({ taskByUser, userId: null });
-  return task;
-};
 
 const findByTaskId = taskId => {
   return Todos.find({ taskId });
@@ -86,31 +79,12 @@ const deleteTodos = async (id, taskId) => {
   return columnTodos;
 };
 
-const deleteTodosFromColumn = async taskId => {
-  const deletedTodos = await findBytaskId(taskId);
-  if (deletedTodos.length === 0) {
-    throw new NotFoundError(`Todos with taskId ${taskId} not found`);
-  } else {
-    if (deletedTodos.length !== 0) {
-      await Todos.deleteMany({ taskId });
-      return deletedTodos;
-    }
-  }
-  return [];
-};
-
-const unassignTodos = async userId => {
-  return findByUserId(userId);
-};
-
 module.exports = {
   getAll,
   getTodosById,
   createTodos,
   updateTodos,
   deleteTodos,
-  unassignTodos,
-  deleteTodosFromColumn,
   createTodos,
   createTodoItem
 };

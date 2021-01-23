@@ -8,7 +8,7 @@ const getTaskById = (id, columnId) => tasksRepo.getTaskById(id, columnId);
 const createTask = async (task, columnId) => {
   const newTask = tasksRepo.createTask(task);
   const allTasksOnColumn = await tasksRepo.getAll(columnId);
-  columnService.addTaskToColumn(columnId, allTasksOnColumn);
+  await columnService.addTaskToColumn(columnId, allTasksOnColumn);
   return newTask;
 }
 
@@ -25,7 +25,7 @@ const addTodoToTask = async (id, params) => {
   const upDatedTask = await tasksRepo.addTodoToTask(id, params);
   const { columnId } = upDatedTask;
   const allTasksOnColumn = await tasksRepo.getAll(columnId);
-  columnService.addTaskToColumn(columnId, allTasksOnColumn);
+  await columnService.addTaskToColumn(columnId, allTasksOnColumn);
   return upDatedTask;
 }
 

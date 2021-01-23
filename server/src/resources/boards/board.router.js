@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { OK, NO_CONTENT } = require('http-status-codes');
 const Board = require('./board.model');
 const boardsService = require('./board.service');
+const userService = require('../users/user.service');
 const boardSchemas = require('./board.schema');
 const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
@@ -25,7 +26,10 @@ router.route('/').post(
   catchErrors(validator.validateSchemaPost(boardSchemas.schemaForPost)),
   catchErrors(async (req, res) => {
     const requestData = req.body;
-    const board = await boardsService.createBoard(requestData);
+    const newBoard = await boardsService.createBoard(requestData);
+    const { admin, id } = newBoard;
+    const user = await userService.addBoardToUser(admin, id);
+    const board = await boardsService.addUserToList(id, user);
     res.status(OK).json(Board.toResponse(board));
   })
 );

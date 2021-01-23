@@ -38,6 +38,7 @@ router.route('/:id').put(
     const { id } = req.params;
     const requestData = req.body;
     const column = await columnsService.updateColumn(id, requestData);
+    console.log(column, 'kkk')
     res.status(OK).json(Column.toResponse(column));
   })
 );

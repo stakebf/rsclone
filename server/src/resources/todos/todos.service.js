@@ -1,28 +1,20 @@
 const todosRepo = require('./todos.db.repository');
 const taskService = require('../tasks/task.service');
 
-
 const getAll = taskId => todosRepo.getAll(taskId);
 
-const getTaskById = (id, taskId) => todosRepo.getTaskById(id, taskId);
+const getTodosById = (id, taskId) => todosRepo.getTodosById(id, taskId);
 
-const createTask = async (task, taskId) => {
-  const newTask = todosRepo.createTask(task);
-  const alltodosOnColumn = await todosRepo.getAll(taskId);
-  columnService.addTaskToColumn(taskId, alltodosOnColumn);
-  return newTask;
-
-
+const updateTodos = async (id, taskId, param) => {
+  const updated = await todosRepo.updateTodos(id, taskId, param);
+  return updated;
 }
 
-const updateTask = (id, taskId, param) =>
-  todosRepo.updateTask(id, taskId, param);
+const deleteTodos = (id, taskId) => todosRepo.deleteTodos(id, taskId);
 
-const deleteTask = (id, taskId) => todosRepo.deleteTask(id, taskId);
+// const deleteTaskFromColumn = taskId => todosRepo.deleteTaskFromColumn(taskId);
 
-const deleteTaskFromColumn = taskId => todosRepo.deleteTaskFromColumn(taskId);
-
-const unassignTask = userId => todosRepo.unassignTask(userId);
+const unassignTodos = userId => todosRepo.unassignTodos(userId);
 
 const createTodos = async (taskId, param) => {
   const newTodos = todosRepo.createTodos(taskId, param);
@@ -36,12 +28,11 @@ const createTodoItem = (id, taskId, param) =>
 
 module.exports = {
   getAll,
-  getTaskById,
-  createTask,
-  updateTask,
-  deleteTask,
-  unassignTask,
-  deleteTaskFromColumn,
+  getTodosById,
+  createTodos,
+  updateTodos,
+  deleteTodos,
+  unassignTodos,
   createTodos,
   createTodoItem
 };
