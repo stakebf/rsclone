@@ -19,15 +19,26 @@ const getAllBoardData = async boardId => {
 }
 
 const createBoard = async newBoardData => {
-  const { admin } = newBoardData;
   const newBoard = await Board.create({
     ...newBoardData
-  });
-
-  newBoard.userList.push(admin);
-
+  }
+  );
   return newBoard;
 };
+
+const addUserToList = async (id, userData) => {
+  const updatedBoard = await Board.findByIdAndUpdate(id,
+    {
+      $push:
+        { userList: userData }
+    }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Board with id ${id} not found`);
+  }
+  return updatedBoard;
+}
 
 const updateBoard = async (id, dataForUpdate) => {
   const updatedBoard = await Board.findByIdAndUpdate(id, dataForUpdate, {
@@ -49,7 +60,9 @@ const deleteBoard = async id => {
 
 const addColumnToBoard = async (id, columnData) => {
   const updatedBoard = await Board.findByIdAndUpdate(id, {
-    columns: columnData
+    $push: {
+      columns: columnData
+    }
   }, {
     new: true
   });
@@ -59,6 +72,22 @@ const addColumnToBoard = async (id, columnData) => {
   return updatedBoard;
 };
 
+const updateColumnData = async (id, columnId, data) => {
+  const updatedBoard = await Board.findOneAndUpdate({
+    'columns._id': columnId
+  }, {
+    '$set': {
+      'columns.$': data,
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Board with id ${id} not found`);
+  }
+  return updatedBoard;
+}
+
 module.exports = {
   getAll,
   getBoardById,
@@ -66,5 +95,7 @@ module.exports = {
   updateBoard,
   deleteBoard,
   addColumnToBoard,
-  getAllBoardData
+  getAllBoardData,
+  addUserToList,
+  updateColumnData
 };

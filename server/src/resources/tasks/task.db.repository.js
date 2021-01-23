@@ -33,9 +33,8 @@ const createTask = newTask => {
 
 };
 
-const updateTask = async (id, columnId, dataForUpdate) => {
-  const findTask = await Task.findOneAndUpdate(
-    { _id: id, columnId },
+const updateTask = async (id, dataForUpdate) => {
+  const findTask = await Task.findByIdAndUpdate(id,
     dataForUpdate,
     {
       new: true
@@ -46,6 +45,64 @@ const updateTask = async (id, columnId, dataForUpdate) => {
   }
   return findTask;
 };
+
+
+const addCommentToTask = async (id, comment) => {
+  const updateColumn = await Task.findByIdAndUpdate(id, {
+    $push: {
+      comments: comment
+    }
+  }, {
+    new: true
+  });
+  if (updateColumn === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updateColumn;
+};
+
+const addTagToTask = async (id, tag) => {
+  const updateColumn = await Task.findByIdAndUpdate(id, {
+    $push: {
+      tags: tag
+    }
+  }, {
+    new: true
+  });
+  if (updateColumn === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updateColumn;
+};
+
+
+const addTodoToTask = async (id, todosData) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, {
+    todos: todosData
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${id} not found`);
+  }
+  return updatedTask;
+};
+
+const updateCommentInTask = async (commentId, data) => {
+  const updatedBoard = await Task.findOneAndUpdate({
+    'comments._id': commentId
+  }, {
+    '$set': {
+      'comments.$': data,
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Task with id ${taskId} on column not found`);
+  }
+  return updatedBoard;
+}
 
 
 const deleteTask = async (id, columnId) => {
@@ -78,18 +135,6 @@ const unassignTask = async userId => {
   return findByUserId(userId);
 };
 
-const addTodoToTask = async (id, todosData) => {
-  const updatedTask = await Task.findByIdAndUpdate(id, {
-    todos: todosData
-  }, {
-    new: true
-  });
-  if (updatedTask === null) {
-    throw new NotFoundError(`Task with id ${id} not found`);
-  }
-  return updatedTask;
-};
-
 
 module.exports = {
   getAll,
@@ -99,5 +144,8 @@ module.exports = {
   deleteTask,
   unassignTask,
   deleteTaskFromColumn,
-  addTodoToTask
+  addTodoToTask,
+  addCommentToTask,
+  updateCommentInTask,
+  addTagToTask
 };
