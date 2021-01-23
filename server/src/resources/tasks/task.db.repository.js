@@ -47,6 +47,37 @@ const updateTask = async (id, dataForUpdate) => {
 };
 
 
+const addCommentToTask = async (id, comment) => {
+  const updateColumn = await Task.findByIdAndUpdate(id, {
+    $push: {
+      comments: comment
+    }
+  }, {
+    new: true
+  });
+  if (updateColumn === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updateColumn;
+};
+
+const updateCommentInTask = async (commentId, data) => {
+  const updatedBoard = await Task.findOneAndUpdate({
+    'comments._id': commentId
+  }, {
+    '$set': {
+      'comments.$': data,
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Task with id ${taskId} on column not found`);
+  }
+  return updatedBoard;
+}
+
+
 const deleteTask = async (id, columnId) => {
   const columnTask = await findBycolumnId(columnId);
   if (columnTask.length === 0) {
@@ -98,5 +129,7 @@ module.exports = {
   deleteTask,
   unassignTask,
   deleteTaskFromColumn,
-  addTodoToTask
+  addTodoToTask,
+  addCommentToTask,
+  updateCommentInTask
 };

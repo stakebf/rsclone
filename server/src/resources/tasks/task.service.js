@@ -5,7 +5,7 @@ const getAll = columnId => tasksRepo.getAll(columnId);
 
 const getTaskById = (id, columnId) => tasksRepo.getTaskById(id, columnId);
 
-const createTask = async (task) =>  tasksRepo.createTask(task);
+const createTask = async (task) => tasksRepo.createTask(task);
 
 const updateTask = (id, param) => tasksRepo.updateTask(id, param);
 
@@ -22,6 +22,18 @@ const addTodoToTask = async (id, params) => {
   return updatedTask;
 }
 
+const addCommentToTask = async (id, comment) => {
+  const updatedTask = await tasksRepo.addCommentToTask(id, comment);
+  const { columnId } = updatedTask;
+  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+}
+
+const updateCommentInTask = async (commentId, data) => {
+  const updatedTask = await tasksRepo.updateCommentInTask(commentId, data);
+  const { columnId, id } = updatedTask;
+  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+}
+
 module.exports = {
   getAll,
   getTaskById,
@@ -30,5 +42,7 @@ module.exports = {
   deleteTask,
   unassignTask,
   deleteTaskFromColumn,
-  addTodoToTask
+  addTodoToTask,
+  addCommentToTask,
+  updateCommentInTask
 };

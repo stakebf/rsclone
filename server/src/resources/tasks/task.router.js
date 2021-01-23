@@ -4,6 +4,7 @@ const Task = require('./task.model');
 const tasksService = require('./task.service');
 const columnService = require('../columns/column.service');
 const todosService = require('../todos/todos.service');
+const commentService = require('../comments/comments.service');
 const taskSchemas = require('./task.schema');
 const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
@@ -54,6 +55,7 @@ router.route('/:id').delete(
     const { id, columnId } = req.params;
     await tasksService.deleteTask(id, columnId);
     await todosService.deleteTodosFromTask(id);
+    await commentService.deleteCommentFromTask(id);
     res
       .status(NO_CONTENT)
       .json(`Task with id ${id} has been succesfully deleted`);
