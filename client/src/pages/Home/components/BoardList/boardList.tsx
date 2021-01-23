@@ -48,13 +48,15 @@ const BoardList: React.FC = () => {
   }, [getDataBoardAll, setDataBoards]);
 
   useEffect(() => {
-    if (!showPopup) {
-      const newTypeBoard = typesBoards.map((elem, i) => {
-        elem.check = i === 0 ? true : false;
-        return elem;
-      });
-      setTypesBoards(newTypeBoard);
-    }
+    (function resetTypesBoards() {
+      if (!showPopup) {
+        const newTypeBoard = typesBoards.map((elem, i) => {
+          elem.check = i === 0 ? true : false;
+          return elem;
+        });
+        setTypesBoards(newTypeBoard);
+      }
+    })();
   }, [setTypesBoards, showPopup]);
 
   const onAddedBoard = (title: string, background: string) => {
@@ -87,12 +89,13 @@ const BoardList: React.FC = () => {
     });
   };
 
-  if (loading)
+  /* if (loading) {
     return (
       <div className={classes.spinner}>
         <Spin />
       </div>
     );
+  } */
 
   return (
     <>

@@ -11,7 +11,7 @@ import BoardPanel from '../BoardPanel';
 const App: React.FC = () => {
   return (
     <>
-      <BoardPanel item={{id: 'itId', background: 'bg', title: 'nameBoard', isFavorite: true}} />
+      <BoardPanel />
       <Switch>
         <Route path="/" exact>
           {true /* isToken */ ? <Home type="main" /> : <Main />}

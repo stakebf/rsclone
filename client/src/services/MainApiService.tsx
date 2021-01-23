@@ -25,6 +25,10 @@ class MainApiService {
     return await this._getResource('boards');
   };
 
+  getBoard = async (id: string) => {
+    return await this._getResource(`boards/${id}`);
+  };
+
   // Post
 
   _postResource = async (url: string, data = {}) => {

@@ -85,6 +85,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
             value={name}
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setValue(e)}
             placeholder="Добавить заголовок доски"
+            maxLength={20}
             autoFocus
           />
           <CloseOutlined className={classes['btn-close']} />
