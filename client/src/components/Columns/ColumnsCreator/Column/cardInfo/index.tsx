@@ -5,6 +5,7 @@ import {
   CloseCircleOutlined, 
   OrderedListOutlined,
   CarryOutOutlined,
+  CommentOutlined,
   CreditCardOutlined,
   DeleteOutlined
 } from '@ant-design/icons';
@@ -13,6 +14,7 @@ import { renameCard, removeCard } from '../../../../../redux/actions';
 import classes from './CardInfo.module.scss';
 import Description from './Description';
 import Todo from './Todo';
+import DatePicker from './DateSetter';
 
 const CardInfo:React.FC<any> = ({ 
     columnId,
@@ -25,6 +27,7 @@ const CardInfo:React.FC<any> = ({
     tags = [],
     userList = [],
     background,
+    date,
     closeCardInfo, 
     renameCard, removeCard }) => {
   const [newCardTitle, setNewCardTitle] = useState<string>('');
@@ -100,6 +103,11 @@ const CardInfo:React.FC<any> = ({
         </div>
         <div>
           <div>
+            <DatePicker 
+              columnId={columnId} 
+              taskId={id}
+              date={date}
+            />
             <Description 
               columnId={columnId}
               taskId={id}
@@ -111,11 +119,9 @@ const CardInfo:React.FC<any> = ({
               taskId={id}
               todos={todos}
             />
-            <div>
-              <h3><OrderedListOutlined /> Действия</h3>
-            </div>
           </div>
           <div>
+            <h3><CommentOutlined /> Comments</h3>
             <ul>
               <li>li 1</li>
               <li>li 2</li>

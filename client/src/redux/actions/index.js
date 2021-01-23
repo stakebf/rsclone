@@ -14,7 +14,8 @@ import {
   SET_TODO_COMPLETE,
   REMOVE_TODO,
   CHANGE_TODO_TITLE,
-  CHANGE_TODOS_TITLE
+  CHANGE_TODOS_TITLE,
+  SET_DATE
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -215,6 +216,18 @@ export const removeTodos = (id, taskId) => {
     payload: {
       id,
       taskId
+    }
+  };
+}
+
+export const setDate = (id, taskId, date) => {
+  // тут будет запрос на сервер...
+  return {
+    type: SET_DATE,
+    payload: {
+      id,
+      taskId,
+      date
     }
   };
 }

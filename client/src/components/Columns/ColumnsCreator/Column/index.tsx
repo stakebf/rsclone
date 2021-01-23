@@ -57,8 +57,17 @@ const Column:React.FC<any> = ({
 
   const endOfCreation = ():void => {
     setIsCreation(false);
-    addCard(id, createCard(`someID_card${++incr}`, columnTitle, '', [], 5, {title: '', id: `id${incr}`, todo: []})); // ! потом переделать это При попадании на страницу - эти данные будут сразу
+    addCard(id, createCard(
+      `someID_card${++incr}`, 
+      columnTitle, 
+      '', 
+      [], 
+      5, 
+      {title: '', id: `id${incr}`, todo: []},
+      ''
+    )); // ! потом переделать это При попадании на страницу - эти данные будут сразу
     // ! так же - тут будет сразу отправляться запрос на create для todos: {title: '', todo: []};
+    // ! так же - тут будет сразу отправляться запрос на create для date: '';
     setColumnTitle('');
   };
 

@@ -14,7 +14,8 @@ import {
   SET_TODO_COMPLETE,
   REMOVE_TODO,
   CHANGE_TODO_TITLE,
-  CHANGE_TODOS_TITLE
+  CHANGE_TODOS_TITLE,
+  SET_DATE
 } from '../actions/actionTypes';
 
 const getCurrentColumn = (state, action) => {
@@ -299,6 +300,25 @@ const reducer = (state = initialState, action) => {
       console.log(card);
       card.todos.title = '';
       card.todos.todo = [];
+
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns.slice(0, columnIndex),
+            {...copy},
+            ...state.board.columns.slice(columnIndex + 1),
+          ]
+        }
+      };
+    }
+
+    case SET_DATE: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      card.date = action.payload.date;
+      console.log(action.payload.date);
 
       return {
         ...state,

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { EditOutlined, CheckSquareOutlined } from '@ant-design/icons';
+import { EditOutlined, CheckSquareOutlined, FieldTimeOutlined } from '@ant-design/icons';
 
 import { CardProps } from '../../../../../helpers/creationHelper';
+import getColorByDate from '../../../../../helpers/dateHelper';
 import classes from './Card.module.scss';
 import CardInfo from '../CardInfo';
 
@@ -14,6 +15,7 @@ const Card:React.FC<CardProps> = ({
     description = '', 
     userList,
     order,
+    date,
     todos }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const cardInfo = {
@@ -23,6 +25,7 @@ const Card:React.FC<CardProps> = ({
     description, 
     userList,
     order,
+    date,
     todos
   }
   
@@ -46,14 +49,22 @@ const Card:React.FC<CardProps> = ({
       >
         <div className={classes.titleWrapper}>
           <span>{title}</span>
-          <span>
-            {!!todos.todo.length && <>
-              <CheckSquareOutlined 
-                className={classes.checkIcon}
+          <div className={classes.componentsWrapper}>
+            <span>
+              {!!todos.todo.length && <>
+                <CheckSquareOutlined 
+                  className={classes.checkIcon}
+                />
+                {`${todos.todo.length && todos.todo.filter((item) => item.isComplete).length}/${todos.todo.length}`}
+              </>}
+            </span>
+            {date && <span className={`${classes.dateComponent} ${classes[getColorByDate(date)]}`}>
+              <FieldTimeOutlined 
+                className={classes.timeIcon}
               />
-              {`${todos.todo.length && todos.todo.filter((item) => item.isComplete).length}/${todos.todo.length}`}
-            </>}
-          </span>
+              {date}
+            </span>}
+          </div>
         </div>
         <EditOutlined 
           className={classes.editIcon}

@@ -54,7 +54,8 @@ export interface Board {
                 color: string
               }
             ],
-            background?: string
+            background?: string,
+            date: string // "16/01/2025"
           }
         ]
       }

@@ -17,8 +17,31 @@
     display: flex;
     flex-direction: column;
 
-    .checkIcon {
-      margin-right: 5px;
+    .componentsWrapper {
+      & span:not(:last-child) {
+        margin-right: 5px;
+      }
+
+      .dateComponent {
+        color: #fff;
+        padding: 1px 3px;
+        border-radius: 3px;
+
+        &.red {
+          background: red;
+        }
+        &.yellow {
+          background: #b9b939;
+        }
+        &.green {
+          background: green;
+        }
+      }
+
+      .checkIcon,
+      .timeIcon {
+        margin-right: 5px;
+      }
     }
   }
 
