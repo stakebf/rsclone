@@ -1,28 +1,22 @@
 const todosRepo = require('./todos.db.repository');
 const taskService = require('../tasks/task.service');
 
-
 const getAll = taskId => todosRepo.getAll(taskId);
 
-const getTaskById = (id, taskId) => todosRepo.getTaskById(id, taskId);
+const getTodosById = (id, taskId) => todosRepo.getTodosById(id, taskId);
 
-const createTask = async (task, taskId) => {
-  const newTask = todosRepo.createTask(task);
-  const alltodosOnColumn = await todosRepo.getAll(taskId);
-  columnService.addTaskToColumn(taskId, alltodosOnColumn);
-  return newTask;
-
-
+const updateTodos = async (id, taskId, param) => {
+  const updated = await todosRepo.updateTodos(id, taskId, param);
+  const allTodos = await todosRepo.getAll(taskId);
+  await taskService.addTodoToTask(taskId, allTodos);
+  return updated;
 }
 
-const updateTask = (id, taskId, param) =>
-  todosRepo.updateTask(id, taskId, param);
+const deleteTodos = (id, taskId) => todosRepo.deleteTodos(id, taskId);
 
-const deleteTask = (id, taskId) => todosRepo.deleteTask(id, taskId);
+const deleteTodosFromTask = async taskId => todosRepo.deleteTodosFromTask(taskId);
 
-const deleteTaskFromColumn = taskId => todosRepo.deleteTaskFromColumn(taskId);
-
-const unassignTask = userId => todosRepo.unassignTask(userId);
+const unassignTodos = userId => todosRepo.unassignTodos(userId);
 
 const createTodos = async (taskId, param) => {
   const newTodos = todosRepo.createTodos(taskId, param);
@@ -31,17 +25,29 @@ const createTodos = async (taskId, param) => {
   return newTodos;
 }
 
-const createTodoItem = (id, taskId, param) =>
-  todosRepo.createTodoItem(id, taskId, param);
+const createTodoItem = async (id, taskId, param) => {
+ const todoItem =  todosRepo.createTodoItem(id, taskId, param);
+ const allTodos = await todosRepo.getAll(taskId);
+ await taskService.addTodoToTask(taskId, allTodos);
+ return todoItem;
+}
+
+const updateTodoItem = async (todoItemId, taskId,  data) => {
+  const updatedTodoItem = todosRepo.updateTodoItem(todoItemId, data);
+  const allTodos = await todosRepo.getAll(taskId);
+  await taskService.addTodoToTask(taskId, allTodos);
+  return updatedTodoItem;
+}
 
 module.exports = {
   getAll,
-  getTaskById,
-  createTask,
-  updateTask,
-  deleteTask,
-  unassignTask,
-  deleteTaskFromColumn,
+  getTodosById,
   createTodos,
-  createTodoItem
+  updateTodos,
+  deleteTodos,
+  unassignTodos,
+  createTodos,
+  createTodoItem,
+  deleteTodosFromTask,
+  updateTodoItem
 };

@@ -55,7 +55,9 @@ const deleteColumnFromBoard = async boardId => {
 
 const addTaskToColumn = async (id, taskData) => {
   const updateColumn = await Column.findByIdAndUpdate(id, {
-    taskList: taskData
+    $push: {
+      taskList: taskData
+    }
   }, {
     new: true
   });
@@ -65,6 +67,22 @@ const addTaskToColumn = async (id, taskData) => {
   return updateColumn;
 };
 
+const updateTaskOnColumn = async (id, taskId, data) => {
+  const updatedBoard = await Column.findOneAndUpdate({
+    'taskList._id': taskId
+  }, {
+    '$set': {
+      'taskList.$': data,
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Task with id ${taskId} on column not found`);
+  }
+  return updatedBoard;
+}
+
 module.exports = {
   getAll,
   getColumnById,
@@ -72,5 +90,6 @@ module.exports = {
   updateColumn,
   deleteColumn,
   deleteColumnFromBoard,
-  addTaskToColumn
+  addTaskToColumn,
+  updateTaskOnColumn
 };
