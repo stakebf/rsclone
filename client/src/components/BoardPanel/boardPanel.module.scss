@@ -1,7 +1,8 @@
 .container-panel {
   display: flex;
   justify-content: space-between;
-  padding: 8px 4px 4px 8px;
+  height: 52px;
+  padding: 10px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
     Helvetica Neue, sans-serif;
   background-color: rgba(0, 0, 0, 0.795);
@@ -58,105 +59,27 @@
       height: 16px;
       margin: 8px 8px 12px 8px;
     }
-    &__users-list {
+    &__block-users {
       display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 3px 10px 0 0;
-      .user {
-        height: 28px;
-        width: 28px;
-        margin-right: -2px;
-        background-color: #dfe1e6;
-        border-radius: 50%;
-        transition: 0.2s ease-in;
-        text-align: right;
-        &:hover img {
-          opacity: 0.8;
-        }
-        cursor: pointer;
-        &__img {
-          width: 100%;
-        }
-        &__admin-icon {
-          position: relative;
-          top: -20px;
-          right: 3px;
-          font-size: 10px;
-          color: rgb(235, 218, 125);
-          background-color: #000;
-          padding: 1px;
-          border-radius: 50%;
-        }
+      .users-list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 3px 10px 0 0;
       }
     }
-    .wrapper-btn {
-      position: relative;
-    }
-  }
-  .menu {
-    color: #fff;
-    margin-right: 20px;
   }
 }
 
-.window-invite {
-  position: absolute;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  padding: 12px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
-    Helvetica Neue, sans-serif;
-  border-radius: 3px;
-  box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
-  background-color: #fff;
-  &__head {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    .title {
-      color: #5e6c84;
-      font-size: 14px;
-    }
-    .close {
-      position: absolute;
-      right: 0;
-      top: 3px;
-      color: #5e6c84;
-      cursor: pointer;
-      transition: 0.1s ease-in;
-      &:hover {
-        color: #000;
+@media (max-width: 600px) {
+  .container-panel {
+    height: auto;
+    .panel {
+      flex-wrap: wrap;
+      &__block-users {
+        width: 100%;
+        margin-top: 6px;
       }
     }
-  }
-  &__divider {
-    margin: 12px 0;
-    height: 0;
-    border-bottom: 1px solid rgba(9, 30, 66, 0.13);
-  }
-  &__input {
-    height: 36px;
-    padding: 4px 8px;
-    margin-bottom: 50px;
-    font-size: 18px;
-    background-color: transparent;
-    border: 2px solid #dfe1e6;
-    border-radius: 3px;
-    transition: 0.1s ease-in;
-    &:focus {
-      outline: none;
-      border: 2px solid #0079bf;
-    }
-  }
-  &__btn {
-    height: 40px;
-    background-color: #5aac44;
-    color: #fff;
-    border-radius: 3px;
-    border: 0;
   }
 }

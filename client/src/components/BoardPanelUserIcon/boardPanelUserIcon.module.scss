@@ -1,0 +1,106 @@
+.wrapper-icon {
+  position: relative;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  .user {
+    height: 28px;
+    background-color: #dfe1e6;
+    border-radius: 50%;
+    transition: 0.2s ease-in;
+    text-align: right;
+    &:hover img {
+      opacity: 0.8;
+    }
+    cursor: pointer;
+    &__img {
+      width: 100%;
+    }
+    &__admin-icon {
+      position: relative;
+      top: -20px;
+      right: 3px;
+      font-size: 10px;
+      color: rgb(235, 218, 125);
+      background-color: #000;
+      padding: 1px;
+      border-radius: 50%;
+    }
+  }
+  .window {
+    position: absolute;
+    top: 34px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    padding: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
+      Helvetica Neue, sans-serif;
+    border-radius: 3px;
+    box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
+    background-color: #fff;
+    .title {
+      color: #5e6c84;
+      font-size: 14px;
+    }
+    .content {
+      display: flex;
+      &__icon {
+        height: 42px;
+        width: 42px;
+        border-radius: 50%;
+      }
+      &__info {
+        margin-left: 20px;
+        .name {
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu,
+            Droid Sans, Helvetica Neue, sans-serif;
+          font-size: 16px;
+          font-weight: 600;
+          color: #172b4d;
+        }
+        .login {
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu,
+            Droid Sans, Helvetica Neue, sans-serif;
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 400;
+          color: #5e6c84;
+        }
+      }
+    }
+    .close {
+      position: absolute;
+      font-size: 14px;
+      right: 7px;
+      top: 5px;
+      color: #5e6c84;
+      cursor: pointer;
+      transition: 0.1s ease-in;
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper-icon {
+    .window {
+      width: 240px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper-icon {
+    position: static;
+    .window {
+      top: 88px;
+      left: 10px;
+    }
+  }
+}

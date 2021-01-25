@@ -1,15 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {StarOutlined, CrownOutlined, CloseOutlined} from '@ant-design/icons';
+import BoardPanelUserIcon from '../BoardPanelUserIcon';
+import BoardPanelBtnInvite from '../BoardPanelBtnInvite';
+import {StarOutlined} from '@ant-design/icons';
 
 import classes from './boardPanel.module.scss';
-
-interface IUser {
-  id: string;
-  name: string;
-  login: string;
-  mail: string;
-  img: string;
-}
 
 const BoardPanel: React.FC = () => {
   const [dataBoard, setDataBoard] = useState({
@@ -19,21 +13,18 @@ const BoardPanel: React.FC = () => {
     title: 'TrelloClone',
     isFavorite: true,
     userList: [
-      {id: '1', name: 'Masha', login: 'masha', mail: 'masha@gmail.com', img: '/images/user.png'},
-      {id: '2', name: 'Petr', login: 'petr', mail: 'petr@gmail.com', img: '/images/user.png'},
-      {id: '3', name: 'Alex', login: 'alex', mail: 'alex@gmail.com', img: '/images/user.png'},
-      {id: '4', name: 'Ruslan', login: 'ruslan', mail: 'ruslan@gmail.com', img: '/images/user.png'}
+      {id: '1', name: 'Masha', login: 'masha', img: '/images/user.png', isOpenWindow: false},
+      {id: '2', name: 'Petr', login: 'petr', img: '/images/user.png', isOpenWindow: false},
+      {id: '3', name: 'Aleksey', login: 'alex', img: '/images/user.png', isOpenWindow: false},
+      {id: '4', name: 'Ruslan', login: 'ruslan', img: '/images/user.png', isOpenWindow: false}
     ]
   });
   const [title, setTitle] = useState('');
   const [openWindowInvite, setOpenWindowInvite] = useState(false);
   const [currentWidthTitle, setCurrentWidthTitle] = useState(0);
   const [focusWidthTitle, setFocusWidthTitle] = useState(0);
-  const [email, setEmail] = useState('');
 
   const refMaskedTitle: any = useRef(null);
-  const refWindowInvite: any = useRef(null);
-  const refBtnClose: any = useRef(null);
 
   useEffect(() => {
     setTitle(dataBoard.title);
@@ -41,6 +32,17 @@ const BoardPanel: React.FC = () => {
       setCurrentWidthTitle(refMaskedTitle.current.clientWidth);
     }, 0);
   }, []);
+
+  const onToggleUserWindow = (id: string | undefined, flag: boolean) => {
+    setDataBoard({
+      ...dataBoard,
+      userList: dataBoard.userList.map((el) => {
+        el.isOpenWindow = el.id === id ? flag : false;
+        return el;
+      })
+    });
+    if (id) setOpenWindowInvite(false);
+  };
 
   const onFocusTitle = () => {
     setFocusWidthTitle(currentWidthTitle);
@@ -64,57 +66,16 @@ const BoardPanel: React.FC = () => {
     setDataBoard({...dataBoard, isFavorite: property});
   };
 
-  const elementsListUser = dataBoard.userList.map((item: IUser) => {
-    const {id, name, login, mail, img} = item;
+  const elementsListUser = dataBoard.userList.map((item) => {
     return (
-      <li className={classes.user} key={id}>
-        <img className={classes['user__img']} src={img} alt="user" />
-        {dataBoard.author.id === id && (
-          <CrownOutlined className={classes['user__admin-icon']} twoToneColor="#fff" />
-        )}
-      </li>
+      <BoardPanelUserIcon
+        key={item.id}
+        item={item}
+        adminId={dataBoard.author.id}
+        onToggleUserWindow={onToggleUserWindow}
+      />
     );
   });
-
-  const createWindowInvite = () => {
-    return (
-      <div className={classes['window-invite']} ref={refWindowInvite}>
-        <div className={classes['window-invite__head']}>
-          <span className={classes['title']}>Пригласить на доску</span>
-          <span
-            className={classes['close']}
-            onClick={() => setOpenWindowInvite(false)}
-            ref={refBtnClose}
-          >
-            <CloseOutlined />
-          </span>
-        </div>
-        <span className={classes['window-invite__divider']}></span>
-        <input
-          className={classes['window-invite__input']}
-          type="text"
-          value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setEmail(e.target.value)}
-        />
-        <button type="button" className={classes['window-invite__btn']}>
-          Отправить приглашение
-        </button>
-      </div>
-    );
-  };
-
-  (function closeMenu() {
-    document.addEventListener('click', (e: any) => {
-      const target = e.target;
-      const window = refWindowInvite.current;
-      const btnClose = refBtnClose.current;
-      if (openWindowInvite && window) {
-        const its_window: boolean = target === window || window.contains(target);
-        const its_close: boolean = target === btnClose || btnClose.contains(target);
-        if (!its_window && !its_close && openWindowInvite) setOpenWindowInvite(false);
-      }
-    });
-  })();
 
   return (
     <div className={classes['container-panel']}>
@@ -142,22 +103,15 @@ const BoardPanel: React.FC = () => {
           <StarOutlined />
         </button>
         <span className={classes['panel__divider']}></span>
-        <ul className={classes['panel__users-list']}>{elementsListUser}</ul>
-        <div className={classes['wrapper-btn']}>
-          <button
-            type="button"
-            className={classes['panel__btn']}
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpenWindowInvite(true);
-            }}
-          >
-            Пригласить
-          </button>
-          {openWindowInvite ? createWindowInvite() : null}
+        <div className={classes['panel__block-users']}>
+        <ul className={classes['users-list']}>{elementsListUser}</ul>
+        <BoardPanelBtnInvite
+          openWindowInvite={openWindowInvite}
+          setOpenWindowInvite={setOpenWindowInvite}
+          onToggleUserWindow={onToggleUserWindow}
+        />
         </div>
       </div>
-      <div className={classes.menu}>Menu</div>
     </div>
   );
 };

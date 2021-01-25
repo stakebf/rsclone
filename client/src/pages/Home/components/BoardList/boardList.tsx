@@ -2,7 +2,6 @@ import React, {useState, useEffect, useMemo, useCallback} from 'react';
 import BoardItem from '../BoardItem';
 import BoardAddItem from '../BoardAddItem';
 import MainApiService from '../../../../services/MainApiService';
-import {Spin} from 'antd';
 import {StarOutlined, UserOutlined} from '@ant-design/icons';
 
 import classes from './boardList.module.scss';
@@ -17,7 +16,6 @@ interface IBoardItem {
 
 const BoardList: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [dataBoards, setDataBoards] = useState([]);
   const [typesBoards, setTypesBoards] = useState([
     {id: 1, background: '/images/bg_board_1.jpg', check: true},
@@ -34,13 +32,11 @@ const BoardList: React.FC = () => {
   const api = useMemo(() => new MainApiService(), []);
 
   const getDataBoardAll = useCallback(() => {
-    setLoading(true);
     api
       .getBoardsAll()
       .then((data) => setDataBoards(data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  }, [api, setDataBoards, setLoading]);
+      .catch((error) => console.log(error));
+  }, [api, setDataBoards]);
 
   useEffect(() => {
     getDataBoardAll();
@@ -88,14 +84,6 @@ const BoardList: React.FC = () => {
       return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
     });
   };
-
-  /* if (loading) {
-    return (
-      <div className={classes.spinner}>
-        <Spin />
-      </div>
-    );
-  } */
 
   return (
     <>

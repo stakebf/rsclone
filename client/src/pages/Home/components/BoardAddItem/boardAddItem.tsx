@@ -17,6 +17,8 @@ type BoardAddItemProps = {
   setTypesBoards(s: any): void;
 };
 
+
+
 const BoardAddItem: React.FC<BoardAddItemProps> = ({
   onAddedBoard,
   setShowPopup,
@@ -29,7 +31,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
 
   useEffect(() => {
     setCurrentItemBg(typesBoards[0].background);
-  }, [setCurrentItemBg]);
+  }, [setCurrentItemBg/* , typesBoards */]);
 
   const setValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setName(e.target.value);
