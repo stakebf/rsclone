@@ -34,7 +34,10 @@ const BoardList: React.FC = () => {
   const getDataBoardAll = useCallback(() => {
     api
       .getBoardsAll()
-      .then((data) => setDataBoards(data))
+      .then((data) => {
+        setDataBoards(data);
+        console.log(data);
+      })
       .catch((error) => console.log(error));
   }, [api, setDataBoards]);
 
