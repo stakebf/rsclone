@@ -39,7 +39,7 @@ const BoardList: React.FC = () => {
         console.log(data);
       })
       .catch((error) => console.log(error));
-  }, [api, setDataBoards]);
+  }, [api]);
 
   useEffect(() => {
     getDataBoardAll();
@@ -66,14 +66,16 @@ const BoardList: React.FC = () => {
         admin: localStorage.getItem('userId'),
         isFavorite: false
       })
-      .catch((error) => console.log(error));
-    getDataBoardAll();
+      .then(() => getDataBoardAll())
+      .catch((error) => console.log(error)); //TODO
   };
 
   const onFavorite = (item: IBoardItem) => {
     const {id, isFavorite} = item;
-    api.putBoard({isFavorite: !isFavorite}, id).catch((error) => console.log(error));
-    getDataBoardAll();
+    api
+      .putBoard({isFavorite: !isFavorite}, id)
+      .then(() => getDataBoardAll())
+      .catch((error) => console.log(error));
   };
 
   const elementsAll = dataBoards.map((item: IBoardItem) => {

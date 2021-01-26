@@ -1,124 +1,62 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState, useMemo, useCallback, useEffect} from 'react';
+import MainFeedComment from '../MainFeedComment';
 import {HeartOutlined} from '@ant-design/icons';
+import MainApiService from '../../../../services/MainApiService';
+
 import classes from './mainFeed.module.scss';
 
-interface IDataComments {
-  nameTask: string;
-  countComment: number;
-  participants: any;
-  boardName: string;
-  colum: string;
-  authorComment: string;
-  dateComment: string;
-  textComment: string;
-}
-
-type MainFeedItemProps = {
-  item: IDataComments;
-};
-
-const MainFeedItem: React.FC<MainFeedItemProps> = ({item}) => {
-  const {
-    nameTask,
-    countComment,
-    participants,
-    boardName,
-    colum,
-    authorComment,
-    dateComment,
-    textComment
-  } = item;
-  return (
-    <li className={classes['item-task']}>
-      <div className={classes['item-task__info']}>
-        <Link to="/" className={classes['link']}>
-          <h4 className={classes['link__name']}>{nameTask}</h4>
-          <div className={classes['link__content']}>
-            <div className={classes['comment']}>
-              <img className={classes['comment__icon']} src="/svg/comment.svg" alt="comment" />
-              <span className={classes['comment__count']}>{countComment}</span>
-            </div>
-            <img className={classes['img-user']} src={participants.img} alt="user" />
-          </div>
-        </Link>
-        <div className={classes['info-board']}>
-          <Link to="/" className={classes['info-board__link']}>
-            {boardName}:
-          </Link>
-          <span className="info-board__colum"> {colum}</span>
-        </div>
-      </div>
-      <div className={classes['item-task__comment']}>
-        <div className={classes['user']}>
-          <img className={classes['user__img']} src="/images/user.png" alt="user" />
-          <div className={classes['user__info']}>
-            <h5 className={classes['name']}>{authorComment}</h5>
-            <span className={classes['date']}>{dateComment}</span>
-          </div>
-        </div>
-        <div className={classes['text']}>{textComment}</div>
-      </div>
-    </li>
-  );
-};
-
 const MainFeed: React.FC = () => {
-  const [dataComments, setDataComments] = useState([
-    {
-      nameTask: 'Header',
-      countComment: 1,
-      participants: {name: 'Jon', img: '/images/user.png'},
-      boardName: 'Covid-19',
-      colum: 'start',
-      authorComment: 'Din Ivanov',
-      dateComment: '5 дней назад',
-      textComment: 'Start task Header'
-    },
-    {
-      nameTask: 'Footer',
-      countComment: 1,
-      participants: {name: 'Kira', img: '/images/user.png'},
-      boardName: 'Momentum',
-      colum: 'finish',
-      authorComment: 'Vera Petrova',
-      dateComment: '1 дней назад',
-      textComment: 'finish task Footer'
-    },
-    {
-      nameTask: 'Error message',
-      countComment: 1,
-      participants: {name: 'Jon', img: '/images/user.png'},
-      boardName: 'Momentum',
-      colum: 'test',
-      authorComment: 'Masha Titan',
-      dateComment: '1 час назад',
-      textComment: 'test task Error message'
-    },
-    {
-      nameTask: 'map',
-      countComment: 1,
-      participants: {name: 'Jon', img: '/images/user.png'},
-      boardName: 'google',
-      colum: 'someday',
-      authorComment: 'Vasia Putin',
-      dateComment: '10 минут назад',
-      textComment: 'someday'
-    },
-    {
-      nameTask: 'Menu',
-      countComment: 1,
-      participants: {name: 'Jon', img: '/images/user.png'},
-      boardName: 'Covid-19',
-      colum: 'process',
-      authorComment: 'Dima Ivanov',
-      dateComment: '7 дней назад',
-      textComment: 'add links'
-    }
-  ]);
+  const [dataBoards, setDataComments] = useState([]);
 
-  const elements = dataComments.map((item, i) => {
-    return <MainFeedItem key={i} item={item} />;
+  const api = useMemo(() => new MainApiService(), []);
+
+  const getCommentsAll = useCallback(() => {
+    api
+      .getBoardsAll()
+      .then((data) => {
+        const listComments: any = [];
+        for (let board of data) {
+          if (board.columns.length) {
+            for (let column of board.columns) {
+              if (Object.keys(column).length) {
+                if (column.taskList.length) {
+                  for (let task of column.taskList) {
+                    if (task.comments.length) {
+                      for (let elem of task.comments) {
+                        listComments.push({
+                          id: elem._id,
+                          boardId: board.id,
+                          taskId: task._id,
+                          boardTitle: board.title,
+                          columnTitle: column.title,
+                          taskTitle: task.title,
+                          message: elem.message,
+                          date: elem.date,
+                          userName: elem.userName,
+                          countComment: task.comments.length
+                        });
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        setDataComments(listComments);
+      })
+      .catch((error) => console.log(error));
+  }, [api]);
+
+  useEffect(() => {
+    getCommentsAll();
+
+    return () => setDataComments([]);
+  }, [getCommentsAll, setDataComments]);
+
+  const elements = dataBoards.map((item) => {
+    const {id} = item;
+    return <MainFeedComment key={id} item={item} />;
   });
 
   return (
