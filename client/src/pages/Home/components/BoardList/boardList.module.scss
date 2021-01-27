@@ -39,10 +39,13 @@
   }
 }
 
-.spinner {
-  display: flex;
-  justify-content: center;
-  margin-top: 80px;
+.spinner-all-boards {
+  margin-top: 60px;
+  font-size: 50px;
+}
+
+.spinner-new-board {
+  font-size: 20px;
 }
 
 @media (max-width: 900px) {

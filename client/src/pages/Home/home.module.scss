@@ -42,6 +42,9 @@
     }
   }
   .content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     margin: 40px 16px 0;
     width: 100%;
     max-width: 825px;
@@ -58,7 +61,7 @@
   }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 600px) {
   .container {
     flex-direction: column;
     .menu-panel {

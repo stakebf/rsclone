@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import TypeBgItem from './typeBgItem';
+import BoardTypeItem from '../BoardTypeItem';
 import {CloseOutlined} from '@ant-design/icons';
 
 import classes from './boardAddItem.module.scss';
@@ -12,16 +12,14 @@ interface ITypesBoards {
 
 type BoardAddItemProps = {
   onAddedBoard(name: string, background: String): void;
-  setShowPopup(value: boolean): void;
+  setShowWindow(value: boolean): void;
   typesBoards: ITypesBoards[];
   setTypesBoards(s: any): void;
 };
 
-
-
 const BoardAddItem: React.FC<BoardAddItemProps> = ({
   onAddedBoard,
-  setShowPopup,
+  setShowWindow,
   typesBoards,
   setTypesBoards
 }) => {
@@ -31,7 +29,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
 
   useEffect(() => {
     setCurrentItemBg(typesBoards[0].background);
-  }, [setCurrentItemBg/* , typesBoards */]);
+  }, [setCurrentItemBg /* , typesBoards */]);
 
   const setValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setName(e.target.value);
@@ -40,12 +38,12 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
 
   const onSend = (): void => {
     onAddedBoard(name, currentItemBg);
-    setShowPopup(false);
+    setShowWindow(false);
   };
 
-  const closePopup = (e: any) => {
-    if (e.target.hasAttribute('data-close-popup')) {
-      setShowPopup(false);
+  const closeWindow = (e: any) => {
+    if (e.target.hasAttribute('data-close-window')) {
+      setShowWindow(false);
     }
   };
 
@@ -63,18 +61,18 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
   };
 
   const elementsSelectBg = typesBoards.map((item) => {
-    return <TypeBgItem key={item.id} item={item} onToggle={onToggle} />;
+    return <BoardTypeItem key={item.id} item={item} onToggle={onToggle} />;
   });
 
   return (
     <div
       className={classes['overlay']}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => closePopup(e)}
-      data-close-popup
+      onClick={(e: React.MouseEvent<HTMLDivElement>) => closeWindow(e)}
+      data-close-window
     >
-      <div className={classes['popup']}>
+      <div className={classes['window']}>
         <div
-          className={classes['popup-board']}
+          className={classes['window-board']}
           style={
             currentItemBg.endsWith('jpg' || 'jpeg' || 'png')
               ? {backgroundImage: `url(${currentItemBg})`}
@@ -90,12 +88,12 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
             maxLength={20}
             autoFocus
           />
-          <CloseOutlined className={classes['btn-close']} />
+          <CloseOutlined className={classes['btn-close']} onClick={() => setShowWindow(false)} />
         </div>
         <ul className={classes['list-bg']}>{elementsSelectBg}</ul>
         <button
           onClick={() => onSend()}
-          className={`${classes['popup-btn']} ${disabledBtn ? classes['disabled'] : ''}`}
+          className={`${classes['window-btn']} ${disabledBtn ? classes['disabled'] : ''}`}
           type="button"
           disabled={disabledBtn ? true : false}
         >

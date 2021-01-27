@@ -1,16 +1,18 @@
 import React, {useState, useMemo, useCallback, useEffect} from 'react';
 import MainFeedComment from '../MainFeedComment';
-import {HeartOutlined} from '@ant-design/icons';
+import {HeartOutlined, LoadingOutlined} from '@ant-design/icons';
 import MainApiService from '../../../../services/MainApiService';
 
 import classes from './mainFeed.module.scss';
 
 const MainFeed: React.FC = () => {
   const [dataBoards, setDataComments] = useState([]);
+  const [load, setLoad] = useState(false);
 
   const api = useMemo(() => new MainApiService(), []);
 
-  const getCommentsAll = useCallback(() => {
+  const getDataComments = useCallback(() => {
+    setLoad(true);
     api
       .getBoardsAll()
       .then((data) => {
@@ -45,19 +47,22 @@ const MainFeed: React.FC = () => {
         }
         setDataComments(listComments);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setLoad(false));
   }, [api]);
 
   useEffect(() => {
-    getCommentsAll();
+    getDataComments();
 
     return () => setDataComments([]);
-  }, [getCommentsAll, setDataComments]);
+  }, [getDataComments, setDataComments]);
 
   const elements = dataBoards.map((item) => {
     const {id} = item;
     return <MainFeedComment key={id} item={item} />;
   });
+
+  if (load) return <LoadingOutlined className={classes.spinner} />;
 
   return (
     <div className={classes['main-feed']}>
@@ -65,7 +70,11 @@ const MainFeed: React.FC = () => {
         <HeartOutlined className={classes['icon']} />
         <h4 className={classes['title']}>Важные события</h4>
       </div>
-      <ul className={classes['main-feed__list']}>{elements}</ul>
+      {dataBoards.length ? (
+        <ul className={classes['main-feed__list']}>{elements}</ul>
+      ) : (
+        <span className={classes['main-feed__message']}>У вас пока нету важных событий</span>
+      )}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {CheckOutlined} from '@ant-design/icons';
 
-import classes from './boardAddItem.module.scss';
+import classes from './boardTypeItem.module.scss';
 
 interface IElemDataAddBoard {
   id: number;

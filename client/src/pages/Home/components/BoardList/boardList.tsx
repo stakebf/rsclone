@@ -2,7 +2,7 @@ import React, {useState, useEffect, useMemo, useCallback} from 'react';
 import BoardItem from '../BoardItem';
 import BoardAddItem from '../BoardAddItem';
 import MainApiService from '../../../../services/MainApiService';
-import {StarOutlined, UserOutlined} from '@ant-design/icons';
+import {StarOutlined, UserOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import classes from './boardList.module.scss';
 import 'antd/dist/antd.css';
@@ -15,8 +15,10 @@ interface IBoardItem {
 }
 
 const BoardList: React.FC = () => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showWindow, setShowWindow] = useState(false);
   const [dataBoards, setDataBoards] = useState([]);
+  const [loadBoards, setLoadBoards] = useState(false);
+  const [loadNewBoard, setLoadNewBoard] = useState(false);
   const [typesBoards, setTypesBoards] = useState([
     {id: 1, background: '/images/bg_board_1.jpg', check: true},
     {id: 2, background: '/images/bg_board_2.jpg', check: false},
@@ -31,24 +33,26 @@ const BoardList: React.FC = () => {
 
   const api = useMemo(() => new MainApiService(), []);
 
-  const getDataBoardAll = useCallback(() => {
-    api
-      .getBoardsAll()
-      .then((data) => {
-        setDataBoards(data);
-        console.log(data);
-      })
-      .catch((error) => console.log(error));
-  }, [api]);
+  const getDataBoardAll = useCallback(
+    (setLoadBoards?: any) => {
+      if (setLoadBoards) setLoadBoards(true);
+      api
+        .getBoardsAll()
+        .then((data) => setDataBoards(data))
+        .catch((error) => console.log(error))
+        .finally(() => (setLoadBoards ? setLoadBoards(false) : null));
+    },
+    [api]
+  );
 
   useEffect(() => {
-    getDataBoardAll();
+    getDataBoardAll(setLoadBoards);
     return () => setDataBoards([]);
   }, [getDataBoardAll, setDataBoards]);
 
   useEffect(() => {
     (function resetTypesBoards() {
-      if (!showPopup) {
+      if (!showWindow) {
         const newTypeBoard = typesBoards.map((elem, i) => {
           elem.check = i === 0 ? true : false;
           return elem;
@@ -56,9 +60,10 @@ const BoardList: React.FC = () => {
         setTypesBoards(newTypeBoard);
       }
     })();
-  }, [setTypesBoards, showPopup]);
+  }, [setTypesBoards, showWindow]);
 
   const onAddedBoard = (title: string, background: string) => {
+    setLoadNewBoard(true);
     api
       .postBoard({
         title,
@@ -67,15 +72,18 @@ const BoardList: React.FC = () => {
         isFavorite: false
       })
       .then(() => getDataBoardAll())
-      .catch((error) => console.log(error)); //TODO
+      .catch((error) => console.log(error))
+      .finally(() => setLoadNewBoard(false));
   };
 
-  const onFavorite = (item: IBoardItem) => {
+  const onFavorite = (item: IBoardItem, setLoadStar: any): void => {
+    setLoadStar(true);
     const {id, isFavorite} = item;
     api
       .putBoard({isFavorite: !isFavorite}, id)
       .then(() => getDataBoardAll())
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setLoadStar(false));
   };
 
   const elementsAll = dataBoards.map((item: IBoardItem) => {
@@ -89,6 +97,8 @@ const BoardList: React.FC = () => {
       return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
     });
   };
+
+  if (loadBoards) return <LoadingOutlined className={classes['spinner-all-boards']} />;
 
   return (
     <>
@@ -115,19 +125,23 @@ const BoardList: React.FC = () => {
               <li
                 className={classes['add-item-list']}
                 onClick={() => {
-                  setShowPopup(true);
+                  setShowWindow(true);
                 }}
               >
-                <span>Создать доску</span>
+                {loadNewBoard ? (
+                  <LoadingOutlined className={classes['spinner-new-board']} />
+                ) : (
+                  <span>Создать доску</span>
+                )}
               </li>
             </ul>
           </div>
         </>
       </div>
-      {showPopup && (
+      {showWindow && (
         <BoardAddItem
           onAddedBoard={onAddedBoard}
-          setShowPopup={setShowPopup}
+          setShowWindow={setShowWindow}
           typesBoards={typesBoards}
           setTypesBoards={setTypesBoards}
         />
