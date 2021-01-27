@@ -3,12 +3,12 @@ import {
   FETCH_BOARD_SUCCESS,
   FETCH_BOARD_ERROR,
   ADD_NEW_COLUMN,
-  ADD_NEW_CARD,
+  ADD_NEW_TASKLIST,
   ADD_DESCRIPTION,
   RENAME_COLUMN,
   REMOVE_COLUMN,
-  RENAME_CARD,
-  REMOVE_CARD,
+  RENAME_TASKLIST,
+  REMOVE_TASKLIST,
   ADD_TODOS_TITLE,
   ADD_TODO,
   SET_TODO_COMPLETE,
@@ -19,7 +19,9 @@ import {
   SET_CURRENT_USER,
   ADD_NEW_COMMENT,
   REMOVE_COMMENT,
-  EDIT_COMMENT
+  EDIT_COMMENT,
+  ADD_TAG,
+  REMOVE_TAG
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -92,11 +94,11 @@ export const removeColumn = (id) => {
   };
 }
 
-export const addCard = (id, task) => {
+export const addTaskList = (id, task) => {
   // тут будет запрос на сервер...
-  // console.log('addCard', card);
+  // console.log('addTaskList', card);
   return {
-    type: ADD_NEW_CARD,
+    type: ADD_NEW_TASKLIST,
     payload: {
       id,
       task
@@ -104,13 +106,13 @@ export const addCard = (id, task) => {
   };
 }
 
-export const renameCard = (id, taskId, newTaskTitle) => { // !: id = columnId
+export const renameTaskList = (id, taskId, newTaskTitle) => { // !: id = columnId
   // тут будет запрос на сервер...
   // console.log(id, 
   //   taskId, 
   //   newTaskTitle);
   return {
-    type: RENAME_CARD,
+    type: RENAME_TASKLIST,
     payload: {
       id, 
       taskId, 
@@ -119,10 +121,10 @@ export const renameCard = (id, taskId, newTaskTitle) => { // !: id = columnId
   };
 }
 
-export const removeCard = (id, taskId) => {
+export const removeTaskList = (id, taskId) => {
   // тут будет запрос на сервер...
   return {
-    type: REMOVE_CARD,
+    type: REMOVE_TASKLIST,
     payload: {
       id, 
       taskId
@@ -293,6 +295,35 @@ export const editComment = (id, taskId, commentId, message, date) => {
       commentId,
       message,
       date
+    }
+  };
+}
+
+let taskidd = 0; // ! удалить потом
+
+export const addTag = (id, taskId, color) => {
+  // тут будет запрос на сервер...
+
+  return {
+    type: ADD_TAG,
+    payload: {
+      id,
+      taskId,
+      color,
+      tagId: ++taskidd
+    }
+  };
+}
+
+export const removeTag = (id, taskId, tagId) => {
+  // тут будет запрос на сервер...
+
+  return {
+    type: REMOVE_TAG,
+    payload: {
+      id,
+      taskId,
+      tagId
     }
   };
 }

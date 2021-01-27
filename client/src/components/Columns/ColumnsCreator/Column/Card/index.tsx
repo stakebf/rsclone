@@ -13,11 +13,13 @@ const Card:React.FC<CardProps> = ({
     id, 
     title, 
     description = '', 
-    userList,
+    userList = [],
     order,
     date,
     todos,
-    comments = [] }) => {
+    comments = [],
+    tags = [],
+    background = '' }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const cardInfo = {
     columnId,
@@ -28,7 +30,9 @@ const Card:React.FC<CardProps> = ({
     order,
     date,
     todos,
-    comments
+    comments,
+    tags,
+    background
   }
   
   const showCardInfo = () => {
@@ -49,34 +53,50 @@ const Card:React.FC<CardProps> = ({
         className={classes.card}
         onClick={showCardInfo}
       >
-        <div className={classes.titleWrapper}>
-          <span>{title}</span>
-          <div className={classes.componentsWrapper}>
-            <span>
-              {!!todos.todo.length && <>
-                <CheckSquareOutlined 
-                  className={classes.checkIcon}
-                />
-                {`${todos.todo.length && todos.todo.filter((item) => item.isComplete).length}/${todos.todo.length}`}
-              </>}
-            </span>
-            {date && <span className={`${classes.dateComponent} ${classes[getColorByDate(date)]}`}>
-              <FieldTimeOutlined 
-                className={classes.timeIcon}
-              />
-              {date}
-            </span>}
-            {!!comments.length && <span className={classes.commentsComponent}>
-              <CommentOutlined 
-                className={classes.commentIcon}
-              />
-              {comments.length}
-            </span>}
-          </div>
+        <div className={classes.taskColors}>
+          {!!tags.length && tags.map((item) => <div
+            className={classes[item.color]}
+            style={{
+              width: `${100 / tags.length}%`
+            }}
+            key={`${item.color}_${item.id}`}
+          ></div>)}
         </div>
-        <EditOutlined 
-          className={classes.editIcon}
-        />
+        {/*style={{
+          width: '100%',
+          height: '30px',
+          background: 'red'
+        }}*/}
+        <div className={classes.taskInfoWrapper}>
+          <div className={classes.titleWrapper}>
+            <span>{title}</span>
+            <div className={classes.componentsWrapper}>
+              <span>
+                {!!todos.todo.length && <>
+                  <CheckSquareOutlined 
+                    className={classes.checkIcon}
+                  />
+                  {`${todos.todo.length && todos.todo.filter((item) => item.isComplete).length}/${todos.todo.length}`}
+                </>}
+              </span>
+              {date && <span className={`${classes.dateComponent} ${classes[getColorByDate(date)]}`}>
+                <FieldTimeOutlined 
+                  className={classes.timeIcon}
+                />
+                {date}
+              </span>}
+              {!!comments.length && <span className={classes.commentsComponent}>
+                <CommentOutlined 
+                  className={classes.commentIcon}
+                />
+                {comments.length}
+              </span>}
+            </div>
+          </div>
+          <EditOutlined 
+            className={classes.editIcon}
+          />
+        </div>
       </div>
     </>
   );

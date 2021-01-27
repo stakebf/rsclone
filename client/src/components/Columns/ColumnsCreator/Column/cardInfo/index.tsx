@@ -10,12 +10,13 @@ import {
   DeleteOutlined
 } from '@ant-design/icons';
 
-import { renameCard, removeCard } from '../../../../../redux/actions';
+import { renameTaskList, removeTaskList } from '../../../../../redux/actions';
 import classes from './CardInfo.module.scss';
 import Description from './Description';
 import Todo from './Todo';
 import DatePicker from './DateSetter';
 import Comments from './Comments';
+import Tags from './Tags';
 
 const CardInfo:React.FC<any> = ({ 
     columnId,
@@ -25,12 +26,12 @@ const CardInfo:React.FC<any> = ({
     order,
     todos,
     comments,
-    tags = [],
-    userList = [],
+    tags,
+    userList,
     background,
     date,
     closeCardInfo, 
-    renameCard, removeCard }) => {
+    renameTaskList, removeTaskList }) => {
   const [newCardTitle, setNewCardTitle] = useState<string>('');
   const [isCardRename, setIsCardRename] = useState<boolean>(false);
 
@@ -40,7 +41,7 @@ const CardInfo:React.FC<any> = ({
         return;
       }
 
-      renameCard(columnId, id, newCardTitle);
+      renameTaskList(columnId, id, newCardTitle);
       // console.log(title);
       setIsCardRename(false);
     }
@@ -63,7 +64,7 @@ const CardInfo:React.FC<any> = ({
 
   const removeCardClickHandler = () => {
     setIsCardRename(false);
-    removeCard(columnId, id);
+    removeTaskList(columnId, id);
   };
 
   return (
@@ -104,6 +105,11 @@ const CardInfo:React.FC<any> = ({
         </div>
         <div>
           <div>
+            <Tags 
+              columnId={columnId}
+              taskId={id}
+              tags={tags}
+            />
             <DatePicker 
               columnId={columnId} 
               taskId={id}
@@ -134,12 +140,12 @@ const CardInfo:React.FC<any> = ({
 
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
-    renameCard: (
+    renameTaskList: (
       columnId:string, 
       taskId:string, 
       newCardTitle:string
-    ) => dispatch(renameCard(columnId, taskId, newCardTitle)),
-    removeCard: (columnId:string, taskId:string) => dispatch(removeCard(columnId, taskId))
+    ) => dispatch(renameTaskList(columnId, taskId, newCardTitle)),
+    removeTaskList: (columnId:string, taskId:string) => dispatch(removeTaskList(columnId, taskId))
   }
 }
 

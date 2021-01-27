@@ -3,12 +3,12 @@ import {
   FETCH_BOARD_SUCCESS,
   FETCH_BOARD_ERROR,
   ADD_NEW_COLUMN,
-  ADD_NEW_CARD,
+  ADD_NEW_TASKLIST,
   ADD_DESCRIPTION,
   RENAME_COLUMN,
   REMOVE_COLUMN,
-  RENAME_CARD,
-  REMOVE_CARD,
+  RENAME_TASKLIST,
+  REMOVE_TASKLIST,
   ADD_TODOS_TITLE,
   ADD_TODO,
   SET_TODO_COMPLETE,
@@ -19,7 +19,9 @@ import {
   SET_CURRENT_USER,
   ADD_NEW_COMMENT,
   REMOVE_COMMENT,
-  EDIT_COMMENT
+  EDIT_COMMENT,
+  ADD_TAG,
+  REMOVE_TAG
 } from '../actions/actionTypes';
 
 const getCurrentColumn = (state, action) => {
@@ -120,7 +122,7 @@ const reducer = (state = initialState, action) => {
       };
     }
     
-    case ADD_NEW_CARD: {
+    case ADD_NEW_TASKLIST: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
 
       let taskList;
@@ -135,15 +137,17 @@ const reducer = (state = initialState, action) => {
       return updateState(state, columnIndex, copy);
     }
 
-    case RENAME_CARD: {
+    case RENAME_TASKLIST: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
       const cardIndex = copy.taskList.findIndex((item) => item.id === action.payload.taskId);
       copy.taskList[cardIndex].title = action.payload.newTaskTitle;
 
+      console.log(state);
+
       return updateState(state, columnIndex, copy);
     }
     
-    case REMOVE_CARD: {
+    case REMOVE_TASKLIST: {
       const { columnIndex } = getCurrentColumn(state, action);
       const cards = state.board.columns[columnIndex].taskList.filter((item) => item.id !== action.payload.taskId);
 
@@ -289,6 +293,29 @@ const reducer = (state = initialState, action) => {
       currentComment.date = action.payload.date;
       currentComment.message = action.payload.message;
       console.log('currentComment', currentComment);
+
+      return updateState(state, columnIndex, copy);
+    }
+
+    case ADD_TAG: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+
+      card.tags = [
+        ...card.tags,
+        {
+          id: action.payload.tagId,
+          color: action.payload.color
+        }
+      ];
+
+      return updateState(state, columnIndex, copy);
+    }
+
+    case REMOVE_TAG: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      card.tags = card.tags.filter((item) => item.id !== action.payload.tagId);
 
       return updateState(state, columnIndex, copy);
     }
