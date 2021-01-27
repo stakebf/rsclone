@@ -21,7 +21,9 @@ import {
   REMOVE_COMMENT,
   EDIT_COMMENT,
   ADD_TAG,
-  REMOVE_TAG
+  REMOVE_TAG,
+  ATTACH_USER_TO_TASK,
+  REMOVE_USER_FROM_TASK
 } from '../actions/actionTypes';
 
 const getCurrentColumn = (state, action) => {
@@ -319,6 +321,31 @@ const reducer = (state = initialState, action) => {
 
       return updateState(state, columnIndex, copy);
     }
+
+    case ATTACH_USER_TO_TASK: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+
+      card.usersList = [
+        ...card.usersList,
+        {
+          id: action.payload.userId,
+          name: action.payload.name
+        }
+      ];
+
+      return updateState(state, columnIndex, copy);
+    }
+
+    
+    case REMOVE_USER_FROM_TASK: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      card.usersList = card.usersList.filter((item) => item.id !== action.payload.userId);
+
+      return updateState(state, columnIndex, copy);
+    }
+
 
     default: 
       return state;

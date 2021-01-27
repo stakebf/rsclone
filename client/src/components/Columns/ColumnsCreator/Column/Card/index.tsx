@@ -4,7 +4,7 @@ import { EditOutlined, CheckSquareOutlined, FieldTimeOutlined, CommentOutlined }
 import { CardProps } from '../../../../../helpers/creationHelper';
 import getColorByDate from '../../../../../helpers/dateHelper';
 import classes from './Card.module.scss';
-import CardInfo from '../CardInfo';
+import CardInfo from '../cardInfo';
 
 // TODO: добавить rename карточки
 
@@ -13,26 +13,24 @@ const Card:React.FC<CardProps> = ({
     id, 
     title, 
     description = '', 
-    userList = [],
+    usersList = [],
     order,
     date,
     todos,
     comments = [],
-    tags = [],
-    background = '' }) => {
+    tags = [] }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const cardInfo = {
     columnId,
     id, 
     title, 
     description, 
-    userList,
+    usersList,
     order,
     date,
     todos,
     comments,
-    tags,
-    background
+    tags
   }
   
   const showCardInfo = () => {
@@ -62,23 +60,18 @@ const Card:React.FC<CardProps> = ({
             key={`${item.color}_${item.id}`}
           ></div>)}
         </div>
-        {/*style={{
-          width: '100%',
-          height: '30px',
-          background: 'red'
-        }}*/}
         <div className={classes.taskInfoWrapper}>
           <div className={classes.titleWrapper}>
             <span>{title}</span>
             <div className={classes.componentsWrapper}>
-              <span>
-                {!!todos.todo.length && <>
+              {!!todos.todo.length && <span>
+                <>
                   <CheckSquareOutlined 
                     className={classes.checkIcon}
                   />
                   {`${todos.todo.length && todos.todo.filter((item) => item.isComplete).length}/${todos.todo.length}`}
-                </>}
-              </span>
+                </>
+              </span>}
               {date && <span className={`${classes.dateComponent} ${classes[getColorByDate(date)]}`}>
                 <FieldTimeOutlined 
                   className={classes.timeIcon}
@@ -91,6 +84,17 @@ const Card:React.FC<CardProps> = ({
                 />
                 {comments.length}
               </span>}
+              {!!usersList.length && <div className={classes.additionalUsersComponent}>
+                {usersList.map((item) => <div
+                  key={item.id}
+                  title={item.name}
+                  className={classes.avatarWrapper}
+                >
+                  <div className={classes.avatar}>
+                    {item.name[0].toUpperCase()}
+                  </div>
+                </div>)}
+              </div>}
             </div>
           </div>
           <EditOutlined 

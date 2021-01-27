@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { Button, Popconfirm } from 'antd';
 import { 
   CloseCircleOutlined, 
-  OrderedListOutlined,
-  CarryOutOutlined,
-  CommentOutlined,
   CreditCardOutlined,
   DeleteOutlined
 } from '@ant-design/icons';
@@ -17,6 +14,7 @@ import Todo from './Todo';
 import DatePicker from './DateSetter';
 import Comments from './Comments';
 import Tags from './Tags';
+import AdditionalUsers from './AdditionalUsers';
 
 const CardInfo:React.FC<any> = ({ 
     columnId,
@@ -27,8 +25,7 @@ const CardInfo:React.FC<any> = ({
     todos,
     comments,
     tags,
-    userList,
-    background,
+    usersList,
     date,
     closeCardInfo, 
     renameTaskList, removeTaskList }) => {
@@ -105,6 +102,11 @@ const CardInfo:React.FC<any> = ({
         </div>
         <div>
           <div>
+            <AdditionalUsers 
+              columnId={columnId}
+              taskId={id}
+              usersList={usersList}
+            />
             <Tags 
               columnId={columnId}
               taskId={id}

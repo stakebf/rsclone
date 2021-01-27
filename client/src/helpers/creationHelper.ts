@@ -12,7 +12,7 @@ export interface CardProps {
   id: string,
   title: string,
   description?: string,
-  userList?: any[],
+  usersList?: any[],
   order?: number,
   todos: {
     title?: string,
@@ -21,8 +21,7 @@ export interface CardProps {
   },
   date: string,
   comments: any[],
-  tags: any[],
-  background: string
+  tags: any[]
 }
 
 export interface CardInfoProps {
@@ -35,7 +34,6 @@ export interface CardInfoProps {
   todo?: any[],
   comments?: any[],
   tags?: any[],
-  background?: string,
   closeCardInfo: () => void,
   addDescription: (columnId?:string, cardId?:string, cardDescription?:string) => any
 }
@@ -56,25 +54,23 @@ const createCard = (
     id: string,
     title: string,
     description: string,
-    userList: any[],
+    usersList: any[],
     order: number,
     todos: object,
     date: string,
     comments: any[],
     tags: any[],
-    background: string,
   ) => {
   return {
       id,
       title,
       description,
-      userList,
+      usersList,
       order,
       todos,
       date,
       comments,
       tags,
-      background
   };
 };
 

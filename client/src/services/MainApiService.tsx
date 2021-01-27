@@ -1,5 +1,5 @@
 class MainApiService {
-  _API_URL = 'url_our_api';
+  _API_URL = 'http://localhost:4000';
 
   async getResource(url: string) {
     const res = await fetch(url);
@@ -31,6 +31,10 @@ class MainApiService {
 
   getUsersAll = async () => {
     return await this._getResource('users');
+  }
+  
+  getBoardById = async (id:string) => {
+    return await this._getResource(`${this._API_URL}/boards/${id}`);
   };
 
   // Post

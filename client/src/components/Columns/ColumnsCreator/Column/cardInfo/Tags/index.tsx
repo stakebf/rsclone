@@ -34,7 +34,7 @@ const Tags:React.FC<any> = ({
 
   const colorPickerClasses = [classes.colorPickerWrapper, isSetColor && classes.visible];
   return (
-    <div>
+    <div className={classes.Tags}>
       <h3><HighlightOutlined /> Метки</h3>
       <div className={classes.tagsWrapper}>
         {console.log(tags.length)}

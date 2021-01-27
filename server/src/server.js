@@ -19,6 +19,6 @@ const port = PORT || 4000;
 
 connectToDb(() => {
   app.listen(port, () =>
-    // console.log(`App is running on http://localhost:${port}`)
+    console.log(`App is running on http://localhost:${port}`)
   );
 });

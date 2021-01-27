@@ -19,7 +19,7 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, add
   useEffect(() => {
     // ! забираем борд fetchBoard(тут будем вытягивать :id борда из урла)
     // ! так же тут делаем запрос на получение текущего юзера (Забирать из LoacalStorage ID) и закинуть в setCurrentUser
-    fetchBoard('1');
+    fetchBoard('13f9c40b-c73f-4d44-97c4-e42b08e41aa6');
     setCurrentUser('1');
   }, [fetchBoard, setCurrentUser]);
 

@@ -22,12 +22,10 @@ export interface Board {
             title?: string,
             description?: string,
             // order?: number,
-            userList?: [
+            usersList?: [
               {
                 id: string,
                 name: string,
-                email: string,
-                login: string
               }
             ],
             todos?: {
@@ -55,7 +53,6 @@ export interface Board {
                 color: string
               }
             ],
-            background?: string,
             date: string // "16/01/2025"
           }
         ]

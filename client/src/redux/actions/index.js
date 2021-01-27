@@ -21,7 +21,9 @@ import {
   REMOVE_COMMENT,
   EDIT_COMMENT,
   ADD_TAG,
-  REMOVE_TAG
+  REMOVE_TAG,
+  ATTACH_USER_TO_TASK,
+  REMOVE_USER_FROM_TASK
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -30,18 +32,31 @@ export const fetchBoard = (boardID) => {
     dispatch(fetchDataStart());
 
     try {
-      // const board = await MainApiService.getBoard(boardID);
-      const board = {
+      const service = new MainApiService();
+      const board = await service.getBoardById(boardID);
+      console.log(board);
+      /* const board = {
         id: '1',
         title: 'some title for board',
-        usersList: [{
-          userId: 1,
-          userName: 'blabla',
-        }],
+        usersList: [
+          {
+            id: 1,
+            name: 'blabl aa',
+          },
+          {
+            id: 2,
+            name: 'Al b',
+          },
+          {
+            id: 3,
+            name: 'Rs s',
+          },
+        ],
         columns: []
-      }
+      } */
       dispatch(fetchDataSuccess(board));
     } catch (e) {
+      console.log(e);
       dispatch(fetchDataError(e));
     }
   }
@@ -324,6 +339,33 @@ export const removeTag = (id, taskId, tagId) => {
       id,
       taskId,
       tagId
+    }
+  };
+}
+
+export const attachUserToTask = (id, taskId, user) => {
+  // тут будет запрос на сервер...
+
+  return {
+    type: ATTACH_USER_TO_TASK,
+    payload: {
+      id,
+      taskId,
+      userId: user.id,
+      name: user.name
+    }
+  };
+}
+
+export const removeUserFromTask = (id, taskId, userId) => {
+  // тут будет запрос на сервер...
+
+  return {
+    type: REMOVE_USER_FROM_TASK,
+    payload: {
+      id,
+      taskId,
+      userId
     }
   };
 }

@@ -1,23 +1,39 @@
-.Tags {
-  margin: 10px 0;
+.usersList {
 
-  .tagsWrapper {
+  .attachedUsers {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     margin: 10px 0 10px 10px;
+  }
   
-    .currentColors {
-      width: 40px;
-      height: 30px;
-      border-radius: 5px;
-      margin-right: 5px;
+  .avatarWrapper {
+    margin-right: 10px;
+    margin-top: 4px;
+    
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background: orange;
+      border-radius: 50%;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      font-weight: bold;
       cursor: pointer;
-  
+      position: relative;
+
       .removeIcon {
+        position: absolute;
         opacity: 0;
         color: #fff;
+        background: red;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
       }
       
       &:hover .removeIcon {
@@ -25,8 +41,8 @@
       }
     }
   }
-  
-  .btnAddColor {
+
+  .btnAddUser {
     width: 32px;
     height: 32px;
     background-color: #eaecf0;
@@ -42,7 +58,7 @@
     }
   }
   
-  .colorPickerWrapper {
+  .userPickerWrapper {
     width: 200px;
     position: absolute;
     background: #fff;
@@ -60,10 +76,10 @@
       pointer-events: unset;
       opacity: 1;
       left: 50%;
-      transform: translate(-50%, 35px);
+      transform: translate(-50%, 5px);
     }
   
-    .btnCloseColorPicker {
+    .btnCloseUserPicker {
       cursor: pointer;
       position: absolute;
       right: 10px;
@@ -76,7 +92,7 @@
       }
     }
   
-    .tagsSubTitle {
+    .userSubTitle {
       text-align: center;
     }
   
@@ -84,9 +100,9 @@
       margin: 5px 0 10px;
     }
   
-    .colorPicker {
+    .userPicker {
       height: 30px;
-      color: #fff;
+      color: black;
       display: flex;
       justify-content: flex-end;
       flex-shrink: 0;
@@ -106,25 +122,23 @@
         margin: 5px;
       }
     }
-  }
+
+    .userAvatarsWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      .avatarWrapper {
   
-  .red {
-    background-color: red;
-  }
+        .avatar {
+          cursor: pointer;
+          transition: all .3s;
   
-  .green {
-    background-color: green;
-  }
-  
-  .blue {
-  background-color: blue;
-  }
-  
-  .orange {
-    background-color: orange;
-  }
-  
-  .violet {
-    background-color: violet;
+          &:hover {
+            opacity: .6;
+          }
+        }
+      }
+    }
   }
 }
