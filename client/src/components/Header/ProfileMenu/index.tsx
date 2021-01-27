@@ -47,12 +47,9 @@ const ProfileMenu: React.FC<Settings> = ({user, visible, onClose}) => {
         </div>
       </div>
       <Divider />
-      <Link to="/"><p className={classes.link}>{items.profile}</p></Link>
+      <Link to="/profile"><p className={classes.link}>{items.profile}</p></Link>
       <Link to="/"><p className={classes.link}>{items.actions}</p></Link>
-      <Link to="/"><p className={classes.link}>{items.cards}</p></Link>
-      <Link to="/"><p className={classes.link}>{items.settings}</p></Link>
       <Divider />
-      <Link to="/"><p className={classes.link}>{items.help}</p></Link>
       <Link to="/"><p className={classes.link}>{items.hotKeys}</p></Link>
       <Divider />
       <Link to="/"><p className={classes.link}>{items.exit}</p></Link>
