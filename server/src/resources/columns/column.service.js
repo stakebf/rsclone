@@ -39,6 +39,12 @@ const updateTaskOnColumn = async (id, taskid, data) => {
   const  updatedColumn = await columnsRepo.updateTaskOnColumn(id, taskid, data);
   await boardService.updateColumnData(updatedColumn.boardId, id, updatedColumn);
 }
+
+const deleteTaskFromColumn = async (id, taskId) => {
+  const  updatedColumn = await columnsRepo.deleteTaskFromColumn(id, taskId);
+  await boardService.updateColumnData(updatedColumn.boardId, id, updatedColumn);
+}
+
 module.exports = {
   getAll,
   getColumnById,
@@ -47,5 +53,6 @@ module.exports = {
   deleteColumn,
   deleteColumnFromBoard,
   addTaskToColumn,
-  updateTaskOnColumn
+  updateTaskOnColumn,
+  deleteTaskFromColumn
 };

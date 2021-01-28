@@ -6,7 +6,7 @@ const taskSchema = new mongoose.Schema(
     title: String,
     order: Number,
     description: String,
-    userList: Array,
+    usersList: Array,
     columnId: String,
     todos: Object,
     comments: Array,
@@ -21,8 +21,8 @@ const taskSchema = new mongoose.Schema(
 );
 
 taskSchema.statics.toResponse = task => {
-  const { id, title, order, description, userList, columnId, todos, comments, date, tags } = task;
-  return { id, title, order, description, userList, columnId, todos, comments, date, tags };
+  const { id, title, order, description, usersList, columnId, todos, comments, date, tags } = task;
+  return { id, title, order, description, usersList, columnId, todos, comments, date, tags };
 };
 
 taskSchema.statics.fromRequest = (columnId, requestData) => {

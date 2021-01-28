@@ -50,6 +50,25 @@ const addBoardToUser = async (id, boardId) => {
   return findedUser;
 };
 
+const addTaskToUser = async (id, taskId) => {
+  const findedUser = await User.findOneAndUpdate(
+    { _id: id },
+    {
+          $push: {
+            tasks: taskId
+          }
+    },
+    {
+      new: true
+    }
+  );
+  if (findedUser === null) {
+    throw new NotFoundError(`User with id ${id} not found`);
+  }
+  return findedUser;
+};
+
+
 
 const deleteUser = async id => {
   const deletedUser = await User.findOneAndDelete({ _id: id });
@@ -66,5 +85,6 @@ module.exports = {
   updateUser,
   deleteUser,
   getUserByProps,
-  addBoardToUser
+  addBoardToUser,
+  addTaskToUser
 };
