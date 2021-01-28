@@ -7,6 +7,7 @@
     }
     &-icon {
       width: 15px;
+      font-size: 20px;
       margin: 0 13px;
     }
   }
@@ -36,6 +37,15 @@
       }
     }
   }
+}
+
+.spinner-all-boards {
+  margin-top: 60px;
+  font-size: 50px;
+}
+
+.spinner-new-board {
+  font-size: 20px;
 }
 
 @media (max-width: 900px) {

@@ -1,9 +1,11 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useState, useEffect, useMemo, useCallback} from 'react';
 import BoardItem from '../BoardItem';
 import BoardAddItem from '../BoardAddItem';
 import MainApiService from '../../../../services/MainApiService';
+import {StarOutlined, UserOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import classes from './boardList.module.scss';
+import 'antd/dist/antd.css';
 
 interface IBoardItem {
   id: string;
@@ -13,9 +15,11 @@ interface IBoardItem {
 }
 
 const BoardList: React.FC = () => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showWindow, setShowWindow] = useState(false);
   const [dataBoards, setDataBoards] = useState([]);
-  const [typesBoard, setTypesBoard] = useState([
+  const [loadBoards, setLoadBoards] = useState(false);
+  const [loadNewBoard, setLoadNewBoard] = useState(false);
+  const [typesBoards, setTypesBoards] = useState([
     {id: 1, background: '/images/bg_board_1.jpg', check: true},
     {id: 2, background: '/images/bg_board_2.jpg', check: false},
     {id: 3, background: '/images/bg_board_3.jpg', check: false},
@@ -29,24 +33,43 @@ const BoardList: React.FC = () => {
 
   const api = useMemo(() => new MainApiService(), []);
 
-  useEffect(() => {
-    api
-      .getBoardsAll()
-      .then((data) => setDataBoards(data))
-      .catch((error) => console.log(error));
-  }, [api, setDataBoards, dataBoards]);
+  const getDataBoardAll = useCallback(
+    (setLoadBoards?: any) => {
+      if (setLoadBoards) setLoadBoards(true);
+      api
+        .getBoardsAll()
+        .then((data) => {
+          const curUserId = localStorage.getItem('userId');
+          const userDataBoards = data.filter((el: any) => {
+            return el.userList.some((user: any) => user.id === curUserId);
+          });
+          setDataBoards(userDataBoards);
+        })
+        .catch((error) => console.log(error))
+        .finally(() => (setLoadBoards ? setLoadBoards(false) : null));
+    },
+    [api]
+  );
 
   useEffect(() => {
-    if (!showPopup) {
-      const newTypeBoard = typesBoard.map((elem, i) => {
-        elem.check = i === 0 ? true : false;
-        return elem;
-      });
-      setTypesBoard(newTypeBoard);
-    }
-  }, [setTypesBoard, showPopup]);
+    getDataBoardAll(setLoadBoards);
+    return () => setDataBoards([]);
+  }, [getDataBoardAll, setDataBoards]);
+
+  useEffect(() => {
+    (function resetTypesBoards() {
+      if (!showWindow) {
+        const newTypeBoard = typesBoards.map((elem, i) => {
+          elem.check = i === 0 ? true : false;
+          return elem;
+        });
+        setTypesBoards(newTypeBoard);
+      }
+    })();
+  }, [setTypesBoards, showWindow]);
 
   const onAddedBoard = (title: string, background: string) => {
+    setLoadNewBoard(true);
     api
       .postBoard({
         title,
@@ -54,12 +77,19 @@ const BoardList: React.FC = () => {
         admin: localStorage.getItem('userId'),
         isFavorite: false
       })
-      .catch((error) => console.log(error));
+      .then(() => getDataBoardAll())
+      .catch((error) => console.log(error))
+      .finally(() => setLoadNewBoard(false));
   };
 
-  const onFavorite = (item: IBoardItem) => {
+  const onFavorite = (item: IBoardItem, setLoadStar: any): void => {
+    setLoadStar(true);
     const {id, isFavorite} = item;
-    api.putBoard({isFavorite: !isFavorite}, id).catch((error) => console.log(error));
+    api
+      .putBoard({isFavorite: !isFavorite}, id)
+      .then(() => getDataBoardAll())
+      .catch((error) => console.log(error))
+      .finally(() => setLoadStar(false));
   };
 
   const elementsAll = dataBoards.map((item: IBoardItem) => {
@@ -74,18 +104,15 @@ const BoardList: React.FC = () => {
     });
   };
 
+  if (loadBoards) return <LoadingOutlined className={classes['spinner-all-boards']} />;
+
   return (
     <>
       <div className={classes['all-boards']}>
         {elementsFavorite().length > 0 ? (
           <>
             <div className={classes.head}>
-              <img
-                className={classes['head-icon']}
-                style={{width: '20px'}}
-                src="/svg/star-solid.svg"
-                alt="star"
-              />
+              <StarOutlined className={classes['head-icon']} />
               <h4 className={classes['head-title']}>Отмеченные доски</h4>
             </div>
             <div className={classes['content']}>
@@ -95,7 +122,7 @@ const BoardList: React.FC = () => {
         ) : null}
         <>
           <div className={classes.head}>
-            <img className={classes['head-icon']} src="/svg/user.svg" alt="user" />
+            <UserOutlined className={classes['head-icon']} />
             <h4 className={classes['head-title']}>Ваши доски</h4>
           </div>
           <div className={classes['content']}>
@@ -104,21 +131,25 @@ const BoardList: React.FC = () => {
               <li
                 className={classes['add-item-list']}
                 onClick={() => {
-                  setShowPopup(true);
+                  setShowWindow(true);
                 }}
               >
-                <span>Создать доску</span>
+                {loadNewBoard ? (
+                  <LoadingOutlined className={classes['spinner-new-board']} />
+                ) : (
+                  <span>Создать доску</span>
+                )}
               </li>
             </ul>
           </div>
         </>
       </div>
-      {showPopup && (
+      {showWindow && (
         <BoardAddItem
           onAddedBoard={onAddedBoard}
-          setShowPopup={setShowPopup}
-          typesBoard={typesBoard}
-          setTypesBoard={setTypesBoard}
+          setShowWindow={setShowWindow}
+          typesBoards={typesBoards}
+          setTypesBoards={setTypesBoards}
         />
       )}
     </>

@@ -1,6 +1,7 @@
 import React from 'react';
+import {CheckOutlined} from '@ant-design/icons';
 
-import classes from './boardAddItem.module.scss';
+import classes from './boardAddItemType.module.scss';
 
 interface IElemDataAddBoard {
   id: number;
@@ -8,12 +9,12 @@ interface IElemDataAddBoard {
   background: string;
 }
 
-type TypeBgItemProps = {
+type BoardAddItemTypeProps = {
   item: IElemDataAddBoard;
   onToggle(id: number): void;
 };
 
-const TypeBgItem: React.FC<TypeBgItemProps> = ({item, onToggle}) => {
+const BoardAddItemType: React.FC<BoardAddItemTypeProps> = ({item, onToggle}) => {
   const {id, check, background} = item;
   return (
     <li
@@ -28,10 +29,10 @@ const TypeBgItem: React.FC<TypeBgItemProps> = ({item, onToggle}) => {
       }
     >
       <div className={`${classes['item-overlay']} ${check ? classes['active'] : ''}`}>
-        {check && <img className={classes['img-check']} src="/svg/check.svg" alt="check" />}
+        {check && <CheckOutlined className={classes['img-check']} />}
       </div>
     </li>
   );
 };
 
-export default TypeBgItem;
+export default BoardAddItemType;

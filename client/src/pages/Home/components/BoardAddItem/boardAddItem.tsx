@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import TypeBgItem from './typeBgItem';
+import BoardAddItemType from '../BoardAddItemType';
+import {CloseOutlined} from '@ant-design/icons';
 
 import classes from './boardAddItem.module.scss';
 
@@ -11,24 +12,24 @@ interface ITypesBoards {
 
 type BoardAddItemProps = {
   onAddedBoard(name: string, background: String): void;
-  setShowPopup(value: boolean): void;
-  typesBoard: ITypesBoards[];
-  setTypesBoard(s: any): void;
+  setShowWindow(value: boolean): void;
+  typesBoards: ITypesBoards[];
+  setTypesBoards(s: any): void;
 };
 
 const BoardAddItem: React.FC<BoardAddItemProps> = ({
   onAddedBoard,
-  setShowPopup,
-  typesBoard,
-  setTypesBoard
+  setShowWindow,
+  typesBoards,
+  setTypesBoards
 }) => {
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [currentItemBg, setCurrentItemBg] = useState('rgb(0, 0, 0)');
   const [name, setName] = useState('');
 
   useEffect(() => {
-    setCurrentItemBg(typesBoard[0].background);
-  }, [setCurrentItemBg]);
+    setCurrentItemBg(typesBoards[0].background);
+  }, [setCurrentItemBg /* , typesBoards */]);
 
   const setValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setName(e.target.value);
@@ -37,41 +38,41 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
 
   const onSend = (): void => {
     onAddedBoard(name, currentItemBg);
-    setShowPopup(false);
+    setShowWindow(false);
   };
 
-  const closePopup = (e: any) => {
-    if (e.target.hasAttribute('data-close-popup')) {
-      setShowPopup(false);
+  const closeWindow = (e: any) => {
+    if (e.target.hasAttribute('data-close-window')) {
+      setShowWindow(false);
     }
   };
 
   const onToggle = (id: number) => {
-    const newTypeBoard = typesBoard.map((elem) => {
+    const newTypeBoard = typesBoards.map((elem) => {
       elem.check = elem.id === id ? true : false;
       return elem;
     });
-    setTypesBoard(newTypeBoard);
+    setTypesBoards(newTypeBoard);
 
-    const item = typesBoard.find((item) => item.id === id);
+    const item = typesBoards.find((item) => item.id === id);
     if (item) {
       setCurrentItemBg(item.background);
     }
   };
 
-  const elementsSelectBg = typesBoard.map((item) => {
-    return <TypeBgItem key={item.id} item={item} onToggle={onToggle} />;
+  const elementsSelectBg = typesBoards.map((item) => {
+    return <BoardAddItemType key={item.id} item={item} onToggle={onToggle} />;
   });
 
   return (
     <div
       className={classes['overlay']}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => closePopup(e)}
-      data-close-popup
+      onClick={(e: React.MouseEvent<HTMLDivElement>) => closeWindow(e)}
+      data-close-window
     >
-      <div className={classes['popup']}>
+      <div className={classes['window']}>
         <div
-          className={classes['popup-board']}
+          className={classes['window-board']}
           style={
             currentItemBg.endsWith('jpg' || 'jpeg' || 'png')
               ? {backgroundImage: `url(${currentItemBg})`}
@@ -84,27 +85,15 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
             value={name}
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setValue(e)}
             placeholder="Добавить заголовок доски"
+            maxLength={20}
             autoFocus
           />
-          <svg
-            className={classes['btn-close']}
-            role="presentation"
-            focusable="false"
-            viewBox="0 0 24 24"
-            data-close-popup
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M10.586 12L5.293 6.707a1 1 0 011.414-1.414L12 10.586l5.293-5.293a1 1 0 111.414 1.414L13.414 12l5.293 5.293a1 1 0 01-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 01-1.414-1.414L10.586 12z"
-              fill="currentColor"
-            ></path>
-          </svg>
+          <CloseOutlined className={classes['btn-close']} onClick={() => setShowWindow(false)} />
         </div>
         <ul className={classes['list-bg']}>{elementsSelectBg}</ul>
         <button
           onClick={() => onSend()}
-          className={`${classes['popup-btn']} ${disabledBtn ? classes['disabled'] : ''}`}
+          className={`${classes['window-btn']} ${disabledBtn ? classes['disabled'] : ''}`}
           type="button"
           disabled={disabledBtn ? true : false}
         >
