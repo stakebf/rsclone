@@ -46,7 +46,12 @@ router.route('/:id').put(
     const { id, columnId } = req.params;
     const requestData = req.body;
     const task = await tasksService.updateTask(id, requestData);
-    await columnService.updateTaskOnColumn(columnId, id, task);
+    if (requestData.columnId) {
+      await columnService.deleteTaskFromColumn(columnId, id);
+      await columnService.addTaskToColumn(requestData.columnId, task, requestData.position);
+    } else {
+      await columnService.updateTaskOnColumn(columnId, id, task);
+    }
     res.status(OK).json(Task.toResponse(task));
   })
 );
@@ -57,7 +62,8 @@ router.route('/:id').delete(
     await tasksService.deleteTask(id, columnId);
     await todosService.deleteTodosFromTask(id);
     await commentService.deleteCommentFromTask(id);
-    await tagService.deleteTagFromTask(id)
+    await tagService.deleteTagFromTask(id);
+    await columnService.deleteTaskFromColumn(columnId, id);
     res
       .status(NO_CONTENT)
       .json(`Task with id ${id} has been succesfully deleted`);

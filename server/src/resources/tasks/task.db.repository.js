@@ -104,6 +104,19 @@ const updateCommentInTask = async (commentId, data) => {
   return updatedBoard;
 }
 
+const addUserToList = async (id, userData) => {
+  const updatedTask = await Task.findByIdAndUpdate(id,
+    {
+      $push:
+        { userList: userData }
+    }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${id} not found`);
+  }
+  return updatedTask;
+}
 
 const deleteTask = async (id, columnId) => {
   const columnTask = await findBycolumnId(columnId);
@@ -147,5 +160,6 @@ module.exports = {
   addTodoToTask,
   addCommentToTask,
   updateCommentInTask,
-  addTagToTask
+  addTagToTask,
+  addUserToList
 };

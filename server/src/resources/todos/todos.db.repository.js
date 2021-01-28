@@ -121,11 +121,10 @@ const deleteTodoItem = async (todosId, itemId) => {
   if (updatedTodoItem === null) {
     throw new NotFoundError(`Todo with id ${todoItemId}not found in todos list `);
   }
-
-  console.log('DELETE TODOITEM')
   return updatedTodoItem;
 
 }
+
 module.exports = {
   getAll,
   getTodosById,
