@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import BoardTypeItem from '../BoardTypeItem';
+import BoardAddItemType from '../BoardAddItemType';
 import {CloseOutlined} from '@ant-design/icons';
 
 import classes from './boardAddItem.module.scss';
@@ -61,7 +61,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
   };
 
   const elementsSelectBg = typesBoards.map((item) => {
-    return <BoardTypeItem key={item.id} item={item} onToggle={onToggle} />;
+    return <BoardAddItemType key={item.id} item={item} onToggle={onToggle} />;
   });
 
   return (

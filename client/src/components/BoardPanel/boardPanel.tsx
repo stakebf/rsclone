@@ -1,7 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo, useCallback} from 'react';
 import BoardPanelUserIcon from '../BoardPanelUserIcon';
 import BoardPanelBtnInvite from '../BoardPanelBtnInvite';
-import {StarOutlined} from '@ant-design/icons';
+import {StarOutlined, StarFilled} from '@ant-design/icons';
+
+import MainApiService from '../../services/MainApiService';
 
 import classes from './boardPanel.module.scss';
 
@@ -13,18 +15,24 @@ const BoardPanel: React.FC = () => {
     title: 'TrelloClone',
     isFavorite: true,
     userList: [
-      {id: '1', name: 'Masha', login: 'masha', img: '/images/user.png', isOpenWindow: false},
-      {id: '2', name: 'Petr', login: 'petr', img: '/images/user.png', isOpenWindow: false},
-      {id: '3', name: 'Aleksey', login: 'alex', img: '/images/user.png', isOpenWindow: false},
-      {id: '4', name: 'Ruslan', login: 'ruslan', img: '/images/user.png', isOpenWindow: false}
+      {id: '1', name: 'Masha', login: 'masha', isOpenWindow: false},
+      {id: '2', name: 'Petr', login: 'petr', isOpenWindow: false},
+      {id: '3', name: 'Aleksey', login: 'alex', isOpenWindow: false},
+      {id: '4', name: 'Ruslan', login: 'ruslan', isOpenWindow: false}
     ]
   });
   const [title, setTitle] = useState('');
-  const [openWindowInvite, setOpenWindowInvite] = useState(false);
+  const [isOpenWindowInvite, setOpenWindowInvite] = useState(false);
   const [currentWidthTitle, setCurrentWidthTitle] = useState(0);
   const [focusWidthTitle, setFocusWidthTitle] = useState(0);
 
   const refMaskedTitle: any = useRef(null);
+
+  const api = useMemo(() => new MainApiService(), []);
+
+  const getDataBoardAll = useCallback(() => {
+    api.getUsersAll().then((data) => console.log(data));
+  }, [api]);
 
   useEffect(() => {
     setTitle(dataBoard.title);
@@ -98,18 +106,22 @@ const BoardPanel: React.FC = () => {
         <button
           type="button"
           onClick={() => onChangeFavorite(!dataBoard.isFavorite)}
-          className={`${classes['panel__btn']} ${dataBoard.isFavorite ? classes['active'] : ''}`}
+          className={`${classes['panel__btn']}`}
         >
-          <StarOutlined />
+          {dataBoard.isFavorite ? (
+            <StarOutlined />
+          ) : (
+            <StarFilled className={`${classes['active']}`} />
+          )}
         </button>
         <span className={classes['panel__divider']}></span>
         <div className={classes['panel__block-users']}>
-        <ul className={classes['users-list']}>{elementsListUser}</ul>
-        <BoardPanelBtnInvite
-          openWindowInvite={openWindowInvite}
-          setOpenWindowInvite={setOpenWindowInvite}
-          onToggleUserWindow={onToggleUserWindow}
-        />
+          <ul className={classes['users-list']}>{elementsListUser}</ul>
+          <BoardPanelBtnInvite
+            isOpenWindowInvite={isOpenWindowInvite}
+            setOpenWindowInvite={setOpenWindowInvite}
+            onToggleUserWindow={onToggleUserWindow}
+          />
         </div>
       </div>
     </div>

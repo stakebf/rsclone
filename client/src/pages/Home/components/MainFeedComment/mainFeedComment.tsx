@@ -1,8 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {CommentOutlined} from '@ant-design/icons';
 
 import classes from './mainFeedComment.module.scss';
 
+interface IUserList {
+  id: string;
+  login: string;
+  name: string;
+}
 interface IDataComments {
   id: string;
   boardId: string;
@@ -11,6 +17,7 @@ interface IDataComments {
   countComment: number;
   boardTitle: string;
   columnTitle: string;
+  userList: IUserList[];
   userName: string;
   date: string;
   message: string;
@@ -28,10 +35,21 @@ const MainFeedComment: React.FC<MainFeedCommentProps> = ({item}) => {
     countComment,
     boardTitle,
     columnTitle,
+    userList,
     userName,
     date,
     message
   } = item;
+
+  const renderUserList = userList.map((item: IUserList) => {
+    const {id, name, login} = item;
+    return (
+      <li key={id} className={classes['user-list__icon']} title={`${name} @${login}`}>
+        {name.slice(0, 1).toLocaleUpperCase()}
+      </li>
+    );
+  });
+
   return (
     <li className={classes['item-task']}>
       <div className={classes['item-task__info']}>
@@ -39,9 +57,10 @@ const MainFeedComment: React.FC<MainFeedCommentProps> = ({item}) => {
           <h4 className={classes['link__name']}>{taskTitle}</h4>
           <div className={classes['link__content']}>
             <div className={classes['comment']}>
-              <img className={classes['comment__icon']} src="/svg/comment.svg" alt="comment" />
+              <CommentOutlined className={classes['comment__icon']} />
               <span className={classes['comment__count']}>{countComment}</span>
             </div>
+            <ul className={classes['user-list']}>{renderUserList}</ul>
           </div>
         </Link>
         <div className={classes['info-board']}>
@@ -53,7 +72,7 @@ const MainFeedComment: React.FC<MainFeedCommentProps> = ({item}) => {
       </div>
       <div className={classes['item-task__comment']}>
         <div className={classes['user']}>
-          <img className={classes['user__img']} src="/images/user.png" alt="user" />
+          <span className={classes['user__icon']}>{userName.slice(0, 1).toLocaleUpperCase()}</span>
           <div className={classes['user__info']}>
             <h5 className={classes['name']}>{userName}</h5>
             <span className={classes['date']}>{date}</span>

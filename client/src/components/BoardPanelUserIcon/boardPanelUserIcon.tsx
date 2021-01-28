@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {CrownOutlined, CloseOutlined} from '@ant-design/icons';
+import {StarFilled, CloseOutlined} from '@ant-design/icons';
 
 import classes from './boardPanelUserIcon.module.scss';
 
@@ -7,7 +7,6 @@ interface IUser {
   id: string;
   name: string;
   login: string;
-  img: string;
   isOpenWindow: boolean;
 }
 
@@ -22,16 +21,19 @@ const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
   adminId,
   onToggleUserWindow
 }) => {
-  const {id, name, login, img, isOpenWindow} = item;
+  const {id, name, login, isOpenWindow} = item;
 
   const refWindow: any = useRef(null);
   const refBtnClose: any = useRef(null);
 
-  const createWindow = () => {
+  const renderWindow = () => {
     return (
       <div className={classes['window']} ref={refWindow}>
         <div className={classes['content']}>
-          <img className={classes['content__icon']} src={img} alt="user-icon" />
+          <span className={classes['content__icon']}>
+            {name.slice(0, 1).toLocaleUpperCase()}
+            {adminId === id && <StarFilled className={classes['admin']} />}
+          </span>
           <div className={classes['content__info']}>
             <h4 className={classes['name']}>{name}</h4>
             <h5 className={classes['login']}>@{login}</h5>
@@ -39,8 +41,11 @@ const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
         </div>
         <span
           className={classes['close']}
-          onClick={() => onToggleUserWindow(id, false)}
           ref={refBtnClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleUserWindow(id, false);
+          }}
         >
           <CloseOutlined />
         </span>
@@ -56,26 +61,23 @@ const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
       if (isOpenWindow && window) {
         const its_window: boolean = target === window || window.contains(target);
         const its_close: boolean = target === btnClose || btnClose.contains(target);
-        if (!its_window && !its_close && isOpenWindow) onToggleUserWindow(id, false);
+        if (!its_window && !its_close) onToggleUserWindow(id, false);
       }
     });
   })();
 
   return (
-    <li key={id} className={classes['wrapper-icon']}>
-      <div
-        className={classes.user}
-        onClick={(e) => {
-          e.stopPropagation();
-          onToggleUserWindow(id, !isOpenWindow);
-        }}
-      >
-        <img className={classes['user__img']} src={img} alt="user" />
-        {adminId === id && (
-          <CrownOutlined className={classes['user__admin-icon']} twoToneColor="#fff" />
-        )}
-      </div>
-      {isOpenWindow ? createWindow() : null}
+    <li
+      key={id}
+      className={classes['user-icon']}
+      onClick={(e) => {
+        e.stopPropagation();
+        onToggleUserWindow(id, true);
+      }}
+    >
+      {name.slice(0, 1).toLocaleUpperCase()}
+      {adminId === id && <StarFilled className={classes['user-icon__admin']} twoToneColor="#fff" />}
+      {isOpenWindow ? renderWindow() : null}
     </li>
   );
 };

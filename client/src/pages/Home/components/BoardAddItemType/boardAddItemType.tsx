@@ -1,7 +1,7 @@
 import React from 'react';
 import {CheckOutlined} from '@ant-design/icons';
 
-import classes from './boardTypeItem.module.scss';
+import classes from './boardAddItemType.module.scss';
 
 interface IElemDataAddBoard {
   id: number;
@@ -9,12 +9,12 @@ interface IElemDataAddBoard {
   background: string;
 }
 
-type TypeBgItemProps = {
+type BoardAddItemTypeProps = {
   item: IElemDataAddBoard;
   onToggle(id: number): void;
 };
 
-const TypeBgItem: React.FC<TypeBgItemProps> = ({item, onToggle}) => {
+const BoardAddItemType: React.FC<BoardAddItemTypeProps> = ({item, onToggle}) => {
   const {id, check, background} = item;
   return (
     <li
@@ -35,4 +35,4 @@ const TypeBgItem: React.FC<TypeBgItemProps> = ({item, onToggle}) => {
   );
 };
 
-export default TypeBgItem;
+export default BoardAddItemType;

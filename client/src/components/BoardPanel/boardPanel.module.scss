@@ -5,7 +5,7 @@
   padding: 10px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
     Helvetica Neue, sans-serif;
-  background-color: rgba(0, 0, 0, 0.795);
+  background: rgba(0, 0, 0, 0.24);
   .panel {
     display: flex;
     &__title {
@@ -50,7 +50,7 @@
       &:hover {
         background-color: hsla(0, 0%, 100%, 0.32);
       }
-      &.active {
+      .active {
         color: rgb(255, 214, 127);
       }
     }

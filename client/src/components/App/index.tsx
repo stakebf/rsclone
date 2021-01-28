@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
 import Main from '../../pages/Main';
-import SignInUp from '../../pages/SignInUp/signInUp';
+import SignInUp from '../../pages/SignInUp';
 import Home from '../../pages/Home';
 import Page404 from '../../pages/Page404';
 import BoardPanel from '../BoardPanel';

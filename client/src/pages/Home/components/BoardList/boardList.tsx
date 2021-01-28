@@ -38,7 +38,13 @@ const BoardList: React.FC = () => {
       if (setLoadBoards) setLoadBoards(true);
       api
         .getBoardsAll()
-        .then((data) => setDataBoards(data))
+        .then((data) => {
+          const curUserId = localStorage.getItem('userId');
+          const userDataBoards = data.filter((el: any) => {
+            return el.userList.some((user: any) => user.id === curUserId);
+          });
+          setDataBoards(userDataBoards);
+        })
         .catch((error) => console.log(error))
         .finally(() => (setLoadBoards ? setLoadBoards(false) : null));
     },

@@ -4,13 +4,13 @@ import {CloseOutlined} from '@ant-design/icons';
 import classes from './boardPanelBtnInvite.module.scss';
 
 type BoardPanelBtnInviteProps = {
-  openWindowInvite: boolean;
+  isOpenWindowInvite: boolean;
   setOpenWindowInvite(flag: boolean): void;
   onToggleUserWindow(id: string | undefined, flag: boolean): void;
 };
 
 const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
-  openWindowInvite,
+  isOpenWindowInvite,
   setOpenWindowInvite,
   onToggleUserWindow
 }) => {
@@ -18,19 +18,12 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
   const refWindow: any = useRef(null);
   const refBtnClose: any = useRef(null);
 
-  const createWindow = () => {
+  const renderWindow = () => {
     return (
       <div className={classes['window']} ref={refWindow}>
         <div className={classes['window__head']}>
           <span className={classes['title']}>Пригласить на доску</span>
-          <span
-            className={classes['close']}
-            onClick={() => {
-              setOpenWindowInvite(false);
-              onToggleUserWindow(undefined, false);
-            }}
-            ref={refBtnClose}
-          >
+          <span className={classes['close']} ref={refBtnClose}>
             <CloseOutlined />
           </span>
         </div>
@@ -53,10 +46,10 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
       const target = e.target;
       const window = refWindow.current;
       const btnClose = refBtnClose.current;
-      if (openWindowInvite && window) {
+      if (isOpenWindowInvite && window) {
         const its_window: boolean = target === window || window.contains(target);
         const its_close: boolean = target === btnClose || btnClose.contains(target);
-        if (!its_window && !its_close && openWindowInvite) {
+        if ((!its_window && !its_close) || its_close) {
           setOpenWindowInvite(false);
           onToggleUserWindow(undefined, false);
         }
@@ -71,13 +64,13 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
         className={classes['btn-invite']}
         onClick={(e) => {
           e.stopPropagation();
-          setOpenWindowInvite(!openWindowInvite);
+          setOpenWindowInvite(!isOpenWindowInvite);
           onToggleUserWindow(undefined, false);
         }}
       >
         Пригласить
       </button>
-      {openWindowInvite ? createWindow() : null}
+      {isOpenWindowInvite ? renderWindow() : null}
     </div>
   );
 };
