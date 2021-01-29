@@ -59,14 +59,15 @@ const deleteComment = async (id, taskId) => {
 
 const deleteCommentFromTask = async taskId => {
   const deletedComment = await findByTaskId(taskId);
-  if (deletedComment.length === 0) {
-    throw new NotFoundError(`Comment with taskId ${taskId} not found`);
-  } else {
+  // if (deletedComment.length === 0) {
+  //   return;
+  //   // throw new NotFoundError(`Comment with taskId ${taskId} not found`);
+  // } else {
     if (deletedComment.length !== 0) {
       await Comment.deleteMany({ taskId });
       return deletedComment;
     }
-  }
+  // }
   return [];
 };
 
