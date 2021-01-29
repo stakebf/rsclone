@@ -48,8 +48,10 @@ router.route('/:id').put(
 router.route('/:id').delete(
   catchErrors(async (req, res) => {
     const { id } = req.params;
-    await boardsService.deleteBoard(id);
-    await columnsService.deleteColumnFromBoard(id);
+    const deletedBoard = await boardsService.deleteBoard(id);
+    if (deletedBoard.columns.length !== 0) {
+      await columnsService.deleteColumnFromBoard(id);
+    }
     res
       .status(NO_CONTENT)
       .json(`Board with id ${id} has been succesfully deleted`);

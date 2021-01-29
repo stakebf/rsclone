@@ -119,7 +119,7 @@ const addUserToList = async (id, userData) => {
 }
 
 const deleteTask = async (id, columnId) => {
-  const columnTask = await findBycolumnId(columnId);
+  const columnTask = await findByColumnId(columnId);
   if (columnTask.length === 0) {
     throw new NotFoundError(`Task with columnId ${columnId} not found`);
   } else {

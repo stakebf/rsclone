@@ -59,7 +59,11 @@ router.route('/:id').put(
 router.route('/:id').delete(
   catchErrors(async (req, res) => {
     const { id, columnId } = req.params;
-    await tasksService.deleteTask(id, columnId);
+   const deletedBoard = await tasksService.deleteTask(id, columnId);
+    // if (deletedBoard.columns.length !== 0) {
+    //   await columnsService.deleteColumnFromBoard(id);
+    // }
+
     await todosService.deleteTodosFromTask(id);
     await commentService.deleteCommentFromTask(id);
     await tagService.deleteTagFromTask(id);
