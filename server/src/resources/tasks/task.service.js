@@ -13,6 +13,12 @@ const deleteTask = (id, columnId) => tasksRepo.deleteTask(id, columnId);
 
 const deleteTaskFromColumn = columnId => tasksRepo.deleteTaskFromColumn(columnId);
 
+const deleteFieldItemFromTask = async (id, fieldId, fieldName) => {
+  const updatedTask = await tasksRepo.deleteFieldItemFromTask(id, fieldId, fieldName);
+  const { columnId } = updatedTask;
+  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+}
+
 const unassignTask = userId => tasksRepo.unassignTask(userId);
 
 const addTodoToTask = async (id, params) => {
@@ -60,5 +66,6 @@ module.exports = {
   addCommentToTask,
   updateCommentInTask,
   addTagToTask,
-  addUserToList
+  addUserToList,
+  deleteFieldItemFromTask
 };

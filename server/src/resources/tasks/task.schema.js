@@ -9,7 +9,7 @@ const schemaForPost = Joi.object().keys({
     .error(new Error('Field title is required')),
   order: Joi.number(),
   description: Joi.string(),
-  userList: Joi.array(),
+  usersList: Joi.array(),
   todos: Joi.object(),
   comments: Joi.array(),
   columnId: Joi.string()
@@ -23,7 +23,9 @@ const schemaForPut = Joi.object().keys({
     .error(new Error('Field id is required')),
   order: Joi.number(),
   description: Joi.string(),
-  userId: Joi.string(),
+  usersList: Joi.array(),
+  todos: Joi.object(),
+  comments: Joi.array(),
   boardId: Joi.string()
     .required()
     .error(new Error('Field boardId is required')),

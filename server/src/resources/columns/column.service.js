@@ -37,6 +37,7 @@ const addTaskToColumn = async (id, params) => {
 
 const updateTaskOnColumn = async (id, taskid, data) => {
   const  updatedColumn = await columnsRepo.updateTaskOnColumn(id, taskid, data);
+  console.log('COLUMNiD', id)
   await boardService.updateColumnData(updatedColumn.boardId, id, updatedColumn);
 }
 

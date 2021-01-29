@@ -45,7 +45,7 @@ const updateComment = async (id, taskId, dataForUpdate) => {
 
 
 const deleteComment = async (id, taskId) => {
-  const CommentComment = await findBytaskId(taskId);
+  const CommentComment = await findByTaskId(taskId);
   if (CommentComment.length === 0) {
     throw new NotFoundError(`Comment with taskId ${taskId} not found`);
   } else {
@@ -58,7 +58,7 @@ const deleteComment = async (id, taskId) => {
 };
 
 const deleteCommentFromTask = async taskId => {
-  const deletedComment = await findBytaskId(taskId);
+  const deletedComment = await findByTaskId(taskId);
   if (deletedComment.length === 0) {
     throw new NotFoundError(`Comment with taskId ${taskId} not found`);
   } else {
