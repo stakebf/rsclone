@@ -11,7 +11,7 @@ const Comments:React.FC<any> = ({
     columnId, 
     taskId, 
     comments, 
-    currentUser: { userName, id },
+    currentUser: { name, id },
     addComment,
     removeComment,
     editComment
@@ -41,7 +41,7 @@ const Comments:React.FC<any> = ({
 
   const addCommentClickHandler = ():void => {
     if (message.trim()) {
-      addComment(columnId, taskId, message, userName, id, new Date().toLocaleString('en-US', { hour12: false }));
+      addComment(columnId, taskId, message, name, id, new Date().toLocaleString('en-US', { hour12: false }));
       setMessage('');
     }
 
@@ -54,7 +54,7 @@ const Comments:React.FC<any> = ({
         return;
       }
 
-      addComment(columnId, taskId, message, userName, id, new Date().toLocaleString('en-US', { hour12: false }));
+      addComment(columnId, taskId, message, name, id, new Date().toLocaleString('en-US', { hour12: false }));
       setMessage('');
     }
   };
@@ -97,9 +97,9 @@ const getChangedFormat = (changedDate:string) => {
       <div className={classes.inputBlock}>
         <div className={classes.avatarWrapper}>
           <div
-            title={userName}
+            title={name}
             className={classes.avatar}
-          >{userName[0].toUpperCase()}</div>
+          >{name[0].toUpperCase()}</div>
         </div>
         <div className={classNames.join(' ')}>
           <input 

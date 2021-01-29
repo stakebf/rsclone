@@ -9,18 +9,17 @@ import { Store } from '../../../redux/store/store';
 import classes from './ColumnsCreator.module.scss';
 import Column from './Column';
 
-let incr = 0;
+// let incr = 0;
 const COLUMN_LENGTH = 275;
 
-const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, addColumn, setCurrentUser }) => {
+const ColumnCreator: React.FC<any> = ({ board: { columns = [], id: boardId }, fetchBoard, addColumn, setCurrentUser }) => {
   const [isCreation, setIsCreation] = useState<boolean>(false);
   const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
     // ! забираем борд fetchBoard(тут будем вытягивать :id борда из урла)
-    // ! так же тут делаем запрос на получение текущего юзера (Забирать из LoacalStorage ID) и закинуть в setCurrentUser
-    fetchBoard('13f9c40b-c73f-4d44-97c4-e42b08e41aa6');
-    setCurrentUser('1');
+    fetchBoard('af80495d-e6f7-45b5-8767-acbec79b480f');
+    setCurrentUser();
   }, [fetchBoard, setCurrentUser]);
 
   const btnAddClassNames: Array<string> = [classes.btnAddColumn, isCreation ? classes.hide : ''];
@@ -63,16 +62,19 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [] }, fetchBoard, add
 
   const endOfCreation = ():void => {
     setIsCreation(false);
-    addColumn([createColumn(`someID${++incr}`, title, 0)]); // потом переделать это При попадании на страницу - эти данные будут сразу, я их по запросу буду забирать
+    // addColumn([createColumn(`someID${++incr}`, title, 0,)]); // потом переделать это При попадании на страницу - эти данные будут сразу, я их по запросу буду забирать
+    addColumn(boardId, title);
     // console.log('addColumnClickHandler - createBoard', title);
     setTitle('');
   }
 
   return (
     <div className={classes.container}>
+      {console.log(columns)}
       {!!columns.length && columns.map((item:any) => <Column 
         {...item}
-        key={`${item.id}_${incr}`}
+        // key={`${item._id}_${incr}`}
+        key={item._id}
       />)}
       <Button
         type="default"
@@ -129,8 +131,8 @@ const mapStateToProps = (state: Store) => {
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
     fetchBoard: (boardId: string) => dispatch(fetchBoard(boardId)),
-    addColumn: (column:any[]) => dispatch(addColumn(column)),
-    setCurrentUser: (userId: string) => dispatch(setCurrentUser(userId))
+    addColumn: (boardId:string, title:string) => dispatch(addColumn(boardId, title)),
+    setCurrentUser: () => dispatch(setCurrentUser())
   }
 }
 

@@ -91,7 +91,7 @@ const AdditionalUsers:React.FC<any> = ({
 
 const mapStateToProps = (state: Store) => {
   return {
-    tableUsers: state.board.usersList
+    tableUsers: state.board.userList
   }
 }
 

@@ -12,9 +12,10 @@ import classes from './Column.module.scss';
 let incr = 0; // TODO: потом убрать 
 
 const Column:React.FC<any> = ({ 
-    id,
+    boardId,
+    _id,
     title,
-    order,
+    // order,
     taskList = [],
     addTaskList,
     renameColumn,
@@ -68,7 +69,7 @@ const Column:React.FC<any> = ({
       [],
       [],
     );
-    addTaskList(id, newCard); 
+    addTaskList(_id, newCard); 
     // ! потом переделать это При попадании на страницу - эти данные будут сразу
     // ! так же - тут будет сразу отправляться запрос на create для todos: {title: '', todo: []};
     // ! так же - тут будет сразу отправляться запрос на create для date: '';
@@ -85,7 +86,7 @@ const Column:React.FC<any> = ({
         return;
       }
 
-      renameColumn(id, newColumnTitle);
+      renameColumn(boardId, _id, newColumnTitle);
       setIsColumnRename(false);
     }
   };
@@ -106,7 +107,7 @@ const Column:React.FC<any> = ({
   };
 
   const removeColumnClickHandler = () => {
-    removeColumn(id);
+    removeColumn(boardId, _id);
   };
 
   const editMenu = (
@@ -155,15 +156,13 @@ const Column:React.FC<any> = ({
         placeholder='Введите название колонки'
         autoFocus
       />}
-      <span>{id}</span>
-      <span>{order}</span>
 
       <div className={classes.content}>
         {!!taskList.length && taskList.map((task:any) => {
           return (
             <Card 
               {...task}
-              columnId={id}
+              columnId={_id}
               key={`${task.id}`}
             />
           )
@@ -222,15 +221,16 @@ const Column:React.FC<any> = ({
 
 const mapStateToProps = (state: Store) => {
   return {
-    columns: state.board.columns
+    columns: state.board.columns,
+    boardId: state.board.id
   }
 }
 
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
     addTaskList: (id:string, card:any[]) => dispatch(addTaskList(id, card)),
-    renameColumn: (id:string, newTitle:string) => dispatch(renameColumn(id, newTitle)),
-    removeColumn: (id:string) => dispatch(removeColumn(id)),
+    renameColumn: (boardId:string, _id:string, newColumnTitle:string) => dispatch(renameColumn(boardId, _id, newColumnTitle)),
+    removeColumn: (boardId:string, _id:string) => dispatch(removeColumn(boardId, _id)),
   }
 }
 

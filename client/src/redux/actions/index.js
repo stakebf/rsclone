@@ -27,18 +27,19 @@ import {
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
+const service = new MainApiService();
+
 export const fetchBoard = (boardID) => {
   return async (dispatch) => {
     dispatch(fetchDataStart());
 
     try {
-      const service = new MainApiService();
       const board = await service.getBoardById(boardID);
       console.log(board);
       /* const board = {
         id: '1',
         title: 'some title for board',
-        usersList: [
+        userList: [
           {
             id: 1,
             name: 'blabl aa',
@@ -82,16 +83,40 @@ export const fetchDataError = (e) => {
   };
 };
 
-export const addColumn = (column) => {
-  // тут будет запрос на сервер...
+export const addColumn = (boardId, title) => {
+  return async (dispatch) => {
+    let newColumn;
+    console.log(title);
+
+    try {
+      newColumn = await service.postColumn(boardId, { title: title, boardId});
+      console.log(newColumn);
+      dispatch(fetchColumnSuccess(newColumn));
+    } catch (e) {
+      console.log('column has"t been created');
+    }
+  }
+}
+
+export const fetchColumnSuccess = (column) => {
   return {
     type: ADD_NEW_COLUMN,
     payload: column
   };
 }
 
-export const renameColumn = (id, title) => {
-  // тут будет запрос на сервер...
+export const renameColumn = (boardId, columnId, title) => {
+  return async (dispatch) => {
+    try {
+      await service.renamePutColumn(boardId, columnId, { title: title });
+      dispatch(fetchRenameColumnSuccess(columnId, title));
+    } catch (e) {
+      console.log('column has not been updated');
+    }
+  }
+}
+
+export const fetchRenameColumnSuccess = (id, title) => {
   return {
     type: RENAME_COLUMN,
     payload: {
@@ -101,11 +126,21 @@ export const renameColumn = (id, title) => {
   };
 }
 
-export const removeColumn = (id) => {
-  // тут будет запрос на сервер...
+export const removeColumn = (boardId, _id) => {
+  return async (dispatch) => {
+    try {
+      await service.removeColumn(boardId, _id);
+      dispatch(fetchDeleteColumnSuccess(_id));
+    } catch (e) {
+      console.log('column has not been deleted');
+    }
+  }
+}
+
+export const fetchDeleteColumnSuccess = (_id) => {
   return {
     type: REMOVE_COLUMN,
-    payload: id
+    payload: _id
   };
 }
 
@@ -253,18 +288,38 @@ export const setDate = (id, taskId, date) => {
   };
 }
 
-export const setCurrentUser = (id) => {
-  // тут будет запрос на сервер...
-  // ! потом заменить MOK user На реальные данные с сервера по id
-  const MOK_USER = {
-    userName: 'Alex',
-    email: 'alex@alex.ru',
-    login: 'alex-alex',
-    id
+export const setCurrentUser = () => {
+  return async (dispatch) => {
+    let currentUser;
+    const currentUserId = localStorage.getItem('rsclone_userId');
+
+    // ! придумать обработку, если не будет userId в LS
+    if (!currentUserId) {
+      return;
+    }
+
+    try {
+      currentUser = await service.getUserById(currentUserId);
+      dispatch(fetchUserSuccess(currentUser));
+    } catch (e) {
+      currentUser = {};
+    }
+    // тут будет запрос на сервер...
+    // ! потом заменить MOK user На реальные данные с сервера по id
+    /* const MOK_USER = {
+      userName: 'Alex',
+      email: 'alex@alex.ru',
+      login: 'alex-alex',
+      id
+    };
+      */
   };
+}
+
+export const fetchUserSuccess = (currentUser) => {
   return {
     type: SET_CURRENT_USER,
-    payload: MOK_USER
+    payload: currentUser
   };
 }
 

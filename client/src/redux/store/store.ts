@@ -5,7 +5,7 @@ export interface Store {
     id: string,
     title: string,
     currentUser: any,
-    usersList: any[],
+    userList: any[],
     columns: any[]
   }
 }

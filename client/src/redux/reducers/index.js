@@ -3,10 +3,10 @@ import {
   FETCH_BOARD_SUCCESS,
   FETCH_BOARD_ERROR,
   ADD_NEW_COLUMN,
-  ADD_NEW_TASKLIST,
-  ADD_DESCRIPTION,
   RENAME_COLUMN,
   REMOVE_COLUMN,
+  ADD_NEW_TASKLIST,
+  ADD_DESCRIPTION,
   RENAME_TASKLIST,
   REMOVE_TASKLIST,
   ADD_TODOS_TITLE,
@@ -26,9 +26,10 @@ import {
   REMOVE_USER_FROM_TASK
 } from '../actions/actionTypes';
 
-const getCurrentColumn = (state, action) => {
-  const columnIndex = state.board.columns.findIndex((item) => item.id === action.payload.id);
+export const getCurrentColumn = (state, action) => {
+  const columnIndex = state.board.columns.findIndex((item) => item._id === action.payload.id);
   const copy = {...state.board.columns[columnIndex]};
+  console.log(columnIndex, copy);
 
   return {
     columnIndex,
@@ -36,7 +37,7 @@ const getCurrentColumn = (state, action) => {
   }
 };
 
-const updateState = (state, columnIndex, copy) => {
+export const updateState = (state, columnIndex, copy) => {
   return {
     ...state,
     board: {
@@ -57,7 +58,7 @@ const initialState = {
     id: '',
     title: '',
     currentUser: {},
-    usersList: [],
+    userList: [],
     columns: []
   }
 };
@@ -97,7 +98,9 @@ const reducer = (state = initialState, action) => {
           ...state.board,
           columns: [
             ...state.board.columns,
-            ...action.payload
+            {
+              ...action.payload
+            }
           ]
         }
       };
@@ -106,12 +109,13 @@ const reducer = (state = initialState, action) => {
     case RENAME_COLUMN: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
       copy.title = action.payload.title;
+      console.log(copy);
 
       return updateState(state, columnIndex, copy);
     }
     
     case REMOVE_COLUMN: {
-      const columns = state.board.columns.filter((item) => item.id !== action.payload);
+      const columns = state.board.columns.filter((item) => item._id !== action.payload);
 
       return {
         ...state,

@@ -34,7 +34,11 @@ class MainApiService {
   }
   
   getBoardById = async (id:string) => {
-    return await this._getResource(`${this._API_URL}/boards/${id}`);
+    return await this._getResource(`/boards/${id}`);
+  };
+  
+  getUserById = async (id:string) => {
+    return await this._getResource(`/users/${id}`);
   };
 
   // Post
@@ -67,6 +71,11 @@ class MainApiService {
     return await this._postResource('boards', data);
   };
 
+  postColumn = async (boardId:string, data = {}) => {
+    console.log(data);
+    return await this._postResource(`/boards/${boardId}/columns`, data);
+  };
+
   // Put
 
   _getPut = async (url: string, data = {}) => {
@@ -86,6 +95,27 @@ class MainApiService {
 
   putBoard = async (data = {}, id: string) => {
     return await this._getPut(`boards/${id}`, data);
+  };
+
+  renamePutColumn = async (boardId:string, columnId:string, data = {}) => {
+    return await this._getPut(`/boards/${boardId}/columns/${columnId}`, data);
+  };
+
+  // Delete
+
+  _deleteResource = async (url: string) => {
+    const response = await fetch(url, {
+      method: 'DELETE'
+    });
+
+    if (!response.ok) {
+      throw new Error(`Could not fetch ${url}, received ${response.status}`);
+    }
+    return await response.json();
+  };
+
+  removeColumn = async (boardId:string, columnId:string) => {
+    return await this._deleteResource(`/boards/${boardId}/columns/${columnId}`);
   };
 }
 

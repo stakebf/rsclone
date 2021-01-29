@@ -9,7 +9,7 @@ export interface Board {
   board: {
     id?: string,
     title?: string,
-    usersList?: any[],
+    userList?: any[],
     background?: string, // ! background for board
     columns?: [
       {
