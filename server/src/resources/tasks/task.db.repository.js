@@ -108,7 +108,7 @@ const addUserToList = async (id, userData) => {
   const updatedTask = await Task.findByIdAndUpdate(id,
     {
       $push:
-        { userList: userData }
+        { usersList: userData }
     }, {
     new: true
   });
@@ -144,6 +144,23 @@ const deleteTaskFromColumn = async columnId => {
   return [];
 };
 
+const deleteFieldItemFromTask = async (id, fieldId, fieldName) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      [`${fieldName}`]: {
+        _id: fieldId
+      }
+    }
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updatedTask;
+}
+
 const unassignTask = async userId => {
   return findByUserId(userId);
 };
@@ -161,5 +178,6 @@ module.exports = {
   addCommentToTask,
   updateCommentInTask,
   addTagToTask,
-  addUserToList
+  addUserToList,
+  deleteFieldItemFromTask
 };

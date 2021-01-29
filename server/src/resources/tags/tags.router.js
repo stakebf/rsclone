@@ -40,6 +40,7 @@ router.route('/:id').delete(
   catchErrors(async (req, res) => {
     const { id, taskId } = req.params;
     await tagsService.deleteTag(id, taskId);
+    await taskService.deleteFieldItemFromTask(taskId, id, 'comments');
     res
       .status(NO_CONTENT)
       .json(`Comment with id ${id} has been succesfully deleted`);

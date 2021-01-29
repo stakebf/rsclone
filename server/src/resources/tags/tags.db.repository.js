@@ -45,7 +45,7 @@ const updateTag = async (id, taskId, dataForUpdate) => {
 
 
 const deleteTag = async (id, taskId) => {
-  const tags = await findBytaskId(taskId);
+  const tags = await findByTaskId(taskId);
   if (tags.length === 0) {
     throw new NotFoundError(`Tag with taskId ${taskId} not found`);
   } else {
@@ -58,7 +58,7 @@ const deleteTag = async (id, taskId) => {
 };
 
 const deleteTagFromTask = async taskId => {
-  const deletedTag = await findBytaskId(taskId);
+  const deletedTag = await findByTaskId(taskId);
   if (deletedTag.length === 0) {
     throw new NotFoundError(`Tag with taskId ${taskId} not found`);
   } else {

@@ -28,7 +28,9 @@ const addUserToList =  (boardId, user) => {
   return boardsRepo.addUserToList(boardId, { name, login, id });
 }
 
-const updateColumnData = async (id, columnId, data) => await boardsRepo.updateColumnData(id, columnId, data)
+const updateColumnData = async (id, columnId, data) => await boardsRepo.updateColumnData(id, columnId, data);
+
+const deleteColumnFromBoard = async (id, columnId) => await boardsRepo.deleteColumnFromBoard(id, columnId);
 
 module.exports = {
   getAll,
@@ -39,5 +41,6 @@ module.exports = {
   addColumnToBoard,
   getAllBoardData,
   addUserToList,
-  updateColumnData
+  updateColumnData,
+  deleteColumnFromBoard
 };

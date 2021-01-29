@@ -51,7 +51,8 @@ router.route('/:id').delete(
   catchErrors(async (req, res) => {
     const { id, boardId } = req.params;
     await columnsService.deleteColumn(id, boardId);
-    await taskService.deleteTaskfromColumn(id);
+    await taskService.deleteTaskFromColumn(id);
+    await boardService.deleteColumnFromBoard(boardId, id);
     res
       .status(NO_CONTENT)
       .json(`column with id ${id} has been succesfully deleted`);

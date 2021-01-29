@@ -88,6 +88,25 @@ const updateColumnData = async (id, columnId, data) => {
   return updatedBoard;
 }
 
+
+const deleteColumnFromBoard = async (id, columnId) => {
+  const updatedBoard = await Board.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      columns: {
+        _id: columnId
+      }
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updatedBoard;
+}
+
+
 module.exports = {
   getAll,
   getBoardById,
@@ -97,5 +116,6 @@ module.exports = {
   addColumnToBoard,
   getAllBoardData,
   addUserToList,
-  updateColumnData
+  updateColumnData,
+  deleteColumnFromBoard
 };
