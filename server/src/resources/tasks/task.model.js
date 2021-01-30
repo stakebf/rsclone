@@ -6,9 +6,12 @@ const taskSchema = new mongoose.Schema(
     title: String,
     order: Number,
     description: String,
-    userId: String,
+    usersList: Array,
     columnId: String,
-    boardId: String,
+    todos: Object,
+    comments: Array,
+    date: String,
+    tags: Array,
     _id: {
       type: String,
       default: uuid
@@ -18,14 +21,15 @@ const taskSchema = new mongoose.Schema(
 );
 
 taskSchema.statics.toResponse = task => {
-  const { id, title, order, description, userId, columnId, boardId } = task;
-  return { id, title, order, description, userId, columnId, boardId };
+  const { id, title, order, description, usersList, columnId, todos, comments, date, tags } = task;
+  return { id, title, order, description, usersList, columnId, todos, comments, date, tags };
 };
 
-taskSchema.statics.fromRequest = (boardId, requestData) => {
+taskSchema.statics.fromRequest = (columnId, requestData) => {
   const task = new Task({
     ...requestData,
-    boardId
+    todos: {},
+    columnId
   });
   return task;
 };

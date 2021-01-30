@@ -28,7 +28,8 @@ const authorizate = (req, res, next) => {
     route === '/' ||
     route === '/doc' ||
     route === '/login' ||
-    route === '/favicon.ico'
+    route === '/favicon.ico' ||
+    route === '/users'
   ) {
     return next();
   }

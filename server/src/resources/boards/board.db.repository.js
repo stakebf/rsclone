@@ -13,9 +13,32 @@ const getBoardById = async id => {
   return board;
 };
 
-const createBoard = async newBoard => {
-  return Board.create(newBoard);
+const getAllBoardData = async boardId => {
+  const boardData = await getBoardById(boardId);
+  return boardData;
+}
+
+const createBoard = async newBoardData => {
+  const newBoard = await Board.create({
+    ...newBoardData
+  }
+  );
+  return newBoard;
 };
+
+const addUserToList = async (id, userData) => {
+  const updatedBoard = await Board.findByIdAndUpdate(id,
+    {
+      $push:
+        { userList: userData }
+    }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Board with id ${id} not found`);
+  }
+  return updatedBoard;
+}
 
 const updateBoard = async (id, dataForUpdate) => {
   const updatedBoard = await Board.findByIdAndUpdate(id, dataForUpdate, {
@@ -35,10 +58,64 @@ const deleteBoard = async id => {
   return deletedBoard;
 };
 
+const addColumnToBoard = async (id, columnData) => {
+  const updatedBoard = await Board.findByIdAndUpdate(id, {
+    $push: {
+      columns: columnData
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Board with id ${id} not found`);
+  }
+  return updatedBoard;
+};
+
+const updateColumnData = async (id, columnId, data) => {
+  const updatedBoard = await Board.findOneAndUpdate({
+    'columns._id': columnId
+  }, {
+    '$set': {
+      'columns.$': data,
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Board with id ${id} not found`);
+  }
+  return updatedBoard;
+}
+
+
+const deleteColumnFromBoard = async (id, columnId) => {
+  const updatedBoard = await Board.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      columns: {
+        _id: columnId
+      }
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updatedBoard;
+}
+
+
 module.exports = {
   getAll,
   getBoardById,
   createBoard,
   updateBoard,
-  deleteBoard
+  deleteBoard,
+  addColumnToBoard,
+  getAllBoardData,
+  addUserToList,
+  updateColumnData,
+  deleteColumnFromBoard
 };

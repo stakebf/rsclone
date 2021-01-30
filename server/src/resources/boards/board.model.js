@@ -5,6 +5,10 @@ const boardSchema = new mongoose.Schema(
   {
     title: String,
     columns: Array,
+    userList: Array,
+    background: String,
+    isFavorite: Boolean,
+    admin: String,
     _id: {
       type: String,
       default: uuid
@@ -14,8 +18,8 @@ const boardSchema = new mongoose.Schema(
 );
 
 boardSchema.statics.toResponse = board => {
-  const { id, title, columns } = board;
-  return { id, title, columns };
+  const { id, title, columns, userList, background, isFavorite, admin } = board;
+  return { id, title, columns, userList, background, isFavorite, admin };
 };
 
 const Board = mongoose.model('Board', boardSchema);

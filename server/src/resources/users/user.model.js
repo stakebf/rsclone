@@ -9,14 +9,16 @@ const userSchema = new mongoose.Schema(
     },
     name: String,
     login: String,
-    password: String
+    password: String,
+    boards: Array,
+    tasks: Array
   },
   { versionKey: false }
 );
 
 userSchema.statics.toResponse = user => {
-  const { id, name, login } = user;
-  return { id, name, login };
+  const { id, name, login, boards, tasks } = user;
+  return { id, name, login, boards, tasks };
 };
 
 const User = mongoose.model('User', userSchema);

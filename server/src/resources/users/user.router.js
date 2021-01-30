@@ -3,6 +3,7 @@ const { OK, NO_CONTENT } = require('http-status-codes');
 const User = require('./user.model');
 const usersService = require('./user.service');
 const usersSchemas = require('./users.schema');
+const { registerUser } = require('../login/login.service')
 const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
 
@@ -21,14 +22,34 @@ router.route('/:id').get(
   })
 );
 
+router.route('/:id/addtoboard').post(
+  catchErrors(async (req, res) => {
+    const { id } = req.params;
+    const { boardId } = req.body;
+    const user = await usersService.addBoardToUser(id, boardId);
+    res.status(OK).json(User.toResponse(user));
+  })
+);
+
+router.route('/:id/addtotask').post(
+  catchErrors(async (req, res) => {
+    const { id } = req.params;
+    const { taskId } = req.body;
+    const user = await usersService.addTaskToUser(id, taskId);
+    res.status(OK).json(User.toResponse(user));
+  })
+);
+
 router.route('/').post(
   catchErrors(validator.validateSchemaPost(usersSchemas.schemaForPost)),
   catchErrors(async (req, res) => {
     const requestData = req.body;
-    const user = await usersService.createUser(requestData);
-    res.status(OK).json(User.toResponse(user));
+    const {token, id} = await registerUser(requestData);
+    console.log(token, id)
+    res.status(OK).json({token, id});
   })
 );
+
 
 router.route('/:id').put(
   catchErrors(validator.validateSchemaPut(usersSchemas.schemaForPut)),

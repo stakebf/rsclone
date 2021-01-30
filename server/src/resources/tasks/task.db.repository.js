@@ -1,4 +1,5 @@
 const Task = require('./task.model.js');
+
 const NotFoundError = require('../../errors/NotFoundError');
 
 const findByUserId = async userId => {
@@ -7,29 +8,33 @@ const findByUserId = async userId => {
   return task;
 };
 
-const findByBoardId = boardId => {
-  return Task.find({ boardId });
+const findByColumnId = columnId => {
+  return Task.find({ columnId });
 };
 
-const getAll = async boardId => {
-  return findByBoardId(boardId);
-};
-
-const getTaskById = async (id, boardId) => {
-  const taskOnBoard = await Task.findOne({ _id: id, boardId });
-  if (taskOnBoard === null) {
+const getAll = async columnId => {
+  const tasksOnColumn = findByColumnId(columnId);
+  if (tasksOnColumn === null) {
     throw new NotFoundError(`Task with id ${id} not found`);
   }
-  return taskOnBoard;
+  return tasksOnColumn;
 };
 
-const createTask = async newTask => {
+const getTaskById = async (id, columnId) => {
+  const taskOnColumn = await Task.findOne({ _id: id, columnId });
+  if (taskOnColumn === null) {
+    throw new NotFoundError(`Task with id ${id} not found`);
+  }
+  return taskOnColumn;
+};
+
+const createTask = newTask => {
   return Task.create(newTask);
+
 };
 
-const updateTask = async (id, boardId, dataForUpdate) => {
-  const findTask = await Task.findOneAndUpdate(
-    { _id: id, boardId },
+const updateTask = async (id, dataForUpdate) => {
+  const findTask = await Task.findByIdAndUpdate(id,
     dataForUpdate,
     {
       new: true
@@ -41,31 +46,125 @@ const updateTask = async (id, boardId, dataForUpdate) => {
   return findTask;
 };
 
-const deleteTask = async (id, boardId) => {
-  const boardTask = await findByBoardId(boardId);
-  if (boardTask.length === 0) {
-    throw new NotFoundError(`Task with boardId ${boardId} not found`);
+
+const addCommentToTask = async (id, comment) => {
+  const updateColumn = await Task.findByIdAndUpdate(id, {
+    $push: {
+      comments: comment
+    }
+  }, {
+    new: true
+  });
+  if (updateColumn === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updateColumn;
+};
+
+const addTagToTask = async (id, tag) => {
+  const updateColumn = await Task.findByIdAndUpdate(id, {
+    $push: {
+      tags: tag
+    }
+  }, {
+    new: true
+  });
+  if (updateColumn === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updateColumn;
+};
+
+
+const addTodoToTask = async (id, todosData) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, {
+    todos: todosData
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${id} not found`);
+  }
+  return updatedTask;
+};
+
+const updateCommentInTask = async (commentId, data) => {
+  const updatedBoard = await Task.findOneAndUpdate({
+    'comments._id': commentId
+  }, {
+    '$set': {
+      'comments.$': data,
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Task with id ${taskId} on column not found`);
+  }
+  return updatedBoard;
+}
+
+const addUserToList = async (id, userData) => {
+  const updatedTask = await Task.findByIdAndUpdate(id,
+    {
+      $push:
+        { usersList: userData }
+    }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${id} not found`);
+  }
+  return updatedTask;
+}
+
+const deleteTask = async (id, columnId) => {
+  const columnTask = await findByColumnId(columnId);
+  if (columnTask.length === 0) {
+    throw new NotFoundError(`Task with columnId ${columnId} not found`);
   } else {
-    const isDeleted = (await Task.deleteOne({ _id: id, boardId })).deletedCount;
+    const isDeleted = (await Task.deleteOne({ _id: id, columnId })).deletedCount;
     if (isDeleted === 0) {
       throw new NotFoundError(`Task with id ${id} not found`);
     }
   }
-  return boardTask;
+  return columnTask;
 };
 
-const deleteTaskfromBoard = async boardId => {
-  const deletedTask = await findByBoardId(boardId);
-  if (deletedTask.length !== 0) {
-    await Task.deleteMany({ boardId });
-    return deletedTask;
+const deleteTaskFromColumn = async columnId => {
+  const deletedTask = await findByColumnId(columnId);
+  if (deletedTask.length === 0) {
+    throw new NotFoundError(`Task with columnId ${columnId} not found`);
+  } else {
+    if (deletedTask.length !== 0) {
+      await Task.deleteMany({ columnId });
+      return deletedTask;
+    }
   }
   return [];
 };
 
+const deleteFieldItemFromTask = async (id, fieldId, fieldName) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      [`${fieldName}`]: {
+        _id: fieldId
+      }
+    }
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Column with id ${id} not found`);
+  }
+  return updatedTask;
+}
+
 const unassignTask = async userId => {
   return findByUserId(userId);
 };
+
 
 module.exports = {
   getAll,
@@ -73,6 +172,12 @@ module.exports = {
   createTask,
   updateTask,
   deleteTask,
-  deleteTaskfromBoard,
-  unassignTask
+  unassignTask,
+  deleteTaskFromColumn,
+  addTodoToTask,
+  addCommentToTask,
+  updateCommentInTask,
+  addTagToTask,
+  addUserToList,
+  deleteFieldItemFromTask
 };

@@ -25,6 +25,11 @@ const logger = createLogger({
       filename: path.join(__dirname, '../../log/info.log'),
       level: 'info',
       format: format.combine(format.uncolorize(), format.json())
+    }),
+    new transports.File({
+      filename: path.join(__dirname, '../../log/board.log'),
+      level: 'info',
+      format: format.combine(format.uncolorize(), format.json())
     })
   ],
   exceptionHandlers: [
@@ -50,4 +55,18 @@ const requestLogger = (req, res, next) => {
   next();
 };
 
-module.exports = { logger, requestLogger };
+const boardLogger = (req, res, next) => {
+  const { method, originalUrl } = req;
+  const query = JSON.stringify(req.query);
+  const body = JSON.stringify(req.body);
+
+  logger.info('Request log', {
+    Method: method,
+    Path: originalUrl,
+    'Query params': query,
+    Body: body
+  });
+  next();
+};
+
+module.exports = { logger, requestLogger, boardLogger };
