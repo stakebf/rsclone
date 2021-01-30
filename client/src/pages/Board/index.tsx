@@ -3,7 +3,7 @@ import classes from './Board.module.scss';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const Page404: React.FC = () => {
+const Board: React.FC = () => {
   return (
     <div>
       <div className={classes.wrapper}>
@@ -14,4 +14,4 @@ const Page404: React.FC = () => {
   )
 };
 
-export default Page404;
+export default Board;
