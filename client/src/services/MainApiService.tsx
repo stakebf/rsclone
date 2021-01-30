@@ -65,7 +65,7 @@ class MainApiService {
 
   // Put
 
-  _getPut = async (url: string, data = {}) => {
+  _putResource = async (url: string, data = {}) => {
     const response = await fetch(url, {
       method: 'PUT',
       headers: {
@@ -81,7 +81,7 @@ class MainApiService {
   };
 
   putBoard = async (data = {}, id: string) => {
-    return await this._getPut(`boards/${id}`, data);
+    return await this._putResource(`boards/${id}`, data);
   };
 }
 

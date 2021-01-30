@@ -39,7 +39,7 @@ const BoardList: React.FC = () => {
       api
         .getBoardsAll()
         .then((data) => {
-          const curUserId = localStorage.getItem('userId');
+          const curUserId = localStorage.getItem('rsclone_userId');
           const userDataBoards = data.filter((el: any) => {
             return el.userList.some((user: any) => user.id === curUserId);
           });
@@ -74,7 +74,7 @@ const BoardList: React.FC = () => {
       .postBoard({
         title,
         background,
-        admin: localStorage.getItem('userId'),
+        admin: localStorage.getItem('rsclone_userId'),
         isFavorite: false
       })
       .then(() => getDataBoardAll())
@@ -92,11 +92,11 @@ const BoardList: React.FC = () => {
       .finally(() => setLoadStar(false));
   };
 
-  const elementsAll = dataBoards.map((item: IBoardItem) => {
+  const renderBoardsAll = dataBoards.map((item: IBoardItem) => {
     return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
   });
 
-  const elementsFavorite = () => {
+  const renderBoardsFavorite = () => {
     const dataFavorite = dataBoards.filter((item: IBoardItem) => item.isFavorite === true);
 
     return dataFavorite.map((item: IBoardItem) => {
@@ -109,14 +109,14 @@ const BoardList: React.FC = () => {
   return (
     <>
       <div className={classes['all-boards']}>
-        {elementsFavorite().length > 0 ? (
+        {renderBoardsFavorite().length > 0 ? (
           <>
             <div className={classes.head}>
               <StarOutlined className={classes['head-icon']} />
               <h4 className={classes['head-title']}>Отмеченные доски</h4>
             </div>
             <div className={classes['content']}>
-              <ul className={classes['list-boards']}>{elementsFavorite()}</ul>
+              <ul className={classes['list-boards']}>{renderBoardsFavorite()}</ul>
             </div>
           </>
         ) : null}
@@ -127,7 +127,7 @@ const BoardList: React.FC = () => {
           </div>
           <div className={classes['content']}>
             <ul className={classes['list-boards']}>
-              {elementsAll}
+              {renderBoardsAll}
               <li
                 className={classes['add-item-list']}
                 onClick={() => {

@@ -1,5 +1,7 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect, useMemo, useCallback} from 'react';
 import {CloseOutlined} from '@ant-design/icons';
+
+import MainApiService from '../../services/MainApiService';
 
 import classes from './boardPanelBtnInvite.module.scss';
 
@@ -14,26 +16,100 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
   setOpenWindowInvite,
   onToggleUserWindow
 }) => {
-  const [email, setEmail] = useState('');
+  const [value, setValue] = useState('');
+  const [usersInitialData, setUsersInitialData] = useState([]);
+  const [usersDataForSearch, setUsersDataForSearch] = useState([]);
+  const [usersDataForSend, setUsersDataForSend] = useState([]);
+
   const refWindow: any = useRef(null);
   const refBtnClose: any = useRef(null);
+
+  const api = useMemo(() => new MainApiService(), []);
+
+  const getDataBoardAll = useCallback(() => {
+    api.getUsersAll().then((data) => {
+      setUsersInitialData(data);
+      setUsersDataForSend(data);
+      console.log(data);
+    });
+  }, [api]);
+
+  useEffect(() => {
+    getDataBoardAll();
+  }, [getDataBoardAll]);
+
+  const searchUser = (event: any, data: any): void => {
+    setValue(event.target.value);
+    if (event.target.value.length === 0) {
+      setUsersDataForSearch([]);
+    } else {
+      const newUsersList = data.filter((elem: any) => {
+        return (
+          elem.login.toLowerCase().startsWith(event.target.value.toLowerCase()) ||
+          elem.name.toLowerCase().startsWith(event.target.value.toLowerCase())
+        );
+      });
+      setUsersDataForSearch(newUsersList);
+      console.log(newUsersList);
+    }
+  };
+
+  const renderListUsers = () => {
+    const usersListHTML = usersDataForSearch.map((elem: any) => {
+      const {id, name} = elem;
+      return (
+        <li key={id} className={classes['item']}>
+          <span className={classes['item__icon']}>{name.slice(0, 1).toLocaleUpperCase()}</span>
+          <span className={classes['item__name']}>{name}</span>
+        </li>
+      );
+    });
+    return (
+      <div className={classes['autocomplete-search-scroll']}>
+        <ul className={classes['users-list']}>{usersListHTML}</ul>
+      </div>
+    );
+  };
+
+
+  const renderListSelectedUsers = () => {
+    const usersListHTML = usersDataForSend.map((elem: any) => {
+      const {id, name} = elem;
+      return (
+        <li key={id} className={classes['item']}>
+          <span className={classes['item__name']}>{name}</span>
+          <span className={classes['item__close']}>
+            <CloseOutlined />
+          </span>
+        </li>
+      );
+    });
+    return <ul className={classes['users-list-selected']}>{usersListHTML}</ul>;
+  };
 
   const renderWindow = () => {
     return (
       <div className={classes['window']} ref={refWindow}>
-        <div className={classes['window__head']}>
-          <span className={classes['title']}>Пригласить на доску</span>
-          <span className={classes['close']} ref={refBtnClose}>
-            <CloseOutlined />
-          </span>
+        <div className={classes['window__content']}>
+          <div className={classes['head']}>
+            <span className={classes['head__title']}>Пригласить на доску</span>
+            <span className={classes['head__close']} ref={refBtnClose}>
+              <CloseOutlined />
+            </span>
+          </div>
+          <span className={classes['divider']}></span>
+          <input
+            className={classes['input']}
+            type="text"
+            placeholder="Адрес электронной почты или имя"
+            value={value}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+              searchUser(e, usersInitialData)
+            }
+          />
+          {usersDataForSearch.length ? renderListUsers() : null}
+          {usersDataForSend.length ? renderListSelectedUsers() : null}
         </div>
-        <span className={classes['window__divider']}></span>
-        <input
-          className={classes['window__input']}
-          type="text"
-          value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setEmail(e.target.value)}
-        />
         <button type="button" className={classes['window__btn']}>
           Отправить приглашение
         </button>

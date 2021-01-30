@@ -1,9 +1,7 @@
-import React, {useState, useEffect, useRef, useMemo, useCallback} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import BoardPanelUserIcon from '../BoardPanelUserIcon';
 import BoardPanelBtnInvite from '../BoardPanelBtnInvite';
 import {StarOutlined, StarFilled} from '@ant-design/icons';
-
-import MainApiService from '../../services/MainApiService';
 
 import classes from './boardPanel.module.scss';
 
@@ -27,12 +25,6 @@ const BoardPanel: React.FC = () => {
   const [focusWidthTitle, setFocusWidthTitle] = useState(0);
 
   const refMaskedTitle: any = useRef(null);
-
-  const api = useMemo(() => new MainApiService(), []);
-
-  const getDataBoardAll = useCallback(() => {
-    api.getUsersAll().then((data) => console.log(data));
-  }, [api]);
 
   useEffect(() => {
     setTitle(dataBoard.title);
