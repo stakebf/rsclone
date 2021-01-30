@@ -79,7 +79,8 @@ const About: React.FC = () => {
                 alt="slide4"
               />
             </div>
-          </div>               </Carousel>
+          </div>               
+        </Carousel>
         <div className={classes.buttons}>
           <Link to="/login"><Button className={classes.btn_login} type="primary" size="large">Log In</Button></Link>
           <Link to="/register"><Button  className={classes.btn_signup} type="primary" size="large">Sign Up</Button></Link>
