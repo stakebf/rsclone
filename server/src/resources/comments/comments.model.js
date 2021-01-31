@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema(
     {
         userName: String,
+        userId: String,
         date: String,
         message: String,
         taskId: String,
@@ -16,8 +17,8 @@ const commentSchema = new mongoose.Schema(
 );
 
 commentSchema.statics.toResponse = todos => {
-    const { _id, userName, date, message, taskId } = todos;
-    return { _id, userName, date, message, taskId };
+    const { _id, userName, date, message, taskId, userId } = todos;
+    return { _id, userName, date, message, taskId, userId };
 };
 
 // commentSchema.statics.fromRequest = (taskId, requestData) => {
