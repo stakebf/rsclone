@@ -18,7 +18,7 @@ import AdditionalUsers from './AdditionalUsers';
 
 const CardInfo:React.FC<any> = ({ 
     columnId,
-    id,
+    _id,
     title,
     description,
     order,
@@ -33,13 +33,15 @@ const CardInfo:React.FC<any> = ({
   const [isCardRename, setIsCardRename] = useState<boolean>(false);
 
   const renameCardKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
+    
+  console.log(columnId, _id, title, comments);
+
     if (e.key === 'Enter') {
       if (!newCardTitle.trim() || title === newCardTitle) {
         return;
       }
 
-      renameTaskList(columnId, id, newCardTitle);
-      // console.log(title);
+      renameTaskList(columnId, _id, newCardTitle);
       setIsCardRename(false);
     }
   };
@@ -60,8 +62,9 @@ const CardInfo:React.FC<any> = ({
   };
 
   const removeCardClickHandler = () => {
+    console.log(columnId, _id);
     setIsCardRename(false);
-    removeTaskList(columnId, id);
+    removeTaskList(columnId, _id);
   };
 
   return (
@@ -104,33 +107,33 @@ const CardInfo:React.FC<any> = ({
           <div>
             <AdditionalUsers 
               columnId={columnId}
-              taskId={id}
+              taskId={_id}
               usersList={usersList}
             />
             <Tags 
               columnId={columnId}
-              taskId={id}
+              taskId={_id}
               tags={tags}
             />
             <DatePicker 
               columnId={columnId} 
-              taskId={id}
+              taskId={_id}
               date={date}
             />
             <Description 
               columnId={columnId}
-              taskId={id}
+              taskId={_id}
               description={description}
               order={order}
             />
-            <Todo 
+            {todos && todos[0] && !!Object.keys(todos[0]) && <Todo 
               columnId={columnId} 
-              taskId={id}
+              taskId={_id}
               todos={todos}
-            />
+            />}
             <Comments 
               columnId={columnId}
-              taskId={id}
+              taskId={_id}
               comments={comments}
             />
           </div>

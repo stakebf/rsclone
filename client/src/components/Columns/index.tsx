@@ -2,10 +2,10 @@ import React from 'react';
 import ColumnCreator from './ColumnsCreator';
 import './Columns.scss';
 
-const Columns: React.FC = () => {
+const Columns: React.FC<any> = ({boardId}) => {
   return (
     <div>
-       <ColumnCreator />
+       <ColumnCreator boardId={boardId}/>
     </div>
   );
 };

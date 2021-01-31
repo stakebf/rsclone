@@ -1,5 +1,3 @@
-import { Board } from '../components/Columns/ColumnsCreator/Board';
-
 export interface ColumnProps {
   id?: string, 
   title?: string,
@@ -9,16 +7,12 @@ export interface ColumnProps {
 
 export interface CardProps {
   columnId: string,
-  id: string,
+  _id: string,
   title: string,
   description?: string,
   usersList?: any[],
   order?: number,
-  todos: {
-    title?: string,
-    id?: string,
-    todo: any[]
-  },
+  todos: any[],
   date: string,
   comments: any[],
   tags: any[]

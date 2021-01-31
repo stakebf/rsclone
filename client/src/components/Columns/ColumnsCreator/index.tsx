@@ -2,32 +2,45 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { PlusCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 import { fetchBoard, addColumn, setCurrentUser } from '../../../redux/actions';
-import { createColumn } from '../../../helpers/creationHelper';
 import { Store } from '../../../redux/store/store';
 import classes from './ColumnsCreator.module.scss';
 import Column from './Column';
 
-// let incr = 0;
 const COLUMN_LENGTH = 275;
 
-const ColumnCreator: React.FC<any> = ({ board: { columns = [], id: boardId }, fetchBoard, addColumn, setCurrentUser }) => {
+type PathParamsType = {
+  boardId: string,
+}
+
+type PropsType = RouteComponentProps<PathParamsType> & {
+  error: any,
+  boardId: string,
+  board: any,
+  fetchBoard: any,
+  addColumn: any,
+  setCurrentUser: any
+}
+
+const ColumnCreator: React.FC<PropsType> = ({ error, boardId: id, board: { columns = [], id: boardId }, fetchBoard, addColumn, setCurrentUser }) => {
   const [isCreation, setIsCreation] = useState<boolean>(false);
   const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
-    // ! забираем борд fetchBoard(тут будем вытягивать :id борда из урла)
-    fetchBoard('af80495d-e6f7-45b5-8767-acbec79b480f');
+    fetchBoard(id);
     setCurrentUser();
-  }, [fetchBoard, setCurrentUser]);
+  }, [fetchBoard, setCurrentUser, id]);
+
+  if (error) {
+    window.location.href = '/boards';
+  }
 
   const btnAddClassNames: Array<string> = [classes.btnAddColumn, isCreation ? classes.hide : ''];
 
   const createColumnsClickHandler = (e: React.SyntheticEvent):void => {
-    // console.log(e);
     setIsCreation(true);
-    // console.log(isCreation);
   }
 
   const addColumnClickHandler = ():void => {
@@ -43,9 +56,7 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [], id: boardId }, fe
   }
 
   const inputNnameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>):void => {
-    const { value } = e.target;
-    setTitle(value);
-    // console.log(value);
+    setTitle(e.target.value);
   }
 
   const createColumnKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
@@ -62,18 +73,14 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [], id: boardId }, fe
 
   const endOfCreation = ():void => {
     setIsCreation(false);
-    // addColumn([createColumn(`someID${++incr}`, title, 0,)]); // потом переделать это При попадании на страницу - эти данные будут сразу, я их по запросу буду забирать
     addColumn(boardId, title);
-    // console.log('addColumnClickHandler - createBoard', title);
     setTitle('');
   }
 
   return (
     <div className={classes.container}>
-      {console.log(columns)}
       {!!columns.length && columns.map((item:any) => <Column 
         {...item}
-        // key={`${item._id}_${incr}`}
         key={item._id}
       />)}
       <Button
@@ -124,7 +131,8 @@ const ColumnCreator: React.FC<any> = ({ board: { columns = [], id: boardId }, fe
 
 const mapStateToProps = (state: Store) => {
   return {
-    board: state.board
+    board: state.board,
+    error: state.error
   }
 }
 
@@ -136,4 +144,4 @@ const mapDispatchStateToProps = (dispatch: any) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchStateToProps)(ColumnCreator);
+export default withRouter(connect(mapStateToProps, mapDispatchStateToProps)(ColumnCreator));

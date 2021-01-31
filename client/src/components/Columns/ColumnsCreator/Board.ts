@@ -1,24 +1,17 @@
-/* export interface Board {
-  id?: string,
-  title?: string,
-  usersList?: any[],
-  columns?: any[]
-} */
-
 export interface Board {
   board: {
     id?: string,
     title?: string,
     userList?: any[],
-    background?: string, // ! background for board
+    background?: string,
     columns?: [
       {
-        id?: string,
+        _id?: string,
         title?: string,
         // order?: number,
         taskList?: [
           {
-            id?: string,
+            _id?: string,
             title?: string,
             description?: string,
             // order?: number,
@@ -28,16 +21,19 @@ export interface Board {
                 name: string,
               }
             ],
-            todos?: {
-              title?: string,
-              id?: string,
-              todo: [
+            todos?: [
               {
-                id?: string,
                 title?: string,
-                isComplete?: boolean
+                id?: string,
+                todo: [
+                  {
+                    id?: string,
+                    title?: string,
+                    isComplete?: boolean
+                  }
+                ],
               }
-            ]},
+            ],
             comments?: [
               {
                 id?: string,
@@ -53,109 +49,10 @@ export interface Board {
                 color: string
               }
             ],
-            date: string // "16/01/2025"
+            date: string
           }
         ]
       }
     ]
   }
 }
-
-/* export interface Board {
-  id?: string,
-  title?: string,
-  usersList?: any[],
-  columns?: any[]
-} */
-
-/* export interface Board {
-  board: {
-    id?: string,
-    title?: string,
-    usersList?: any[],
-    columns?: [
-      {
-        id?: string,
-        title?: string,
-        // order?: number,
-        taskList?: [
-          {
-            id?: string,
-            title?: string,
-            description?: string,
-            // cardOrder?: number,
-            userList?: any[],
-            todos?: {
-              title?: string,
-              id?: string,
-              todo: [
-              {
-                id?: string,
-                title?: string,
-                isComplete?: boolean
-              }
-            ]},
-            commetns?: [
-              {
-                id?: string,
-                userName?: string,
-                date?: string,
-                message?: string
-              }
-            ],
-            tags?: string[],
-            background?: string
-          }
-        ]
-      }
-    ]
-  }
-}
- */
-
-
-
- /* 
-  an old version
-
-  export interface Board {
-  board: {
-    id?: string,
-    title?: string,
-    usersList?: any[],
-    columns?: [
-      {
-        columnId?: string,
-        columnTitle?: string,
-        order?: number,
-        cards?: [
-          {
-            cardId?: string,
-            cardTitle?: string,
-            userId?: string,
-            cardDescription?: string,
-            cardOrder?: number,
-            todo?: [
-              {
-                todoId?: string,
-                todoTitle?: string,
-                isComplete?: boolean
-              }
-            ],
-            cardComments?: [
-              {
-                commentId?: string,
-                userName?: string,
-                date?: string,
-                message?: string
-              }
-            ],
-            tags?: string[],
-            background?: string
-          }
-        ]
-      }
-    ]
-  }
-}
- */

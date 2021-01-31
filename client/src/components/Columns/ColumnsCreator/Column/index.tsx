@@ -6,10 +6,7 @@ import { PlusCircleOutlined, CloseCircleOutlined, EllipsisOutlined } from '@ant-
 import { Store } from '../../../../redux/store/store';
 import { addTaskList, renameColumn, removeColumn } from '../../../../redux/actions';
 import Card from './Card';
-import { createCard } from '../../../../helpers/creationHelper';
 import classes from './Column.module.scss';
-
-let incr = 0; // TODO: потом убрать 
 
 const Column:React.FC<any> = ({ 
     boardId,
@@ -58,30 +55,12 @@ const Column:React.FC<any> = ({
 
   const endOfCreation = ():void => {
     setIsCreation(false);
-    const newCard = createCard(
-      `someID_card${++incr}`, 
-      columnTitle, 
-      '', 
-      [], 
-      5, 
-      {title: '', id: `id${incr}`, todo: []},
-      '',
-      [],
-      [],
-    );
-    addTaskList(_id, newCard); 
-    // ! потом переделать это При попадании на страницу - эти данные будут сразу
-    // ! так же - тут будет сразу отправляться запрос на create для todos: {title: '', todo: []};
-    // ! так же - тут будет сразу отправляться запрос на create для date: '';
-    // ! так же - тут будет сразу отправляться запрос на create для comments: [];
-    // ! так же - тут будет сразу отправляться запрос на create для tags: [];
-    // ! так же - тут будет сразу отправляться запрос на create для userLiwst: [];
+    addTaskList(_id, columnTitle);
     setColumnTitle('');
   };
 
   const renameColumnKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
     if (e.key === 'Enter') {
-      // console.log(title, newColumnTitle);
       if (!newColumnTitle.trim() || title === newColumnTitle) {
         return;
       }
@@ -163,7 +142,7 @@ const Column:React.FC<any> = ({
             <Card 
               {...task}
               columnId={_id}
-              key={`${task.id}`}
+              key={`${task._id}`}
             />
           )
         })}
@@ -228,7 +207,7 @@ const mapStateToProps = (state: Store) => {
 
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
-    addTaskList: (id:string, card:any[]) => dispatch(addTaskList(id, card)),
+    addTaskList: (_id:string, title:string) => dispatch(addTaskList(_id, title)),
     renameColumn: (boardId:string, _id:string, newColumnTitle:string) => dispatch(renameColumn(boardId, _id, newColumnTitle)),
     removeColumn: (boardId:string, _id:string) => dispatch(removeColumn(boardId, _id)),
   }

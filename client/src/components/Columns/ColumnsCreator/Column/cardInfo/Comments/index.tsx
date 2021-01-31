@@ -11,15 +11,13 @@ const Comments:React.FC<any> = ({
     columnId, 
     taskId, 
     comments, 
-    currentUser: { name, id },
+    currentUser: { name = '', id },
     addComment,
     removeComment,
     editComment
   }) => {
-  console.log(comments);
 
   const [message, setMessage] = useState<string>('');
-  // const [prevMessage, setPrevMessage] = useState<string>('');
   const [isEditComment, setIsEditComment] = useState<boolean>(false);
   const [isFocus, setIsFocued] = useState<boolean>(false);
   const [editableCommentId, setEditableCommentId] = useState<string>('');
@@ -44,8 +42,6 @@ const Comments:React.FC<any> = ({
       addComment(columnId, taskId, message, name, id, new Date().toLocaleString('en-US', { hour12: false }));
       setMessage('');
     }
-
-    //  TODO: сделать редьюсер с отправкой на бак и сохранением в сторе
   }
 
   const addCommentKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
@@ -79,9 +75,9 @@ const Comments:React.FC<any> = ({
       return;
     }
     
-    editComment(columnId, taskId, elementId, newComment, `${new Date().toLocaleString('en-US', { hour12: false })} изменено`);
-    setIsEditComment(false);
     setEditableCommentId('');
+    setIsEditComment(false);
+    editComment(columnId, taskId, elementId, newComment, `${new Date().toLocaleString('en-US', { hour12: false })} изменено`);
   }
 };
 
@@ -122,7 +118,7 @@ const getChangedFormat = (changedDate:string) => {
         </div>
       </div>
       <div>
-        {!!comments.length && comments.map((item:any) => <div key={item.id} className={classes.usersCommentsWrapper}>
+        {!!comments.length && comments.map((item:any) => <div key={item._id} className={classes.usersCommentsWrapper}>
           <div className={classes.avatarWrapper}>
             <div 
               title={item.userName}
@@ -131,16 +127,16 @@ const getChangedFormat = (changedDate:string) => {
               {item.userName[0].toUpperCase()}
             </div>
           </div>
-          {isEditComment && (editableCommentId === item.id) && <input 
+          {isEditComment && (editableCommentId === item._id) && <input 
             className={classes.commentItemEditInput}
             onChange={commentEditChangeHandler}
             onKeyDown={closeCommentEditKeydownHandler}
-            onKeyPress={(e) => changeCommentKeypressHandler(e, item.id)}
+            onKeyPress={(e) => changeCommentKeypressHandler(e, item._id)}
             value={newComment}
             autoFocus
             placeholder='Введите комментарий'
           />}
-          {(editableCommentId !== item.id) && <div>
+          {(editableCommentId !== item._id) && <div>
             <div>
               <span className={classes.userName}><b>{item.userName}</b></span>
               <span>
@@ -152,7 +148,7 @@ const getChangedFormat = (changedDate:string) => {
               <span 
                 className={classes.btnEditComment}
                 onClick={() => {
-                  setEditableCommentId(item.id);
+                  setEditableCommentId(item._id);
                   setNewComment(item.message);
                   setIsEditComment(true);
                 }}
@@ -161,7 +157,7 @@ const getChangedFormat = (changedDate:string) => {
               </span>
               <Popconfirm
                 title="Вы действительно хотите удалить эту карточку"
-                onConfirm={() => removeComment(columnId, taskId, item.id)}
+                onConfirm={() => removeComment(columnId, taskId, item._id)}
                 okText="Да"
                 cancelText="Нет"
               >
@@ -181,7 +177,7 @@ const getChangedFormat = (changedDate:string) => {
 
 const mapStateToProps = (state: Store) => {
   return {
-    currentUser: state.board.currentUser
+    currentUser: state.currentUser
   }
 }
 

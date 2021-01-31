@@ -6,11 +6,9 @@ import getColorByDate from '../../../../../helpers/dateHelper';
 import classes from './Card.module.scss';
 import CardInfo from '../cardInfo';
 
-// TODO: добавить rename карточки
-
 const Card:React.FC<CardProps> = ({
     columnId,
-    id, 
+    _id, 
     title, 
     description = '', 
     usersList = [],
@@ -22,7 +20,7 @@ const Card:React.FC<CardProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const cardInfo = {
     columnId,
-    id, 
+    _id, 
     title, 
     description, 
     usersList,
@@ -32,7 +30,7 @@ const Card:React.FC<CardProps> = ({
     comments,
     tags
   }
-  
+
   const showCardInfo = () => {
     setIsOpen(true);
   }
@@ -64,12 +62,12 @@ const Card:React.FC<CardProps> = ({
           <div className={classes.titleWrapper}>
             <span>{title}</span>
             <div className={classes.componentsWrapper}>
-              {!!todos.todo.length && <span>
+              {todos && todos[0] && !!Object.keys(todos[0]).length && !!todos[0].todo.length && <span>
                 <>
                   <CheckSquareOutlined 
                     className={classes.checkIcon}
                   />
-                  {`${todos.todo.length && todos.todo.filter((item) => item.isComplete).length}/${todos.todo.length}`}
+                  {`${todos[0].todo.length && todos[0].todo.filter((item:any) => item.isComplete).length}/${todos[0].todo.length}`}
                 </>
               </span>}
               {date && <span className={`${classes.dateComponent} ${classes[getColorByDate(date)]}`}>

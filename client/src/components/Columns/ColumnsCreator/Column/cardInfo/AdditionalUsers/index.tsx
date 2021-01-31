@@ -24,7 +24,6 @@ const AdditionalUsers:React.FC<any> = ({
   const userPickerClasses = [classes.userPickerWrapper, isSetUser && classes.visible];
   
   const userClickHandler = (item:string, user:any) => {
-    console.log(item, user);
     !user ? attachUserToTask(columnId, taskId, item) : removeUserFromTask(columnId, taskId, user.id);
   }
 
@@ -66,7 +65,6 @@ const AdditionalUsers:React.FC<any> = ({
         <hr className={classes.lineBreak}/>
         <div className={classes.userAvatarsWrapper}>
           {tableUsers.map((item:any) => {
-            console.log('tableUsers.map((item:any)', item);
             const choosenUser = usersList.find((user:any) => item.id === user.id);
             return <div 
               className={classes.avatarWrapper}

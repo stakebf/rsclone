@@ -29,7 +29,7 @@ const Tags:React.FC<any> = ({
   const [isSetColor, setIsSetColor] = useState<boolean>(false);
 
   const colorClickHandler = (color:string, element:any) => {
-    !element ? addTag(columnId, taskId, color) : removeTag(columnId, taskId, element.id);
+    !element ? addTag(columnId, taskId, color) : removeTag(columnId, taskId, element._id);
   }
 
   const colorPickerClasses = [classes.colorPickerWrapper, isSetColor && classes.visible];
@@ -40,8 +40,8 @@ const Tags:React.FC<any> = ({
         {console.log(tags.length)}
         {!!tags.length && tags.map((item:any) => <div
           className={`${classes.currentColors} ${classes[item.color]}`}
-          onClick={() => removeTag(columnId, taskId, item.id)}
-          key={item.id}
+          onClick={() => removeTag(columnId, taskId, item._id)}
+          key={item._id}
         >
           <DeleteOutlined className={classes.removeIcon}/>
         </div>)}

@@ -27,9 +27,9 @@ const App: React.FC = () => {
         <Route path="/register" render={() => <SignInUp type="register" />} />
 
         <Route 
-          path="/CurrentBoard" 
+          path="/CurrentBoard/:id" 
           exact
-          render={() => <Columns />} 
+          render={({match}) => <Columns boardId={match.params.id}/>}
         />
         <Route render={() => <Page404 />} />
       </Switch>

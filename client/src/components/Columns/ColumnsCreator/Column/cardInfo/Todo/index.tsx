@@ -9,7 +9,7 @@ import {
   CarryOutOutlined
 } from '@ant-design/icons';
 
-import { addTodosTitle, addTodo, setTodoComplete, removeTodo, changeTodoTitle, removeTodos } from '../../../../../../redux/actions';
+import { addTodosTitle, addTodo, setTodoInfo, removeTodo, removeTodos } from '../../../../../../redux/actions';
 import { Store } from '../../../../../../redux/store/store';
 import classes from './Todo.module.scss';
 
@@ -17,12 +17,11 @@ const Todo:React.FC<any> = ({
     columnId,
     taskId, 
     columns, 
-    todos: {title, todo}, 
+    todos, 
     addTodosTitle, 
     addTodo,
-    setTodoComplete,
+    setTodoInfo,
     removeTodo,
-    changeTodoTitle,
     removeTodos
      }) => {
   const [todosTitle, setTodosTitle] = useState<string>('');
@@ -35,30 +34,23 @@ const Todo:React.FC<any> = ({
   const [isTodoEdit, setIsTodoEdit] = useState<boolean>(false);
   const [editableTodoId, setEditableTodoId] = useState<string>('');
 
-  // ! при ринейме - нельзя чтобы был пустой todos = '', Так же - это будет update
   const todosChangeHandler:any = (e: React.ChangeEvent<HTMLInputElement>, setItem:any):void => {
     setItem(e.target.value);
-    // setTodosTitle(e.target.value);
   };
 
   const closeTodosClickHandler:any = (isSet:any):void => {
-    console.log('clicked');
     isSet(false);
-    // setIsSetTodosTitle(false);
   };
 
   const createTodos:any = (setTitle?:any, setIsset?:any):void => {
     setTitle('');
     setIsset(true);
-    // setTodosTitle('');
-    // setIsSetTodosTitle(true);
   };
 
   const closeTodosKeydownHandler:any = (e: React.KeyboardEvent<HTMLInputElement>, isSet:any):void => {
     if (e.key ===  'Escape') {
       setEditableTodoId('');
       isSet(false);
-      // setIsSetTodosTitle(false);
     }
   };
 
@@ -75,18 +67,10 @@ const Todo:React.FC<any> = ({
         return;
       }
 
-      add(columnId, taskId, title, isComplete, todoId);
+      add(columnId, taskId, todos[0]._id, title, isComplete, todoId);
       isSet(false);
       setEditableTodoId('');
     }
-    /* if (e.key === 'Enter') {
-      if (!todosTitle.trim()) {
-        return;
-      }
-
-      addTodosTitle(columnId, taskId, todosTitle);
-      setIsSetTodosTitle(false);
-    } */
   };
 
   const addNewTodo = () => {
@@ -94,27 +78,26 @@ const Todo:React.FC<any> = ({
     setIsTodoCreation(true);
   };
 
-  const onCheckTodoChangeHandler = (e:any, todoId:string):void => {
-    setTodoComplete(columnId, taskId, todoId, e.target.checked);
+  const onCheckTodoChangeHandler = (e:any, todoId:string, title:string):void => {
+    setTodoInfo(columnId, taskId, todos[0]._id, title, e.target.checked, todoId);
   };
   
-  const progressBarWidth = !todo.length ? 0 : (todo.filter((item:any) => item.isComplete).length / todo.length * 100);
+  const progressBarWidth = !todos[0].todo.length ? 0 : (todos[0].todo.filter((item:any) => item.isComplete).length / todos[0].todo.length * 100);
   
   const editTodoTitleClickHandler = () => {
-    setTodosTitle(title);
+    setTodosTitle(todos[0].title);
     setIsTodosEdit(true);
   };
   
   return (
     <div className={classes.wrapper}>
-      {console.log(columns)}
       <div className={classes.titleWrapper}>
         <h3 className={classes.title}>
           <CarryOutOutlined /> Задачи 
           {!isTodosEdit && <b
             onClick={editTodoTitleClickHandler}
           >
-            {title}
+            {todos[0].title}
           </b>}
           {isTodosEdit && <input 
             className={classes.todoEditInput}
@@ -126,23 +109,23 @@ const Todo:React.FC<any> = ({
             placeholder='Введите название чек-листа'
           />}
         </h3>
-        {!title && !isSetTodosTitle && <Button 
+        {todos && todos[0] && !todos[0].title && !isSetTodosTitle && <Button 
           type="default"
           className={classes.btnCreateTodo}
           onClick={() => createTodos(setTodosTitle, setIsSetTodosTitle)}
         >
           <PlusCircleOutlined /> Чек-лист
         </Button>}
-        {title && <Popconfirm
+        {todos && todos[0] && todos[0].title && <Popconfirm
           title="Вы действительно хотите удалить чек-лист ?"
-          onConfirm={() => removeTodos(columnId, taskId)}
+          onConfirm={() => removeTodos(columnId, taskId, todos[0]._id)}
           okText="Да"
           cancelText="Нет"
         >
           <DeleteOutlined className={classes.deleteIcon}/>
         </Popconfirm>}
       </div>
-      {title.trim() && <div className={classes.progressBlock}>
+      {todos && todos[0] && todos[0].title.trim() && <div className={classes.progressBlock}>
         <span className={classes.progressPercents}>{Math.floor(progressBarWidth)} %</span>
         <div className={classes.progressBarWrapper}>
           <div 
@@ -172,22 +155,21 @@ const Todo:React.FC<any> = ({
             placeholder='Введите название чек-листа'
           />
         </div>}
-        {!!todo.length && todo.map((item:any) => <div key={item.id} className={classes.todoItem}>
+        {todos && todos[0] && !!todos[0].todo.length && todos[0].todo.map((item:any) => <div key={item._id} className={classes.todoItem}>
           <Checkbox 
             checked={item.isComplete}
-            onChange={(e) => onCheckTodoChangeHandler(e, item.id)}
+            onChange={(e) => onCheckTodoChangeHandler(e, item._id, item.title)}
             className={classes.checker}
           />
           <span 
             className={`${classes.todoTitle} ${item.isComplete && classes.checkedItem}`}
-            onClick={() => console.log('click')}
           >
-            {(editableTodoId !== item.id) && item.title}
-            {isTodoEdit && (editableTodoId === item.id) && <input 
+            {(editableTodoId !== item._id) && item.title}
+            {isTodoEdit && (editableTodoId === item._id) && <input 
               className={classes.todoItemEditInput}
               onChange={(e) => todosChangeHandler(e, setNewTodoTitle)}
               onKeyDown={(e) => closeTodosKeydownHandler(e, setIsTodoEdit)}
-              onKeyPress={(e) => createTodosKeypressHandler(e, newTodoTitle, changeTodoTitle, setIsTodoEdit, false, item.id)}
+              onKeyPress={(e) => createTodosKeypressHandler(e, newTodoTitle, setTodoInfo, setIsTodoEdit, false, item._id)}
               value={newTodoTitle}
               autoFocus
               placeholder='Введите название задачи'
@@ -203,7 +185,7 @@ const Todo:React.FC<any> = ({
                     type="primary" 
                     ghost
                     onClick={() => {
-                      setEditableTodoId(item.id);
+                      setEditableTodoId(item._id);
                       setNewTodoTitle(item.title);
                       setIsTodoEdit(true);
                     }}
@@ -217,7 +199,7 @@ const Todo:React.FC<any> = ({
                   >
                     <Popconfirm
                       title="Вы действительно хотите удалить эту карточку"
-                      onConfirm={() => removeTodo(columnId, taskId, item.id)}
+                      onConfirm={() => removeTodo(columnId, taskId, item._id, todos[0]._id)}
                       okText="Да"
                       cancelText="Нет"
                     >
@@ -231,7 +213,7 @@ const Todo:React.FC<any> = ({
             <Button className={classes.btnEditTodo}><EditOutlined /></Button>
           </Dropdown>
         </div>)}
-        {title.trim() && isTodoCreation && <div className={classes.creationTodoWrapper}>
+        {todos && todos[0] && todos[0].title.trim() && isTodoCreation && <div className={classes.creationTodoWrapper}>
           <Button 
             danger
             onClick={() => closeTodosClickHandler(setIsTodoCreation)}
@@ -249,7 +231,7 @@ const Todo:React.FC<any> = ({
             placeholder='Введите название задачи'
           />
         </div>}
-        {title.trim() && !isTodoCreation && <Button 
+        {todos && todos[0] && todos[0].title.trim() && !isTodoCreation && <Button 
             type="default"
             className={classes.btnAddTodo}
             onClick={addNewTodo}
@@ -269,23 +251,20 @@ const mapStateToProps = (state: Store) => {
 
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
-    addTodosTitle: (columnId:string, taskId:string, title:string) => dispatch(addTodosTitle(
-      columnId, taskId, title
+    addTodosTitle: (columnId:string, taskId:string, todosId:string, title:string) => dispatch(addTodosTitle(
+      columnId, taskId, todosId, title
     )),
-    addTodo: (columnId:string, taskId:string, title:string, isComplete:boolean) => dispatch(addTodo(
-      columnId, taskId, title, isComplete
+    addTodo: (columnId:string, taskId:string, todosId:string, title:string, isComplete:boolean) => dispatch(addTodo(
+      columnId, taskId, todosId, title, isComplete
     )), 
-    setTodoComplete: (columnId:string, taskId:string, todoId:string, isComplete:boolean) => dispatch(setTodoComplete(
-      columnId, taskId, todoId, isComplete 
+    setTodoInfo: (columnId:string, taskId:string, todosId:string, title:string, isComplete:boolean, todoId:string) => dispatch(setTodoInfo(
+      columnId, taskId, todosId, title, isComplete, todoId
     )),
-    removeTodo: (columnId:string, taskId:string, todoId:string) => dispatch(removeTodo(
-      columnId, taskId, todoId 
+    removeTodo: (columnId:string, taskId:string, todoId:string, todosId:string) => dispatch(removeTodo(
+      columnId, taskId, todoId, todosId
     )),
-    changeTodoTitle: (columnId:string, taskId:string, title:string, isComplete:boolean, todoId:string) => dispatch(changeTodoTitle(
-      columnId, taskId, title, isComplete, todoId
-    )),
-    removeTodos: (columnId:string, taskId:string) => dispatch(removeTodos(
-      columnId, taskId 
+    removeTodos: (columnId:string, taskId:string, todosId: string) => dispatch(removeTodos(
+      columnId, taskId, todosId
     )),
   }
 }

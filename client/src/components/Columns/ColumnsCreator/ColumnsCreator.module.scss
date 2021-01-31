@@ -27,7 +27,6 @@
     &.hide {
       opacity: 0;
       pointer-events: none;
-      // margin: 0;
       position: absolute;
     }
   }
@@ -38,7 +37,6 @@
     padding: 5px;
     width: 270px;
     align-self: flex-start;
-    // margin-left: -270px;
     animation: smoothShow .5s ease-in-out;  
 
     .creationInput {

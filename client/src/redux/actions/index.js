@@ -10,11 +10,10 @@ import {
   RENAME_TASKLIST,
   REMOVE_TASKLIST,
   ADD_TODOS_TITLE,
+  SET_NEW_TODOS,
   ADD_TODO,
-  SET_TODO_COMPLETE,
+  SET_TODO_INFO,
   REMOVE_TODO,
-  CHANGE_TODO_TITLE,
-  CHANGE_TODOS_TITLE,
   SET_DATE,
   SET_CURRENT_USER,
   ADD_NEW_COMMENT,
@@ -35,29 +34,8 @@ export const fetchBoard = (boardID) => {
 
     try {
       const board = await service.getBoardById(boardID);
-      console.log(board);
-      /* const board = {
-        id: '1',
-        title: 'some title for board',
-        userList: [
-          {
-            id: 1,
-            name: 'blabl aa',
-          },
-          {
-            id: 2,
-            name: 'Al b',
-          },
-          {
-            id: 3,
-            name: 'Rs s',
-          },
-        ],
-        columns: []
-      } */
       dispatch(fetchDataSuccess(board));
     } catch (e) {
-      console.log(e);
       dispatch(fetchDataError(e));
     }
   }
@@ -86,11 +64,9 @@ export const fetchDataError = (e) => {
 export const addColumn = (boardId, title) => {
   return async (dispatch) => {
     let newColumn;
-    console.log(title);
 
     try {
       newColumn = await service.postColumn(boardId, { title: title, boardId});
-      console.log(newColumn);
       dispatch(fetchColumnSuccess(newColumn));
     } catch (e) {
       console.log('column has"t been created');
@@ -132,7 +108,7 @@ export const removeColumn = (boardId, _id) => {
       await service.removeColumn(boardId, _id);
       dispatch(fetchDeleteColumnSuccess(_id));
     } catch (e) {
-      console.log('column has not been deleted');
+      console.log('column has not been deleted', e);
     }
   }
 }
@@ -144,23 +120,44 @@ export const fetchDeleteColumnSuccess = (_id) => {
   };
 }
 
-export const addTaskList = (id, task) => {
-  // тут будет запрос на сервер...
-  // console.log('addTaskList', card);
+export const addTaskList = (columnId, title) => {
+  return async (dispatch) => {
+    try {
+      const reqTask = await service.postTask(columnId, { title, date: '', description: '' });
+      const reqTodos = await service.postTodos(columnId, reqTask.id, { title: '' });
+      reqTask.todos = [{...reqTodos}];
+
+      dispatch(fetchAddTaskSuccess(columnId, reqTask));
+    } catch (e) {
+      console.log('task has not been added', e);
+    }
+  }
+}
+
+
+export const fetchAddTaskSuccess = (columnId, task) => {
   return {
     type: ADD_NEW_TASKLIST,
     payload: {
-      id,
-      task
+      id: columnId,
+      task,
     }
   };
 }
 
-export const renameTaskList = (id, taskId, newTaskTitle) => { // !: id = columnId
-  // тут будет запрос на сервер...
-  // console.log(id, 
-  //   taskId, 
-  //   newTaskTitle);
+export const renameTaskList = (id, taskId, title) => {
+  return async (dispatch) => {
+    try {
+      await service.putTaskData(id, taskId, { title });
+
+      dispatch(fetchRenameTaskSuccess(id, taskId, title));
+    } catch (e) {
+      console.log('task has not been renamed', e);
+    }
+  }
+}
+
+export const fetchRenameTaskSuccess = (id, taskId, newTaskTitle) => {
   return {
     type: RENAME_TASKLIST,
     payload: {
@@ -172,7 +169,18 @@ export const renameTaskList = (id, taskId, newTaskTitle) => { // !: id = columnI
 }
 
 export const removeTaskList = (id, taskId) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      await service.removeTask(id, taskId);
+
+      dispatch(fetchRemoveTaskSuccess(id, taskId));
+    } catch (e) {
+      console.log('task has not been deleted', e);
+    }
+  }
+}
+
+export const fetchRemoveTaskSuccess = (id, taskId) => {
   return {
     type: REMOVE_TASKLIST,
     payload: {
@@ -183,8 +191,18 @@ export const removeTaskList = (id, taskId) => {
 }
 
 export const addDescription = (id, taskId, description) => {
-  // тут будет запрос на сервер...
-  // console.log('addDescription', columnId, cardId, cardDescription);
+  return async (dispatch) => {
+    try {
+      await service.putTaskData(id, taskId, { description });
+
+      dispatch(fetchAddDescriptionSuccess(id, taskId, description));
+    } catch (e) {
+      console.log('description has not been setted', e);
+    }
+  }
+}
+
+export const fetchAddDescriptionSuccess = (id, taskId, description) => {
   return {
     type: ADD_DESCRIPTION,
     payload: {
@@ -195,8 +213,19 @@ export const addDescription = (id, taskId, description) => {
   };
 }
 
-export const addTodosTitle = (id, taskId, title) => {
-  // тут будет запрос на сервер...
+export const addTodosTitle = (id, taskId, todosId, title) => {
+  return async (dispatch) => {
+    try {
+      await service.putTodosTitle(id, taskId, todosId, { title });
+
+      dispatch(fetchAddTodosTitleSuccess(id, taskId, title));
+    } catch (e) {
+      console.log('Title for todos has not been setted', e);
+    }
+  }
+}
+
+export const fetchAddTodosTitleSuccess = (id, taskId, title) => {
   return {
     type: ADD_TODOS_TITLE,
     payload: {
@@ -207,39 +236,74 @@ export const addTodosTitle = (id, taskId, title) => {
   };
 }
 
-let incrForTodo = 0; // ! потом удалить
-export const addTodo = (id, taskId, title, isComplete) => {
-  //  ! потом изменить
-  // тут будет запрос на сервер...
+export const addTodo = (id, taskId, todosId, title, isComplete) => {
+  return async (dispatch) => {
+    try {
+      const todos = await service.postAddTodo(id, taskId, todosId, { title, isComplete });
+      const todo = todos.todo[todos.todo.length - 1];
+
+      dispatch(fetchAddTodoSuccess(id, taskId, todo.title, todo.isComplete, todo._id));
+    } catch (e) {
+      console.log('Todo has not been added', e);
+    }
+  }
+}
+
+export const fetchAddTodoSuccess = (id, taskId, title, isComplete, todoId) => {
   return {
     type: ADD_TODO,
     payload: {
       id,
       taskId,
-      todoId: ++incrForTodo,
+      todoId,
       title,
       isComplete
     }
   };
 }
 
-export const setTodoComplete = (id, taskId, todoId, isComplete) => {
-  //  ! потом изменить
-  // тут будет запрос на сервер...
-  console.log(id, taskId, todoId, isComplete);
+export const setTodoInfo = (id, taskId, todosId, title, isComplete, todoId) => {
+  return async (dispatch) => {
+    try {
+      if (isComplete === undefined) {
+        await service.putTodo(id, taskId, todosId, todoId, { title });
+      } else {
+        await service.putTodo(id, taskId, todosId, todoId, { title, isComplete });
+      }
+
+      dispatch(fetchSetTodoInfoSuccess(id, taskId, title, isComplete, todoId));
+    } catch (e) {
+      console.log('Todo info has not been setted', e);
+    }
+  }
+}
+
+export const fetchSetTodoInfoSuccess = (id, taskId, title, isComplete, todoId) => {
   return {
-    type: SET_TODO_COMPLETE,
+    type: SET_TODO_INFO,
     payload: {
       id,
       taskId,
       todoId,
+      title,
       isComplete
     }
   };
 }
 
-export const removeTodo = (id, taskId, todoId, isComplete) => {
-  // тут будет запрос на сервер...
+export const removeTodo = (id, taskId, todoId, todosId) => {
+  return async (dispatch) => {
+    try {
+      await service.removeTodo(id, taskId, todoId, todosId);
+
+      dispatch(fetchRemoveTodoSuccess(id, taskId, todoId));
+    } catch (e) {
+      console.log('Todo has not been deleted', e);
+    }
+  }
+}
+
+export const fetchRemoveTodoSuccess = (id, taskId, todoId) => {
   return {
     type: REMOVE_TODO,
     payload: {
@@ -250,34 +314,44 @@ export const removeTodo = (id, taskId, todoId, isComplete) => {
   };
 }
 
-export const changeTodoTitle = (id, taskId, title, isComplete, todoId) => {
-  // тут будет запрос на сервер...
+export const removeTodos = (id, taskId, todosId) => {
+  return async (dispatch) => {
+    try {
+      await service.removeTodos(id, taskId, todosId);
+
+      const reqTodos = await service.postTodos(id, taskId, { title: '' });
+
+      dispatch(fetchRemoveTodosSuccess(id, taskId, reqTodos));
+    } catch (e) {
+      console.log('Todos has not been removed', e);
+    }
+  }
+}
+
+export const fetchRemoveTodosSuccess = (id, taskId, todos) => {
   return {
-    type: CHANGE_TODO_TITLE,
+    type: SET_NEW_TODOS,
     payload: {
       id,
       taskId,
-      todoId,
-      title,
-      isComplete
-    }
-  };
-}
-
-export const removeTodos = (id, taskId) => {
-  console.log('id, taskId', id, taskId);
-  // тут будет запрос на сервер...
-  return {
-    type: CHANGE_TODOS_TITLE,
-    payload: {
-      id,
-      taskId
+      todos
     }
   };
 }
 
 export const setDate = (id, taskId, date) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      await service.putTaskData(id, taskId, { date });
+
+      dispatch(fetchSetDateSuccess(id, taskId, date));
+    } catch (e) {
+      console.log('date has not been setted', e);
+    }
+  }
+}
+
+export const fetchSetDateSuccess = (id, taskId, date) => {
   return {
     type: SET_DATE,
     payload: {
@@ -293,26 +367,18 @@ export const setCurrentUser = () => {
     let currentUser;
     const currentUserId = localStorage.getItem('rsclone_userId');
 
-    // ! придумать обработку, если не будет userId в LS
-    if (!currentUserId) {
-      return;
-    }
-
     try {
       currentUser = await service.getUserById(currentUserId);
       dispatch(fetchUserSuccess(currentUser));
     } catch (e) {
-      currentUser = {};
+      currentUser = await service.getUserById(currentUserId);
+    } finally {
+      if (!currentUser) {
+        window.location.href = '/login';
+      } else {
+        dispatch(fetchUserSuccess(currentUser));
+      }
     }
-    // тут будет запрос на сервер...
-    // ! потом заменить MOK user На реальные данные с сервера по id
-    /* const MOK_USER = {
-      userName: 'Alex',
-      email: 'alex@alex.ru',
-      login: 'alex-alex',
-      id
-    };
-      */
   };
 }
 
@@ -323,10 +389,24 @@ export const fetchUserSuccess = (currentUser) => {
   };
 }
 
-let comInc = 0;
 export const addComment = (id, taskId, message, userName, userId, date) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      const comment = await service.postComment(id, taskId, { 
+        userName,
+        date,
+        message,
+        userId
+      });
 
+      dispatch(fetchAddCommentSuccess(id, taskId, message, userName, userId, date, comment._id));
+    } catch (e) {
+      console.log('Comment has not been added', e);
+    }
+  }
+}
+
+export const fetchAddCommentSuccess = (id, taskId, message, userName, userId, date, commentId) => {
   return {
     type: ADD_NEW_COMMENT,
     payload: {
@@ -336,14 +416,24 @@ export const addComment = (id, taskId, message, userName, userId, date) => {
       userName,
       userId,
       date,
-      commentId: `${++comInc}`
+      _id: commentId
     }
   };
 }
 
 export const removeComment = (id, taskId, commentId) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      await service.removeComment(id, taskId, commentId);
 
+      dispatch(fetchRemoveCommentSuccess(id, taskId, commentId));
+    } catch (e) {
+      console.log('Comment has not been removed', e);
+    }
+  }
+}
+
+export const fetchRemoveCommentSuccess = (id, taskId, commentId) => {
   return {
     type: REMOVE_COMMENT,
     payload: {
@@ -355,8 +445,18 @@ export const removeComment = (id, taskId, commentId) => {
 }
 
 export const editComment = (id, taskId, commentId, message, date) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      dispatch(fetchEditCommentSuccess(id, taskId, commentId, message, date));
 
+      await service.putCommentData(id, taskId, commentId, { message, date });
+    } catch (e) {
+      console.log('Comment has not been edited', e);
+    }
+  }
+}
+
+export const fetchEditCommentSuccess = (id, taskId, commentId, message, date) => {
   return {
     type: EDIT_COMMENT,
     payload: {
@@ -369,38 +469,67 @@ export const editComment = (id, taskId, commentId, message, date) => {
   };
 }
 
-let taskidd = 0; // ! удалить потом
-
 export const addTag = (id, taskId, color) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      const newTag = await service.postTag(id, taskId, { color });
 
+      dispatch(fetchAddTagSuccess(id, taskId, color, newTag._id));
+    } catch (e) {
+      console.log('Tag has not been setted', e);
+    }
+  }
+}
+
+export const fetchAddTagSuccess = (id, taskId, color, tagId) => {
   return {
     type: ADD_TAG,
     payload: {
       id,
       taskId,
       color,
-      tagId: ++taskidd
+      _id: tagId
     }
   };
 }
 
 export const removeTag = (id, taskId, tagId) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      await service.removeTag(id, taskId, tagId);
 
+      dispatch(fetchRemoveTagSuccess(id, taskId, tagId));
+    } catch (e) {
+      console.log('Tag has not been deleted', e);
+    }
+  }
+  
+}
+
+export const fetchRemoveTagSuccess = (id, taskId, tagId) => {
   return {
     type: REMOVE_TAG,
     payload: {
       id,
       taskId,
-      tagId
+      _id: tagId
     }
   };
 }
 
 export const attachUserToTask = (id, taskId, user) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      await service.postAttachUserToTask(user.id, { taskId });
 
+      dispatch(fetchAttachUserToTaskSuccess(id, taskId, user));
+    } catch (e) {
+      console.log('Comment has not been added', e);
+    }
+  }
+}
+
+export const fetchAttachUserToTaskSuccess = (id, taskId, user) => {
   return {
     type: ATTACH_USER_TO_TASK,
     payload: {
@@ -413,8 +542,18 @@ export const attachUserToTask = (id, taskId, user) => {
 }
 
 export const removeUserFromTask = (id, taskId, userId) => {
-  // тут будет запрос на сервер...
+  return async (dispatch) => {
+    try {
+      await service.removeUserFromTask(userId, { taskId });
 
+      dispatch(fetchRemoveUserToTaskSuccess(id, taskId, userId));
+    } catch (e) {
+      console.log('User has not been removed', e);
+    }
+  }
+}
+
+export const fetchRemoveUserToTaskSuccess = (id, taskId, userId) => {
   return {
     type: REMOVE_USER_FROM_TASK,
     payload: {

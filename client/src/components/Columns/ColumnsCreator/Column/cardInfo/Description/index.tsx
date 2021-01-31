@@ -17,9 +17,7 @@ const Description:React.FC<any> = ({ columnId, taskId, description, order, addDe
   const [isEditDescription, setIsEditDescription] = useState<boolean>(false);
 
   const descriptionChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
-    const { value } = e.target;
-    // console.loglog(value);
-    setTaskDescription(value);
+    setTaskDescription(e.target.value);
   };
 
   const descriptionFocusHandler = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
@@ -48,7 +46,6 @@ const Description:React.FC<any> = ({ columnId, taskId, description, order, addDe
     }
 
     setIsEditDescription(false);
-    //  TODO: сделать редьюсер с отправкой на бак и сохранением в сторе
   }
 
   const closeEditDescriptionClickHandler = ():void => {

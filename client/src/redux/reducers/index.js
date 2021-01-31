@@ -11,7 +11,7 @@ import {
   REMOVE_TASKLIST,
   ADD_TODOS_TITLE,
   ADD_TODO,
-  SET_TODO_COMPLETE,
+  SET_TODO_INFO,
   REMOVE_TODO,
   CHANGE_TODO_TITLE,
   CHANGE_TODOS_TITLE,
@@ -23,13 +23,13 @@ import {
   ADD_TAG,
   REMOVE_TAG,
   ATTACH_USER_TO_TASK,
-  REMOVE_USER_FROM_TASK
+  REMOVE_USER_FROM_TASK,
+  SET_NEW_TODOS
 } from '../actions/actionTypes';
 
 export const getCurrentColumn = (state, action) => {
   const columnIndex = state.board.columns.findIndex((item) => item._id === action.payload.id);
   const copy = {...state.board.columns[columnIndex]};
-  console.log(columnIndex, copy);
 
   return {
     columnIndex,
@@ -54,10 +54,10 @@ export const updateState = (state, columnIndex, copy) => {
 const initialState = {
   loading: false,
   error: null,
+  currentUser: {},
   board: {
     id: '',
     title: '',
-    currentUser: {},
     userList: [],
     columns: []
   }
@@ -109,7 +109,6 @@ const reducer = (state = initialState, action) => {
     case RENAME_COLUMN: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
       copy.title = action.payload.title;
-      console.log(copy);
 
       return updateState(state, columnIndex, copy);
     }
@@ -130,14 +129,14 @@ const reducer = (state = initialState, action) => {
     
     case ADD_NEW_TASKLIST: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-
       let taskList;
+
       if (state.board.columns[columnIndex].taskList) {
-        taskList = [...state.board.columns[columnIndex].taskList, {...action.payload.task}];
+        taskList = [...state.board.columns[columnIndex].taskList, {...action.payload.task, _id: action.payload.task.id}];
       } else {
-        taskList = [{...action.payload.task}];
+        taskList = [{...action.payload.task, _id: action.payload.task.id}];
       }
-      
+
       copy.taskList = [...taskList];
 
       return updateState(state, columnIndex, copy);
@@ -145,17 +144,23 @@ const reducer = (state = initialState, action) => {
 
     case RENAME_TASKLIST: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const cardIndex = copy.taskList.findIndex((item) => item.id === action.payload.taskId);
+      const cardIndex = copy.taskList.findIndex((item) => item._id === action.payload.taskId);
       copy.taskList[cardIndex].title = action.payload.newTaskTitle;
 
-      console.log(state);
+      return updateState(state, columnIndex, copy);
+    }
+
+    case SET_NEW_TODOS: {
+      const { columnIndex, copy } = getCurrentColumn(state, action);
+      const cardIndex = copy.taskList.findIndex((item) => item._id === action.payload.taskId);
+      copy.taskList[cardIndex].todos = [action.payload.todos];
 
       return updateState(state, columnIndex, copy);
     }
     
     case REMOVE_TASKLIST: {
       const { columnIndex } = getCurrentColumn(state, action);
-      const cards = state.board.columns[columnIndex].taskList.filter((item) => item.id !== action.payload.taskId);
+      const cards = state.board.columns[columnIndex].taskList.filter((item) => item._id !== action.payload.taskId);
 
       return {
         ...state,
@@ -177,7 +182,7 @@ const reducer = (state = initialState, action) => {
     
     case ADD_DESCRIPTION: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
       card.description = action.payload.description;
 
       return updateState(state, columnIndex, copy);
@@ -185,19 +190,19 @@ const reducer = (state = initialState, action) => {
     
     case ADD_TODOS_TITLE: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      card.todos.title = action.payload.title;
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
+      card.todos[0].title = action.payload.title;
 
       return updateState(state, columnIndex, copy);
     }
     
     case ADD_TODO: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      card.todos.todo = [
-        ...card.todos.todo,
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
+      card.todos[0].todo = [
+        ...card.todos[0].todo,
         {
-          id: action.payload.todoId,
+          _id: action.payload.todoId,
           title: action.payload.title,
           isComplete: action.payload.isComplete
         }
@@ -206,20 +211,20 @@ const reducer = (state = initialState, action) => {
       return updateState(state, columnIndex, copy);
     }
 
-    case SET_TODO_COMPLETE: {
+    case SET_TODO_INFO: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      const currentTodo = card.todos.todo.find((item) => item.id === action.payload.todoId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
+      const currentTodo = card.todos[0].todo.find((item) => item._id === action.payload.todoId);
       currentTodo.isComplete = action.payload.isComplete;
-      console.log(copy);
+      currentTodo.title = action.payload.title;
 
       return updateState(state, columnIndex, copy);
     }
 
     case REMOVE_TODO: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      card.todos.todo = card.todos.todo.filter((item) => item.id !== action.payload.todoId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
+      card.todos[0].todo = card.todos[0].todo.filter((item) => item._id !== action.payload.todoId);
 
       return updateState(state, columnIndex, copy);
     }
@@ -236,7 +241,6 @@ const reducer = (state = initialState, action) => {
     case CHANGE_TODOS_TITLE: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
       const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      console.log(card);
       card.todos.title = '';
       card.todos.todo = [];
 
@@ -245,30 +249,25 @@ const reducer = (state = initialState, action) => {
 
     case SET_DATE: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
       card.date = action.payload.date;
-      console.log(action.payload.date);
 
       return updateState(state, columnIndex, copy);
     }
 
     case SET_CURRENT_USER: {
-      console.log(action.payload);
       return {
         ...state,
-        board: {
-          ...state.board,
-          currentUser: {
-            ...action.payload
-          }
+        currentUser: {
+          ...action.payload
         }
       };
     }
 
     case ADD_NEW_COMMENT: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      const { userName, userId, date, commentId, message } = action.payload;
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
+      const { userName, userId, date, _id, message } = action.payload;
 
       card.comments = [
         ...card.comments,
@@ -277,7 +276,7 @@ const reducer = (state = initialState, action) => {
           userName,
           userId,
           date,
-          id: commentId
+          _id
         }
       ];
 
@@ -286,31 +285,30 @@ const reducer = (state = initialState, action) => {
 
     case REMOVE_COMMENT: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      card.comments = card.comments.filter((item) => item.id !== action.payload.commentId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
+      card.comments = card.comments.filter((item) => item._id !== action.payload.commentId);
 
       return updateState(state, columnIndex, copy);
     }
 
     case EDIT_COMMENT: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      const currentComment = card.comments.find((item) => item.id === action.payload.commentId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
+      const currentComment = card.comments.find((item) => item._id === action.payload.commentId);
       currentComment.date = action.payload.date;
       currentComment.message = action.payload.message;
-      console.log('currentComment', currentComment);
 
       return updateState(state, columnIndex, copy);
     }
 
     case ADD_TAG: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
 
       card.tags = [
         ...card.tags,
         {
-          id: action.payload.tagId,
+          _id: action.payload._id,
           color: action.payload.color
         }
       ];
@@ -320,15 +318,15 @@ const reducer = (state = initialState, action) => {
 
     case REMOVE_TAG: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
-      card.tags = card.tags.filter((item) => item.id !== action.payload.tagId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
+      card.tags = card.tags.filter((item) => item._id !== action.payload._id);
 
       return updateState(state, columnIndex, copy);
     }
 
     case ATTACH_USER_TO_TASK: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
 
       card.usersList = [
         ...card.usersList,
@@ -341,10 +339,9 @@ const reducer = (state = initialState, action) => {
       return updateState(state, columnIndex, copy);
     }
 
-    
     case REMOVE_USER_FROM_TASK: {
       const { columnIndex, copy } = getCurrentColumn(state, action);
-      const card = copy.taskList.find((item) => item.id === action.payload.taskId);
+      const card = copy.taskList.find((item) => item._id === action.payload.taskId);
       card.usersList = card.usersList.filter((item) => item.id !== action.payload.userId);
 
       return updateState(state, columnIndex, copy);

@@ -1,10 +1,10 @@
 export interface Store {
   loading: boolean,
   error: any,
+  currentUser: any,
   board: {
     id: string,
     title: string,
-    currentUser: any,
     userList: any[],
     columns: any[]
   }
