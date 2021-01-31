@@ -123,7 +123,7 @@ const updateTagsInTask = async (tagId, data) => {
 const addUserToList = async (id, userData) => {
   const updatedTask = await Task.findByIdAndUpdate(id,
     {
-      $push:
+      $addToSet:
         { usersList: userData }
     }, {
     new: true
@@ -177,9 +177,38 @@ const deleteFieldItemFromTask = async (id, fieldId, fieldName) => {
   return updatedTask;
 }
 
-const unassignTask = async userId => {
-  return findByUserId(userId);
-};
+const deleteUserFromTaskList = async (id, userId) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      usersList:  {
+        id: userId
+      }
+    }
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${taskId} not found`);
+  }
+  return updatedTask;
+}
+
+const unassignTask = async (userId) => {
+  const findedTasks = await Task.find({
+    usersList: {
+      $elemMatch: {
+        id: userId
+      }
+    }
+  });
+  if (findedTasks !== null) {
+    findedTasks.forEach(
+      (task) => deleteUserFromTaskList(task.id, userId)
+    );
+  } else return []
+
+}
 
 
 module.exports = {
@@ -196,5 +225,6 @@ module.exports = {
   addTagToTask,
   addUserToList,
   deleteFieldItemFromTask,
-  updateTagsInTask
+  updateTagsInTask,
+  deleteUserFromTaskList
 };

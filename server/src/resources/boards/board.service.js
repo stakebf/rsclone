@@ -32,6 +32,10 @@ const updateColumnData = async (id, columnId, data) => await boardsRepo.updateCo
 
 const deleteColumnFromBoard = async (id, columnId) => await boardsRepo.deleteColumnFromBoard(id, columnId);
 
+const deleteUserFromBoardList = async (id, userId) => await boardsRepo.deleteUserFromBoardList(id, userId);
+
+const findAllBoardOnUser = async (userId) => await boardsRepo.findAllBoardOnUser(userId)
+
 module.exports = {
   getAll,
   getBoardById,
@@ -42,5 +46,7 @@ module.exports = {
   getAllBoardData,
   addUserToList,
   updateColumnData,
-  deleteColumnFromBoard
+  deleteColumnFromBoard,
+  deleteUserFromBoardList,
+  findAllBoardOnUser
 };
