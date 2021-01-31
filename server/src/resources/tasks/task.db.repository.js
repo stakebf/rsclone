@@ -89,7 +89,7 @@ const addTodoToTask = async (id, todosData) => {
 };
 
 const updateCommentInTask = async (commentId, data) => {
-  const updatedBoard = await Task.findOneAndUpdate({
+  const updatedTask = await Task.findOneAndUpdate({
     'comments._id': commentId
   }, {
     '$set': {
@@ -98,10 +98,26 @@ const updateCommentInTask = async (commentId, data) => {
   }, {
     new: true
   });
-  if (updatedBoard === null) {
+  if (updatedTask === null) {
     throw new NotFoundError(`Task with id ${taskId} on column not found`);
   }
-  return updatedBoard;
+  return updatedTask;
+}
+
+const updateTagsInTask = async (tagId, data) => {
+  const updatedTask = await Task.findOneAndUpdate({
+    'tags._id': tagId
+  }, {
+    '$set': {
+      'tags.$': data,
+    }
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${taskId} on column not found`);
+  }
+  return updatedTask;
 }
 
 const addUserToList = async (id, userData) => {
@@ -179,5 +195,6 @@ module.exports = {
   updateCommentInTask,
   addTagToTask,
   addUserToList,
-  deleteFieldItemFromTask
+  deleteFieldItemFromTask,
+  updateTagsInTask
 };

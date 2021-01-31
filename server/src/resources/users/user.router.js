@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { OK, NO_CONTENT } = require('http-status-codes');
 const User = require('./user.model');
 const usersService = require('./user.service');
+const boardsService = require('../boards/board.service');
+const taskService = require('../tasks/task.service');
 const usersSchemas = require('./users.schema');
 const { registerUser } = require('../login/login.service')
 const validator = require('../../validator/validator');
@@ -27,6 +29,7 @@ router.route('/:id/addtoboard').post(
     const { id } = req.params;
     const { boardId } = req.body;
     const user = await usersService.addBoardToUser(id, boardId);
+    await boardsService.addUserToList(boardId, user);
     res.status(OK).json(User.toResponse(user));
   })
 );
@@ -36,6 +39,7 @@ router.route('/:id/addtotask').post(
     const { id } = req.params;
     const { taskId } = req.body;
     const user = await usersService.addTaskToUser(id, taskId);
+    await taskService.addUserToList(taskId, user);
     res.status(OK).json(User.toResponse(user));
   })
 );
@@ -44,9 +48,9 @@ router.route('/').post(
   catchErrors(validator.validateSchemaPost(usersSchemas.schemaForPost)),
   catchErrors(async (req, res) => {
     const requestData = req.body;
-    const {token, id} = await registerUser(requestData);
+    const { token, id } = await registerUser(requestData);
     console.log(token, id)
-    res.status(OK).json({token, id});
+    res.status(OK).json({ token, id });
   })
 );
 
