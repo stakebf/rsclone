@@ -1,3 +1,5 @@
+import {idText} from 'typescript';
+
 class MainApiService {
   _API_URL = 'url_our_api';
 
@@ -57,6 +59,10 @@ class MainApiService {
 
   postUserToRegister = async (data = {}) => {
     return await this._postResource('users', data);
+  };
+
+  postAddUserToBoard = async (userID: string, boardID = {}) => {
+    return await this._postResource(`users/${userID}/addtoboard`, boardID);
   };
 
   postBoard = async (data = {}) => {

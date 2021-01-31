@@ -5,6 +5,14 @@ import MainApiService from '../../services/MainApiService';
 
 import classes from './boardPanelBtnInvite.module.scss';
 
+interface IUser {
+  id: string;
+  name: string;
+  login: string;
+  boards: any[];
+  tasks: any[];
+}
+
 type BoardPanelBtnInviteProps = {
   isOpenWindowInvite: boolean;
   setOpenWindowInvite(flag: boolean): void;
@@ -23,13 +31,13 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
 
   const refWindow: any = useRef(null);
   const refBtnClose: any = useRef(null);
+  const refInput: any = useRef(null);
 
   const api = useMemo(() => new MainApiService(), []);
 
   const getDataBoardAll = useCallback(() => {
     api.getUsersAll().then((data) => {
       setUsersInitialData(data);
-      setUsersDataForSend(data);
       console.log(data);
     });
   }, [api]);
@@ -38,15 +46,46 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
     getDataBoardAll();
   }, [getDataBoardAll]);
 
+  useEffect(() => {
+    setValue('');
+    setUsersDataForSend([]);
+  }, [isOpenWindowInvite]);
+
+  const sendUsersData = () => {
+    let boardID = {id: 'cc5c593b-9ecf-4154-91dd-8c5d75990977'};
+    /* Promise.all(usersDataForSend.map((elem: IUser) => `api.postAddUserToBoard(elem.id, boardID)))
+      .then((results) => console.log(results))
+      .catch((err) => console.error(err)); */
+    api
+      .postAddUserToBoard('c457a9df-ddf6-4db1-91ef-498e421895f2', boardID)
+      .then((results) => console.log(results))
+      .catch((err) => console.error(err));
+  };
+
+  const onAddedUserForSend = (user: any) => {
+    const newUsersDataForSend: any = [...usersDataForSend, user];
+    setUsersDataForSend(newUsersDataForSend);
+    setUsersDataForSearch([]);
+    setValue('');
+    refInput.current.focus();
+  };
+
+  const onDeletedUserForSend = (id: string) => {
+    const newUsersDataForSend: any = usersDataForSend.filter((user: IUser) => {
+      return user.id !== id;
+    });
+    setUsersDataForSend(newUsersDataForSend);
+  };
+
   const searchUser = (event: any, data: any): void => {
     setValue(event.target.value);
     if (event.target.value.length === 0) {
       setUsersDataForSearch([]);
     } else {
-      const newUsersList = data.filter((elem: any) => {
+      const newUsersList = data.filter((user: any) => {
         return (
-          elem.login.toLowerCase().startsWith(event.target.value.toLowerCase()) ||
-          elem.name.toLowerCase().startsWith(event.target.value.toLowerCase())
+          user.login.toLowerCase().startsWith(event.target.value.toLowerCase()) ||
+          user.name.toLowerCase().startsWith(event.target.value.toLowerCase())
         );
       });
       setUsersDataForSearch(newUsersList);
@@ -55,10 +94,17 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
   };
 
   const renderListUsers = () => {
-    const usersListHTML = usersDataForSearch.map((elem: any) => {
-      const {id, name} = elem;
+    const usersListHTML = usersDataForSearch.map((user: any) => {
+      const {id, name} = user;
       return (
-        <li key={id} className={classes['item']}>
+        <li
+          key={id}
+          className={classes['item']}
+          onClick={(e) => {
+            e.stopPropagation();
+            onAddedUserForSend(user);
+          }}
+        >
           <span className={classes['item__icon']}>{name.slice(0, 1).toLocaleUpperCase()}</span>
           <span className={classes['item__name']}>{name}</span>
         </li>
@@ -71,14 +117,19 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
     );
   };
 
-
-  const renderListSelectedUsers = () => {
+  const renderListUsersForSend = () => {
     const usersListHTML = usersDataForSend.map((elem: any) => {
       const {id, name} = elem;
       return (
         <li key={id} className={classes['item']}>
           <span className={classes['item__name']}>{name}</span>
-          <span className={classes['item__close']}>
+          <span
+            className={classes['item__close']}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeletedUserForSend(id);
+            }}
+          >
             <CloseOutlined />
           </span>
         </li>
@@ -106,11 +157,12 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
               searchUser(e, usersInitialData)
             }
+            ref={refInput}
           />
           {usersDataForSearch.length ? renderListUsers() : null}
-          {usersDataForSend.length ? renderListSelectedUsers() : null}
+          {usersDataForSend.length ? renderListUsersForSend() : null}
         </div>
-        <button type="button" className={classes['window__btn']}>
+        <button type="button" className={classes['window__btn']} onClick={() => sendUsersData()}>
           Отправить приглашение
         </button>
       </div>

@@ -5,7 +5,6 @@ import MainApiService from '../../../../services/MainApiService';
 import {StarOutlined, UserOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import classes from './boardList.module.scss';
-import 'antd/dist/antd.css';
 
 interface IBoardItem {
   id: string;
@@ -39,6 +38,7 @@ const BoardList: React.FC = () => {
       api
         .getBoardsAll()
         .then((data) => {
+          console.log(data);
           const curUserId = localStorage.getItem('rsclone_userId');
           const userDataBoards = data.filter((el: any) => {
             return el.userList.some((user: any) => user.id === curUserId);
