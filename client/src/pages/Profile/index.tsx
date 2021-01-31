@@ -1,24 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProfileForm from './ProfileForm';
 import Actions from './Actions';
-import { Avatar, Drawer, Divider, Tabs } from 'antd';
+import { Avatar, Tabs } from 'antd';
 import classes from './Profile.module.scss';
 
-const user = {
+let user = {
   nameShort: 'RH',
   name: 'Ruslan Hryshchuk',
   email: 'rus_g@tut.by',
 }
 
 const { TabPane } = Tabs;
+type ProfileProps = {
+  activeTab?: string;
+};
 
-const Profile: React.FC = () => {
+let isUpdate = true; 
+
+const Profile: React.FC<ProfileProps> = ({activeTab}) => {
+  const [pane, setPane] = useState(activeTab);
+  if (isUpdate && activeTab && activeTab !== pane) {
+    setPane(activeTab);
+  }
   const tabsTitle = {
     profile: 'Профиль',
     actions: 'Действия',
   }
+
+  function tabClick(key: string) {
+    isUpdate = false;
+    setPane(key); 
+  }
+
+  if (!isUpdate) isUpdate = true;
+
   return (
     <div>
       <div className={classes.wrapper}>
@@ -31,7 +48,7 @@ const Profile: React.FC = () => {
             <span className={classes.email}>{user.email}</span>
         </div>
         <div className={classes.Tabs}>
-        <Tabs defaultActiveKey="1" centered size="large">
+        <Tabs activeKey={pane} onTabClick={tabClick} centered size="large" type="card">
           <TabPane tab={tabsTitle.profile} key="1">
             <div className={classes.tabProfile}>
               <ProfileForm />

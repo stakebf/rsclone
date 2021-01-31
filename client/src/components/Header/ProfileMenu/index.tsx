@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import HelpModal from '../HelpModal';
 import { Avatar, Drawer, Divider } from 'antd';
 import classes from './ProfileMenu.module.scss';
 import './Drawer.scss';
+import { on } from 'cluster';
 
 type Settings = {
   user: {
@@ -12,20 +14,32 @@ type Settings = {
   }
   visible: boolean;
   onClose: () => void;
+  onClick?: () => void;
 }
 
-const ProfileMenu: React.FC<Settings> = ({user, visible, onClose}) => {
+const ProfileMenu: React.FC<Settings> = ({user, visible, onClose, onClick}) => {
   const items = {
-      title: 'Учетная запись',
-      profile: 'Профиль',
-      actions: 'Действия',
-      cards: 'Карточки',
-      settings: 'Настройки',
-      help: 'Помощь',
-      hotKeys: 'Горячие клавиши',
-      exit: 'Выйти',
-    }
+    title: 'Учетная запись',
+    profile: 'Профиль',
+    actions: 'Действия',
+    cards: 'Карточки',
+    settings: 'Настройки',
+    help: 'Помощь',
+    hotKeys: 'Горячие клавиши',
+    exit: 'Выйти',
+  }
   
+  const [visibleHotKey, setVisibleHotKey] = useState(false);
+
+  function showHelp() {
+    setVisibleHotKey(true);
+    if (onClick) onClick();
+  }
+
+  function closeHelp() {
+    setVisibleHotKey(false);
+  }
+
   return (
     <Drawer
       className="profileMenu"
@@ -47,12 +61,23 @@ const ProfileMenu: React.FC<Settings> = ({user, visible, onClose}) => {
         </div>
       </div>
       <Divider />
-      <Link to="/profile"><p className={classes.link}>{items.profile}</p></Link>
-      <Link to="/"><p className={classes.link}>{items.actions}</p></Link>
+      <Link
+        to={{
+        pathname: "/profile",
+        state: "1",
+      }}
+      ><p className={classes.link} onClick={onClick}>{items.profile}</p></Link>
+      <Link
+        to={{
+          pathname: "/profile",
+          state: "2",
+        }}
+      ><p className={classes.link} onClick={onClick}>{items.actions}</p></Link>
       <Divider />
-      <Link to="/"><p className={classes.link}>{items.hotKeys}</p></Link>
+      <p className={classes.link} onClick={showHelp}>{items.hotKeys}</p>
       <Divider />
       <Link to="/"><p className={classes.link}>{items.exit}</p></Link>
+      <HelpModal visible={visibleHotKey} onClose={closeHelp} />
     </Drawer>    
   );
 };

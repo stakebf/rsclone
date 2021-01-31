@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({type}) => {
           {
               type !== 'main' ? 
               ( 
-                <div className={classes.profile} onClick={()=>setVisibleProfileMenu(true)}>
+                <div className={classes.profile} onClick={() => setVisibleProfileMenu(true)}>
                   <Tooltip placement="bottomRight" title={user.name} color={'blue'}>
                     <Avatar style={{ backgroundColor: '#f56a00', color: 'black', fontWeight: 'bold' }}>
                       {user.nameShort}
@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({type}) => {
               : null
             }
         </div>
-          { type !== 'main' ? <ProfileMenu visible={visibleProfileMenu} onClose={closeProfileMenu} user={user}/> : null }        
+          { type !== 'main' ? <ProfileMenu visible={visibleProfileMenu} onClose={closeProfileMenu} onClick={closeProfileMenu} user={user}/> : null }        
    </header>
    );
 };

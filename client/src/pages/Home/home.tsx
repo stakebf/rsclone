@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import BoardList from './components/BoardList';
 import MainFeed from './components/MainFeed';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import {Link} from 'react-router-dom';
 
 import classes from './home.module.scss';
+// import { Header } from 'antd/lib/layout/layout';
 
 type HomeProps = {
   type: string;
@@ -58,12 +61,16 @@ const Home: React.FC<HomeProps> = ({type}) => {
   });
 
   return (
+    <>
+    <Header type="main"/>
     <div className={classes.container}>
       <div className={classes['menu-panel']}>
         <ul className={classes['list-tabs']}>{elementsMenu}</ul>
       </div>
       <div className={classes.content}>{type === 'main' ? <MainFeed /> : <BoardList />}</div>
     </div>
+    <Footer />
+    </>
   );
 };
 

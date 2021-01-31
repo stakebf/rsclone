@@ -1,33 +1,54 @@
-import React from 'react';
-import { Form, Input, InputNumber, Button } from 'antd';
-import classes from './ProfileForm.module.scss';
-
-const user = {
-  nameShort: 'RH',
-  name: 'Ruslan Hryshchuk',
-  email: 'rus_g@tut.by',
-}
+import React, { useState } from 'react';
+import {Redirect} from 'react-router-dom';
+import { Form, Input, Button } from 'antd';
 
 const validateMessages = {
+  // eslint-disable-next-line no-template-curly-in-string
   required: '${label} обязательно!',
   types: {
+    // eslint-disable-next-line no-template-curly-in-string
     email: 'Некорректный ${label}!',
   },
 };
 
+let isRedirect = false;
+
 const ProfileForm: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [user, setUser] = useState({
+    nameShort: 'RH',
+    name: 'Ruslan Hryshchuk',
+    email: 'rus_g@tut.by',  
+  });
+  
   const items = {
     name: 'Имя',
     save: 'Сохранить',
   }
+
+  function  onFinish(values: any) {
+    if (values.userName === user.name && values.userEmail === user.email) return;
+    isRedirect = true;
+    setUser({
+      nameShort: 'RH',
+      name: 'Ruslan Hryshchuk',
+      email: 'rus_g@tut.by',  
+    });
+  }
+
+  if (isRedirect) {
+    isRedirect = false;
+    <Redirect to="/profile" />
+  }
+
   return (
     <div>
-      <Form validateMessages={validateMessages}>
-        <Form.Item name={['user', 'name']} label={items.name} rules={[{ required: true }]}>
-          <Input defaultValue={user.name}/>
+      <Form initialValues={{ userName: user.name, userEmail: user.email }} validateMessages={validateMessages} onFinish={onFinish}>
+        <Form.Item name='userName' label={items.name} rules={[{ required: true }]}>
+          <Input />
         </Form.Item>
-        <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email', required: true}]}>
-          <Input  defaultValue={user.email}/>
+        <Form.Item name={'userEmail'} label="Email" rules={[{ type: 'email', required: true}]}>
+          <Input />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">

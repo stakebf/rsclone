@@ -13,17 +13,23 @@ import Profile from '../../pages/Profile';
 const App: React.FC = () => {
   return (
     <>
-      <BoardPanel />
       <Switch>
         <Route path="/" exact>
-          {true /* isToken */ ? <Home type="main" /> : <Main />}
+          {false /* isToken */ ? <Home type="main" /> : <Main />}
         </Route>
 
         {/* <Route
         path="/:userId/boards"
         render={({match}) => <Home userId={match.params.userId} type="boards" />}
       /> */}
-        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/profile" exact render={(props) => {
+            let tab = "1";
+            if (props.location.state === "2") {
+              tab = "2";
+            }
+            return <Profile activeTab={tab} />
+          }
+        } />
         <Route path="/board" render={() => <Board />} />
         <Route path="/boards" render={() => <Home type="boards" />} />
         <Route path="/login" render={() => <SignInUp type="login" />} />
