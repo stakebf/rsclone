@@ -1,24 +1,19 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo, useCallback} from 'react';
 import BoardPanelUserIcon from '../BoardPanelUserIcon';
 import BoardPanelBtnInvite from '../BoardPanelBtnInvite';
 import {StarOutlined, StarFilled} from '@ant-design/icons';
+import MainApiService from '../../services/MainApiService';
 
 import classes from './boardPanel.module.scss';
+interface IUser {
+  id: string;
+  name: string;
+  login: string;
+  isOpenWindow?: boolean;
+}
 
 const BoardPanel: React.FC = () => {
-  const [dataBoard, setDataBoard] = useState({
-    id: 'id',
-    author: {id: '3'},
-    background: 'bg',
-    title: 'TrelloClone',
-    isFavorite: true,
-    userList: [
-      {id: '1', name: 'Masha', login: 'masha', isOpenWindow: false},
-      {id: '2', name: 'Petr', login: 'petr', isOpenWindow: false},
-      {id: '3', name: 'Aleksey', login: 'alex', isOpenWindow: false},
-      {id: '4', name: 'Ruslan', login: 'ruslan', isOpenWindow: false}
-    ]
-  });
+  const [dataBoard, setDataBoard]: any = useState({});
   const [title, setTitle] = useState('');
   const [isOpenWindowInvite, setOpenWindowInvite] = useState(false);
   const [currentWidthTitle, setCurrentWidthTitle] = useState(0);
@@ -26,17 +21,31 @@ const BoardPanel: React.FC = () => {
 
   const refMaskedTitle: any = useRef(null);
 
-  useEffect(() => {
-    setTitle(dataBoard.title);
-    setTimeout(() => {
-      setCurrentWidthTitle(refMaskedTitle.current.clientWidth);
-    }, 0);
-  }, []);
+  const api = useMemo(() => new MainApiService(), []);
 
-  const onToggleUserWindow = (id: string | undefined, flag: boolean) => {
+  let boardId = '50c0e289-42db-4b10-b4ae-cbeef496dbe4';
+
+  const getCurrentBoard = useCallback(() => {
+    api.getBoard(boardId).then((data) => {
+      console.log(data);
+      const newUsersList = data.userList.map((elem: any) => {
+        return {...elem, isOpenWindow: false};
+      });
+      const newData = {...data, userList: newUsersList};
+      setDataBoard(newData);
+      setTitle(data.title);
+      setCurrentWidthTitle(refMaskedTitle.current.clientWidth);
+    });
+  }, [api, setDataBoard]);
+
+  useEffect(() => {
+    getCurrentBoard();
+  }, [getCurrentBoard]);
+
+  const onToggleUserWindow = (id: string | undefined, flag: boolean): void => {
     setDataBoard({
       ...dataBoard,
-      userList: dataBoard.userList.map((el) => {
+      userList: dataBoard.userList.map((el: IUser) => {
         el.isOpenWindow = el.id === id ? flag : false;
         return el;
       })
@@ -44,38 +53,57 @@ const BoardPanel: React.FC = () => {
     if (id) setOpenWindowInvite(false);
   };
 
-  const onFocusTitle = () => {
+  const onFocusTitle = (): void => {
     setFocusWidthTitle(currentWidthTitle);
   };
 
-  const onBlurTitle = (property: string) => {
+  const onBlurTitle = (property: string): void => {
     if (title) {
-      setDataBoard({...dataBoard, title: property});
+      api
+        .putBoard({title: property}, boardId)
+        .then(() => setDataBoard({...dataBoard, title: property}))
+        .catch((error) => console.log(error));
     } else {
       setTitle(dataBoard.title);
       setCurrentWidthTitle(focusWidthTitle);
     }
   };
 
-  const onChangeTitle = (property: string) => {
+  const onChangeTitle = (property: string): void => {
     setTitle(property);
     setCurrentWidthTitle(refMaskedTitle.current.clientWidth);
   };
 
-  const onChangeFavorite = (property: boolean) => {
-    setDataBoard({...dataBoard, isFavorite: property});
+  const onChangeFavorite = (property: boolean): void => {
+    api
+      .putBoard({isFavorite: property}, boardId)
+      .then(() => setDataBoard({...dataBoard, isFavorite: property}))
+      .catch((error) => console.log(error));
   };
 
-  const elementsListUser = dataBoard.userList.map((item) => {
-    return (
-      <BoardPanelUserIcon
-        key={item.id}
-        item={item}
-        adminId={dataBoard.author.id}
-        onToggleUserWindow={onToggleUserWindow}
-      />
-    );
-  });
+  const onAddUserToPanelList = (item: IUser[]): void => {
+    const newDataBoard = {...dataBoard, userList: [...dataBoard.userList, ...item]};
+    setDataBoard(newDataBoard);
+  };
+
+  const checkUserInList = (id: string): boolean => {
+    return dataBoard.userList.some((elem: IUser) => elem.id === id);
+  };
+
+  const renderUsersList = () => {
+    if (dataBoard.userList) {
+      return dataBoard.userList.map((item: IUser) => {
+        return (
+          <BoardPanelUserIcon
+            key={item.id}
+            item={item}
+            adminId={dataBoard.admin}
+            onToggleUserWindow={onToggleUserWindow}
+          />
+        );
+      });
+    }
+  };
 
   return (
     <div className={classes['container-panel']}>
@@ -101,18 +129,21 @@ const BoardPanel: React.FC = () => {
           className={`${classes['panel__btn']}`}
         >
           {dataBoard.isFavorite ? (
-            <StarOutlined />
-          ) : (
             <StarFilled className={`${classes['active']}`} />
+          ) : (
+            <StarOutlined />
           )}
         </button>
         <span className={classes['panel__divider']}></span>
         <div className={classes['panel__block-users']}>
-          <ul className={classes['users-list']}>{elementsListUser}</ul>
+          <ul className={classes['users-list']}>{renderUsersList()}</ul>
           <BoardPanelBtnInvite
+            boardId={boardId}
             isOpenWindowInvite={isOpenWindowInvite}
             setOpenWindowInvite={setOpenWindowInvite}
             onToggleUserWindow={onToggleUserWindow}
+            onAddUserToPanelList={onAddUserToPanelList}
+            checkUserInList={checkUserInList}
           />
         </div>
       </div>

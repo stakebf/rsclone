@@ -7,7 +7,7 @@ interface IUser {
   id: string;
   name: string;
   login: string;
-  isOpenWindow: boolean;
+  isOpenWindow?: boolean;
 }
 
 type BoardPanelUserIconProps = {
@@ -36,7 +36,7 @@ const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
           </span>
           <div className={classes['content__info']}>
             <h4 className={classes['name']}>{name}</h4>
-            <h5 className={classes['login']}>@{login}</h5>
+            <h5 className={classes['login']}>{login}</h5>
           </div>
         </div>
         <span

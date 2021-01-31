@@ -61,7 +61,7 @@ class MainApiService {
     return await this._postResource('users', data);
   };
 
-  postAddUserToBoard = async (userID: string, boardID = {}) => {
+  postAddUsersToBoard = async (userID: string, boardID = {}) => {
     return await this._postResource(`users/${userID}/addtoboard`, boardID);
   };
 
@@ -71,7 +71,7 @@ class MainApiService {
 
   // Put
 
-  _putResource = async (url: string, data = {}) => {
+  _getPut = async (url: string, data = {}) => {
     const response = await fetch(url, {
       method: 'PUT',
       headers: {
@@ -87,7 +87,7 @@ class MainApiService {
   };
 
   putBoard = async (data = {}, id: string) => {
-    return await this._putResource(`boards/${id}`, data);
+    return await this._getPut(`boards/${id}`, data);
   };
 }
 

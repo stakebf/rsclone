@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect, useMemo, useCallback} from 'react';
-import {CloseOutlined} from '@ant-design/icons';
+import {CloseOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import MainApiService from '../../services/MainApiService';
 
@@ -14,20 +14,28 @@ interface IUser {
 }
 
 type BoardPanelBtnInviteProps = {
+  boardId: string;
   isOpenWindowInvite: boolean;
   setOpenWindowInvite(flag: boolean): void;
   onToggleUserWindow(id: string | undefined, flag: boolean): void;
+  onAddUserToPanelList(value: any): void;
+  checkUserInList(id: string): boolean;
 };
 
 const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
+  boardId,
   isOpenWindowInvite,
   setOpenWindowInvite,
-  onToggleUserWindow
+  onToggleUserWindow,
+  onAddUserToPanelList,
+  checkUserInList
 }) => {
   const [value, setValue] = useState('');
   const [usersInitialData, setUsersInitialData] = useState([]);
   const [usersDataForSearch, setUsersDataForSearch] = useState([]);
   const [usersDataForSend, setUsersDataForSend] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const refWindow: any = useRef(null);
   const refBtnClose: any = useRef(null);
@@ -52,14 +60,14 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
   }, [isOpenWindowInvite]);
 
   const sendUsersData = () => {
-    let boardID = {id: 'cc5c593b-9ecf-4154-91dd-8c5d75990977'};
-    /* Promise.all(usersDataForSend.map((elem: IUser) => `api.postAddUserToBoard(elem.id, boardID)))
-      .then((results) => console.log(results))
-      .catch((err) => console.error(err)); */
-    api
-      .postAddUserToBoard('c457a9df-ddf6-4db1-91ef-498e421895f2', boardID)
-      .then((results) => console.log(results))
-      .catch((err) => console.error(err));
+    setLoading(true);
+    Promise.all(usersDataForSend.map((elem: IUser) => api.postAddUsersToBoard(elem.id, {boardId})))
+      .then((data) => onAddUserToPanelList(data))
+      .catch((err) => console.error(err))
+      .finally(() => {
+        setLoading(false);
+        setOpenWindowInvite(false);
+      });
   };
 
   const onAddedUserForSend = (user: any) => {
@@ -67,7 +75,7 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
     setUsersDataForSend(newUsersDataForSend);
     setUsersDataForSearch([]);
     setValue('');
-    refInput.current.focus();
+    setDisabledBtn(newUsersDataForSend.length ? false : true);
   };
 
   const onDeletedUserForSend = (id: string) => {
@@ -75,6 +83,7 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
       return user.id !== id;
     });
     setUsersDataForSend(newUsersDataForSend);
+    setDisabledBtn(newUsersDataForSend.length ? false : true);
   };
 
   const searchUser = (event: any, data: any): void => {
@@ -93,26 +102,42 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
     }
   };
 
-  const renderListUsers = () => {
+  const renderListUsersForSearch = () => {
     const usersListHTML = usersDataForSearch.map((user: any) => {
-      const {id, name} = user;
+      const {id, name, login} = user;
+      const isUserInListPanel = checkUserInList(id);
+      const isUserInListSend = usersDataForSend.some((elem: IUser) => elem.id === id);
+
+      if (isUserInListSend) return null;
+
       return (
         <li
           key={id}
-          className={classes['item']}
+          className={`${classes['item']} ${isUserInListPanel ? classes.disabled : ''}`}
           onClick={(e) => {
-            e.stopPropagation();
-            onAddedUserForSend(user);
+            if (!isUserInListPanel) {
+              e.stopPropagation();
+              onAddedUserForSend(user);
+            }
+            refInput.current.focus();
           }}
         >
-          <span className={classes['item__icon']}>{name.slice(0, 1).toLocaleUpperCase()}</span>
-          <span className={classes['item__name']}>{name}</span>
+          <div className={classes['item__user']}>
+            <span className={classes['icon']}>{name.slice(0, 1).toLocaleUpperCase()}</span>
+            <div className={classes.info}>
+              <span className={classes['info__name']}>{name}</span>
+              <span className={classes['info__login']}>{login}</span>
+            </div>
+          </div>
+          <span className={classes['item__status']}>
+            {isUserInListPanel ? 'Приглашен' : 'Отсутствует'}
+          </span>
         </li>
       );
     });
     return (
       <div className={classes['autocomplete-search-scroll']}>
-        <ul className={classes['users-list']}>{usersListHTML}</ul>
+        <ul className={classes['users-list-search']}>{usersListHTML}</ul>
       </div>
     );
   };
@@ -154,16 +179,21 @@ const BoardPanelBtnInvite: React.FC<BoardPanelBtnInviteProps> = ({
             type="text"
             placeholder="Адрес электронной почты или имя"
             value={value}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
-              searchUser(e, usersInitialData)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+              searchUser(e, usersInitialData);
+            }}
             ref={refInput}
           />
-          {usersDataForSearch.length ? renderListUsers() : null}
+          {usersDataForSearch.length ? renderListUsersForSearch() : null}
           {usersDataForSend.length ? renderListUsersForSend() : null}
         </div>
-        <button type="button" className={classes['window__btn']} onClick={() => sendUsersData()}>
-          Отправить приглашение
+        <button
+          type="button"
+          className={`${classes['window__btn']} ${disabledBtn ? classes.disabled : ''}`}
+          onClick={() => sendUsersData()}
+          disabled={disabledBtn}
+        >
+          {loading ? <LoadingOutlined /> : 'Отправить приглашение'}
         </button>
       </div>
     );
