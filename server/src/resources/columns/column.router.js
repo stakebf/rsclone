@@ -52,7 +52,6 @@ router.route('/:id').delete(
     const { id, boardId } = req.params;
     const deletedColumn = await columnsService.deleteColumn(id, boardId);
     await boardService.deleteColumnFromBoard(boardId, id);
-    console.log(deletedColumn)
     if (deletedColumn.taskList.length !== 0) {
       await taskService.deleteTaskFromColumn(id);
     }
