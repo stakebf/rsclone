@@ -48,7 +48,7 @@ const BoardListItem: React.FC<BoardItemProps> = ({item, onFavorite}) => {
       }
     >
       <div className={classes['content']}>
-        <Link className={classes['content__block-link']} to={`/${id}`}>
+        <Link className={classes['content__block-link']} to={`/currentBoard/${id}`}>
           <h5 className={classes['title']}>{title}</h5>
         </Link>
         {load ? <LoadingOutlined className={`${classes['content__icon']}`} /> : renderStars()}

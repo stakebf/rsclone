@@ -1,0 +1,144 @@
+.usersList {
+
+  .attachedUsers {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 0 10px 10px;
+  }
+  
+  .avatarWrapper {
+    margin-right: 10px;
+    margin-top: 4px;
+    
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background: orange;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+
+      .removeIcon {
+        position: absolute;
+        opacity: 0;
+        color: #fff;
+        background: red;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+      
+      &:hover .removeIcon {
+        opacity: 1;
+      }
+    }
+  }
+
+  .btnAddUser {
+    width: 32px;
+    height: 32px;
+    background-color: #eaecf0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: rgba(9, 30, 66, 0.08);
+    }
+  }
+  
+  .userPickerWrapper {
+    width: 200px;
+    position: absolute;
+    background: #fff;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 5px;
+    transition: all .3s;
+    pointer-events: none;
+    opacity: 0;
+    left: 30%;
+  
+    &.visible {
+      pointer-events: unset;
+      opacity: 1;
+      left: 50%;
+      transform: translate(-50%, 5px);
+    }
+  
+    .btnCloseUserPicker {
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 0;
+      font-size: 20px;
+      transition: all .3s;
+  
+      &:hover {
+        color: red;
+      }
+    }
+  
+    .userSubTitle {
+      text-align: center;
+    }
+  
+    .lineBreak {
+      margin: 5px 0 10px;
+    }
+  
+    .userPicker {
+      height: 30px;
+      color: black;
+      display: flex;
+      justify-content: flex-end;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: all .3s;
+      border-radius: 5px;
+  
+      &:hover {
+        opacity: .7;
+      }
+  
+      &:not(:last-child) {
+        margin-bottom: 10px;
+  
+      }
+      .iconCheck {
+        margin: 5px;
+      }
+    }
+
+    .userAvatarsWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      .avatarWrapper {
+  
+        .avatar {
+          cursor: pointer;
+          transition: all .3s;
+  
+          &:hover {
+            opacity: .6;
+          }
+        }
+      }
+    }
+  }
+}

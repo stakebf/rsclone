@@ -1,5 +1,4 @@
 const Task = require('./task.model.js');
-
 const NotFoundError = require('../../errors/NotFoundError');
 
 const findByUserId = async userId => {
@@ -181,7 +180,7 @@ const deleteUserFromTaskList = async (id, userId) => {
   const updatedTask = await Task.findByIdAndUpdate(id, {
     '$pull':
     {
-      usersList:  {
+      usersList: {
         id: userId
       }
     }
@@ -189,9 +188,8 @@ const deleteUserFromTaskList = async (id, userId) => {
     new: true
   });
 
-  console.log(updatedTask, 'updatedTask', userId , id)
   if (updatedTask === null) {
-    throw new NotFoundError(`Task with id ${taskId} not found`);
+    throw new NotFoundError(`Task with id ${id} not found`);
   }
   return updatedTask;
 }
@@ -228,5 +226,5 @@ module.exports = {
   addUserToList,
   deleteFieldItemFromTask,
   updateTagsInTask,
-  deleteUserFromTaskList
+  deleteUserFromTaskList,
 };

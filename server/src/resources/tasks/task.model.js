@@ -8,7 +8,7 @@ const taskSchema = new mongoose.Schema(
     description: String,
     usersList: Array,
     columnId: String,
-    todos: Object,
+    todos: Array,
     comments: Array,
     date: String,
     tags: Array,

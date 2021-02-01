@@ -67,6 +67,13 @@ const deleteUserFromTaskList = async (id, userId) => {
   await columnService.updateTaskOnColumn(columnId, id, updatedTask);
 }
 
+// const updateTodoItem = async (todoItemId, data, todoId) => {
+//   const updatedTask = await tasksRepo.updateTodoItem(todoItemId, data, todoId);
+//   const { columnId, id } = updatedTask;
+//   console.log(updatedTask, 'UPDATED TASK')
+//   await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+// }
+
 
 module.exports = {
   getAll,
@@ -83,5 +90,6 @@ module.exports = {
   addUserToList,
   deleteFieldItemFromTask,
   updateTagsInTask,
-  deleteUserFromTaskList
+  deleteUserFromTaskList,
+  // updateTodoItem
 };

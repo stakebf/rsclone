@@ -8,6 +8,7 @@ import Page404 from '../../pages/Page404';
 import BoardPanel from '../BoardPanel';
 import TestPage from '../../pages/TestPage';
 import Profile from '../../pages/Profile';
+import Columns from '../Columns';
 // import classes from './App.module.scss';
 
 const App: React.FC = () => {
@@ -35,6 +36,11 @@ const App: React.FC = () => {
         <Route path="/login" render={() => <SignInUp type="login" />} />
         <Route path="/register" render={() => <SignInUp type="register" />} />
 
+        <Route
+          path="/CurrentBoard/:id"
+          exact
+          render={({match}) => <Columns boardId={match.params.id}/>}
+        />
         <Route render={() => <Page404 />} />
       </Switch>
     </>

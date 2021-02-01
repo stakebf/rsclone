@@ -4,11 +4,15 @@ const mongoose = require('mongoose');
 const todoItemSchema = new mongoose.Schema(
     {
         title: String,
-        isComplete: Boolean,
+        isComplete: {
+            type: Boolean,
+            default: false
+        },
         _id: {
             type: String,
             default: uuid
-        }
+        },
+        todosId: String
     },
     { versionKey: false }
 );
