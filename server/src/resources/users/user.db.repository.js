@@ -73,13 +73,13 @@ const deleteUserFromTaskList = async (id, taskId) => {
   const updatedUser = await User.findByIdAndUpdate(id, {
     '$pull':
     {
-      tasks: {
-        _id: taskId
-      }
+      tasks: taskId
     }
   }, {
     new: true
   });
+
+  console.log(updatedUser, 'updatedUser', taskId)
   if (updatedUser === null) {
     throw new NotFoundError(`Task with id ${taskId} not found`);
   }
