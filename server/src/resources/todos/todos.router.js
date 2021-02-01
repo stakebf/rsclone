@@ -64,8 +64,8 @@ router.route('/:id').delete(
 
 router.route('/:id/todo/:itemId').delete(
   catchErrors(async (req, res) => {
-    const { id, itemId } = req.params;
-    await todosService.deleteTodoItem(id, itemId);
+    const { id, itemId, taskId } = req.params;
+    await todosService.deleteTodoItem(id, itemId, taskId);
     res
       .status(NO_CONTENT)
       .json(`Todos with id ${id} has been succesfully deleted`);
