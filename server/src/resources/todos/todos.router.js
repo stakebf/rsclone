@@ -45,9 +45,9 @@ router.route('/:id').put(
 router.route('/:id/todo/:itemId').put(
   // catchErrors(validator.validateSchemaPut(todosSchema.schemaForPut)),
   catchErrors(async (req, res) => {
-    const { itemId, taskId } = req.params;
+    const { itemId, taskId} = req.params;
     const requestData = req.body;
-    const todos = await todosService.updateTodoItem(itemId, taskId, requestData);
+    const todos = await todosService.updateTodoItem(itemId, requestData, taskId);
     res.status(OK).json(Todos.toResponse(todos));
   })
 );
@@ -62,10 +62,10 @@ router.route('/:id').delete(
   })
 );
 
-router.route('/:id/todo').delete(
+router.route('/:id/todo/:itemId').delete(
   catchErrors(async (req, res) => {
-    const { id, taskId } = req.params;
-    await todosService.deleteTodos(id, taskId);
+    const { id, itemId } = req.params;
+    await todosService.deleteTodoItem(id, itemId);
     res
       .status(NO_CONTENT)
       .json(`Todos with id ${id} has been succesfully deleted`);

@@ -43,7 +43,7 @@ const addTagToTask = async (id, tag) => {
 const addUserToList = async (taskId, user) => {
   const { name, login, id } = user;
   const updatedTask = await tasksRepo.addUserToList(taskId, { name, login, id });
-  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+  await columnService.updateTaskOnColumn(updatedTask.columnId, taskId, updatedTask);
   return updatedTask;
 
 }
@@ -53,6 +53,20 @@ const updateCommentInTask = async (commentId, data) => {
   const { columnId, id } = updatedTask;
   await columnService.updateTaskOnColumn(columnId, id, updatedTask);
 }
+
+const updateTagsInTask = async (tagId, data) => {
+  const updatedTask = await tasksRepo.updateTagsInTask(tagId, data);
+  const { columnId, id } = updatedTask;
+  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+}
+
+
+const deleteUserFromTaskList = async (id, userId) => {
+ const updatedTask = await tasksRepo.deleteUserFromTaskList(id, userId);
+  const { columnId } = updatedTask;
+  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+}
+
 
 module.exports = {
   getAll,
@@ -67,5 +81,7 @@ module.exports = {
   updateCommentInTask,
   addTagToTask,
   addUserToList,
-  deleteFieldItemFromTask
+  deleteFieldItemFromTask,
+  updateTagsInTask,
+  deleteUserFromTaskList
 };

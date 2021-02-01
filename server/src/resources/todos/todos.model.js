@@ -8,16 +8,7 @@ const todosSchema = new mongoose.Schema(
             default: 'Check list'
         },
         taskId: String,
-        todo: [
-            {
-                title: String,
-                isComplete: Boolean,
-                _id: {
-                    type: String,
-                    default: uuid
-                }
-            }
-        ],
+        todo: Array,
         _id: {
             type: String,
             default: uuid

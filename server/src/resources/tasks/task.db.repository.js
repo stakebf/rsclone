@@ -89,7 +89,7 @@ const addTodoToTask = async (id, todosData) => {
 };
 
 const updateCommentInTask = async (commentId, data) => {
-  const updatedBoard = await Task.findOneAndUpdate({
+  const updatedTask = await Task.findOneAndUpdate({
     'comments._id': commentId
   }, {
     '$set': {
@@ -98,16 +98,32 @@ const updateCommentInTask = async (commentId, data) => {
   }, {
     new: true
   });
-  if (updatedBoard === null) {
+  if (updatedTask === null) {
     throw new NotFoundError(`Task with id ${taskId} on column not found`);
   }
-  return updatedBoard;
+  return updatedTask;
+}
+
+const updateTagsInTask = async (tagId, data) => {
+  const updatedTask = await Task.findOneAndUpdate({
+    'tags._id': tagId
+  }, {
+    '$set': {
+      'tags.$': data,
+    }
+  }, {
+    new: true
+  });
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${taskId} on column not found`);
+  }
+  return updatedTask;
 }
 
 const addUserToList = async (id, userData) => {
   const updatedTask = await Task.findByIdAndUpdate(id,
     {
-      $push:
+      $addToSet:
         { usersList: userData }
     }, {
     new: true
@@ -161,9 +177,40 @@ const deleteFieldItemFromTask = async (id, fieldId, fieldName) => {
   return updatedTask;
 }
 
-const unassignTask = async userId => {
-  return findByUserId(userId);
-};
+const deleteUserFromTaskList = async (id, userId) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      usersList:  {
+        id: userId
+      }
+    }
+  }, {
+    new: true
+  });
+
+  console.log(updatedTask, 'updatedTask', userId , id)
+  if (updatedTask === null) {
+    throw new NotFoundError(`Task with id ${taskId} not found`);
+  }
+  return updatedTask;
+}
+
+const unassignTask = async (userId) => {
+  const findedTasks = await Task.find({
+    usersList: {
+      $elemMatch: {
+        id: userId
+      }
+    }
+  });
+  if (findedTasks !== null) {
+    findedTasks.forEach(
+      (task) => deleteUserFromTaskList(task.id, userId)
+    );
+  } else return []
+
+}
 
 
 module.exports = {
@@ -179,5 +226,7 @@ module.exports = {
   updateCommentInTask,
   addTagToTask,
   addUserToList,
-  deleteFieldItemFromTask
+  deleteFieldItemFromTask,
+  updateTagsInTask,
+  deleteUserFromTaskList
 };

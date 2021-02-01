@@ -53,6 +53,7 @@ const deleteColumnFromBoard = async boardId => {
   return [];
 };
 
+
 const addTaskToColumn = async (id, taskData, position) => {
   let updateColumn;
   if (!position) {

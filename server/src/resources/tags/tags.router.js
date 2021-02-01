@@ -31,7 +31,7 @@ router.route('/:id').put(
     const { id, taskId } = req.params;
     const requestData = req.body;
     const tag = await tagsService.updateTag(id, taskId, requestData);
-    // await taskService.updateCommentInTask(id, comment);
+    await taskService.updateTagsInTask(id, tag);
     res.status(OK).json(Tag.toResponse(tag));
   })
 );
@@ -40,7 +40,7 @@ router.route('/:id').delete(
   catchErrors(async (req, res) => {
     const { id, taskId } = req.params;
     await tagsService.deleteTag(id, taskId);
-    await taskService.deleteFieldItemFromTask(taskId, id, 'comments');
+    await taskService.deleteFieldItemFromTask(taskId, id, 'tags');
     res
       .status(NO_CONTENT)
       .json(`Comment with id ${id} has been succesfully deleted`);

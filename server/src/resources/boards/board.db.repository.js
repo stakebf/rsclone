@@ -5,6 +5,8 @@ const getAll = async () => {
   return Board.find({});
 };
 
+
+
 const getBoardById = async id => {
   const board = await Board.findById(id);
   if (board === null) {
@@ -29,7 +31,7 @@ const createBoard = async newBoardData => {
 const addUserToList = async (id, userData) => {
   const updatedBoard = await Board.findByIdAndUpdate(id,
     {
-      $push:
+      $addToSet:
         { userList: userData }
     }, {
     new: true
@@ -89,6 +91,7 @@ const updateColumnData = async (id, columnId, data) => {
 }
 
 
+
 const deleteColumnFromBoard = async (id, columnId) => {
   const updatedBoard = await Board.findByIdAndUpdate(id, {
     '$pull':
@@ -107,6 +110,42 @@ const deleteColumnFromBoard = async (id, columnId) => {
 }
 
 
+const deleteUserFromBoardList = async (id, userId) => {
+  const updatedBoard = await Board.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      userList: {
+        id: userId
+      }
+    }
+  }, {
+    new: true
+  });
+  if (updatedBoard === null) {
+    throw new NotFoundError(`Task with id ${taskId} not found`);
+  }
+  return updatedBoard;
+}
+
+
+const findAllBoardOnUser = async (userId) => {
+  const findAllBoardOnUserByUser = await Board.find({
+    userList: {
+      $elemMatch: {
+        id: userId
+      }
+    }
+  });
+  if (findAllBoardOnUserByUser !== null) {
+
+    findAllBoardOnUserByUser.forEach(
+      (board) => deleteUserFromBoardList(board.id, userId)
+    );
+  } else return []
+
+}
+
+
 module.exports = {
   getAll,
   getBoardById,
@@ -117,5 +156,7 @@ module.exports = {
   getAllBoardData,
   addUserToList,
   updateColumnData,
-  deleteColumnFromBoard
+  deleteColumnFromBoard,
+  deleteUserFromBoardList,
+  findAllBoardOnUser
 };
