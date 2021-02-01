@@ -188,6 +188,8 @@ const deleteUserFromTaskList = async (id, userId) => {
   }, {
     new: true
   });
+
+  console.log(updatedTask, 'updatedTask', userId , id)
   if (updatedTask === null) {
     throw new NotFoundError(`Task with id ${taskId} not found`);
   }

@@ -61,7 +61,11 @@ const updateTagsInTask = async (tagId, data) => {
 }
 
 
-const deleteUserFromTaskList = async (id, userId) => await tasksRepo.deleteUserFromTaskList(id, userId);
+const deleteUserFromTaskList = async (id, userId) => {
+ const updatedTask = await tasksRepo.deleteUserFromTaskList(id, userId);
+  const { columnId } = updatedTask;
+  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+}
 
 
 module.exports = {
