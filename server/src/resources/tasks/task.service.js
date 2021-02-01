@@ -15,7 +15,6 @@ const deleteTaskFromColumn = columnId => tasksRepo.deleteTaskFromColumn(columnId
 
 const deleteFieldItemFromTask = async (id, fieldId, fieldName) => {
   const updatedTask = await tasksRepo.deleteFieldItemFromTask(id, fieldId, fieldName);
-  console.log(id, fieldId, fieldName, '-----', updatedTask)
   const { columnId } = updatedTask;
   await columnService.updateTaskOnColumn(columnId, id, updatedTask);
 }
@@ -62,6 +61,12 @@ const updateTagsInTask = async (tagId, data) => {
 }
 
 
+const deleteUserFromTaskList = async (id, userId) => {
+ const updatedTask = await tasksRepo.deleteUserFromTaskList(id, userId);
+  const { columnId } = updatedTask;
+  await columnService.updateTaskOnColumn(columnId, id, updatedTask);
+}
+
 
 module.exports = {
   getAll,
@@ -77,5 +82,6 @@ module.exports = {
   addTagToTask,
   addUserToList,
   deleteFieldItemFromTask,
-  updateTagsInTask
+  updateTagsInTask,
+  deleteUserFromTaskList
 };

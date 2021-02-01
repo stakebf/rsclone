@@ -1,4 +1,5 @@
 const Todos = require('./todos.model');
+const TodoItem = require('./todoItem.model');
 const NotFoundError = require('../../errors/NotFoundError');
 
 const findByTaskId = taskId => {
@@ -45,13 +46,17 @@ const updateTodos = async (id, taskId, dataForUpdate) => {
 
 
 const createTodoItem = async (id, taskId, newTodo) => {
+  const newTodoItem = await TodoItem.create({
+    ...newTodo
+  });
+
+  console.log(newTodoItem, 'CREATED  TODOI')
+
   const findTodos = await Todos.findOneAndUpdate(
     { _id: id, taskId },
     {
       $push: {
-        todo: {
-          ...newTodo
-        }
+        todo: newTodoItem
       }
     },
     {
@@ -67,19 +72,29 @@ const createTodoItem = async (id, taskId, newTodo) => {
 
 
 const updateTodoItem = async (todoItemId, data) => {
-  const updatedTodoItem = await Todos.findOneAndUpdate({
-    'todo._id': todoItemId
-  }, {
-    '$set': {
-      'todo.$': data,
+  const updatedTodoItem = await TodoItem.findByIdAndUpdate(todoItemId,
+    data,
+    {
+      new: true
     }
-  }, {
-    new: true
-  });
-  if (updatedTodoItem === null) {
+  );
+
+  const updatedTodos = await Todos.findOneAndUpdate({
+    'todo._id': todoItemId
+  },
+    {
+      '$set': {
+        'todo.$': updatedTodoItem
+      }
+    }
+    , {
+      new: true
+    });
+
+  if (updatedTodos === null) {
     throw new NotFoundError(`Todo with id ${todoItemId} not found in todos list `);
   }
-  return updatedTodoItem;
+  return updatedTodos;
 }
 
 
@@ -89,6 +104,10 @@ const deleteTodos = async (id, taskId) => {
     throw new NotFoundError(`Todos with taskId ${taskId} not found`);
   } else {
     const isDeleted = (await Todos.deleteOne({ _id: id, taskId })).deletedCount;
+    // const deletedItem = await TodoItem.deleteMany({ _id: itemId }).deletedCount;
+    // if (isDeleted === 0) {
+    //   throw new NotFoundError(`Todo with id ${itemId} not found`);
+    // }
     if (isDeleted === 0) {
       throw new NotFoundError(`Todos with id ${id} not found`);
     }
@@ -106,9 +125,15 @@ const deleteTodosFromTask = async (taskId) => {
 }
 
 const deleteTodoItem = async (todosId, itemId) => {
-  const updatedTodoItem = await Todos.findOneAndUpdate({
-    id: todosId
-  }, {
+  console.log(await TodoItem.find({}))
+  console.log(await Todos.find({}), 'todos')
+
+  const isDeleted = await TodoItem.deleteOne({ _id: itemId }).deletedCount;
+  if (isDeleted === 0) {
+    throw new NotFoundError(`Todo with id ${itemId} not found`);
+  }
+
+  const updatedTodoItem = await Todos.findByIdAndUpdate(todosId, {
     '$pull':
     {
       todo: {
@@ -119,7 +144,7 @@ const deleteTodoItem = async (todosId, itemId) => {
     new: true
   });
   if (updatedTodoItem === null) {
-    throw new NotFoundError(`Todo with id ${todoItemId}not found in todos list `);
+    throw new NotFoundError(`Todo with id ${todosId}not found in todos list `);
   }
   return updatedTodoItem;
 
@@ -134,6 +159,6 @@ module.exports = {
   createTodos,
   createTodoItem,
   deleteTodosFromTask,
-  updateTodoItem, 
+  updateTodoItem,
   deleteTodoItem
 };

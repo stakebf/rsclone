@@ -14,26 +14,28 @@ const updateTodos = async (id, taskId, param) => {
 
 const deleteTodos = (id, taskId) => todosRepo.deleteTodos(id, taskId);
 
+const deleteTodoItem = (id, itemId) => todosRepo.deleteTodoItem(id, itemId);
+
 const deleteTodosFromTask = async taskId => todosRepo.deleteTodosFromTask(taskId);
 
 const unassignTodos = userId => todosRepo.unassignTodos(userId);
 
 const createTodos = async (taskId, param) => {
-  const newTodos = todosRepo.createTodos(taskId, param);
+  const newTodos = await todosRepo.createTodos(taskId, param);
   const allTodos = await todosRepo.getAll(taskId);
   await taskService.addTodoToTask(taskId, allTodos);
   return newTodos;
 }
 
 const createTodoItem = async (id, taskId, param) => {
- const todoItem =  todosRepo.createTodoItem(id, taskId, param);
- const allTodos = await todosRepo.getAll(taskId);
- await taskService.addTodoToTask(taskId, allTodos);
- return todoItem;
+  const todoItem = await todosRepo.createTodoItem(id, taskId, param);
+  const allTodos = await todosRepo.getAll(taskId);
+  await taskService.addTodoToTask(taskId, allTodos);
+  return todoItem;
 }
 
-const updateTodoItem = async (todoItemId, taskId,  data) => {
-  const updatedTodoItem = todosRepo.updateTodoItem(todoItemId, data);
+const updateTodoItem = async (todoItemId, data, taskId) => {
+  const updatedTodoItem = await todosRepo.updateTodoItem(todoItemId, data);
   const allTodos = await todosRepo.getAll(taskId);
   await taskService.addTodoToTask(taskId, allTodos);
   return updatedTodoItem;
@@ -49,5 +51,6 @@ module.exports = {
   createTodos,
   createTodoItem,
   deleteTodosFromTask,
-  updateTodoItem
+  updateTodoItem,
+  deleteTodoItem
 };

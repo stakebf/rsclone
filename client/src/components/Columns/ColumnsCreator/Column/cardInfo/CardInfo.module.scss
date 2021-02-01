@@ -1,0 +1,121 @@
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: showPopup .4s ease-in;
+  transition: all .4s;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background: #ebecf0;
+    border: 0;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    width: 10px;
+    background: #717171;
+    border: 0;
+  }
+  
+  .contentWrapper {
+    max-width: 768px;
+    min-width: 300px;
+    background-color: #f4f5f7;
+    border-radius: 5px;
+    padding: 5px;
+
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    position: relative;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      background: #ebecf0;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      width: 10px;
+      background: #717171;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    .cardTitleWrapper {
+      display: flex;
+      align-items: center;
+
+      .cardIcon {
+        align-self: flex-start;
+        margin: 9px 5px 0 0;
+        font-size: 20px;
+      }
+    }
+
+    .cardTitle {
+      transition: all .3s;
+      cursor: pointer;
+      word-break: break-all;
+
+      &:hover {
+        background-color: rgba(9, 30, 66, 0.08);
+      }
+    }
+
+    .deleteIcon {
+      font-size: 20px;
+      color: red;
+      margin-bottom: 5px;
+      border: 1px solid red;
+      background-color: #f4f5f7;
+      border-radius: 3px;
+      padding: 2px;
+      transition: all .3s ease-in-out;
+      align-self: flex-start;
+
+      &:hover {
+        opacity: .6;
+      }
+    }
+
+    .cardTitleInput {
+      display: flex;
+      width: 100%;
+      margin: 5px 0 10px;
+      padding: 0 5px;
+    }
+
+    .btnClose {
+      position: absolute;
+      background-color: #f4f5f7;
+      right: 5px;
+      width: 30px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
+@keyframes showPopup {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

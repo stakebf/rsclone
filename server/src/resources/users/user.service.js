@@ -25,6 +25,10 @@ const addBoardToUser = (id, param) => usersRepo.addBoardToUser(id, param);
 
 const addTaskToUser = (id, param) => usersRepo.addTaskToUser(id, param);
 
+const deleteUserFromBoardList = (id, boardId) => usersRepo.deleteUserFromBoardList(id, boardId);
+
+const deleteUserFromTaskList = (id, taskId) => usersRepo.deleteUserFromTaskList(id, taskId);
+
 const deleteUser = async id => {
   await tasksService.unassignTask(id);
   return usersRepo.deleteUser(id);
@@ -38,5 +42,7 @@ module.exports = {
   deleteUser,
   getUserByProps,
   addBoardToUser,
-  addTaskToUser
+  addTaskToUser,
+  deleteUserFromBoardList,
+  deleteUserFromTaskList
 };
