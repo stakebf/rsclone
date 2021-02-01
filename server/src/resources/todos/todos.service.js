@@ -12,9 +12,18 @@ const updateTodos = async (id, taskId, param) => {
   return updated;
 }
 
-const deleteTodos = (id, taskId) => todosRepo.deleteTodos(id, taskId);
+const deleteTodos = async (id, taskId) => {
+  await todosRepo.deleteTodos(id, taskId);
+  const allTodos = await todosRepo.getAll(taskId);
+  await taskService.addTodoToTask(taskId, allTodos);
+}
 
-const deleteTodoItem = (id, itemId) => todosRepo.deleteTodoItem(id, itemId);
+const deleteTodoItem = async (id, itemId, taskId) => {
+  const updatedTodos = await todosRepo.deleteTodoItem(id, itemId);
+  const allTodos = await todosRepo.getAll(taskId);
+  await taskService.addTodoToTask(taskId, allTodos);
+  return updatedTodos;
+}
 
 const deleteTodosFromTask = async taskId => todosRepo.deleteTodosFromTask(taskId);
 
