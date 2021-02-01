@@ -4,6 +4,8 @@ const User = require('./user.model');
 const usersService = require('./user.service');
 const boardsService = require('../boards/board.service');
 const taskService = require('../tasks/task.service');
+const boardRepo = require('../boards/board.db.repository');
+
 const usersSchemas = require('./users.schema');
 const { registerUser } = require('../login/login.service')
 const validator = require('../../validator/validator');
@@ -19,6 +21,7 @@ router.route('/').get(
 router.route('/:id').get(
   catchErrors(async (req, res) => {
     const { id } = req.params;
+
     const user = await usersService.getUserById(id);
     res.status(OK).json(User.toResponse(user));
   })
@@ -43,6 +46,33 @@ router.route('/:id/addtotask').post(
     res.status(OK).json(User.toResponse(user));
   })
 );
+
+
+router.route('/:id/addtoboard').delete(
+  catchErrors(async (req, res) => {
+    const { id } = req.params;
+    const { boardId } = req.body;
+    await usersService.deleteUserFromBoardList(id, boardId);
+    await boardsService.deleteUserFromBoardList(boardId, id);
+    res
+      .status(NO_CONTENT)
+      .json(`User with id ${id} has been succesfully deleted from board`);
+  })
+);
+
+router.route('/:id/addtotask').delete(
+  catchErrors(async (req, res) => {
+    const { id } = req.params;
+    const { taskId } = req.body;
+    await usersService.deleteUserFromTaskList(id, taskId);
+    await taskService.deleteUserFromTaskList(taskId, id);
+    res
+      .status(NO_CONTENT)
+      .json(`User with id ${id} has been succesfully deleted from task`);
+  })
+);
+
+
 
 router.route('/').post(
   catchErrors(validator.validateSchemaPost(usersSchemas.schemaForPost)),
@@ -69,6 +99,8 @@ router.route('/:id').delete(
   catchErrors(async (req, res) => {
     const { id } = req.params;
     await usersService.deleteUser(id);
+    await boardsService.findAllBoardOnUser(id);
+    await taskService.unassignTask(id);
     res
       .status(NO_CONTENT)
       .json(`User with id ${id} has been succesfully deleted`);

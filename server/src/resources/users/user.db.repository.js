@@ -2,6 +2,7 @@ const User = require('./user.model.js');
 const NotFoundError = require('../../errors/NotFoundError');
 
 const getAll = async () => {
+
   return User.find({});
 };
 
@@ -36,9 +37,9 @@ const addBoardToUser = async (id, boardId) => {
   const findedUser = await User.findOneAndUpdate(
     { _id: id },
     {
-          $push: {
-            boards: boardId
-          }
+      $addToSet: {
+        boards: boardId
+      }
     },
     {
       new: true
@@ -54,9 +55,9 @@ const addTaskToUser = async (id, taskId) => {
   const findedUser = await User.findOneAndUpdate(
     { _id: id },
     {
-          $push: {
-            tasks: taskId
-          }
+      $addToSet: {
+        tasks: taskId
+      }
     },
     {
       new: true
@@ -68,6 +69,37 @@ const addTaskToUser = async (id, taskId) => {
   return findedUser;
 };
 
+const deleteUserFromTaskList = async (id, taskId) => {
+  const updatedUser = await User.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      tasks: {
+        _id: taskId
+      }
+    }
+  }, {
+    new: true
+  });
+  if (updatedUser === null) {
+    throw new NotFoundError(`Task with id ${taskId} not found`);
+  }
+  return updatedUser;
+}
+
+const deleteUserFromBoardList = async (id, boardId) => {
+  const updatedUser = await User.findByIdAndUpdate(id, {
+    '$pull':
+    {
+      boards: boardId
+    }
+  }, {
+    new: true
+  });
+  if (updatedUser === null) {
+    throw new NotFoundError(`Task with id ${taskId} not found`);
+  }
+  return updatedUser;
+}
 
 
 const deleteUser = async id => {
@@ -86,5 +118,7 @@ module.exports = {
   deleteUser,
   getUserByProps,
   addBoardToUser,
-  addTaskToUser
+  addTaskToUser,
+  deleteUserFromTaskList,
+  deleteUserFromBoardList
 };
