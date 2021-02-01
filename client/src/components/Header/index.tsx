@@ -6,6 +6,9 @@ import { ProjectOutlined, HomeOutlined } from '@ant-design/icons';
 import ProfileMenu from './ProfileMenu';
 import BoardsList from './BoardsList';
 import Complete from './Complete';
+import { connect } from 'react-redux';
+import { setCurrentUser } from '../../redux/actions';
+import { Store } from '../../redux/store/store';
 
 type HeaderProps = {
   type?: string;
@@ -89,4 +92,19 @@ const Header: React.FC<HeaderProps> = ({type}) => {
    );
 };
 
-export default Header;
+const mapStateToProps = (state: Store) => {
+  return {
+    board: state.board,
+    error: state.error
+  }
+}
+
+const mapDispatchStateToProps = (dispatch: any) => {
+  return {
+    fetchBoard: (boardId: string) => dispatch(fetchBoard(boardId)),
+    addColumn: (boardId:string, title:string) => dispatch(addColumn(boardId, title)),
+    setCurrentUser: () => dispatch(setCurrentUser())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchStateToProps)(Header);
