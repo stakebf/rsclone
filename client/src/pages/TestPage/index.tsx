@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Board.module.scss';
+import classes from './TestPage.module.scss';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 

@@ -6,7 +6,7 @@ import SignInUp from '../../pages/SignInUp';
 import Home from '../../pages/Home';
 import Page404 from '../../pages/Page404';
 import BoardPanel from '../BoardPanel';
-import Board from '../../pages/Board';
+import TestPage from '../../pages/TestPage';
 import Profile from '../../pages/Profile';
 // import classes from './App.module.scss';
 
@@ -30,7 +30,7 @@ const App: React.FC = () => {
             return <Profile activeTab={tab} />
           }
         } />
-        <Route path="/board" render={() => <Board />} />
+        <Route path="/test" render={() => <TestPage />} />
         <Route path="/boards" render={() => <Home type="boards" />} />
         <Route path="/login" render={() => <SignInUp type="login" />} />
         <Route path="/register" render={() => <SignInUp type="register" />} />
