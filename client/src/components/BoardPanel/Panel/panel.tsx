@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useRef, useMemo, useCallback} from 'react';
-import BoardPanelUserIcon from '../BoardPanelUserIcon';
-import BoardPanelBtnInvite from '../BoardPanelBtnInvite';
+import PanelUserIcon from '../PanelUserIcon';
+import PanelWindowInvite from '../PanelWindowInvite';
 import {StarOutlined, StarFilled} from '@ant-design/icons';
-import MainApiService from '../../services/MainApiService';
+import MainApiService from '../../../services/MainApiService';
 
-import classes from './boardPanel.module.scss';
+import classes from './panel.module.scss';
 interface IUser {
   id: string;
   name: string;
@@ -12,7 +12,7 @@ interface IUser {
   isOpenWindow?: boolean;
 }
 
-const BoardPanel: React.FC = () => {
+const Panel: React.FC = () => {
   const [dataBoard, setDataBoard]: any = useState({});
   const [title, setTitle] = useState('');
   const [isOpenWindowInvite, setOpenWindowInvite] = useState(false);
@@ -23,7 +23,7 @@ const BoardPanel: React.FC = () => {
 
   const api = useMemo(() => new MainApiService(), []);
 
-  let boardId = '50c0e289-42db-4b10-b4ae-cbeef496dbe4';
+  let boardId = 'aa01ef23-65ef-4623-89eb-faef34500ef7';
 
   const getCurrentBoard = useCallback(() => {
     api.getBoard(boardId).then((data) => {
@@ -94,7 +94,7 @@ const BoardPanel: React.FC = () => {
     if (dataBoard.userList) {
       return dataBoard.userList.map((item: IUser) => {
         return (
-          <BoardPanelUserIcon
+          <PanelUserIcon
             key={item.id}
             item={item}
             adminId={dataBoard.admin}
@@ -137,18 +137,33 @@ const BoardPanel: React.FC = () => {
         <span className={classes['panel__divider']}></span>
         <div className={classes['panel__block-users']}>
           <ul className={classes['users-list']}>{renderUsersList()}</ul>
-          <BoardPanelBtnInvite
-            boardId={boardId}
-            isOpenWindowInvite={isOpenWindowInvite}
-            setOpenWindowInvite={setOpenWindowInvite}
-            onToggleUserWindow={onToggleUserWindow}
-            onAddUserToPanelList={onAddUserToPanelList}
-            checkUserInList={checkUserInList}
-          />
+          <div className={classes['wrapper-btn']}>
+            <button
+              type="button"
+              className={classes['btn-invite']}
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpenWindowInvite(!isOpenWindowInvite);
+                onToggleUserWindow(undefined, false);
+              }}
+            >
+              Пригласить
+            </button>
+            {isOpenWindowInvite ? (
+              <PanelWindowInvite
+                boardId={boardId}
+                isOpenWindowInvite={isOpenWindowInvite}
+                setOpenWindowInvite={setOpenWindowInvite}
+                onToggleUserWindow={onToggleUserWindow}
+                onAddUserToPanelList={onAddUserToPanelList}
+                checkUserInList={checkUserInList}
+              />
+            ) : null}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default BoardPanel;
+export default Panel;

@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {StarFilled, CloseOutlined} from '@ant-design/icons';
 
-import classes from './boardPanelUserIcon.module.scss';
+import classes from './panelUserIcon.module.scss';
 
 interface IUser {
   id: string;
@@ -10,13 +10,13 @@ interface IUser {
   isOpenWindow?: boolean;
 }
 
-type BoardPanelUserIconProps = {
+type PanelUserIconProps = {
   item: IUser;
   adminId: string;
   onToggleUserWindow(id: string | undefined, flag: boolean): void;
 };
 
-const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
+const PanelUserIcon: React.FC<PanelUserIconProps> = ({
   item,
   adminId,
   onToggleUserWindow
@@ -82,4 +82,4 @@ const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
   );
 };
 
-export default BoardPanelUserIcon;
+export default PanelUserIcon;

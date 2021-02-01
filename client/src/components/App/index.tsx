@@ -5,7 +5,7 @@ import Main from '../../pages/Main';
 import SignInUp from '../../pages/SignInUp';
 import Home from '../../pages/Home';
 import Page404 from '../../pages/Page404';
-import BoardPanel from '../BoardPanel';
+import BoardPanel from '../BoardPanel/Panel';
 // import classes from './App.module.scss';
 
 const App: React.FC = () => {
