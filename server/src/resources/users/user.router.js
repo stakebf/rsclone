@@ -4,13 +4,10 @@ const User = require('./user.model');
 const usersService = require('./user.service');
 const boardsService = require('../boards/board.service');
 const taskService = require('../tasks/task.service');
-const boardRepo = require('../boards/board.db.repository');
-
 const usersSchemas = require('./users.schema');
 const { registerUser } = require('../login/login.service')
 const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
-
 router.route('/').get(
   catchErrors(async (req, res) => {
     const users = await usersService.getAll();
@@ -31,9 +28,10 @@ router.route('/:id/addtoboard').post(
   catchErrors(async (req, res) => {
     const { id } = req.params;
     const { boardId } = req.body;
-    const user = await usersService.addBoardToUser(id, boardId);
-    await boardsService.addUserToList(boardId, user);
-    res.status(OK).json(User.toResponse(user));
+    const user = await usersService.getUserById(id);
+    const { title } = await boardsService.addUserToList(boardId, user);
+    const updatedUser = await usersService.addBoardToUser(id, { id: boardId, name: title });
+    res.status(OK).json(User.toResponse(updatedUser));
   })
 );
 
@@ -79,7 +77,6 @@ router.route('/').post(
   catchErrors(async (req, res) => {
     const requestData = req.body;
     const { token, id } = await registerUser(requestData);
-    console.log(token, id)
     res.status(OK).json({ token, id });
   })
 );
@@ -91,6 +88,8 @@ router.route('/:id').put(
     const { id } = req.params;
     const requestData = req.body;
     const user = await usersService.updateUser(id, requestData);
+    await boardsService.updateUserData(user);
+    await taskService.updateUserData(user);
     res.status(OK).json(User.toResponse(user));
   })
 );

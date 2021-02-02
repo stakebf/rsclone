@@ -133,6 +133,22 @@ const addUserToList = async (id, userData) => {
   return updatedTask;
 }
 
+const updateUserData = async (userData) => {
+  const { id } = userData;
+  const updatedTask = await Task.findOneAndUpdate({
+    'usersList.id': id
+  },
+    {
+      '$set': {
+        'usersList.$': userData
+      }
+    }
+    , {
+      new: true
+    });
+  return updatedTask;
+}
+
 const deleteTask = async (id, columnId) => {
   const columnTask = await findByColumnId(columnId);
   if (columnTask.length === 0) {
@@ -227,4 +243,5 @@ module.exports = {
   deleteFieldItemFromTask,
   updateTagsInTask,
   deleteUserFromTaskList,
+  updateUserData
 };
