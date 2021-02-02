@@ -1,7 +1,6 @@
 import React, {useState, useRef, useEffect, useMemo, useCallback} from 'react';
 import PanelWindowInviteListSearch from '../PanelWindowInviteListSearch';
 import PanelWindowInviteListSend from '../PanelWindowInviteListSend';
-import PanelWindowInviteLink from '../PanelWindowInviteLink';
 import MainApiService from '../../../services/MainApiService';
 import {CloseOutlined, LoadingOutlined} from '@ant-design/icons';
 
@@ -177,7 +176,6 @@ const PanelWindowInvite: React.FC<PanelWindowInviteProps> = ({
         />
         {renderListUsersForSearch}
         {renderListUsersForSend}
-        <PanelWindowInviteLink boardId={boardId} />
       </div>
       <button
         type="button"
@@ -185,7 +183,7 @@ const PanelWindowInvite: React.FC<PanelWindowInviteProps> = ({
         onClick={() => sendUsersData()}
         disabled={disabledBtn}
       >
-        {loading ? <LoadingOutlined /> : 'Отправить приглашение'}
+        {loading ? <LoadingOutlined /> : 'Пригласить'}
       </button>
     </div>
   );

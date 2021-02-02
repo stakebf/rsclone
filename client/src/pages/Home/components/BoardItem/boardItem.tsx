@@ -14,9 +14,10 @@ interface IBoardItem {
 type BoardItemProps = {
   item: IBoardItem;
   onFavorite(item: IBoardItem, setLoad: any): void;
+  transformPathForBg(value: string): string;
 };
 
-const BoardListItem: React.FC<BoardItemProps> = ({item, onFavorite}) => {
+const BoardListItem: React.FC<BoardItemProps> = ({item, onFavorite, transformPathForBg}) => {
   const {background, title, id, isFavorite} = item;
   const [load, setLoad] = useState(false);
 
@@ -43,7 +44,7 @@ const BoardListItem: React.FC<BoardItemProps> = ({item, onFavorite}) => {
       className={classes.item}
       style={
         background.endsWith('jpg' || 'jpeg' || 'png')
-          ? {backgroundImage: `url(${background})`}
+          ? {backgroundImage: `url(${transformPathForBg(background)})`}
           : {backgroundColor: background}
       }
     >

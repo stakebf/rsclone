@@ -9,6 +9,8 @@
   background-color: rgb(253, 161, 55);
   transition: 0.2s ease-in;
   font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
+    Helvetica Neue, sans-serif;
   color: rgb(8, 39, 80);
   cursor: pointer;
   &:hover {
@@ -33,8 +35,6 @@
     flex-direction: column;
     width: 260px;
     padding: 10px;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
-      Helvetica Neue, sans-serif;
     border-radius: 3px;
     box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
     background-color: #fff;
@@ -70,20 +70,23 @@
         margin-left: 20px;
         .name {
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu,
-            Droid Sans, Helvetica Neue, sans-serif;
+
           font-size: 16px;
           font-weight: 600;
           color: #172b4d;
+          max-width: 160px;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
         .login {
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu,
-            Droid Sans, Helvetica Neue, sans-serif;
           font-size: 14px;
           line-height: 20px;
           font-weight: 400;
           color: #5e6c84;
+          max-width: 160px;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
       }
     }
@@ -97,6 +100,14 @@
       transition: 0.1s ease-in;
       &:hover {
         color: #000;
+      }
+    }
+    .btn-remove {
+      margin-top: 10px;
+      color: rgb(235, 128, 128);
+      &:hover {
+        color: rgb(241, 241, 241);
+        background-color: rgb(235, 128, 128);
       }
     }
   }

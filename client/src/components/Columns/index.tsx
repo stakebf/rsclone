@@ -1,11 +1,13 @@
 import React from 'react';
 import ColumnCreator from './ColumnsCreator';
+import BoardPanel from '../BoardPanel/Panel';
 import './Columns.scss';
 
 const Columns: React.FC<any> = ({boardId}) => {
   return (
     <div>
-       <ColumnCreator boardId={boardId}/>
+      <BoardPanel boardId={boardId} />
+      <ColumnCreator boardId={boardId} />
     </div>
   );
 };

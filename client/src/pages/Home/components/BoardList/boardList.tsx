@@ -32,7 +32,7 @@ const BoardList: React.FC = () => {
 
   const api = useMemo(() => new MainApiService(), []);
 
-  const getDataBoardAll = useCallback(
+  const getBoardsForUser = useCallback(
     (setLoadBoards?: any) => {
       if (setLoadBoards) setLoadBoards(true);
       api
@@ -52,9 +52,9 @@ const BoardList: React.FC = () => {
   );
 
   useEffect(() => {
-    getDataBoardAll(setLoadBoards);
+    getBoardsForUser(setLoadBoards);
     return () => setDataBoards([]);
-  }, [getDataBoardAll, setDataBoards]);
+  }, [getBoardsForUser, setDataBoards]);
 
   useEffect(() => {
     (function resetTypesBoards() {
@@ -77,7 +77,7 @@ const BoardList: React.FC = () => {
         admin: localStorage.getItem('rsclone_userId'),
         isFavorite: false
       })
-      .then(() => getDataBoardAll())
+      .then(() => getBoardsForUser())
       .catch((error) => console.log(error))
       .finally(() => setLoadNewBoard(false));
   };
@@ -87,20 +87,47 @@ const BoardList: React.FC = () => {
     const {id, isFavorite} = item;
     api
       .putBoard({isFavorite: !isFavorite}, id)
-      .then(() => getDataBoardAll())
+      .then(() => getBoardsForUser())
       .catch((error) => console.log(error))
       .finally(() => setLoadStar(false));
   };
 
+  const transformPathForBg = (path: string): string => {
+    if (path.endsWith('jpg' || 'png')) {
+      const typeFile = path.slice(path.length - 3, path.length);
+      const nameFile = path.slice(0, path.length - 3);
+      return `${nameFile}min.${typeFile}`;
+    } else if (path.endsWith('jpeg')) {
+      const typeFile = path.slice(path.length - 4, path.length);
+      const nameFile = path.slice(0, path.length - 4);
+      return `${nameFile}min.${typeFile}`;
+    }
+    return path;
+  };
+
   const renderBoardsAll = dataBoards.map((item: IBoardItem) => {
-    return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
+    return (
+      <BoardItem
+        key={item.id}
+        item={item}
+        onFavorite={onFavorite}
+        transformPathForBg={transformPathForBg}
+      />
+    );
   });
 
   const renderBoardsFavorite = () => {
     const dataFavorite = dataBoards.filter((item: IBoardItem) => item.isFavorite === true);
 
     return dataFavorite.map((item: IBoardItem) => {
-      return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
+      return (
+        <BoardItem
+          key={item.id}
+          item={item}
+          onFavorite={onFavorite}
+          transformPathForBg={transformPathForBg}
+        />
+      );
     });
   };
 
@@ -150,6 +177,7 @@ const BoardList: React.FC = () => {
           setShowWindow={setShowWindow}
           typesBoards={typesBoards}
           setTypesBoards={setTypesBoards}
+          transformPathForBg={transformPathForBg}
         />
       )}
     </>

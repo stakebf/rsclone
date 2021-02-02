@@ -12,7 +12,11 @@ interface IUser {
   isOpenWindow?: boolean;
 }
 
-const Panel: React.FC = () => {
+type PanelProps = {
+  boardId: string;
+};
+
+const Panel: React.FC<PanelProps> = ({boardId}) => {
   const [dataBoard, setDataBoard]: any = useState({});
   const [title, setTitle] = useState('');
   const [isOpenWindowInvite, setOpenWindowInvite] = useState(false);
@@ -23,11 +27,8 @@ const Panel: React.FC = () => {
 
   const api = useMemo(() => new MainApiService(), []);
 
-  let boardId = 'aa01ef23-65ef-4623-89eb-faef34500ef7';
-
   const getCurrentBoard = useCallback(() => {
     api.getBoard(boardId).then((data) => {
-      console.log(data);
       const newUsersList = data.userList.map((elem: any) => {
         return {...elem, isOpenWindow: false};
       });
@@ -86,6 +87,12 @@ const Panel: React.FC = () => {
     setDataBoard(newDataBoard);
   };
 
+  const onRemoveUserToPanelList = (id: string): void => {
+    const newUsersList = dataBoard.userList.filter((elem: IUser) => elem.id !== id);
+    const newDataBoard = {...dataBoard, userList: newUsersList};
+    setDataBoard(newDataBoard);
+  };
+
   const checkUserInList = (id: string): boolean => {
     return dataBoard.userList.some((elem: IUser) => elem.id === id);
   };
@@ -97,8 +104,10 @@ const Panel: React.FC = () => {
           <PanelUserIcon
             key={item.id}
             item={item}
+            boardId={boardId}
             adminId={dataBoard.admin}
             onToggleUserWindow={onToggleUserWindow}
+            onRemoveUserToPanelList={onRemoveUserToPanelList}
           />
         );
       });
