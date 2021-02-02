@@ -31,9 +31,10 @@ router.route('/:id/addtoboard').post(
   catchErrors(async (req, res) => {
     const { id } = req.params;
     const { boardId } = req.body;
-    const user = await usersService.addBoardToUser(id, boardId);
-    await boardsService.addUserToList(boardId, user);
-    res.status(OK).json(User.toResponse(user));
+    const user = await usersService.getUserById(id);
+    const { title } = await boardsService.addUserToList(boardId, user);
+    const updatedUser = await usersService.addBoardToUser(id, { id: boardId, name: title });
+    res.status(OK).json(User.toResponse(updatedUser));
   })
 );
 

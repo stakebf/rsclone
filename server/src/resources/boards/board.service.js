@@ -18,8 +18,6 @@ const deleteBoard = async id => {
 };
 
 const getAllBoardData = async boardId => {
-  // const columns = await columnsService.getAll(boardId);
-  // await boardsRepo.addColumnToBoard(boardId, columns);
   return boardsRepo.getAllBoardData(boardId);
 }
 

@@ -33,12 +33,12 @@ const updateUser = async (id, dataForUpdate) => {
   return updatedUser;
 };
 
-const addBoardToUser = async (id, boardId) => {
+const addBoardToUser = async (id, boardData) => {
   const findedUser = await User.findOneAndUpdate(
     { _id: id },
     {
       $addToSet: {
-        boards: boardId
+        boards: boardData
       }
     },
     {
@@ -90,7 +90,9 @@ const deleteUserFromBoardList = async (id, boardId) => {
   const updatedUser = await User.findByIdAndUpdate(id, {
     '$pull':
     {
-      boards: boardId
+      boards: {
+        id: boardId
+      }
     }
   }, {
     new: true
