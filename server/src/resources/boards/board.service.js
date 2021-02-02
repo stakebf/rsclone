@@ -1,3 +1,4 @@
+const { use } = require('../tags/tags.router');
 const boardsRepo = require('./board.db.repository');
 
 const getAll = async () => await boardsRepo.getAll();
@@ -32,7 +33,9 @@ const deleteColumnFromBoard = async (id, columnId) => await boardsRepo.deleteCol
 
 const deleteUserFromBoardList = async (id, userId) => await boardsRepo.deleteUserFromBoardList(id, userId);
 
-const findAllBoardOnUser = async (userId) => await boardsRepo.findAllBoardOnUser(userId)
+const findAllBoardOnUser = async (userId) => await boardsRepo.findAllBoardOnUser(userId);
+
+const updateUserData = async userData => await  boardsRepo.updateUserData(userData);
 
 module.exports = {
   getAll,
@@ -46,5 +49,6 @@ module.exports = {
   updateColumnData,
   deleteColumnFromBoard,
   deleteUserFromBoardList,
-  findAllBoardOnUser
+  findAllBoardOnUser,
+  updateUserData
 };

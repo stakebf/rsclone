@@ -42,6 +42,23 @@ const addUserToList = async (id, userData) => {
   return updatedBoard;
 }
 
+
+const updateUserData = async (userData) => {
+  const { id } = userData;
+  const updatedBoard = await Todos.findOneAndUpdate({
+    'userList._id': id
+  },
+    {
+      '$set': {
+        'userList.$': userData
+      }
+    }
+    , {
+      new: true
+    });
+  return updatedBoard;
+}
+
 const updateBoard = async (id, dataForUpdate) => {
   const updatedBoard = await Board.findByIdAndUpdate(id, dataForUpdate, {
     new: true
@@ -158,5 +175,6 @@ module.exports = {
   updateColumnData,
   deleteColumnFromBoard,
   deleteUserFromBoardList,
-  findAllBoardOnUser
+  findAllBoardOnUser,
+  updateUserData
 };

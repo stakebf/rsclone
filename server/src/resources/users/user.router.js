@@ -92,6 +92,7 @@ router.route('/:id').put(
     const { id } = req.params;
     const requestData = req.body;
     const user = await usersService.updateUser(id, requestData);
+    await boardsService.updateUserData(user);
     res.status(OK).json(User.toResponse(user));
   })
 );
