@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Dropdown, Menu } from 'antd';
 import { PlusCircleOutlined, CloseCircleOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { Droppable } from 'react-beautiful-dnd';
 
 import { Store } from '../../../../redux/store/store';
 import { addTaskList, renameColumn, removeColumn } from '../../../../redux/actions';
@@ -137,62 +138,80 @@ const Column:React.FC<any> = ({
       />}
 
       <div className={classes.content}>
-        {!!taskList.length && taskList.map((task:any) => {
-          return (
-            <Card 
-              {...task}
-              columnId={_id}
-              key={`${task._id}`}
-            />
-          )
-        })}
-        <Button 
-          type="default"
-          style={{
-            backgroundColor: 'green', 
-            color: '#fff',
-            marginRight: '5px',
-            borderRadius: '3px'
+        <Droppable droppableId={_id} key={_id}>
+          {(provided, snapshot) => {
+            return (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                style={{
+                  background: snapshot.isDraggingOver ? 'lightblue' : '',
+                  borderRadius: 5,
+                  padding: 4,
+                }}
+              >
+                {!!taskList.length && taskList.map((task:any, index:number) => {
+                  return (
+                    <Card 
+                      {...task}
+                      columnId={_id}
+                      key={`${task._id}`}
+                      index={index}
+                    />
+                  )
+                })}
+                {provided.placeholder}
+                <Button 
+                  type="default"
+                  style={{
+                    backgroundColor: 'green', 
+                    color: '#fff',
+                    marginRight: '5px',
+                    borderRadius: '3px'
+                  }}
+                  className={btnAddClassNames.join(' ')}
+                  onClick={() => {
+                    setIsCreation(true);
+                  }}
+                >
+                  <PlusCircleOutlined />
+                  Добавить карточку
+                </Button>
+                {isCreation && (
+                <div className={classes.creationWrapper}>
+                  <input 
+                    placeholder="Введите заголовок списка" 
+                    onChange={inputNnameChangeHandler}
+                    onKeyPress={createCardKeypressHandler}
+                    onKeyDown={closeCreateCardKeydownHandler}
+                    className={classes.creationInput}
+                    autoFocus
+                  />
+                  <Button 
+                    type="default"
+                    style={{
+                      backgroundColor: 'green', 
+                      color: '#fff',
+                      marginRight: '5px'
+                    }}
+                    onClick={addCardClickHandler}
+                  >
+                    <PlusCircleOutlined />
+                    Добавить карточку
+                  </Button>
+                  <Button 
+                    type="default"
+                    style={{color: 'red'}}
+                    onClick={closeCreationClickHandler}
+                  >
+                    <CloseCircleOutlined />
+                  </Button>
+                </div>
+              )}
+            </div>
+            );
           }}
-          className={btnAddClassNames.join(' ')}
-          onClick={() => {
-            setIsCreation(true);
-          }}
-        >
-          <PlusCircleOutlined />
-          Добавить карточку
-        </Button>
-        {isCreation && (
-          <div className={classes.creationWrapper}>
-            <input 
-              placeholder="Введите заголовок списка" 
-              onChange={inputNnameChangeHandler}
-              onKeyPress={createCardKeypressHandler}
-              onKeyDown={closeCreateCardKeydownHandler}
-              className={classes.creationInput}
-              autoFocus
-            />
-            <Button 
-              type="default"
-              style={{
-                backgroundColor: 'green', 
-                color: '#fff',
-                marginRight: '5px'
-              }}
-              onClick={addCardClickHandler}
-            >
-              <PlusCircleOutlined />
-              Добавить карточку
-            </Button>
-            <Button 
-              type="default"
-              style={{color: 'red'}}
-              onClick={closeCreationClickHandler}
-            >
-              <CloseCircleOutlined />
-            </Button>
-        </div>
-      )}
+        </Droppable>
       </div>
     </div>
   );

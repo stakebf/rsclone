@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { EditOutlined, CheckSquareOutlined, FieldTimeOutlined, CommentOutlined } from '@ant-design/icons';
+import { Draggable } from 'react-beautiful-dnd';
 
 import { CardProps } from '../../../../../helpers/creationHelper';
 import getColorByDate from '../../../../../helpers/dateHelper';
@@ -16,7 +17,8 @@ const Card:React.FC<CardProps> = ({
     date,
     todos,
     comments = [],
-    tags = [] }) => {
+    tags = [],
+    index }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const cardInfo = {
     columnId,
@@ -49,56 +51,81 @@ const Card:React.FC<CardProps> = ({
         className={classes.card}
         onClick={showCardInfo}
       >
-        <div className={classes.taskColors}>
-          {!!tags.length && tags.map((item) => <div
-            className={classes[item.color]}
-            style={{
-              width: `${100 / tags.length}%`
-            }}
-            key={`${item.color}_${item.id}`}
-          ></div>)}
-        </div>
-        <div className={classes.taskInfoWrapper}>
-          <div className={classes.titleWrapper}>
-            <span>{title}</span>
-            <div className={classes.componentsWrapper}>
-              {todos && todos[0] && !!Object.keys(todos[0]).length && !!todos[0].todo.length && <span>
-                <>
-                  <CheckSquareOutlined 
-                    className={classes.checkIcon}
-                  />
-                  {`${todos[0].todo.length && todos[0].todo.filter((item:any) => item.isComplete).length}/${todos[0].todo.length}`}
-                </>
-              </span>}
-              {date && <span className={`${classes.dateComponent} ${classes[getColorByDate(date)]}`}>
-                <FieldTimeOutlined 
-                  className={classes.timeIcon}
-                />
-                {date}
-              </span>}
-              {!!comments.length && <span className={classes.commentsComponent}>
-                <CommentOutlined 
-                  className={classes.commentIcon}
-                />
-                {comments.length}
-              </span>}
-              {!!usersList.length && <div className={classes.additionalUsersComponent}>
-                {usersList.map((item) => <div
-                  key={item.id}
-                  title={item.name}
-                  className={classes.avatarWrapper}
-                >
-                  <div className={classes.avatar}>
-                    {item.name[0].toUpperCase()}
+
+        <Draggable
+          key={_id}
+          draggableId={_id}
+          index={index}
+        >
+          {(provided, snapshot) => {
+            return (
+              <div
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                style={{
+                  // userSelect: "none",
+                  // margin: 16,
+                  // margin: "0 0 8px 0",
+                  // minHeight: "50px",
+                  backgroundColor: '#fff',
+                  // color: "white",
+                  ...provided.draggableProps.style
+                }}
+              >
+                <div className={classes.taskColors}>
+                  {!!tags.length && tags.map((item) => <div
+                    className={classes[item.color]}
+                    style={{
+                      width: `${100 / tags.length}%`
+                    }}
+                    key={`${item.color}_${item.id}`}
+                  ></div>)}
+                </div>
+                <div className={classes.taskInfoWrapper}>
+                  <div className={classes.titleWrapper}>
+                    <span>{title}</span>
+                    <div className={classes.componentsWrapper}>
+                      {todos && todos[0] && !!Object.keys(todos[0]).length && !!todos[0].todo.length && <span>
+                        <>
+                          <CheckSquareOutlined 
+                            className={classes.checkIcon}
+                          />
+                          {`${todos[0].todo.length && todos[0].todo.filter((item:any) => item.isComplete).length}/${todos[0].todo.length}`}
+                        </>
+                      </span>}
+                      {date && <span className={`${classes.dateComponent} ${classes[getColorByDate(date)]}`}>
+                        <FieldTimeOutlined 
+                          className={classes.timeIcon}
+                        />
+                        {date}
+                      </span>}
+                      {!!comments.length && <span className={classes.commentsComponent}>
+                        <CommentOutlined 
+                          className={classes.commentIcon}
+                        />
+                        {comments.length}
+                      </span>}
+                      {!!usersList.length && <div className={classes.additionalUsersComponent}>
+                        {usersList.map((item) => <div
+                          key={item.id}
+                          title={item.name}
+                          className={classes.avatarWrapper}
+                        >
+                          <div className={classes.avatar}>
+                            {item.name[0].toUpperCase()}
+                          </div>
+                        </div>)}
+                      </div>}
+                    </div>
                   </div>
-                </div>)}
-              </div>}
-            </div>
-          </div>
-          <EditOutlined 
-            className={classes.editIcon}
-          />
-        </div>
+                  <EditOutlined 
+                    className={classes.editIcon}
+                  />
+                </div>
+              </div>
+            )}}
+        </Draggable>
       </div>
     </>
   );

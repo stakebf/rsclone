@@ -63,7 +63,10 @@ const PanelWindowInvite: React.FC<PanelWindowInviteProps> = ({
   const sendUsersData = () => {
     setLoading(true);
     Promise.all(usersDataForSend.map((elem: IUser) => api.postAddUsersToBoard(elem.id, {boardId})))
-      .then((data) => onAddUserToPanelList(data))
+      .then((data) => {
+        onAddUserToPanelList(data);
+        console.log(data);
+      })
       .catch((err) => console.error(err))
       .finally(() => {
         setLoading(false);
