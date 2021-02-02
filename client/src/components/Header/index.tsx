@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import classes from './Header.module.scss';
 import { Avatar, Button, Tooltip } from 'antd';
@@ -10,27 +10,14 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/actions';
 import { Store } from '../../redux/store/store';
 
-type HeaderProps = {
-  type?: string;
-};
 
-const Header: React.FC<HeaderProps> = ({type}) => {
+const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
+  useEffect(() => {
+    setCurrentUser();
+  }, [setCurrentUser]);
+  console.log('header', currentUser)
   const btnBoards = 'Доски';
-  const user = {
-    id: '1',
-    name: 'Ruslan Hryshchuk',
-    nameShort: 'RH',
-    email: 'rus_g@tut.by',
-  }
-
-  const boards = [{name: 'covid-19', id: '1'}, {name: 'trello clone', id: '2'}, {name: 'test', id: '3'}, 
-  {name: 'test1', id: '4'}, {name: 'trello clone', id: '5'}, {name: 'test', id: '6'},
-  {name: 'test1', id: '7'}, {name: 'trello clone', id: '8'}, {name: 'test', id: '9'},
-  {name: 'test1', id: '10'}, {name: 'trello clone', id: '11'}, {name: 'test', id: '12'},
-  {name: 'test1', id: '13'}, {name: 'trello clone', id: '14'}, {name: 'test', id: '15'},
-  {name: 'test1', id: '16'}, {name: 'trello clone', id: '17'}, {name: 'test', id: '18'},
-  {name: 'test1', id: '19'}, {name: 'trello clone', id: '20'}, {name: 'test', id: '21'},
-  ];
+ 
   const [visibleProfileMenu, setVisibleProfileMenu] = useState(false);
 
   function closeProfileMenu() {
@@ -43,6 +30,9 @@ const Header: React.FC<HeaderProps> = ({type}) => {
     setVisibleBoardsList(false);
   }
   
+  if (!currentUser.name) return null;
+  const boards = currentUser.boards.map((item: string, index: number) => { return {name: index.toString(), id: item} })
+
   return (
     <header className={classes.header}>
         <div className={classes.left}>
@@ -60,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({type}) => {
                   <span>{btnBoards}</span>
                 </Button>
                 <BoardsList boards={boards} visible={visibleBoardsList} onClose={closeBoardsList}/>
-                <Complete userId={user.id}/>
+                {/* <Complete userId={currentUser.id}/> */}
               </div>
             )
             : null
@@ -77,9 +67,9 @@ const Header: React.FC<HeaderProps> = ({type}) => {
               type !== 'main' ? 
               ( 
                 <div className={classes.profile} onClick={() => setVisibleProfileMenu(true)}>
-                  <Tooltip placement="bottomRight" title={user.name} color={'blue'}>
+                  <Tooltip placement="bottomRight" title={currentUser.name} color={'blue'}>
                     <Avatar style={{ backgroundColor: '#f56a00', color: 'black', fontWeight: 'bold' }}>
-                      {user.nameShort}
+                      {currentUser.name[0].toUpperCase()}
                     </Avatar>
                   </Tooltip>
                 </div>
@@ -87,22 +77,19 @@ const Header: React.FC<HeaderProps> = ({type}) => {
               : null
             }
         </div>
-          { type !== 'main' ? <ProfileMenu visible={visibleProfileMenu} onClose={closeProfileMenu} onClick={closeProfileMenu} user={user}/> : null }        
+          { type !== 'main' ? <ProfileMenu visible={visibleProfileMenu} onClose={closeProfileMenu} onClick={closeProfileMenu} user={{name: currentUser.name, email: currentUser.login}}/> : null }        
    </header>
    );
 };
 
 const mapStateToProps = (state: Store) => {
   return {
-    board: state.board,
-    error: state.error
+    currentUser: state.currentUser,
   }
 }
 
 const mapDispatchStateToProps = (dispatch: any) => {
   return {
-    fetchBoard: (boardId: string) => dispatch(fetchBoard(boardId)),
-    addColumn: (boardId:string, title:string) => dispatch(addColumn(boardId, title)),
     setCurrentUser: () => dispatch(setCurrentUser())
   }
 }

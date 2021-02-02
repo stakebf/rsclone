@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Redirect} from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
+import MainApiService from '../../../services/MainApiService';
 
 const validateMessages = {
   // eslint-disable-next-line no-template-curly-in-string
@@ -13,12 +14,14 @@ const validateMessages = {
 
 let isRedirect = false;
 
-const ProfileForm: React.FC = () => {
+const ProfileForm: React.FC<any> = ({user: currentUser}) => {
+  console.log('profileForm');
+  const service = new MainApiService();
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState({
-    nameShort: 'RH',
-    name: 'Ruslan Hryshchuk',
-    email: 'rus_g@tut.by',  
+    name: currentUser.name,
+    email: currentUser.email,  
   });
   
   const items = {
@@ -28,17 +31,23 @@ const ProfileForm: React.FC = () => {
 
   function  onFinish(values: any) {
     if (values.userName === user.name && values.userEmail === user.email) return;
+    console.log('update');
     isRedirect = true;
-    setUser({
-      nameShort: 'RH',
-      name: 'Ruslan Hryshchuk',
-      email: 'rus_g@tut.by',  
-    });
+    service.putUser(currentUser.id, { id: currentUser.id, name: values.userName, login: values.userEmail })
+           .then((data) => { 
+              console.log('data', data);
+              // window.location.reload();
+              setUser({
+                name: values.userName,
+                email: values.userEmail,  
+              });            
+            }).catch((error) => { console.log(error); }).finally();
   }
 
+  console.log('isRedirect', isRedirect);
   if (isRedirect) {
     isRedirect = false;
-    <Redirect to="/profile" />
+    return <Redirect to="/profile" />
   }
 
   return (

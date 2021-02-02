@@ -18,7 +18,8 @@ const BoardsList: React.FC<Settings> = ({boards, visible, onClose}) => {
     const result: Array<React.ReactNode> = [];
     boards.forEach((board) => {
       if (board.name.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())) {
-        result.push(<Link to='/' key={board.id}><p className={classes.link}>{board.name}</p></Link>);
+        const linkTo = `/currentBoard/${board.id}`;
+        result.push(<Link to={linkTo} key={board.id}><p className={classes.link}>{board.name}</p></Link>);
       }
     });
     if (result.length) return result;

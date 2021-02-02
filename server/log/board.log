@@ -7462,3 +7462,474 @@
 {"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 13:45:56"}
 {"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 13:46:05"}
 {"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 13:46:05"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:08"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:02:09"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:09"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:02:09"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:20"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:02:20"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:20"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:02:20"}
+{"Method":"POST","Path":"/users","Query params":"{}","Body":"{\"login\":\"rus_g@tut.by\",\"name\":\"Ruslan Hryshchuk\",\"password\":\"11111111\"}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:57"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:57"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:02:57"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:58"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:58"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:02:58"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:02:58"}
+{"Method":"POST","Path":"/login","Query params":"{}","Body":"{\"login\":\"rus_g@tut.by\",\"password\":\"11111111\"}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:19"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:19"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:03:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:19"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:19"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:19"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:03:19"}
+{"Method":"POST","Path":"/login","Query params":"{}","Body":"{\"login\":\"rus_g@tut.by\",\"password\":\"11111111\"}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:43"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:43"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:03:43"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:43"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:43"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:03:43"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:03:43"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:04:14"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:04:14"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:04:14"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:04:14"}
+{"Method":"POST","Path":"/users","Query params":"{}","Body":"{\"login\":\"rus_g@tut.by\",\"name\":\"Ruslan\",\"password\":\"11111111\"}","level":"info","message":"Request log","timestamp":"2021-02-01 22:05:24"}
+{"error code":"Forbidden","url":"Ocured an error in path /users","message":"\"User already exist\"","stack":"ForbittenError: User already exist\n    at registerUser (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\login\\login.service.js:32:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:81:27\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:05:24"}
+{"Method":"POST","Path":"/login","Query params":"{}","Body":"{\"login\":\"rus_g@tut.by\",\"password\":\"11111111\"}","level":"info","message":"Request log","timestamp":"2021-02-01 22:05:38"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:05:39"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:05:39"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:05:39"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:05:39"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:05:39"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:05:39"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:08:23"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:08:23"}
+{"Method":"GET","Path":"/users/null","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:08:23"}
+{"error code":"Not Found","url":"Ocured an error in path /users/null","message":"\"User with id null not found\"","stack":"NotFoundError: User with id null not found\n    at Object.getUserById (D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.db.repository.js:12:11)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\resources\\users\\user.router.js:25:18\n    at async D:\\Rolling_scopes\\rsclone\\server\\src\\errors\\catchError.js:3:12","level":"error","timestamp":"2021-02-01 22:08:23"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:21"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:41"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"test\",\"background\":\"/images/bg_board_1.jpg\",\"admin\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:49"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"test\",\"background\":\"/images/bg_board_1.jpg\",\"admin\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:49"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:49"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:49"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:23:56"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:27"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:27"}
+{"Method":"GET","Path":"/boards/6e13a13d-c0f5-483f-bc55-fb6545dab5d6","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:28"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:28"}
+{"Method":"GET","Path":"/boards/6e13a13d-c0f5-483f-bc55-fb6545dab5d6","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:28"}
+{"Method":"GET","Path":"/currentBoard/favicon.ico","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:29"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:37"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:37"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:37"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:25:58"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:29:07"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:29:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:29:15"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:29:28"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:29:28"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:29:28"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:30:44"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:32:11"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:38:10"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:38:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:38:44"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:38:49"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:39:01"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:41:59"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:42:07"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:42:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:42:45"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:42:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:43:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:43:44"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:43:49"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:44:13"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:44:16"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:44:21"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:44:40"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:44:41"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:44:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:44:44"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:46:33"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:46:36"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:47:54"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:48:54"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:48:54"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:49:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:49:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:49:28"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:51:46"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:52:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:57:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:57:51"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:57:51"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:58:30"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:58:34"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:58:43"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:29"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:29"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:29"}
+{"Method":"GET","Path":"/boards/6e13a13d-c0f5-483f-bc55-fb6545dab5d6","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:30"}
+{"Method":"GET","Path":"/boards/6e13a13d-c0f5-483f-bc55-fb6545dab5d6","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:30"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:30"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:47"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:47"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 22:59:47"}
+{"Method":"GET","Path":"/boards/6e13a13d-c0f5-483f-bc55-fb6545dab5d6","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:08"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:08"}
+{"Method":"GET","Path":"/boards/6e13a13d-c0f5-483f-bc55-fb6545dab5d6","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:08"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:13"}
+{"Method":"GET","Path":"/boards/6e13a13d-c0f5-483f-bc55-fb6545dab5d6","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:15"}
+{"Method":"GET","Path":"/boards/6e13a13d-c0f5-483f-bc55-fb6545dab5d6","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:15"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:15"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:17"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:32"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:32"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:32"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"trello\",\"background\":\"rgb(81, 152, 57)\",\"admin\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:41"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"trello\",\"background\":\"rgb(81, 152, 57)\",\"admin\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:42"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:42"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"help\",\"background\":\"/images/bg_board_1.jpg\",\"admin\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:49"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"help\",\"background\":\"/images/bg_board_1.jpg\",\"admin\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:49"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:50"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:50"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"alert\",\"background\":\"rgb(176, 70, 50)\",\"admin\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:58"}
+{"Method":"POST","Path":"/boards","Query params":"{}","Body":"{\"title\":\"alert\",\"background\":\"rgb(176, 70, 50)\",\"admin\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"isFavorite\":false}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:58"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:59"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:02:59"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:03:07"}
+{"Method":"GET","Path":"/boards/ee4bca8f-52c7-40a6-a3be-c65b8563132b","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:03:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:03:12"}
+{"Method":"GET","Path":"/boards/ee4bca8f-52c7-40a6-a3be-c65b8563132b","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:03:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:03:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:06:56"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:14:25"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:14:25"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:15:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:15:56"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:16:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:16:43"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:23:22"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:24:19"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:24:19"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:25:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:25:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:25:58"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:25:58"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:27:15"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:27:15"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:29:18"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:29:18"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:30:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:30:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:31:02"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:31:02"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:31:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:31:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:31:45"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:31:45"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:33:11"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:34:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:34:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:34:33"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:34:33"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:35:23"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:35:23"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:36:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:36:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:36:21"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:36:21"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:36:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:36:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:36:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:36:53"}
+{"Method":"GET","Path":"/boards/0db8db05-5ce4-4e4c-ba91-9809e63564d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:37:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:37:12"}
+{"Method":"GET","Path":"/boards/0db8db05-5ce4-4e4c-ba91-9809e63564d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:37:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:37:13"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:37:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:39:33"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:39:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:39:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:41:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:41:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:43:00"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:43:00"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:45:21"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:45:21"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:47:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:47:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:47:11"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:47:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:47:17"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:47:18"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:49:00"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:49:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:49:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-01 23:49:04"}
+{"Method":"GET","Path":"/boards/ee4bca8f-52c7-40a6-a3be-c65b8563132b","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:35:34"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:35:34"}
+{"Method":"GET","Path":"/boards/ee4bca8f-52c7-40a6-a3be-c65b8563132b","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:35:34"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:35:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:35:36"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:44:43"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:44:44"}
+{"Method":"GET","Path":"/boards/0db8db05-5ce4-4e4c-ba91-9809e63564d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:48:53"}
+{"Method":"GET","Path":"/boards/0db8db05-5ce4-4e4c-ba91-9809e63564d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:48:53"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:48:53"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:48:55"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 00:48:55"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:44:00"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:44:01"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:44:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:44:44"}
+{"Method":"GET","Path":"/boards/ee4bca8f-52c7-40a6-a3be-c65b8563132b","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:45:23"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:45:23"}
+{"Method":"GET","Path":"/boards/ee4bca8f-52c7-40a6-a3be-c65b8563132b","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:45:23"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:45:24"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:45:24"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:47:39"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:47:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:47:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 07:47:43"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:28:18"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:28:47"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:28:55"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:28:55"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:05"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:05"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:08"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:10"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:10"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:55"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 08:29:55"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:09:01"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:09:02"}
+{"Method":"POST","Path":"/users/undefined","Query params":"{}","Body":"{\"name\":\"Ruslan Hryshchuk1\",\"login\":\"Ruslan Hryshchuk1\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:09:07"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:09:53"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:09:53"}
+{"Method":"POST","Path":"/users/undefined","Query params":"{}","Body":"{\"name\":\"Ruslan Hryshchuk1\",\"login\":\"Ruslan Hryshchuk1\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:09:57"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:10:20"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:10:20"}
+{"Method":"POST","Path":"/users/undefined","Query params":"{}","Body":"{\"name\":\"Ruslan Hryshchuk1\",\"login\":\"Ruslan Hryshchuk1\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:10:23"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:11:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:11:08"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:11:09"}
+{"Method":"POST","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"Ruslan Hryshchuk1\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:11:11"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:15:40"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:15:40"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:15:59"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:15:59"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"Ruslan Hryshchuk1\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:16:02"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:16:27"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:16:27"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:16:29"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:16:29"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut1.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:17:17"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:17:22"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:17:23"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut1.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:17:27"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:17:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:17:38"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:17:38"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:18:00"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:18:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:18:04"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:18:15"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:19:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:19:26"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:19:31"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:20:18"}
+{"Method":"POST","Path":"/users","Query params":"{}","Body":"{\"login\":\"test@test.by\",\"name\":\"test\",\"password\":\"11111111\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:20:41"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:20:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:20:41"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:20:41"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:21:41"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:22:03"}
+{"Method":"POST","Path":"/login","Query params":"{}","Body":"{\"login\":\"test@test.by\",\"password\":\"11111111\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:22:17"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:22:17"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:22:18"}
+{"Method":"GET","Path":"/boards","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:22:18"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:22:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:22:59"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:22:59"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:23:03"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:24:02"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:24:11"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:24:11"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:25:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:25:14"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:25:24"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:25:39"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:25:40"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:25:50"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:26:29"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:26:29"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:26:32"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:26:32"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:26:39"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:26:39"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:27:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:27:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:30:01"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:30:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:30:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:30:46"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:30:51"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:30:52"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:31:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:32:42"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:32:43"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:32:47"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:34:02"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:34:03"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:34:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:34:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:34:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:35:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:35:06"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:35:16"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:36:08"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:36:09"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:36:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:36:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:36:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:38:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:38:30"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:38:31"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:38:34"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:38:51"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:38:51"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:39:17"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:39:17"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:39:35"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:41:00"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:41:01"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:41:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:41:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:41:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:42:01"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:42:23"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:42:24"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:42:27"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:44:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:44:06"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:44:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:44:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:44:23"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:44:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:44:29"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:44:29"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:59:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 14:59:06"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 14:59:21"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:02:48"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:02:49"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:02:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:05:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:05:13"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:03"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:03"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:54"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:07:54"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:08:09"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:09:46"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:09:46"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:09:48"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:09:48"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:09:54"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:09:55"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:11:28"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:11:28"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:11:43"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:11:44"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:12:02"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:12:02"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:12:38"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:12:38"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:13:34"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:13:34"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:14:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:14:06"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:14:09"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:14:31"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:14:31"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:14:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:14:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:16:48"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:16:48"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:16:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:17:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:17:52"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:17:55"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:17:57"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:17:57"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"test\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:18:13"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:18:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:18:14"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:18:39"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:18:40"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:18:40"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:19:10"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:20:17"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:20:18"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:20:22"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:20:48"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:20:49"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:20:52"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:22:19"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:22:19"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"test@test.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:22:33"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:22:38"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:22:38"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:23:56"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:23:56"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:24:05"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:24:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:24:12"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:25:06"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:25:06"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:25:14"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:25:17"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:25:17"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:26:26"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:26:26"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:26:36"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:28:45"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:28:45"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:28:49"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:31:58"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:31:59"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk1\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:32:04"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:34:44"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:34:44"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 15:34:49"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:54:27"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 15:54:28"}
+{"Method":"GET","Path":"/users","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:07:58"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"test@test.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 16:09:25"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:09:28"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:09:28"}
+{"Method":"GET","Path":"/users","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:09:38"}
+{"Method":"GET","Path":"/boards/ee4bca8f-52c7-40a6-a3be-c65b8563132b","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:13:15"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:13:15"}
+{"Method":"GET","Path":"/boards/ee4bca8f-52c7-40a6-a3be-c65b8563132b","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:13:15"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:13:16"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:13:16"}
+{"Method":"PUT","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{\"id\":\"da2d435f-4d61-4ec6-b445-45d44d5b89d1\",\"name\":\"Ruslan Hryshchuk\",\"login\":\"rus_g@tut.by\"}","level":"info","message":"Request log","timestamp":"2021-02-02 16:14:29"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:14:32"}
+{"Method":"GET","Path":"/users/da2d435f-4d61-4ec6-b445-45d44d5b89d1","Query params":"{}","Body":"{}","level":"info","message":"Request log","timestamp":"2021-02-02 16:14:32"}

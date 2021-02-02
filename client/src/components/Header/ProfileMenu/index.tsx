@@ -9,7 +9,6 @@ import { on } from 'cluster';
 type Settings = {
   user: {
     name: String,
-    nameShort: String,
     email: String,
   }
   visible: boolean;
@@ -52,7 +51,7 @@ const ProfileMenu: React.FC<Settings> = ({user, visible, onClose, onClick}) => {
       <div className={classes.user}>
         <div className={classes.avatar}>
           <Avatar style={{ backgroundColor: '#f56a00', color: 'black', fontWeight: 'bold' }} size='large'>
-            {user.nameShort}
+            {user.name[0].toLocaleUpperCase()}
           </Avatar>          
         </div>
         <div className={classes.userInfo}>
