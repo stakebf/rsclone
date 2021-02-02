@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET_KEY } = require('../../common/config');
 const userService = require('../users/user.service');
 const ForbittenError = require('../../errors/ForbittenError');
+const ConflictError = require('../../errors/ConflictError');
 const bcrypt = require('bcrypt');
 
 const loginUser = async (login, password) => {
@@ -29,12 +30,14 @@ const registerUser = async requestData => {
   const { id, login } = requestData;
   const user = await userService.getUserByProps(login);
   if (user) {
-    throw new ForbittenError('User already exist');
+    throw new ConflictError(`User with login ${login} already exist`);
   } else {
     const newUser = await userService.createUser(requestData);
     const { id } = newUser;
     const payload = { id, login };
-    const token = jwt.sign(payload, JWT_SECRET_KEY);
+    const token = jwt.sign(payload, JWT_SECRET_KEY, {
+      expiresIn: '7d'
+    });
     return {
       token,
       id

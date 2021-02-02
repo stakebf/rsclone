@@ -17,6 +17,7 @@ const createUser = async user => {
   password = await createHash(password);
   const updatedUser = { name, login, password };
   return usersRepo.createUser(updatedUser);
+
 };
 
 const updateUser = (id, param) => usersRepo.updateUser(id, param);
@@ -34,6 +35,8 @@ const deleteUser = async id => {
   return usersRepo.deleteUser(id);
 };
 
+const updateBoardOnUser = boardData => usersRepo.updateBoardOnUser(boardData);
+
 module.exports = {
   getAll,
   getUserById,
@@ -44,5 +47,6 @@ module.exports = {
   addBoardToUser,
   addTaskToUser,
   deleteUserFromBoardList,
-  deleteUserFromTaskList
+  deleteUserFromTaskList,
+  updateBoardOnUser
 };

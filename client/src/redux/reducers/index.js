@@ -25,7 +25,8 @@ import {
   ATTACH_USER_TO_TASK,
   REMOVE_USER_FROM_TASK,
   SET_NEW_TODOS,
-  REFRESH_COLUMNS
+  REFRESH_COLUMNS,
+  UPDATE_USERS_LIST
 } from '../actions/actionTypes';
 
 export const getCurrentColumn = (state, action) => {
@@ -373,6 +374,19 @@ const reducer = (state = initialState, action) => {
           ]
         }
       }
+    }
+
+    case UPDATE_USERS_LIST: {
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          userList: [
+            ...state.board.userList,
+            ...action.payload
+          ]
+        }
+      };
     }
 
     default: 
