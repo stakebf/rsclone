@@ -31,6 +31,9 @@
         position: absolute;
         z-index: -1;
       }
+      &.disabled {
+        cursor: not-allowed;
+      }
     }
     &__btn {
       display: flex;

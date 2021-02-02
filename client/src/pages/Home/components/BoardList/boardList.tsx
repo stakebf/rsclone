@@ -33,12 +33,11 @@ const BoardList: React.FC = () => {
   const api = useMemo(() => new MainApiService(), []);
 
   const getBoardsForUser = useCallback(
-    (setLoadBoards?: any) => {
-      if (setLoadBoards) setLoadBoards(true);
+    (setLoadElem?: any) => {
+      if (setLoadElem) setLoadElem(true);
       api
         .getBoardsAll()
         .then((data) => {
-          console.log(data);
           const curUserId = localStorage.getItem('rsclone_userId');
           const userDataBoards = data.filter((el: any) => {
             return el.userList.some((user: any) => user.id === curUserId);
@@ -46,7 +45,7 @@ const BoardList: React.FC = () => {
           setDataBoards(userDataBoards);
         })
         .catch((error) => console.log(error))
-        .finally(() => (setLoadBoards ? setLoadBoards(false) : null));
+        .finally(() => (setLoadElem ? setLoadElem(false) : null));
     },
     [api]
   );
@@ -77,9 +76,8 @@ const BoardList: React.FC = () => {
         admin: localStorage.getItem('rsclone_userId'),
         isFavorite: false
       })
-      .then(() => getBoardsForUser())
-      .catch((error) => console.log(error))
-      .finally(() => setLoadNewBoard(false));
+      .then(() => getBoardsForUser(setLoadNewBoard))
+      .catch((error) => console.log(error));
   };
 
   const onFavorite = (item: IBoardItem, setLoadStar: any): void => {
@@ -87,21 +85,19 @@ const BoardList: React.FC = () => {
     const {id, isFavorite} = item;
     api
       .putBoard({isFavorite: !isFavorite}, id)
-      .then(() => getBoardsForUser())
-      .catch((error) => console.log(error))
-      .finally(() => setLoadStar(false));
+      .then(() => getBoardsForUser(setLoadStar))
+      .catch((error) => console.log(error));
   };
 
   const transformPathForBg = (path: string): string => {
-    if (path.endsWith('jpg' || 'png')) {
-      const typeFile = path.slice(path.length - 3, path.length);
-      const nameFile = path.slice(0, path.length - 3);
+    const transform = (path: string, num: number): string => {
+      const typeFile = path.slice(path.length - num, path.length);
+      const nameFile = path.slice(0, path.length - num);
       return `${nameFile}min.${typeFile}`;
-    } else if (path.endsWith('jpeg')) {
-      const typeFile = path.slice(path.length - 4, path.length);
-      const nameFile = path.slice(0, path.length - 4);
-      return `${nameFile}min.${typeFile}`;
-    }
+    };
+
+    if (path.endsWith('jpg' || 'png')) return transform(path, 3);
+    if (path.endsWith('jpeg')) return transform(path, 4);
     return path;
   };
 

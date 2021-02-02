@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef, useMemo, useCallback} from 'react';
 import PanelUserIcon from '../PanelUserIcon';
 import PanelWindowInvite from '../PanelWindowInvite';
-import {StarOutlined, StarFilled} from '@ant-design/icons';
+import {StarOutlined, StarFilled, LoadingOutlined} from '@ant-design/icons';
 import MainApiService from '../../../services/MainApiService';
 
 import classes from './panel.module.scss';
@@ -19,9 +19,11 @@ type PanelProps = {
 const Panel: React.FC<PanelProps> = ({boardId}) => {
   const [dataBoard, setDataBoard]: any = useState({});
   const [title, setTitle] = useState('');
+  const [disabledTitle, setDisabledTitle] = useState(false);
   const [isOpenWindowInvite, setOpenWindowInvite] = useState(false);
   const [currentWidthTitle, setCurrentWidthTitle] = useState(0);
   const [focusWidthTitle, setFocusWidthTitle] = useState(0);
+  const [loadFavorite, setLoadFavorite] = useState(false);
 
   const refMaskedTitle: any = useRef(null);
 
@@ -37,7 +39,7 @@ const Panel: React.FC<PanelProps> = ({boardId}) => {
       setTitle(data.title);
       setCurrentWidthTitle(refMaskedTitle.current.clientWidth);
     });
-  }, [api, setDataBoard]);
+  }, [api, boardId, setDataBoard]);
 
   useEffect(() => {
     getCurrentBoard();
@@ -60,10 +62,12 @@ const Panel: React.FC<PanelProps> = ({boardId}) => {
 
   const onBlurTitle = (property: string): void => {
     if (title) {
+      setDisabledTitle(true);
       api
         .putBoard({title: property}, boardId)
         .then(() => setDataBoard({...dataBoard, title: property}))
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => setDisabledTitle(false));
     } else {
       setTitle(dataBoard.title);
       setCurrentWidthTitle(focusWidthTitle);
@@ -76,10 +80,12 @@ const Panel: React.FC<PanelProps> = ({boardId}) => {
   };
 
   const onChangeFavorite = (property: boolean): void => {
+    setLoadFavorite(true);
     api
       .putBoard({isFavorite: property}, boardId)
       .then(() => setDataBoard({...dataBoard, isFavorite: property}))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setLoadFavorite(false));
   };
 
   const onAddUserToPanelList = (item: IUser[]): void => {
@@ -114,11 +120,23 @@ const Panel: React.FC<PanelProps> = ({boardId}) => {
     }
   };
 
+  const renderStar = () => {
+    if (loadFavorite) {
+      return <LoadingOutlined />;
+    } else {
+      return dataBoard.isFavorite ? (
+        <StarFilled className={`${classes['active']}`} />
+      ) : (
+        <StarOutlined />
+      );
+    }
+  };
+
   return (
     <div className={classes['container-panel']}>
       <div className={classes.panel}>
         <input
-          className={classes['panel__title']}
+          className={`${classes['panel__title']} ${disabledTitle ? classes['disabled'] : ''}`}
           type="text"
           value={title}
           maxLength={20}
@@ -128,6 +146,7 @@ const Panel: React.FC<PanelProps> = ({boardId}) => {
           style={{
             width: `${refMaskedTitle.current ? currentWidthTitle + 14 : null}px`
           }}
+          disabled={disabledTitle}
         />
         <div className={`${classes['panel__title']} ${classes['hide']}`} ref={refMaskedTitle}>
           {title}
@@ -137,11 +156,7 @@ const Panel: React.FC<PanelProps> = ({boardId}) => {
           onClick={() => onChangeFavorite(!dataBoard.isFavorite)}
           className={`${classes['panel__btn']}`}
         >
-          {dataBoard.isFavorite ? (
-            <StarFilled className={`${classes['active']}`} />
-          ) : (
-            <StarOutlined />
-          )}
+          {renderStar()}
         </button>
         <span className={classes['panel__divider']}></span>
         <div className={classes['panel__block-users']}>

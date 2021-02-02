@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import BoardList from './components/BoardList';
 import MainFeed from './components/MainFeed';
 import {Link} from 'react-router-dom';
+import logout from '../../helpers/logout';
 
 import classes from './home.module.scss';
 
@@ -27,17 +28,17 @@ const Home: React.FC<HomeProps> = ({type}) => {
     }
   ]);
 
-  const onToggleMenu = (type: string) => {
+  const onToggleMenu = useCallback((type: string) => {
     const newListMenu = listMenu.map((elem) => {
       elem.isSelect = elem.type === type ? true : false;
       return elem;
     });
     setListMenu(newListMenu);
-  };
+  }, []);
 
   useEffect(() => {
     onToggleMenu(type);
-  }, [type]);
+  }, [onToggleMenu, type]);
 
   const elementsMenu = listMenu.map((item, i) => {
     const {name, icon, isSelect, linkTo, type} = item;
@@ -60,7 +61,10 @@ const Home: React.FC<HomeProps> = ({type}) => {
   return (
     <div className={classes.container}>
       <div className={classes['menu-panel']}>
-        <ul className={classes['list-tabs']}>{elementsMenu}</ul>
+        <ul className={classes['list-tabs']}>
+          {elementsMenu}
+          <li onClick={() => logout()}>sdfdsf</li>
+        </ul>
       </div>
       <div className={classes.content}>{type === 'main' ? <MainFeed /> : <BoardList />}</div>
     </div>
