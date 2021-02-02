@@ -32,16 +32,23 @@ const ProfileForm: React.FC<any> = ({user: currentUser}) => {
   function  onFinish(values: any) {
     if (values.userName === user.name && values.userEmail === user.email) return;
     console.log('update');
-    isRedirect = true;
     service.putUser(currentUser.id, { id: currentUser.id, name: values.userName, login: values.userEmail })
            .then((data) => { 
-              console.log('data', data);
-              window.location.reload();
+              // isRedirect = true;
+              // console.log('data', data);
+              // window.location.reload();
+              // setUser({
+              //   name: values.userName,
+              //   email: values.userEmail,  
+              // });            
+            }).catch((error) => { 
+              console.log('error', error.message);
+              console.log(user);
               setUser({
-                name: values.userName,
-                email: values.userEmail,  
-              });            
-            }).catch((error) => { console.log(error); }).finally();
+                name: user.name,
+                email: user.email,  
+              });
+            });
   }
 
   console.log('isRedirect', isRedirect);
