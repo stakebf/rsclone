@@ -22,7 +22,8 @@ import {
   ADD_TAG,
   REMOVE_TAG,
   ATTACH_USER_TO_TASK,
-  REMOVE_USER_FROM_TASK
+  REMOVE_USER_FROM_TASK,
+  REFRESH_COLUMNS
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -558,6 +559,31 @@ export const fetchRemoveUserToTaskSuccess = (id, taskId, userId) => {
       id,
       taskId,
       userId
+    }
+  };
+};
+
+export const refreshColumns = (source, destination, taskId) => {
+  return async (dispatch) => {
+    try {
+      await service.putOnDNDTask(source.droppableId, taskId, { 
+        columnId: destination.droppableId,
+        position: destination.index
+      });
+
+      dispatch(fetchMoveTaskSuccess(source, destination));
+    } catch (e) {
+      console.log('Task has not been moved', e);
+    }
+  }
+};
+
+export const fetchMoveTaskSuccess = (source, destination) => {
+  return {
+    type: REFRESH_COLUMNS,
+    payload: {
+      source, 
+      destination
     }
   };
 };
