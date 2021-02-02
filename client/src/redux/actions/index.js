@@ -23,7 +23,8 @@ import {
   REMOVE_TAG,
   ATTACH_USER_TO_TASK,
   REMOVE_USER_FROM_TASK,
-  REFRESH_COLUMNS
+  REFRESH_COLUMNS,
+  UPDATE_USERS_LIST
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -585,5 +586,12 @@ export const fetchMoveTaskSuccess = (source, destination) => {
       source, 
       destination
     }
+  };
+};
+
+export const updateUsersList = (usersList) => {
+  return {
+    type: UPDATE_USERS_LIST,
+    payload: usersList
   };
 };
