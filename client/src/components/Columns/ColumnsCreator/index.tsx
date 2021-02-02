@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { PlusCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { withRouter, RouteComponentProps } from 'react-router';
+import { DragDropContext } from 'react-beautiful-dnd';
 
-import { fetchBoard, addColumn, setCurrentUser } from '../../../redux/actions';
+import { fetchBoard, addColumn, setCurrentUser, refreshColumns } from '../../../redux/actions';
 import { Store } from '../../../redux/store/store';
 import classes from './ColumnsCreator.module.scss';
 import Column from './Column';
@@ -21,10 +22,18 @@ type PropsType = RouteComponentProps<PathParamsType> & {
   board: any,
   fetchBoard: any,
   addColumn: any,
-  setCurrentUser: any
+  setCurrentUser: any,
+  refreshColumns: any
 }
 
-const ColumnCreator: React.FC<PropsType> = ({ error, boardId: id, board: { columns = [], id: boardId }, fetchBoard, addColumn, setCurrentUser }) => {
+const ColumnCreator: React.FC<PropsType> = ({ 
+  error, 
+  boardId: id, 
+  board: { columns = [], id: boardId }, 
+  fetchBoard, 
+  addColumn, 
+  setCurrentUser, 
+  refreshColumns }) => {
   const [isCreation, setIsCreation] = useState<boolean>(false);
   const [title, setTitle] = useState<string>('');
 
@@ -77,12 +86,30 @@ const ColumnCreator: React.FC<PropsType> = ({ error, boardId: id, board: { colum
     setTitle('');
   }
 
+  const onDragEnd = (result:any) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const { source, destination } = result;
+
+    refreshColumns(
+      source,
+      destination,
+      result.draggableId
+    );
+  };
+
   return (
     <div className={classes.container}>
-      {!!columns.length && columns.map((item:any) => <Column 
-        {...item}
-        key={item._id}
-      />)}
+      <DragDropContext
+        onDragEnd={(result:any) => onDragEnd(result)}
+      >
+        {!!columns.length && columns.map((item:any) => <Column 
+          {...item}
+          key={item._id}
+        />)}
+      </DragDropContext>
       <Button
         type="default"
         onClick={createColumnsClickHandler}
@@ -140,8 +167,10 @@ const mapDispatchStateToProps = (dispatch: any) => {
   return {
     fetchBoard: (boardId: string) => dispatch(fetchBoard(boardId)),
     addColumn: (boardId:string, title:string) => dispatch(addColumn(boardId, title)),
-    setCurrentUser: () => dispatch(setCurrentUser())
+    setCurrentUser: () => dispatch(setCurrentUser()),
+    refreshColumns: (source:any, destination:any, taskId:string) => dispatch(refreshColumns(source, destination, taskId)),
   }
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchStateToProps)(ColumnCreator));
+

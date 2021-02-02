@@ -24,7 +24,8 @@ import {
   REMOVE_TAG,
   ATTACH_USER_TO_TASK,
   REMOVE_USER_FROM_TASK,
-  SET_NEW_TODOS
+  SET_NEW_TODOS,
+  REFRESH_COLUMNS
 } from '../actions/actionTypes';
 
 export const getCurrentColumn = (state, action) => {
@@ -347,6 +348,32 @@ const reducer = (state = initialState, action) => {
       return updateState(state, columnIndex, copy);
     }
 
+    case REFRESH_COLUMNS: {
+      const { source, destination } = action.payload;
+
+      if (source.droppableId !== destination.droppableId) {
+        const sourceColumn = state.board.columns.findIndex((item) => item._id === source.droppableId);
+        const destColumn = state.board.columns.findIndex((item) => item._id === destination.droppableId);
+        const [removed] = state.board.columns[sourceColumn].taskList.splice(source.index, 1);
+
+        state.board.columns[destColumn].taskList.splice(destination.index, 0, removed);
+      } else {
+        const column = state.board.columns.findIndex((item) => item._id === source.droppableId);
+        const [removed] = state.board.columns[column].taskList.splice(source.index, 1);
+
+        state.board.columns[column].taskList.splice(destination.index, 0, removed);
+      }
+
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          columns: [
+            ...state.board.columns
+          ]
+        }
+      }
+    }
 
     default: 
       return state;
