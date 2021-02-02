@@ -148,6 +148,10 @@ class MainApiService {
     return await this._getPut(`/${columnId}/tasks/${taskId}/todos/${todosId}/todo/${todoId}`, data);
   };
 
+  putOnDNDTask = async (columnId:string, taskId:string, data = {}) => {
+    return await this._getPut(`/${columnId}/tasks/${taskId}`, data);
+  };
+
   // Delete
 
   _deleteResource = async (url: string, data = {}) => {
