@@ -24,7 +24,8 @@ import {
   ATTACH_USER_TO_TASK,
   REMOVE_USER_FROM_TASK,
   REFRESH_COLUMNS,
-  UPDATE_USERS_LIST
+  UPDATE_USERS_LIST,
+  UPDATE_CURRENT_USER
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -593,5 +594,15 @@ export const updateUsersList = (usersList) => {
   return {
     type: UPDATE_USERS_LIST,
     payload: usersList
+  };
+};
+
+export const updateCurrentUser = (name, login) => {
+  return {
+    type: UPDATE_CURRENT_USER,
+    payload: {
+      name, 
+      login
+    }
   };
 };
