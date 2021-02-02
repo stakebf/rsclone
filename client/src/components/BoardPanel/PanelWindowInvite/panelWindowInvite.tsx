@@ -5,6 +5,8 @@ import MainApiService from '../../../services/MainApiService';
 import {CloseOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import classes from './panelWindowInvite.module.scss';
+import {connect} from 'react-redux';
+import {updateUsersList} from '../../../redux/actions';
 
 interface IUser {
   id: string;
@@ -21,6 +23,7 @@ type PanelWindowInviteProps = {
   onToggleUserWindow(id: string | undefined, flag: boolean): void;
   onAddUserToPanelList(value: any): void;
   checkUserInList(id: string): boolean;
+  updateUsersList(value: any): any;
 };
 
 const PanelWindowInvite: React.FC<PanelWindowInviteProps> = ({
@@ -29,7 +32,8 @@ const PanelWindowInvite: React.FC<PanelWindowInviteProps> = ({
   setOpenWindowInvite,
   onToggleUserWindow,
   onAddUserToPanelList,
-  checkUserInList
+  checkUserInList,
+  updateUsersList
 }) => {
   const [value, setValue] = useState('');
   const [usersInitialData, setUsersInitialData] = useState([]);
@@ -65,7 +69,7 @@ const PanelWindowInvite: React.FC<PanelWindowInviteProps> = ({
     Promise.all(usersDataForSend.map((elem: IUser) => api.postAddUsersToBoard(elem.id, {boardId})))
       .then((data) => {
         onAddUserToPanelList(data);
-        console.log(data);
+        updateUsersList(data);
       })
       .catch((err) => console.error(err))
       .finally(() => {
@@ -192,4 +196,10 @@ const PanelWindowInvite: React.FC<PanelWindowInviteProps> = ({
   );
 };
 
-export default PanelWindowInvite;
+const mapDispatchStateToProps = (dispatch: any) => {
+  return {
+    updateUsersList: (userList: string) => dispatch(updateUsersList(userList))
+  };
+};
+
+export default connect(null, mapDispatchStateToProps)(PanelWindowInvite);
