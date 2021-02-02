@@ -382,7 +382,7 @@ const reducer = (state = initialState, action) => {
         board: {
           ...state.board,
           userList: [
-            ...state.userList,
+            ...state.board.userList,
             ...action.payload
           ]
         }

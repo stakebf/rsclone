@@ -2,7 +2,6 @@ import React, {useState, useEffect, useCallback} from 'react';
 import BoardList from './components/BoardList';
 import MainFeed from './components/MainFeed';
 import {Link} from 'react-router-dom';
-import logout from '../../helpers/logout';
 
 import classes from './home.module.scss';
 
@@ -63,7 +62,6 @@ const Home: React.FC<HomeProps> = ({type}) => {
       <div className={classes['menu-panel']}>
         <ul className={classes['list-tabs']}>
           {elementsMenu}
-          <li onClick={() => logout()}>sdfdsf</li>
         </ul>
       </div>
       <div className={classes.content}>{type === 'main' ? <MainFeed /> : <BoardList />}</div>
