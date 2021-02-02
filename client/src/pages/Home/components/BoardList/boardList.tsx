@@ -5,7 +5,6 @@ import MainApiService from '../../../../services/MainApiService';
 import {StarOutlined, UserOutlined, LoadingOutlined} from '@ant-design/icons';
 
 import classes from './boardList.module.scss';
-import 'antd/dist/antd.css';
 
 interface IBoardItem {
   id: string;
@@ -33,28 +32,28 @@ const BoardList: React.FC = () => {
 
   const api = useMemo(() => new MainApiService(), []);
 
-  const getDataBoardAll = useCallback(
-    (setLoadBoards?: any) => {
-      if (setLoadBoards) setLoadBoards(true);
+  const getBoardsForUser = useCallback(
+    (setLoadElem?: any) => {
+      if (setLoadElem) setLoadElem(true);
       api
         .getBoardsAll()
         .then((data) => {
-          const curUserId = localStorage.getItem('userId');
+          const curUserId = localStorage.getItem('rsclone_userId');
           const userDataBoards = data.filter((el: any) => {
             return el.userList.some((user: any) => user.id === curUserId);
           });
           setDataBoards(userDataBoards);
         })
         .catch((error) => console.log(error))
-        .finally(() => (setLoadBoards ? setLoadBoards(false) : null));
+        .finally(() => (setLoadElem ? setLoadElem(false) : null));
     },
     [api]
   );
 
   useEffect(() => {
-    getDataBoardAll(setLoadBoards);
+    getBoardsForUser(setLoadBoards);
     return () => setDataBoards([]);
-  }, [getDataBoardAll, setDataBoards]);
+  }, [getBoardsForUser, setDataBoards]);
 
   useEffect(() => {
     (function resetTypesBoards() {
@@ -74,12 +73,11 @@ const BoardList: React.FC = () => {
       .postBoard({
         title,
         background,
-        admin: localStorage.getItem('userId'),
+        admin: localStorage.getItem('rsclone_userId'),
         isFavorite: false
       })
-      .then(() => getDataBoardAll())
-      .catch((error) => console.log(error))
-      .finally(() => setLoadNewBoard(false));
+      .then(() => getBoardsForUser(setLoadNewBoard))
+      .catch((error) => console.log(error));
   };
 
   const onFavorite = (item: IBoardItem, setLoadStar: any): void => {
@@ -87,20 +85,45 @@ const BoardList: React.FC = () => {
     const {id, isFavorite} = item;
     api
       .putBoard({isFavorite: !isFavorite}, id)
-      .then(() => getDataBoardAll())
-      .catch((error) => console.log(error))
-      .finally(() => setLoadStar(false));
+      .then(() => getBoardsForUser(setLoadStar))
+      .catch((error) => console.log(error));
   };
 
-  const elementsAll = dataBoards.map((item: IBoardItem) => {
-    return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
+  const transformPathForBg = (path: string): string => {
+    const transform = (path: string, num: number): string => {
+      const typeFile = path.slice(path.length - num, path.length);
+      const nameFile = path.slice(0, path.length - num);
+      return `${nameFile}min.${typeFile}`;
+    };
+
+    if (path.endsWith('jpg' || 'png')) return transform(path, 3);
+    if (path.endsWith('jpeg')) return transform(path, 4);
+    return path;
+  };
+
+  const renderBoardsAll = dataBoards.map((item: IBoardItem) => {
+    return (
+      <BoardItem
+        key={item.id}
+        item={item}
+        onFavorite={onFavorite}
+        transformPathForBg={transformPathForBg}
+      />
+    );
   });
 
-  const elementsFavorite = () => {
+  const renderBoardsFavorite = () => {
     const dataFavorite = dataBoards.filter((item: IBoardItem) => item.isFavorite === true);
 
     return dataFavorite.map((item: IBoardItem) => {
-      return <BoardItem key={item.id} item={item} onFavorite={onFavorite} />;
+      return (
+        <BoardItem
+          key={item.id}
+          item={item}
+          onFavorite={onFavorite}
+          transformPathForBg={transformPathForBg}
+        />
+      );
     });
   };
 
@@ -109,14 +132,14 @@ const BoardList: React.FC = () => {
   return (
     <>
       <div className={classes['all-boards']}>
-        {elementsFavorite().length > 0 ? (
+        {renderBoardsFavorite().length > 0 ? (
           <>
             <div className={classes.head}>
               <StarOutlined className={classes['head-icon']} />
               <h4 className={classes['head-title']}>Отмеченные доски</h4>
             </div>
             <div className={classes['content']}>
-              <ul className={classes['list-boards']}>{elementsFavorite()}</ul>
+              <ul className={classes['list-boards']}>{renderBoardsFavorite()}</ul>
             </div>
           </>
         ) : null}
@@ -127,7 +150,7 @@ const BoardList: React.FC = () => {
           </div>
           <div className={classes['content']}>
             <ul className={classes['list-boards']}>
-              {elementsAll}
+              {renderBoardsAll}
               <li
                 className={classes['add-item-list']}
                 onClick={() => {
@@ -150,6 +173,7 @@ const BoardList: React.FC = () => {
           setShowWindow={setShowWindow}
           typesBoards={typesBoards}
           setTypesBoards={setTypesBoards}
+          transformPathForBg={transformPathForBg}
         />
       )}
     </>

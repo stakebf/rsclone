@@ -15,13 +15,15 @@ type BoardAddItemProps = {
   setShowWindow(value: boolean): void;
   typesBoards: ITypesBoards[];
   setTypesBoards(s: any): void;
+  transformPathForBg(value: string): string;
 };
 
 const BoardAddItem: React.FC<BoardAddItemProps> = ({
   onAddedBoard,
   setShowWindow,
   typesBoards,
-  setTypesBoards
+  setTypesBoards,
+  transformPathForBg
 }) => {
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [currentItemBg, setCurrentItemBg] = useState('rgb(0, 0, 0)');
@@ -61,7 +63,14 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
   };
 
   const elementsSelectBg = typesBoards.map((item) => {
-    return <BoardAddItemType key={item.id} item={item} onToggle={onToggle} />;
+    return (
+      <BoardAddItemType
+        key={item.id}
+        item={item}
+        onToggle={onToggle}
+        transformPathForBg={transformPathForBg}
+      />
+    );
   });
 
   return (
