@@ -41,7 +41,7 @@ const App: React.FC = () => {
         <Route
           path="/CurrentBoard/:id"
           exact
-          render={({match}) => <Columns boardId={match.params.id}/>}
+          render={({match}) => <Columns boardId={match.params.id} />}
         />
         <Route render={() => <Page404 />} />
       </Switch>

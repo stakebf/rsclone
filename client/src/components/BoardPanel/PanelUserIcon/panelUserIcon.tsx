@@ -1,30 +1,48 @@
-import React, {useRef} from 'react';
-import {StarFilled, CloseOutlined} from '@ant-design/icons';
-
-import classes from './boardPanelUserIcon.module.scss';
+import React, {useRef, useMemo} from 'react';
+import {StarFilled, CloseOutlined, LoadingOutlined} from '@ant-design/icons';
+import {useUpgradeState} from '../../../hooks/';
+import MainApiService from '../../../services/MainApiService';
+import classes from './panelUserIcon.module.scss';
 
 interface IUser {
   id: string;
   name: string;
   login: string;
-  isOpenWindow: boolean;
+  isOpenWindow?: boolean;
 }
 
-type BoardPanelUserIconProps = {
+type PanelUserIconProps = {
   item: IUser;
   adminId: string;
+  boardId: string;
   onToggleUserWindow(id: string | undefined, flag: boolean): void;
+  onRemoveUserToPanelList(id: string): void;
 };
 
-const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
+const PanelUserIcon: React.FC<PanelUserIconProps> = ({
   item,
   adminId,
-  onToggleUserWindow
+  boardId,
+  onToggleUserWindow,
+  onRemoveUserToPanelList
 }) => {
   const {id, name, login, isOpenWindow} = item;
 
+  const [loadBtnRemove, setLoadBtnRemove] = useUpgradeState(false, true);
+
   const refWindow: any = useRef(null);
   const refBtnClose: any = useRef(null);
+
+  const api = useMemo(() => new MainApiService(), []);
+
+  const removeUsersData = (userId: string) => {
+    setLoadBtnRemove(true);
+    api
+      .removeAddUsersToBoard(userId, {boardId})
+      .then(() => onRemoveUserToPanelList(userId))
+      .catch((err) => console.error(err))
+      .finally(() => setLoadBtnRemove(false));
+  };
 
   const renderWindow = () => {
     return (
@@ -36,7 +54,7 @@ const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
           </span>
           <div className={classes['content__info']}>
             <h4 className={classes['name']}>{name}</h4>
-            <h5 className={classes['login']}>@{login}</h5>
+            <h5 className={classes['login']}>{login}</h5>
           </div>
         </div>
         <span
@@ -49,6 +67,15 @@ const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
         >
           <CloseOutlined />
         </span>
+        {adminId !== id && (
+          <button
+            className={classes['btn-remove']}
+            type="button"
+            onClick={() => removeUsersData(id)}
+          >
+            {loadBtnRemove ? <LoadingOutlined /> : 'Удалить с доски'}
+          </button>
+        )}
       </div>
     );
   };
@@ -82,4 +109,4 @@ const BoardPanelUserIcon: React.FC<BoardPanelUserIconProps> = ({
   );
 };
 
-export default BoardPanelUserIcon;
+export default PanelUserIcon;

@@ -12,10 +12,16 @@ interface IElemDataAddBoard {
 type BoardAddItemTypeProps = {
   item: IElemDataAddBoard;
   onToggle(id: number): void;
+  transformPathForBg(value: string): string;
 };
 
-const BoardAddItemType: React.FC<BoardAddItemTypeProps> = ({item, onToggle}) => {
+const BoardAddItemType: React.FC<BoardAddItemTypeProps> = ({
+  item,
+  onToggle,
+  transformPathForBg
+}) => {
   const {id, check, background} = item;
+
   return (
     <li
       onClick={() => {
@@ -24,7 +30,7 @@ const BoardAddItemType: React.FC<BoardAddItemTypeProps> = ({item, onToggle}) => 
       className={classes.item}
       style={
         background.endsWith('jpg' || 'jpeg' || 'png')
-          ? {backgroundImage: `url(${background})`}
+          ? {backgroundImage: `url(${transformPathForBg(background)})`}
           : {backgroundColor: background}
       }
     >

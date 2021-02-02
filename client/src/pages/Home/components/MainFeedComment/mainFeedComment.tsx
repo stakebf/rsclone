@@ -64,7 +64,7 @@ const MainFeedComment: React.FC<MainFeedCommentProps> = ({item}) => {
           </div>
         </Link>
         <div className={classes['info-board']}>
-          <Link to={`/${boardId}`} className={classes['info-board__link']}>
+          <Link to={`/currentBoard/${boardId}`} className={classes['info-board__link']}>
             {boardTitle}:
           </Link>
           <span className="info-board__colum"> {columnTitle}</span>

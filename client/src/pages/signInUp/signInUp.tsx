@@ -61,8 +61,8 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             service
               .postUserToLogin({login: email, password: password})
               .then(({token, userId}) => {
-                localStorage.setItem('token', token);
-                localStorage.setItem('userId', userId);
+                localStorage.setItem('rsclone_token', token);
+                localStorage.setItem('rsclone_userId', userId);
                 setRedirect(true);
               })
               .catch((error) => {
@@ -97,8 +97,8 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
               service
                 .postUserToRegister({login: email, name: username, password: password})
                 .then(({token, id}) => {
-                  localStorage.setItem('token', token);
-                  localStorage.setItem('userId', id);
+                  localStorage.setItem('rsclone_token', token);
+                  localStorage.setItem('rsclone_userId', id);
                   setRedirect(true);
                 })
                 .catch((error) => {

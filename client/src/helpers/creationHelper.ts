@@ -15,7 +15,8 @@ export interface CardProps {
   todos: any[],
   date: string,
   comments: any[],
-  tags: any[]
+  tags: any[],
+  index: number
 }
 
 export interface CardInfoProps {

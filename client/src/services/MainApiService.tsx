@@ -1,3 +1,5 @@
+import {idText} from 'typescript';
+
 class MainApiService {
   _API_URL = 'http://localhost:4000';
 
@@ -24,15 +26,15 @@ class MainApiService {
   };
 
   getBoardsAll = async () => {
-    return await this._getResource('boards');
+    return await this._getResource('/boards');
   };
 
   getBoard = async (id: string) => {
-    return await this._getResource(`boards/${id}`);
+    return await this._getResource(`/boards/${id}`);
   };
 
   getUsersAll = async () => {
-    return await this._getResource('users');
+    return await this._getResource('/users');
   }
   
   getBoardById = async (id:string) => {
@@ -62,15 +64,19 @@ class MainApiService {
   };
 
   postUserToLogin = async (data = {}) => {
-    return await this._postResource('login', data);
+    return await this._postResource('/login', data);
   };
 
   postUserToRegister = async (data = {}) => {
-    return await this._postResource('users', data);
+    return await this._postResource('/users', data);
+  };
+
+  postAddUsersToBoard = async (userID: string, boardID = {}) => {
+    return await this._postResource(`/users/${userID}/addtoboard`, boardID);
   };
 
   postBoard = async (data = {}) => {
-    return await this._postResource('boards', data);
+    return await this._postResource('/boards', data);
   };
 
   postColumn = async (boardId:string, data = {}) => {
@@ -123,7 +129,7 @@ class MainApiService {
   };
 
   putBoard = async (data = {}, id: string) => {
-    return await this._getPut(`boards/${id}`, data);
+    return await this._getPut(`/boards/${id}`, data);
   };
 
   renamePutColumn = async (boardId:string, columnId:string, data = {}) => {
@@ -144,6 +150,10 @@ class MainApiService {
 
   putTodo = async (columnId:string, taskId:string, todosId:string, todoId:string, data = {}) => {
     return await this._getPut(`/${columnId}/tasks/${taskId}/todos/${todosId}/todo/${todoId}`, data);
+  };
+
+  putOnDNDTask = async (columnId:string, taskId:string, data = {}) => {
+    return await this._getPut(`/${columnId}/tasks/${taskId}`, data);
   };
 
   // Delete
@@ -189,6 +199,10 @@ class MainApiService {
 
   removeTodos = async (columnId:string, taskId:string, todosId:string) => {
     return await this._deleteResource(`/${columnId}/tasks/${taskId}/todos/${todosId}`);
+  };
+
+  removeAddUsersToBoard = async (userID: string, boardID = {}) => {
+    return await this._deleteResource(`/users/${userID}/addtoboard`, boardID);
   };
 }
 
