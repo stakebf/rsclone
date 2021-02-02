@@ -5,7 +5,6 @@ import Main from '../../pages/Main';
 import SignInUp from '../../pages/SignInUp';
 import Home from '../../pages/Home';
 import Page404 from '../../pages/Page404';
-import BoardPanel from '../BoardPanel';
 import TestPage from '../../pages/TestPage';
 import Profile from '../../pages/Profile';
 import Columns from '../Columns';

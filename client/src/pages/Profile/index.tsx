@@ -48,7 +48,7 @@ const Profile: React.FC<any> = ({activeTab, setCurrentUser, currentUser = {}}) =
       <div className={classes.wrapper}>
         <Header />
         <div className={classes.title}>
-            <Avatar style={{ backgroundColor: '#f56a00', color: 'black', fontWeight: 'bold' }} size='large'>
+            <Avatar style={{ backgroundColor: 'rgb(253, 161, 55)', color: 'black', fontWeight: 'bold' }} size='large'>
               {currentUser.name[0].toUpperCase()}
             </Avatar>          
             <span className={classes.name}>{currentUser.name}</span>

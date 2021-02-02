@@ -36,7 +36,7 @@ const ProfileForm: React.FC<any> = ({user: currentUser}) => {
     service.putUser(currentUser.id, { id: currentUser.id, name: values.userName, login: values.userEmail })
            .then((data) => { 
               console.log('data', data);
-              // window.location.reload();
+              window.location.reload();
               setUser({
                 name: values.userName,
                 email: values.userEmail,  

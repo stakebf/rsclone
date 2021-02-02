@@ -68,7 +68,7 @@ const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
               ( 
                 <div className={classes.profile} onClick={() => setVisibleProfileMenu(true)}>
                   <Tooltip placement="bottomRight" title={currentUser.name} color={'blue'}>
-                    <Avatar style={{ backgroundColor: '#f56a00', color: 'black', fontWeight: 'bold' }}>
+                    <Avatar style={{ backgroundColor: 'rgb(253, 161, 55)', color: 'black', fontWeight: 'bold' }}>
                       {currentUser.name[0].toUpperCase()}
                     </Avatar>
                   </Tooltip>

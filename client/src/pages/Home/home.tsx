@@ -63,7 +63,7 @@ const Home: React.FC<HomeProps> = ({type}) => {
 
   return (
     <>
-    <Header type="main"/>
+    <Header />
     <div className={classes.container}>
       <div className={classes['menu-panel']}>
         <ul className={classes['list-tabs']}>

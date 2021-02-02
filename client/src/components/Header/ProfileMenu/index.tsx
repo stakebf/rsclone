@@ -4,7 +4,7 @@ import HelpModal from '../HelpModal';
 import { Avatar, Drawer, Divider } from 'antd';
 import classes from './ProfileMenu.module.scss';
 import './Drawer.scss';
-import { on } from 'cluster';
+import logout from '../../../helpers/logout';
 
 type Settings = {
   user: {
@@ -50,7 +50,7 @@ const ProfileMenu: React.FC<Settings> = ({user, visible, onClose, onClick}) => {
     >
       <div className={classes.user}>
         <div className={classes.avatar}>
-          <Avatar style={{ backgroundColor: '#f56a00', color: 'black', fontWeight: 'bold' }} size='large'>
+          <Avatar style={{ backgroundColor: 'rgb(253, 161, 55)', color: 'black', fontWeight: 'bold' }} size='large'>
             {user.name[0].toLocaleUpperCase()}
           </Avatar>          
         </div>
@@ -75,7 +75,7 @@ const ProfileMenu: React.FC<Settings> = ({user, visible, onClose, onClick}) => {
       <Divider />
       <p className={classes.link} onClick={showHelp}>{items.hotKeys}</p>
       <Divider />
-      <Link to="/"><p className={classes.link}>{items.exit}</p></Link>
+      <Link to="/"><p className={classes.link} onClick={logout}>{items.exit}</p></Link>
       <HelpModal visible={visibleHotKey} onClose={closeHelp} />
     </Drawer>    
   );
