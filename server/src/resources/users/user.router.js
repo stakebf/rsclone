@@ -4,13 +4,10 @@ const User = require('./user.model');
 const usersService = require('./user.service');
 const boardsService = require('../boards/board.service');
 const taskService = require('../tasks/task.service');
-const boardRepo = require('../boards/board.db.repository');
-
 const usersSchemas = require('./users.schema');
 const { registerUser } = require('../login/login.service')
 const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
-
 router.route('/').get(
   catchErrors(async (req, res) => {
     const users = await usersService.getAll();
@@ -80,7 +77,6 @@ router.route('/').post(
   catchErrors(async (req, res) => {
     const requestData = req.body;
     const { token, id } = await registerUser(requestData);
-    console.log(token, id)
     res.status(OK).json({ token, id });
   })
 );
@@ -93,6 +89,7 @@ router.route('/:id').put(
     const requestData = req.body;
     const user = await usersService.updateUser(id, requestData);
     await boardsService.updateUserData(user);
+    await taskService.updateUserData(user);
     res.status(OK).json(User.toResponse(user));
   })
 );

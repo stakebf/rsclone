@@ -22,7 +22,7 @@ const getAllBoardData = async boardId => {
   return boardsRepo.getAllBoardData(boardId);
 }
 
-const addUserToList =  (boardId, user) => {
+const addUserToList = (boardId, user) => {
   const { name, login, id } = user;
   return boardsRepo.addUserToList(boardId, { name, login, id });
 }
@@ -35,7 +35,10 @@ const deleteUserFromBoardList = async (id, userId) => await boardsRepo.deleteUse
 
 const findAllBoardOnUser = async (userId) => await boardsRepo.findAllBoardOnUser(userId);
 
-const updateUserData = async userData => await  boardsRepo.updateUserData(userData);
+const updateUserData = async userData => {
+  const { name, login, id } = userData;
+  await boardsRepo.updateUserData({ name, login, id });
+}
 
 module.exports = {
   getAll,

@@ -45,8 +45,8 @@ const addUserToList = async (id, userData) => {
 
 const updateUserData = async (userData) => {
   const { id } = userData;
-  const updatedBoard = await Todos.findOneAndUpdate({
-    'userList._id': id
+  const updatedBoard = await Board.findOneAndUpdate({
+    'userList.id': id
   },
     {
       '$set': {

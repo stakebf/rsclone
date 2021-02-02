@@ -41,6 +41,9 @@ router.route('/:id').put(
     const { id } = req.params;
     const requestData = req.body;
     const board = await boardsService.updateBoard(id, requestData);
+    if (requestData.title) {
+      await userService.updateBoardOnUser({ id: board.id, name: board.title })
+    }
     res.status(OK).json(Board.toResponse(board));
   })
 );
