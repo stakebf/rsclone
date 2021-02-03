@@ -13,6 +13,7 @@ const MainFeed: React.FC = () => {
 
   const getUserComments = (data: any) => {
     const listComments: any = [];
+    console.log(data);
     for (let board of data) {
       if (board.columns.length) {
         for (let column of board.columns) {
@@ -28,12 +29,13 @@ const MainFeed: React.FC = () => {
                       boardTitle: board.title,
                       columnTitle: column.title,
                       taskTitle: task.title,
-                      userList: task.userList,
+                      userList: task.usersList,
                       message: elem.message,
                       date: elem.date,
                       userName: elem.userName,
                       countComment: task.comments.length
                     });
+                    console.log(listComments);
                   }
                 }
               }
@@ -50,10 +52,11 @@ const MainFeed: React.FC = () => {
     api
       .getBoardsAll()
       .then((data) => {
-        const curUserId = localStorage.getItem('userId');
+        const curUserId = localStorage.getItem('rsclone_userId');
         const userDataBoards = data.filter((el: any) => {
           return el.userList.some((user: any) => user.id === curUserId);
         });
+        console.log(userDataBoards);
         setDataComments(getUserComments(userDataBoards));
       })
       .catch((error) => console.log(error))
@@ -68,6 +71,7 @@ const MainFeed: React.FC = () => {
 
   const elements = dataBoards.map((item) => {
     const {id} = item;
+    console.log(item);
     return <MainFeedComment key={id} item={item} />;
   });
 
