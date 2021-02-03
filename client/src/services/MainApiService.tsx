@@ -21,6 +21,11 @@ class MainApiService {
         break;
       }
 
+      case (status === 403): {
+        openNotification('Неверный адрес электронной почты или пароль');
+        break;
+      }
+
       case (status === 409): {
         openNotification('Пользователь с таким логином уже существует');
         break;
