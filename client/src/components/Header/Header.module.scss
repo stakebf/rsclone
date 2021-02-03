@@ -1,80 +1,83 @@
 .header {
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 5px;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #299adb;
+
+  .left,
+  .right {
+    width: 20%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: rgb(87, 186, 243);
+  }
 
-    .left, .right {
-        width: 20%;
-        display: flex;
-        align-items: center;
-    }
+  .left_wrapper {
+    width: 100%;
+    display: flex;
+  }
 
-    .left_wrapper {
-        width: 100%;
-        display: flex;
-    }
+  .right {
+    justify-content: flex-end;
+  }
 
-    .right {
-        justify-content: flex-end;
-    }
-
-    .title {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        font-weight: bold;
-        font-style: oblique;
-
-        .logoApp {
-            font-size: 25px;
-            margin-right: 5px;
-        }
-
-        .link {
-            &:visited,
-            &:link {
-            color: black;
-            }
-        
-            &:hover {
-            color: rgb(255, 255, 255);
-            }
-        }
-    }
-}
-
-.home, .boards {
+  .title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 20px;
+    font-weight: bold;
+    font-style: oblique;
+
+    .logoApp {
+      font-size: 25px;
+      margin-right: 5px;
+    }
+
+    .link {
+      &:visited,
+      &:link {
+        color: black;
+      }
+
+      &:hover {
+        color: rgb(255, 255, 255);
+      }
+    }
+  }
 }
 
-.btn_home, .btn_boards {
-    margin-right: 4px;
-    font-size: 14px;
+.home,
+.boards {
+  font-size: 20px;
 }
+
+.btn_home,
+.btn_boards{
+  margin-right: 4px;
+  font-size: 14px;
+}
+
 
 .profile:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 @media (max-width: 450px) {
-    .header {
-        .left {
-            width: auto;
-        }
-        .title {
-            font-size: 14px;
-            .text {
-               font-size: 14px;
-            }
-           
-        }
+  .header {
+    .left {
+      width: auto;
     }
+    .title {
+      font-size: 14px;
+      .text {
+        font-size: 14px;
+      }
+    }
+  }
 }

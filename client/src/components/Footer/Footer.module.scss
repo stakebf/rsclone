@@ -5,11 +5,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 20px;
-    background: rgb(87, 186, 243);
+    padding: 15px 20px;
+    background: #299adb;
 
     .year {
         margin-right: 10px;
+        font-weight: 800;
     }
 
     .logoRSS {
