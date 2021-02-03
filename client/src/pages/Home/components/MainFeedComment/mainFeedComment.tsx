@@ -52,8 +52,8 @@ const MainFeedComment: React.FC<MainFeedCommentProps> = ({item}) => {
 
   return (
     <li className={classes['item-task']}>
-      <div className={classes['item-task__info']}>
-        <Link to={`/${taskId}`} className={classes['link']}>
+      <Link to={`/currentBoard/${boardId}`} className={classes['item-task__info']}>
+        <div className={classes['link']}>
           <h4 className={classes['link__name']}>{taskTitle}</h4>
           <div className={classes['link__content']}>
             <div className={classes['comment']}>
@@ -62,14 +62,14 @@ const MainFeedComment: React.FC<MainFeedCommentProps> = ({item}) => {
             </div>
             <ul className={classes['user-list']}>{renderUserList}</ul>
           </div>
-        </Link>
+        </div>
         <div className={classes['info-board']}>
-          <Link to={`/currentBoard/${boardId}`} className={classes['info-board__link']}>
+          <div className={classes['info-board__link']}>
             {boardTitle}:
-          </Link>
+          </div>
           <span className="info-board__colum"> {columnTitle}</span>
         </div>
-      </div>
+      </Link>
       <div className={classes['item-task__comment']}>
         <div className={classes['user']}>
           <span className={classes['user__icon']}>{userName.slice(0, 1).toLocaleUpperCase()}</span>

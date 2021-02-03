@@ -23,7 +23,9 @@ import {
   REMOVE_TAG,
   ATTACH_USER_TO_TASK,
   REMOVE_USER_FROM_TASK,
-  REFRESH_COLUMNS
+  REFRESH_COLUMNS,
+  UPDATE_USERS_LIST,
+  UPDATE_CURRENT_USER
 } from './actionTypes';
 import MainApiService from '../../services/MainApiService';
 
@@ -366,15 +368,15 @@ export const setCurrentUser = () => {
   return async (dispatch) => {
     let currentUser;
     const currentUserId = localStorage.getItem('rsclone_userId');
-
+        
     try {
       currentUser = await service.getUserById(currentUserId);
       dispatch(fetchUserSuccess(currentUser));
     } catch (e) {
-      currentUser = await service.getUserById(currentUserId);
+        currentUser = await service.getUserById(currentUserId);
     } finally {
       if (!currentUser) {
-        window.location.href = '/login';
+        window.location.href = '/';
       } else {
         dispatch(fetchUserSuccess(currentUser));
       }
@@ -584,6 +586,23 @@ export const fetchMoveTaskSuccess = (source, destination) => {
     payload: {
       source, 
       destination
+    }
+  };
+};
+
+export const updateUsersList = (usersList) => {
+  return {
+    type: UPDATE_USERS_LIST,
+    payload: usersList
+  };
+};
+
+export const updateCurrentUser = (name, login) => {
+  return {
+    type: UPDATE_CURRENT_USER,
+    payload: {
+      name, 
+      login
     }
   };
 };

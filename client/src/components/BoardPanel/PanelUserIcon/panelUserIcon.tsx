@@ -103,7 +103,9 @@ const PanelUserIcon: React.FC<PanelUserIconProps> = ({
       }}
     >
       {name.slice(0, 1).toLocaleUpperCase()}
-      {adminId === id && <StarFilled className={classes['user-icon__admin']} twoToneColor="#fff" />}
+      {adminId === id && (
+        <StarFilled className={classes['user-icon__admin']} style={{color: 'rgb(235, 219, 125)'}} />
+      )}
       {isOpenWindow ? renderWindow() : null}
     </li>
   );

@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react-beautiful-dnd": "^13.0.0"
-  },
-  "devDependencies": {
-    "@types/react-beautiful-dnd": "^13.0.0"
-  }
-}
