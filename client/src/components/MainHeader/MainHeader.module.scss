@@ -1,5 +1,4 @@
 .header {
-    z-index: 1;
     position: fixed;
     top: 0;
     width: 100%;
@@ -8,21 +7,6 @@
     justify-content: space-between;
     align-items: center;
     background: rgb(87, 186, 243);
-
-    .left, .right {
-        width: 20%;
-        display: flex;
-        align-items: center;
-    }
-
-    .left_wrapper {
-        width: 100%;
-        display: flex;
-    }
-
-    .right {
-        justify-content: flex-end;
-    }
 
     .title {
         width: 100%;
@@ -47,34 +31,6 @@
             &:hover {
             color: rgb(255, 255, 255);
             }
-        }
-    }
-}
-
-.home, .boards {
-    font-size: 20px;
-}
-
-.btn_home, .btn_boards {
-    margin-right: 4px;
-    font-size: 14px;
-}
-
-.profile:hover {
-    cursor: pointer;
-}
-
-@media (max-width: 450px) {
-    .header {
-        .left {
-            width: auto;
-        }
-        .title {
-            font-size: 14px;
-            .text {
-               font-size: 14px;
-            }
-           
         }
     }
 }

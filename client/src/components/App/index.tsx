@@ -15,7 +15,7 @@ const App: React.FC = () => {
     <>
       <Switch>
         <Route path="/" exact>
-          {false /* isToken */ ? <Home type="main" /> : <Main />}
+          <Main />
         </Route>
         <Route path="/profile" exact render={(props) => {
             let tab = "1";

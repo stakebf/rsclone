@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import './Carousel.scss';
 import classes from './Main.module.scss';
-import Header from '../../components/Header';
+import MainHeader from '../../components/MainHeader';
 import Footer from '../../components/Footer';
 import { Button, Carousel } from 'antd';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const About: React.FC = () => {
   return (
     <div>
-      <Header type="main"/>
+      <MainHeader/>
       <div className={classes.wrapper}>
         <div className={classes.main}>
           <Carousel className={classes.carousel} autoplay autoplaySpeed={5000}>

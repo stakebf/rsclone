@@ -30,12 +30,16 @@ const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
     setVisibleBoardsList(false);
   }
   
-  let boards = [];
+  let boards: any = [];
   if (type !== 'main') {
     if (!currentUser.name) return null;
-    boards = currentUser.boards.map((item: string, index: number) => { return {name: index.toString(), id: item} })
+    for (let i = 0; i < currentUser.boards.length; i++) {
+      if (currentUser.boards[i].name) {
+        boards.push(currentUser.boards[i]);
+      }
+    }
   }
-  
+
   return (
     <header className={classes.header}>
         <div className={classes.left}>
@@ -43,7 +47,7 @@ const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
             type !== 'main' ? 
             ( 
               <div className={classes.left_wrapper}>
-                <Link to="/">
+                <Link to="/boards">
                   <Button className={classes.btn_home} type="primary">
                     <HomeOutlined className={classes.home} />
                   </Button>
@@ -60,7 +64,7 @@ const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
           }
         </div>
         <div className={classes.title}>
-          <Link className={classes.link} to="/">
+          <Link className={classes.link} to="/boards">
             <ProjectOutlined className={classes.logoApp} />
             <span className={classes.text}>New Trello</span>
           </Link>
