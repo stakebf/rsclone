@@ -102,7 +102,9 @@ const PanelUserIcon: React.FC<PanelUserIconProps> = ({
         onToggleUserWindow(id, true);
       }}
     >
-      {name.slice(0, 1).toLocaleUpperCase()}
+      <span className={adminId === id ? classes['fix-admin'] : ''}>
+        {name.slice(0, 1).toLocaleUpperCase()}
+      </span>
       {adminId === id && (
         <StarFilled className={classes['user-icon__admin']} style={{color: 'rgb(235, 219, 125)'}} />
       )}

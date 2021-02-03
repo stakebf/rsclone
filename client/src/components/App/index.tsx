@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import Main from '../../pages/Main';
 import SignInUp from '../../pages/SignInUp';
 import Home from '../../pages/Home';
@@ -29,8 +29,14 @@ const App: React.FC = () => {
           }
         } />
         <Route path="/boards" render={() => <Home type="boards" />} />
-        <Route path="/login" render={() => <SignInUp type="login" />} />
-        <Route path="/register" render={() => <SignInUp type="register" />} />
+        <Route
+          path="/login"
+          render={() => (isToken ? <Redirect to="/" /> : <SignInUp type="login" />)}
+        />
+        <Route
+          path="/register"
+          render={() => (isToken ? <Redirect to="/" /> : <SignInUp type="register" />)}
+        />
         <Route path="/404" render={() => <Page404 />} />
 
         <Route

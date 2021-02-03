@@ -2,9 +2,9 @@
   display: flex;
   justify-content: center;
   .menu-panel {
-    margin: 40px 0 0;
     padding: 0 16px;
     min-width: 240px;
+    transform: translateY(35px);
     .list-tabs {
       position: sticky;
       top: 20px;
@@ -45,17 +45,17 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 40px 16px 0;
+    margin-bottom: 80px;
     width: 100%;
     max-width: 825px;
     min-width: 200px;
+    transform: translateY(55px);
   }
 }
 
 @media (max-width: 700px) {
   .container {
     .content {
-      margin: 40px 0 0;
       padding-right: 10px;
     }
   }
@@ -73,7 +73,7 @@
       }
     }
     .content {
-      margin: 20px 0 0;
+      transform: translateY(30px);
       padding: 10px;
     }
   }
