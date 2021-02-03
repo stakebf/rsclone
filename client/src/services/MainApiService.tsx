@@ -124,6 +124,10 @@ class MainApiService {
     return await response.json();
   };
 
+  putUser = async (userId:string, data = {}) => {
+    return await this._getPut(`/users/${userId}`, data);
+  };
+
   putBoard = async (data = {}, id: string) => {
     return await this._getPut(`/boards/${id}`, data);
   };
