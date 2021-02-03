@@ -1,7 +1,9 @@
-import {idText} from 'typescript';
-
 class MainApiService {
   _API_URL = 'http://localhost:4000';
+
+  getToken() {
+    return localStorage.getItem('rsclone_token');
+  }
 
   async getResource(url: string) {
     const res = await fetch(url);
@@ -15,7 +17,7 @@ class MainApiService {
   _getResource = async (url: string) => {
     const response = await fetch(url, {
       headers: {
-        // authorization: token
+        Authorization: `Bearer ${this.getToken()}`        
       }
     });
     // console.log('response', response);
