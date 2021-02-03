@@ -28,7 +28,7 @@ const MainFeed: React.FC = () => {
                       boardTitle: board.title,
                       columnTitle: column.title,
                       taskTitle: task.title,
-                      userList: task.userList,
+                      userList: task.usersList,
                       message: elem.message,
                       date: elem.date,
                       userName: elem.userName,
@@ -50,7 +50,7 @@ const MainFeed: React.FC = () => {
     api
       .getBoardsAll()
       .then((data) => {
-        const curUserId = localStorage.getItem('userId');
+        const curUserId = localStorage.getItem('rsclone_userId');
         const userDataBoards = data.filter((el: any) => {
           return el.userList.some((user: any) => user.id === curUserId);
         });
@@ -68,6 +68,7 @@ const MainFeed: React.FC = () => {
 
   const elements = dataBoards.map((item) => {
     const {id} = item;
+    console.log(item);
     return <MainFeedComment key={id} item={item} />;
   });
 
