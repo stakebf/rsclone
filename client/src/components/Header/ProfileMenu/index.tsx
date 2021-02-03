@@ -75,7 +75,7 @@ const ProfileMenu: React.FC<Settings> = ({user, visible, onClose, onClick}) => {
       <Divider />
       <p className={classes.link} onClick={showHelp}>{items.hotKeys}</p>
       <Divider />
-      <Link to="/"><p className={classes.link} onClick={logout}>{items.exit}</p></Link>
+      <Link to="/"><p className={classes.link} onClick={() => { logout(); window.location.href = '/about'; }}>{items.exit}</p></Link>
       <HelpModal visible={visibleHotKey} onClose={closeHelp} />
     </Drawer>    
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Form, Input, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 import MainApiService from '../../../services/MainApiService';
 import { connect } from 'react-redux';
 import { updateCurrentUser } from '../../../redux/actions';
@@ -11,9 +11,10 @@ const validateMessages = {
     // eslint-disable-next-line no-template-curly-in-string
     email: 'Некорректный ${label}!',
   },
+  string: {
+    min: "Имя должно быть не меньше ${min} символов",
+  },
 };
-
-let isError = false;
 
 const ProfileForm: React.FC<any> = ({user: currentUser,  updateCurrentUser}) => {
   const [form] = Form.useForm();
@@ -36,10 +37,8 @@ const ProfileForm: React.FC<any> = ({user: currentUser,  updateCurrentUser}) => 
     if (values.userEmail !== user.email) newUser.login = values.userEmail;
     service.putUser(currentUser.id, newUser)
            .then(() => { 
-              isError = false;
-              updateCurrentUser(values.userName, values.userEmail);
+                updateCurrentUser(values.userName, values.userEmail);
             }).catch((error) => { 
-              isError = true;
               form.setFieldsValue({ userName: user.name });
               form.setFieldsValue({ userEmail: user.email });
               updateCurrentUser(user.name, user.email);
@@ -49,28 +48,18 @@ const ProfileForm: React.FC<any> = ({user: currentUser,  updateCurrentUser}) => 
   return (
     <div>
       <Form initialValues={{ userName: user.name, userEmail: user.email }} form={form} validateMessages={validateMessages} onFinish={onFinish}>
-        <Form.Item name='userName' label={items.name} rules={[{ required: true }]}>
-          <Input />
+        <Form.Item name='userName' label={items.name} rules={[{ required: true, min: 2 }]}>
+          <Input autoComplete='off' />
         </Form.Item>
         <Form.Item name={'userEmail'} label="Email" rules={[{ type: 'email', required: true}]}>
-          <Input />
+          <Input  autoComplete='off' />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
             {items.save}
           </Button>
         </Form.Item>
-      </Form>
-      {
-        isError ? 
-        <Alert
-          message="Ошибка!!!"
-          description="Такой email уже есть в базе"
-          type="error"
-          closable
-        /> : null
-      }
-      
+      </Form>    
     </div>
   )
 };
