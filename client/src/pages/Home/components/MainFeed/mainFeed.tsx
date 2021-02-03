@@ -68,7 +68,6 @@ const MainFeed: React.FC = () => {
 
   const elements = dataBoards.map((item) => {
     const {id} = item;
-    console.log(item);
     return <MainFeedComment key={id} item={item} />;
   });
 

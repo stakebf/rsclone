@@ -30,6 +30,7 @@
       &.hide {
         position: absolute;
         z-index: -1;
+        visibility: hidden;
       }
       &.disabled {
         cursor: not-allowed;
