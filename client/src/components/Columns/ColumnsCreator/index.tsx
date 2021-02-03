@@ -43,7 +43,7 @@ const ColumnCreator: React.FC<PropsType> = ({
   }, [fetchBoard, setCurrentUser, id]);
 
   if (error) {
-    window.location.href = '/boards';
+    window.location.href = '/';
   }
 
   const btnAddClassNames: Array<string> = [classes.btnAddColumn, isCreation ? classes.hide : ''];
