@@ -5,7 +5,7 @@ import { Avatar, Button, Tooltip } from 'antd';
 import { ProjectOutlined, HomeOutlined } from '@ant-design/icons';
 import ProfileMenu from './ProfileMenu';
 import BoardsList from './BoardsList';
-import Complete from './Complete';
+// import Complete from './Complete';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/actions';
 import { Store } from '../../redux/store/store';
@@ -15,7 +15,7 @@ const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
   useEffect(() => {
     setCurrentUser();
   }, [setCurrentUser]);
-  console.log('header', currentUser)
+
   const btnBoards = 'Доски';
  
   const [visibleProfileMenu, setVisibleProfileMenu] = useState(false);
@@ -30,9 +30,12 @@ const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
     setVisibleBoardsList(false);
   }
   
-  if (!currentUser.name) return null;
-  const boards = currentUser.boards.map((item: string, index: number) => { return {name: index.toString(), id: item} })
-
+  let boards = [];
+  if (type !== 'main') {
+    if (!currentUser.name) return null;
+    boards = currentUser.boards.map((item: string, index: number) => { return {name: index.toString(), id: item} })
+  }
+  
   return (
     <header className={classes.header}>
         <div className={classes.left}>
@@ -59,7 +62,7 @@ const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
         <div className={classes.title}>
           <Link className={classes.link} to="/">
             <ProjectOutlined className={classes.logoApp} />
-            <span>New Trello</span>
+            <span className={classes.text}>New Trello</span>
           </Link>
         </div>
         <div className={classes.right}>

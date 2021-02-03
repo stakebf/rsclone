@@ -9,19 +9,11 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/actions';
 import { Store } from '../../redux/store/store';
 
-let user = {
-  nameShort: 'RH',
-  name: 'Ruslan Hryshchuk',
-  email: 'rus_g@tut.by',
-}
-
 const { TabPane } = Tabs;
 
 let isUpdate = true; 
 
 const Profile: React.FC<any> = ({activeTab, setCurrentUser, currentUser = {}}) => {
-  console.log('profilePage');
-
   useEffect(() => {
     setCurrentUser();
   }, [setCurrentUser]);
@@ -41,8 +33,8 @@ const Profile: React.FC<any> = ({activeTab, setCurrentUser, currentUser = {}}) =
   }
 
   if (!isUpdate) isUpdate = true;
-
   if (!currentUser.name) return null;
+
   return (
     <div>
       <div className={classes.wrapper}>

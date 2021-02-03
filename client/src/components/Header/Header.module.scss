@@ -1,12 +1,12 @@
 .header {
     padding: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background: rgb(87, 186, 243);
 
     .left, .right {
-        width: 45%;
+        width: 20%;
         display: flex;
         align-items: center;
     }
@@ -21,6 +21,7 @@
     }
 
     .title {
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -57,4 +58,19 @@
 
 .profile:hover {
     cursor: pointer;
+}
+
+@media (max-width: 450px) {
+    .header {
+        .left {
+            width: auto;
+        }
+        .title {
+            font-size: 14px;
+            .text {
+               font-size: 14px;
+            }
+           
+        }
+    }
 }

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import {Redirect} from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import React from 'react';
+import { Alert, Form, Input, Button } from 'antd';
 import MainApiService from '../../../services/MainApiService';
+import { connect } from 'react-redux';
+import { updateCurrentUser } from '../../../redux/actions';
 
 const validateMessages = {
   // eslint-disable-next-line no-template-curly-in-string
@@ -12,17 +13,17 @@ const validateMessages = {
   },
 };
 
-let isRedirect = false;
+let isError = false;
 
-const ProfileForm: React.FC<any> = ({user: currentUser}) => {
-  console.log('profileForm');
+const ProfileForm: React.FC<any> = ({user: currentUser,  updateCurrentUser}) => {
+  console.log('beginForm', currentUser);
+  const [form] = Form.useForm();
   const service = new MainApiService();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [user, setUser] = useState({
+  let user = {
     name: currentUser.name,
-    email: currentUser.email,  
-  });
+   email: currentUser.email,
+  }
   
   const items = {
     name: 'Имя',
@@ -30,36 +31,29 @@ const ProfileForm: React.FC<any> = ({user: currentUser}) => {
   }
 
   function  onFinish(values: any) {
+    console.log('before zapros user', user);
+    console.log('beforevalues', values);
     if (values.userName === user.name && values.userEmail === user.email) return;
-    console.log('update');
-    service.putUser(currentUser.id, { id: currentUser.id, name: values.userName, login: values.userEmail })
-           .then((data) => { 
-              // isRedirect = true;
-              // console.log('data', data);
-              // window.location.reload();
-              // setUser({
-              //   name: values.userName,
-              //   email: values.userEmail,  
-              // });            
+    const newUser: any = { id: currentUser.id };
+    if (values.userName !== user.name) newUser.name = values.userName;
+    if (values.userEmail !== user.email) newUser.login = values.userEmail;
+    console.log('zapros', newUser);
+    service.putUser(currentUser.id, newUser)
+           .then(() => { 
+              isError = false;
+              updateCurrentUser(values.userName, values.userEmail);
             }).catch((error) => { 
-              console.log('error', error.message);
-              console.log(user);
-              setUser({
-                name: user.name,
-                email: user.email,  
-              });
+              isError = true;
+              form.setFieldsValue({ userName: user.name });
+              form.setFieldsValue({ userEmail: user.email });
+              updateCurrentUser(user.name, user.email);
             });
   }
 
-  console.log('isRedirect', isRedirect);
-  if (isRedirect) {
-    isRedirect = false;
-    return <Redirect to="/profile" />
-  }
-
+  console.log('before render', user);
   return (
     <div>
-      <Form initialValues={{ userName: user.name, userEmail: user.email }} validateMessages={validateMessages} onFinish={onFinish}>
+      <Form initialValues={{ userName: user.name, userEmail: user.email }} form={form} validateMessages={validateMessages} onFinish={onFinish}>
         <Form.Item name='userName' label={items.name} rules={[{ required: true }]}>
           <Input />
         </Form.Item>
@@ -72,8 +66,24 @@ const ProfileForm: React.FC<any> = ({user: currentUser}) => {
           </Button>
         </Form.Item>
       </Form>
+      {
+        isError ? 
+        <Alert
+          message="Ошибка!!!"
+          description="Такой email уже есть в базе"
+          type="error"
+          closable
+        /> : null
+      }
+      
     </div>
   )
 };
 
-export default ProfileForm;
+const mapDispatchStateToProps = (dispatch: any) => {
+  return {
+    updateCurrentUser: (name: string, login: string) => dispatch(updateCurrentUser(name, login))
+  }
+}
+
+export default connect(null, mapDispatchStateToProps)(ProfileForm);

@@ -1,8 +1,10 @@
 .wrapper {
-    // height: 100vh;
+    height: 100vh;
+    padding-bottom: 90px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+
 }
 
 .main {
@@ -78,4 +80,150 @@
             background: rgb(60, 199, 72);
         }
     }
+}
+
+@media (max-width: 1350px) {
+    .text {
+        .title {
+            font-size: 25px;
+        }
+
+        .p {
+            font-size: 20px;
+        }
+    }
+
+    .list {
+ 
+        li {
+            font-size: 20px;
+            margin: 0px 5px 0px;
+        }
+    }
+
+    .content {
+        .img {
+            width: 450px;
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .text {
+        .title {
+            font-size: 20px;
+        }
+
+        .p {
+            font-size: 14px;
+        }
+    }
+
+    .list {
+
+        li {
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+
+    .content {
+        .img {
+            width: 350px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .content {
+        .text {
+            width: 100%;
+        }
+        .img {
+           width: 0;
+        }
+    }
+}
+
+@media (max-height: 700px) {
+    .text {
+        .title {
+            font-size: 20px;
+        }
+
+        .p {
+            font-size: 14px;
+        }
+    }
+
+    .list {
+
+        li {
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+
+    .content {
+        height: 400px;
+        .img {
+            width: 350px;
+        }
+    }
+
+}
+
+@media (max-height: 550px) {
+    .content {
+        max-height: 270px;
+        .text {
+            width: 100%;
+        }
+        .img {
+           width: 0;
+        }
+    }
+}
+
+@media (max-height: 470px) {
+    .content {
+        padding: 7px;
+        margin: 0 5px 0;
+        .text {
+            .title {
+                font-size: 14px;
+            }
+    
+            .p {
+                font-size: 10px;
+            }
+        }
+    
+        .list {
+    
+            li {
+                font-size: 10px;
+                margin: 0;
+            }
+        }
+            
+    }
+
+    .buttons {
+
+        .btn_login {
+            height: 25px;
+            padding: 2px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    
+        .btn_signup {
+            height: 25px;
+            padding: 2px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+    
 }

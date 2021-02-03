@@ -373,10 +373,10 @@ export const setCurrentUser = () => {
       currentUser = await service.getUserById(currentUserId);
       dispatch(fetchUserSuccess(currentUser));
     } catch (e) {
-      currentUser = await service.getUserById(currentUserId);
+       // currentUser = await service.getUserById(currentUserId);
     } finally {
       if (!currentUser) {
-        window.location.href = '/login';
+        // window.location.href = '/';
       } else {
         dispatch(fetchUserSuccess(currentUser));
       }

@@ -17,18 +17,11 @@ const App: React.FC = () => {
         <Route path="/" exact>
           {false /* isToken */ ? <Home type="main" /> : <Main />}
         </Route>
-
-        {/* <Route
-        path="/:userId/boards"
-        render={({match}) => <Home userId={match.params.userId} type="boards" />}
-      /> */}
         <Route path="/profile" exact render={(props) => {
-          console.log('to profile');
             let tab = "1";
             if (props.location.state === "2") {
               tab = "2";
             }
-            console.log('tab', tab)
             return <Profile activeTab={tab} />
           }
         } />
