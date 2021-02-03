@@ -25,7 +25,14 @@
 .tabProfile, .tabActions {
     padding: 10px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.tabProfile {
+    flex-direction: column;
+}
+
+.tabActions {
+    flex-direction: row;
 }
