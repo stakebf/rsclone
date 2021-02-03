@@ -60,9 +60,12 @@
       }
     }
   }
-  .img {
+  .block-img {
     width: 100%;
     max-width: 400px;
+  }
+  .img {
+    width: 100%;
   }
 }
 
@@ -79,7 +82,7 @@
     .container {
       max-width: 300px;
     }
-    .img {
+    .block-img {
       display: none;
     }
   }

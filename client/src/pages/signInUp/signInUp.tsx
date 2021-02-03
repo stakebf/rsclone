@@ -102,7 +102,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                   setRedirect(true);
                 })
                 .catch((error) => {
-                  if (error.message === 'User already exist') {
+                  if (error.message === `User with login ${email} already exist`) {
                     setErrorMessageServer('Адрес электронной почты уже зарегистрирован');
                   } else {
                     setErrorMessageServer('Произошел технический сбой! Попробуйте позже');
@@ -129,11 +129,13 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
       </header>
 
       <main className={classes.main}>
-        <img
-          className={classes.img}
-          src="/svg/trello-left.abecab36.svg"
-          alt="trello-left.abecab36"
-        />
+        <div className={classes['block-img']}>
+          <img
+            className={classes.img}
+            src="/svg/trello-left.abecab36.svg"
+            alt="trello-left.abecab36"
+          />
+        </div>
         <section className={classes.container}>
           <p className={`${classes['error-message']} ${errorServer ? classes.show : ''}`}>
             {errorServer ? errorMessageServer : ''}
@@ -152,11 +154,13 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             {settings.linkWord}
           </Link>
         </section>
-        <img
-          className={classes.img}
-          src="/svg/trello-right.2222cb95.svg"
-          alt="trello-right.2222cb95"
-        />
+        <div className={classes['block-img']}>
+          <img
+            className={classes.img}
+            src="/svg/trello-right.2222cb95.svg"
+            alt="trello-right.2222cb95"
+          />
+        </div>
       </main>
     </>
   );
