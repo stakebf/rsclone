@@ -16,13 +16,12 @@ const validateMessages = {
 let isError = false;
 
 const ProfileForm: React.FC<any> = ({user: currentUser,  updateCurrentUser}) => {
-  console.log('beginForm', currentUser);
   const [form] = Form.useForm();
   const service = new MainApiService();
 
   let user = {
     name: currentUser.name,
-   email: currentUser.email,
+    email: currentUser.email,
   }
   
   const items = {
@@ -31,13 +30,10 @@ const ProfileForm: React.FC<any> = ({user: currentUser,  updateCurrentUser}) => 
   }
 
   function  onFinish(values: any) {
-    console.log('before zapros user', user);
-    console.log('beforevalues', values);
     if (values.userName === user.name && values.userEmail === user.email) return;
     const newUser: any = { id: currentUser.id };
     if (values.userName !== user.name) newUser.name = values.userName;
     if (values.userEmail !== user.email) newUser.login = values.userEmail;
-    console.log('zapros', newUser);
     service.putUser(currentUser.id, newUser)
            .then(() => { 
               isError = false;
@@ -50,7 +46,6 @@ const ProfileForm: React.FC<any> = ({user: currentUser,  updateCurrentUser}) => 
             });
   }
 
-  console.log('before render', user);
   return (
     <div>
       <Form initialValues={{ userName: user.name, userEmail: user.email }} form={form} validateMessages={validateMessages} onFinish={onFinish}>

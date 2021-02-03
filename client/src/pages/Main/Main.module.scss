@@ -15,7 +15,7 @@
 }
 
 .content {
-    height: 550px;
+    max-height: 550px;
     margin: 20px;
     display: flex;
     align-items: center;
@@ -145,37 +145,29 @@
     }
 }
 
-@media (max-height: 700px) {
-    .text {
-        .title {
-            font-size: 20px;
-        }
-
-        .p {
-            font-size: 14px;
-        }
-    }
-
-    .list {
-
-        li {
-            font-size: 14px;
-            margin: 0;
-        }
-    }
-
+@media (max-height: 600px) {
     .content {
-        height: 400px;
-        .img {
-            width: 350px;
+        max-height: 300px;
+        .text {
+            .title {
+                font-size: 15px;
+            }
+            .p {
+                font-size: 14px;
+            }
+            .list {
+                li {
+                    font-size: 14px;
+                    margin: 0;                    
+                }
+            }
         }
     }
-
 }
 
-@media (max-height: 550px) {
+@media (max-height: 450px) {
     .content {
-        max-height: 270px;
+        max-height: 200px;
         .text {
             width: 100%;
         }
@@ -185,45 +177,21 @@
     }
 }
 
-@media (max-height: 470px) {
+@media (max-height: 300px) {
     .content {
-        padding: 7px;
-        margin: 0 5px 0;
+        max-height: 100px;
         .text {
-            .title {
-                font-size: 14px;
-            }
-    
-            .p {
-                font-size: 10px;
-            }
-        }
-    
-        .list {
-    
-            li {
-                font-size: 10px;
-                margin: 0;
-            }
-        }
-            
-    }
-
-    .buttons {
-
-        .btn_login {
-            height: 25px;
-            padding: 2px;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-    
-        .btn_signup {
-            height: 25px;
-            padding: 2px;
-            font-size: 14px;
-            margin-right: 10px;
+           .title {
+               font-size: 10px;
+           }
+           .p {
+               font-size: 10px;
+           }
+           .list {
+               li {
+                   font-size: 10px;
+               }
+           }
         }
     }
-    
 }
