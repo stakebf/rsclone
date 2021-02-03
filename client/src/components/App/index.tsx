@@ -1,11 +1,9 @@
 import React from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
-
 import Main from '../../pages/Main';
 import SignInUp from '../../pages/SignInUp';
 import Home from '../../pages/Home';
 import Page404 from '../../pages/Page404';
-import TestPage from '../../pages/TestPage';
 import Profile from '../../pages/Profile';
 import Columns from '../Columns';
 // import classes from './App.module.scss';
@@ -22,19 +20,14 @@ const App: React.FC = () => {
         <Route path="/" exact>
           {isToken ? <Home type="main" /> : <Main />}
         </Route>
-
-        <Route
-          path="/profile"
-          exact
-          render={(props) => {
-            let tab = '1';
-            if (props.location.state === '2') {
-              tab = '2';
-            }
-            return <Profile activeTab={tab} />;
-          }}
-        />
-        <Route path="/test" render={() => <TestPage />} />
+        <Route path="/profile" exact render={(props) => {
+          let tab = "1";
+          if (props.location.state === "2") {
+            tab = "2";
+          }
+            return <Profile activeTab={tab} />
+          }
+        } />
         <Route path="/boards" render={() => <Home type="boards" />} />
         <Route
           path="/login"
