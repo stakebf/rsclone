@@ -368,12 +368,12 @@ export const setCurrentUser = () => {
   return async (dispatch) => {
     let currentUser;
     const currentUserId = localStorage.getItem('rsclone_userId');
-
+        
     try {
       currentUser = await service.getUserById(currentUserId);
       dispatch(fetchUserSuccess(currentUser));
     } catch (e) {
-       // currentUser = await service.getUserById(currentUserId);
+        // currrrentUser = await service.getUserById(currentUserId);
     } finally {
       if (!currentUser) {
         // window.location.href = '/';
