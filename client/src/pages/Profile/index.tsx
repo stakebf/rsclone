@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProfileForm from './ProfileForm';
 import Actions from './Actions';
+import MainFeed from '../Home/components/MainFeed';
 import { Avatar, Tabs } from 'antd';
 import classes from './Profile.module.scss';
 import { connect } from 'react-redux';
@@ -55,7 +56,7 @@ const Profile: React.FC<any> = ({activeTab, setCurrentUser, currentUser = {}}) =
           </TabPane>
           <TabPane tab={tabsTitle.actions} key="2">
             <div className={classes.tabActions}>
-              <Actions />           
+              <MainFeed />         
             </div>
           </TabPane>
         </Tabs>
