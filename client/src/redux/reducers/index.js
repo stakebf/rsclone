@@ -61,6 +61,7 @@ const initialState = {
   board: {
     id: '',
     title: '',
+    background: '',
     userList: [],
     columns: []
   }

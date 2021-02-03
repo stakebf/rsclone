@@ -29,7 +29,7 @@ type PropsType = RouteComponentProps<PathParamsType> & {
 const ColumnCreator: React.FC<PropsType> = ({ 
   error, 
   boardId: id, 
-  board: { columns = [], id: boardId }, 
+  board: { columns = [], id: boardId, background }, 
   fetchBoard, 
   addColumn, 
   setCurrentUser, 
@@ -40,7 +40,13 @@ const ColumnCreator: React.FC<PropsType> = ({
   useEffect(() => {
     fetchBoard(id);
     setCurrentUser();
-  }, [fetchBoard, setCurrentUser, id]);
+
+    document.body.style.background = background.indexOf('rgb') >= 0 ? background : `url(${background})`;
+
+    return () => {
+      document.body.style.background = '';
+    }
+  }, [fetchBoard, setCurrentUser, id, background]);
 
   if (error) {
     window.location.href = '/';
@@ -133,11 +139,7 @@ const ColumnCreator: React.FC<PropsType> = ({
           />
           <Button 
             type="default"
-            style={{
-              backgroundColor: 'green', 
-              color: '#fff',
-              marginRight: '5px'
-            }}
+            className={classes.btnAddTaskList}
             onClick={addColumnClickHandler}
           >
             <PlusCircleOutlined />

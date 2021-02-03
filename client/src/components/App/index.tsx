@@ -6,13 +6,11 @@ import Home from '../../pages/Home';
 import Page404 from '../../pages/Page404';
 import Profile from '../../pages/Profile';
 import Columns from '../Columns';
-// import classes from './App.module.scss';
 
 const App: React.FC = () => {
   const token = localStorage.getItem('rsclone_token');
   const userId = localStorage.getItem('rsclone_userId');
   const isToken = token && userId;
-  console.log(isToken);
 
   return (
     <>

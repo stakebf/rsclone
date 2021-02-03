@@ -4,6 +4,7 @@
   position: relative;
   min-width: 300px;
   min-height: 50px;
+  margin-top: 50px;
 
   &::-webkit-scrollbar {
     height: 10px;
@@ -43,6 +44,16 @@
       width: 260px;
       margin-bottom: 5px;
       padding: 0 5px;
+    }
+
+    .btnAddTaskList {
+        background-color: #085d8beb;
+        color: #fff;
+        margin-right: '5px';
+
+        &:hover {
+          background-color: #1b85beeb;
+        }
     }
   }
 }

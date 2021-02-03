@@ -13,7 +13,6 @@ const Column:React.FC<any> = ({
     boardId,
     _id,
     title,
-    // order,
     taskList = [],
     addTaskList,
     renameColumn,

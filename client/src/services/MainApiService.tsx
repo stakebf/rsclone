@@ -38,12 +38,6 @@ class MainApiService {
     }
   }
 
-  async getResource(url: string) {
-    const res = await fetch(url);
-
-    return await res.json();
-  }
-
   // Get
 
   _getResource = async (url: string) => {
