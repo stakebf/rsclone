@@ -376,7 +376,7 @@ export const setCurrentUser = () => {
         currentUser = await service.getUserById(currentUserId);
     } finally {
       if (!currentUser) {
-        window.location.href = '/';
+        // window.location.href = '/';
       } else {
         dispatch(fetchUserSuccess(currentUser));
       }
