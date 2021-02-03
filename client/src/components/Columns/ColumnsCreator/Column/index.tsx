@@ -164,7 +164,6 @@ const Column:React.FC<any> = ({
                 <Button 
                   type="default"
                   style={{
-                    backgroundColor: 'green', 
                     color: '#fff',
                     marginRight: '5px',
                     borderRadius: '3px'
@@ -190,10 +189,10 @@ const Column:React.FC<any> = ({
                   <Button 
                     type="default"
                     style={{
-                      backgroundColor: 'green', 
                       color: '#fff',
                       marginRight: '5px'
                     }}
+                    className={classes.addCardBtn}
                     onClick={addCardClickHandler}
                   >
                     <PlusCircleOutlined />

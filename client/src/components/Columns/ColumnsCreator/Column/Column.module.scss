@@ -31,9 +31,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-  
+
       &:hover {
-        background-color: rgba(9,30,66,.08);
+        background-color: rgba(9, 30, 66, 0.08);
         color: #fff;
         border: 1px solid #fff;
       }
@@ -45,12 +45,12 @@
     width: 210px;
     min-height: 25px;
     cursor: pointer;
-    transition: all .3s;
+    transition: all 0.3s;
     margin-bottom: 10px;
     font-weight: 700;
 
     &:hover {
-      background-color: rgba(9,30,66,.08);
+      background-color: rgba(9, 30, 66, 0.08);
     }
   }
 
@@ -68,6 +68,7 @@
     width: 100%;
     position: relative;
     left: 0;
+    background-color: #085d8beb;
 
     &.hide {
       opacity: 0;
@@ -76,14 +77,25 @@
       position: absolute;
       left: -400px;
     }
+
+    &:hover {
+      background-color: #1b85beeb;
+    }
+  }
+
+  .addCardBtn {
+    background-color: #085d8beb;
+    &:hover {
+      background-color: #1b85beeb;
+    }
   }
 
   .creationWrapper {
-    transition: all .5s;
+    transition: all 0.5s;
     background-color: #ebecf0;
     padding: 5px;
     width: 250px;
-    animation: smoothShow .5s ease-in-out;  
+    animation: smoothShow 0.5s ease-in-out;
 
     .creationInput {
       width: 250px;
