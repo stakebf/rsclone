@@ -14,12 +14,11 @@ const checkToken = (req, next) => {
           'Authorization header doesn’t follow Bearer scheme'
         );
       }
-      const userData = jwt.verify(token.slice(7), JWT_SECRET_KEY
-      // , (err) => {
-      //   if (err) {
-      //     throw new UnauthorizedError('Jwt malfored')
-      //   }
-      // }
+      const userData = jwt.verify(token.slice(7), JWT_SECRET_KEY, (err) => {
+        if (err) {
+          throw new UnauthorizedError('Jwt malfored')
+        }
+      }
       );
       return userData;
     }
