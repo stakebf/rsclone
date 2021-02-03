@@ -6,7 +6,6 @@ const columnService = require('../columns/column.service');
 const todosService = require('../todos/todos.service');
 const commentService = require('../comments/comments.service');
 const tagService = require('../tags/tags.service');
-const taskSchemas = require('./task.schema');
 const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
 
@@ -41,7 +40,6 @@ router.route('/').post(
 
 
 router.route('/:id').put(
-  // catchErrors(validator.validateSchemaPut(taskSchemas.schemaForPut)),
   catchErrors(async (req, res) => {
     const { id, columnId } = req.params;
     const requestData = req.body;
@@ -60,10 +58,6 @@ router.route('/:id').delete(
   catchErrors(async (req, res) => {
     const { id, columnId } = req.params;
    const deletedBoard = await tasksService.deleteTask(id, columnId);
-    // if (deletedBoard.columns.length !== 0) {
-    //   await columnsService.deleteColumnFromBoard(id);
-    // }
-
     await todosService.deleteTodosFromTask(id);
     await commentService.deleteCommentFromTask(id);
     await tagService.deleteTagFromTask(id);

@@ -21,14 +21,6 @@ commentSchema.statics.toResponse = todos => {
     return { _id, userName, date, message, taskId, userId };
 };
 
-// commentSchema.statics.fromRequest = (taskId, requestData) => {
-//     const todos = new Todos({
-//         ...requestData,
-//         taskId
-//     });
-//     return todos;
-// };
-
 const Comment = mongoose.model('Comment', commentSchema);
 
 module.exports = Comment;

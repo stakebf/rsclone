@@ -1,9 +1,6 @@
 const Joi = require('@hapi/joi');
 
 const schemaForPost = Joi.object().keys({
-  boardId: Joi.string()
-    .required()
-    .error(new Error('Field boardId is required')),
   title: Joi.string()
     .required()
     .error(new Error('Field title is required')),
@@ -26,10 +23,8 @@ const schemaForPut = Joi.object().keys({
   usersList: Joi.array(),
   todos: Joi.object(),
   comments: Joi.array(),
-  boardId: Joi.string()
-    .required()
-    .error(new Error('Field boardId is required')),
-  columnId: Joi.string()
+  columnId: Joi.string(),
+  position: Joi.number()
 });
 
 module.exports = { schemaForPost, schemaForPut };
