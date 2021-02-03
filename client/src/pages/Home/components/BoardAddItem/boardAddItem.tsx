@@ -31,7 +31,7 @@ const BoardAddItem: React.FC<BoardAddItemProps> = ({
 
   useEffect(() => {
     setCurrentItemBg(typesBoards[0].background);
-  }, [setCurrentItemBg /* , typesBoards */]);
+  }, [setCurrentItemBg]);
 
   const setValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setName(e.target.value);

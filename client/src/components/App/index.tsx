@@ -23,18 +23,27 @@ const App: React.FC = () => {
           {isToken ? <Home type="main" /> : <Main />}
         </Route>
 
-        <Route path="/profile" exact render={(props) => {
-          let tab = "1";
-          if (props.location.state === "2") {
-            tab = "2";
-          }
-            return <Profile activeTab={tab} />
-          }
-        } />
+        <Route
+          path="/profile"
+          exact
+          render={(props) => {
+            let tab = '1';
+            if (props.location.state === '2') {
+              tab = '2';
+            }
+            return <Profile activeTab={tab} />;
+          }}
+        />
         <Route path="/test" render={() => <TestPage />} />
         <Route path="/boards" render={() => <Home type="boards" />} />
-        <Route path="/login" render={() => <SignInUp type="login" />} />
-        <Route path="/register" render={() => <SignInUp type="register" />} />
+        <Route
+          path="/login"
+          render={() => (isToken ? <Redirect to="/" /> : <SignInUp type="login" />)}
+        />
+        <Route
+          path="/register"
+          render={() => (isToken ? <Redirect to="/" /> : <SignInUp type="register" />)}
+        />
         <Route path="/404" render={() => <Page404 />} />
 
         <Route

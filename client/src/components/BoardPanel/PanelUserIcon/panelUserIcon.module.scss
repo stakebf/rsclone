@@ -16,10 +16,13 @@
   &:hover {
     background-color: rgb(248, 182, 120);
   }
+  & .fix-admin {
+    margin-left: 14px;
+  }
   &__admin {
-    position: absolute;
-    bottom: -3px;
-    right: -1px;
+    position: relative;
+    bottom: -9px;
+    right: 1px;
     font-size: 11px;
     background-color: rgb(10, 60, 126);
     padding: 1px;
@@ -112,7 +115,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .user-icon {
     .window {
       width: 240px;
@@ -120,7 +123,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .user-icon {
     position: static;
     .window {

@@ -44,7 +44,7 @@ const BoardList: React.FC = () => {
           });
           setDataBoards(userDataBoards);
         })
-        .catch((error) => console.log(error))
+        .catch((error) => console.error(error))
         .finally(() => (setLoadElem ? setLoadElem(false) : null));
     },
     [api]
@@ -77,7 +77,7 @@ const BoardList: React.FC = () => {
         isFavorite: false
       })
       .then(() => getBoardsForUser(setLoadNewBoard))
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   const onFavorite = (item: IBoardItem, setLoadStar: any): void => {
@@ -86,7 +86,7 @@ const BoardList: React.FC = () => {
     api
       .putBoard({isFavorite: !isFavorite}, id)
       .then(() => getBoardsForUser(setLoadStar))
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   const transformPathForBg = (path: string): string => {
