@@ -1,5 +1,6 @@
 const User = require('./user.model.js');
 const NotFoundError = require('../../errors/NotFoundError');
+const ConflictError = require('../../errors/ConflictError');
 
 const getAll = async () => {
 
@@ -24,6 +25,14 @@ const createUser = async newUser => {
 };
 
 const updateUser = async (id, dataForUpdate) => {
+  const { login } = dataForUpdate;
+  if (login) {
+    const isLoginExist = await getUserByProps(login);
+    if (isLoginExist) {
+      throw new ConflictError(`User with login ${login} already exist`);
+    }
+  }
+
   const updatedUser = await User.findByIdAndUpdate(id, dataForUpdate, {
     new: true
   });
@@ -33,12 +42,12 @@ const updateUser = async (id, dataForUpdate) => {
   return updatedUser;
 };
 
-const addBoardToUser = async (id, boardId) => {
+const addBoardToUser = async (id, boardData) => {
   const findedUser = await User.findOneAndUpdate(
     { _id: id },
     {
       $addToSet: {
-        boards: boardId
+        boards: boardData
       }
     },
     {
@@ -69,6 +78,22 @@ const addTaskToUser = async (id, taskId) => {
   return findedUser;
 };
 
+const updateBoardOnUser = async boardData => {
+  const { id, name } = boardData;
+  const updatedUser = await User.updateMany({
+    'boards.id': id
+  },
+    {
+      '$set': {
+        'boards.$.name': name
+      }
+    }
+    , {
+      new: true
+    });
+  return updatedUser;
+}
+
 const deleteUserFromTaskList = async (id, taskId) => {
   const updatedUser = await User.findByIdAndUpdate(id, {
     '$pull':
@@ -90,7 +115,9 @@ const deleteUserFromBoardList = async (id, boardId) => {
   const updatedUser = await User.findByIdAndUpdate(id, {
     '$pull':
     {
-      boards: boardId
+      boards: {
+        id: boardId
+      }
     }
   }, {
     new: true
@@ -120,5 +147,6 @@ module.exports = {
   addBoardToUser,
   addTaskToUser,
   deleteUserFromTaskList,
-  deleteUserFromBoardList
+  deleteUserFromBoardList,
+  updateBoardOnUser
 };

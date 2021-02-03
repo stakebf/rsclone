@@ -13,7 +13,6 @@ const MainFeed: React.FC = () => {
 
   const getUserComments = (data: any) => {
     const listComments: any = [];
-    console.log(data);
     for (let board of data) {
       if (board.columns.length) {
         for (let column of board.columns) {
@@ -35,7 +34,6 @@ const MainFeed: React.FC = () => {
                       userName: elem.userName,
                       countComment: task.comments.length
                     });
-                    console.log(listComments);
                   }
                 }
               }
@@ -56,7 +54,6 @@ const MainFeed: React.FC = () => {
         const userDataBoards = data.filter((el: any) => {
           return el.userList.some((user: any) => user.id === curUserId);
         });
-        console.log(userDataBoards);
         setDataComments(getUserComments(userDataBoards));
       })
       .catch((error) => console.log(error))

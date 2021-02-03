@@ -3,13 +3,15 @@ const NotFoundError = require('../NotFoundError');
 const InvalidRequestError = require('../InvalidRequestError');
 const ForbittenError = require('../ForbittenError');
 const UnauthorizedError = require('../UnauthorizedError');
+const ConflictError = require('../ConflictError');
 
 const {
   NOT_FOUND,
   BAD_REQUEST,
   FORBIDDEN,
   UNAUTHORIZED,
-  getStatusText
+  getStatusText,
+  CONFLICT
 } = require('http-status-codes');
 
 const logInfo = (status, path, message, stack) => {
@@ -47,7 +49,12 @@ const handleError = (err, req, res, next) => {
     res
       .status(UNAUTHORIZED)
       .json(responsData(UNAUTHORIZED, originalUrl, message));
-  } else return next(err);
+  } else if (err instanceof ConflictError) {
+    logger.error(logInfo(CONFLICT, originalUrl, message, stack));
+    res
+      .status(CONFLICT)
+      .json(responsData(CONFLICT, originalUrl, message));
+  }  else return next(err);
 };
 
 module.exports = handleError;

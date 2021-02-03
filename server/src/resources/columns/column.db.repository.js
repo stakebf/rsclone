@@ -68,7 +68,7 @@ const addTaskToColumn = async (id, taskData, position) => {
     updateColumn = await Column.findByIdAndUpdate(id, {
       $push: {
         taskList: {
-          $each: taskData,
+          $each: [taskData],
           $position: position
         }
       }
