@@ -13,8 +13,6 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
   const service = new MainApiService();
 
   const [isRedirect, setRedirect] = useState(false);
-  const [errorServer, setErrorServer] = useState(false);
-  const [errorMessageServer, setErrorMessageServer] = useState('');
   const [errorValidEmail, setErrorValidEmail] = useState(false);
   const [errorValidUsername, setErrorValidUsername] = useState(false);
   const [errorValidPassword, setErrorValidPassword] = useState(false);
@@ -22,12 +20,11 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
 
   useEffect(() => {
     return () => {
-      setErrorServer(false);
       setErrorValidEmail(false);
       setErrorValidUsername(false);
       setErrorValidPassword(false);
     };
-  }, [setErrorServer, setErrorValidEmail, setErrorValidUsername, setErrorValidPassword, type]);
+  }, [setErrorValidEmail, setErrorValidUsername, setErrorValidPassword, type]);
 
   const isEmailValid = (email: string): boolean => /.+@.+\..+/i.test(email);
   const isUsernameValid = (username: string): boolean => /.{2,}/i.test(username);
@@ -65,14 +62,7 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                 localStorage.setItem('rsclone_userId', userId);
                 setRedirect(true);
               })
-              .catch((error) => {
-                if (error.message === 'Bad login/password combination') {
-                  setErrorMessageServer('Неверный адрес электронной почты или пароль');
-                } else {
-                  setErrorMessageServer('Произошел технический сбой! Попробуйте позже');
-                }
-                setErrorServer(true);
-              })
+              .catch((error) => console.error(error))
               .finally(() => setDisabledForm(false));
           }
         };
@@ -101,16 +91,9 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
                   localStorage.setItem('rsclone_userId', id);
                   setRedirect(true);
                 })
-                .catch((error) => {
-                  if (error.message === 'User already exist') {
-                    setErrorMessageServer('Адрес электронной почты уже зарегистрирован');
-                  } else {
-                    setErrorMessageServer('Произошел технический сбой! Попробуйте позже');
-                  }
-                  setErrorServer(true);
-                })
+                .catch((error) => console.error(error))
                 .finally(() => setDisabledForm(false));
-            }
+              }
 
             showErrors(email, username, password);
           }
@@ -129,15 +112,14 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
       </header>
 
       <main className={classes.main}>
-        <img
-          className={classes.img}
-          src="/svg/trello-left.abecab36.svg"
-          alt="trello-left.abecab36"
-        />
+        <div className={classes['block-img']}>
+          <img
+            className={classes.img}
+            src="/svg/trello-left.abecab36.svg"
+            alt="trello-left.abecab36"
+          />
+        </div>
         <section className={classes.container}>
-          <p className={`${classes['error-message']} ${errorServer ? classes.show : ''}`}>
-            {errorServer ? errorMessageServer : ''}
-          </p>
           <h1 className={classes.title}>{settings.head}</h1>
           <Form
             settings={settings}
@@ -152,11 +134,13 @@ const SignInUp: React.FC<SignInUpProps> = ({type}) => {
             {settings.linkWord}
           </Link>
         </section>
-        <img
-          className={classes.img}
-          src="/svg/trello-right.2222cb95.svg"
-          alt="trello-right.2222cb95"
-        />
+        <div className={classes['block-img']}>
+          <img
+            className={classes.img}
+            src="/svg/trello-right.2222cb95.svg"
+            alt="trello-right.2222cb95"
+          />
+        </div>
       </main>
     </>
   );
