@@ -38,12 +38,6 @@ class MainApiService {
     }
   }
 
-  async getResource(url: string) {
-    const res = await fetch(url);
-
-    return await res.json();
-  }
-
   // Get
 
   _getResource = async (url: string) => {
@@ -52,6 +46,8 @@ class MainApiService {
         Authorization: `Bearer ${this.getToken()}`        
       }
     });
+
+    console.log('_getResource', response);
 
     this.statusHandler(response.status);
 
