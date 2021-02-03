@@ -1,12 +1,6 @@
 const Task = require('./task.model.js');
 const NotFoundError = require('../../errors/NotFoundError');
 
-const findByUserId = async userId => {
-  const taskByUser = Task.find({ userId });
-  const task = await Task.updateMany({ taskByUser, userId: null });
-  return task;
-};
-
 const findByColumnId = columnId => {
   return Task.find({ columnId });
 };
@@ -55,7 +49,7 @@ const addCommentToTask = async (id, comment) => {
     new: true
   });
   if (updateColumn === null) {
-    throw new NotFoundError(`Column with id ${id} not found`);
+    throw new NotFoundError(`Task with id ${id} not found`);
   }
   return updateColumn;
 };
@@ -69,7 +63,7 @@ const addTagToTask = async (id, tag) => {
     new: true
   });
   if (updateColumn === null) {
-    throw new NotFoundError(`Column with id ${id} not found`);
+    throw new NotFoundError(`Task with id ${id} not found`);
   }
   return updateColumn;
 };
@@ -187,7 +181,7 @@ const deleteFieldItemFromTask = async (id, fieldId, fieldName) => {
     new: true
   });
   if (updatedTask === null) {
-    throw new NotFoundError(`Column with id ${id} not found`);
+    throw new NotFoundError(`Task with id ${id} not found`);
   }
   return updatedTask;
 }

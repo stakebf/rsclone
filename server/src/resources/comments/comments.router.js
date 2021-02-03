@@ -3,8 +3,6 @@ const { OK, NO_CONTENT } = require('http-status-codes');
 const Comment = require('./comments.model');
 const commentsService = require('./comments.service');
 const taskService = require('../tasks/task.service');
-const commentsSchemas = require('./comments.schema');
-const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
 
 router.route('/').get(

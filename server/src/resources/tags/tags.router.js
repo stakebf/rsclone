@@ -3,8 +3,6 @@ const { OK, NO_CONTENT } = require('http-status-codes');
 const Tag = require('./tags.model');
 const tagsService = require('./tags.service');
 const taskService = require('../tasks/task.service');
-const commentsSchemas = require('./tags.schema');
-const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
 
 router.route('/').get(
@@ -20,7 +18,6 @@ router.route('/').post(
     const { taskId } = req.params;
     const requestData = req.body;
     const tag = await tagsService.createTag(taskId, requestData);
-    console.log(taskService)
     await taskService.addTagToTask(taskId, tag);
     res.status(OK).json(Tag.toResponse(tag));
   })

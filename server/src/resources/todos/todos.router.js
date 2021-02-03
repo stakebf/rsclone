@@ -2,8 +2,6 @@ const router = require('express').Router({ mergeParams: true });
 const { OK, NO_CONTENT } = require('http-status-codes');
 const Todos = require('./todos.model');
 const todosService = require('./todos.service');
-const todosSchema = require('./todos.schema');
-const validator = require('../../validator/validator');
 const catchErrors = require('../../errors/catchError');
 
 router.route('/').get(
