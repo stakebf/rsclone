@@ -1,6 +1,4 @@
 const commentRepo = require('./comments.db.repository');
-const taskService = require('../tasks/task.service');
-
 
 const getAll = taskId => commentRepo.getAll(taskId);
 

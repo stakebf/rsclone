@@ -25,7 +25,7 @@ app.use(helmet());
 app.use(compression());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use(requestLogger);
-// app.use(authorizate);
+app.use(authorizate);
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', process.env.ORIGIN || '*');

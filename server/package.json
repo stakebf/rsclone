@@ -13,18 +13,14 @@
     "server": "nodemon server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "lint": "eslint ./ --ignore-path .gitignore --fix",
-    "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace",
-    "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace"
+    "lint": "eslint ./ --ignore-path .gitignore --fix"
   },
   "keywords": [
     "rs",
     "school",
-    "rest",
+    "trello-clone",
     "node",
-    "express",
-    "autotest",
-    "starter"
+    "express"
   ],
   "license": "ISC",
   "engines": {

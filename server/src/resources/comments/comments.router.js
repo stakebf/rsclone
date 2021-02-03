@@ -26,7 +26,6 @@ router.route('/').post(
 );
 
 router.route('/:id').put(
-  // catchErrors(validator.validateSchemaPut(commentsSchemas.schemaForPut)),
   catchErrors(async (req, res) => {
     const { id, taskId } = req.params;
     const requestData = req.body;
