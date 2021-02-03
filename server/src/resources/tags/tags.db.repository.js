@@ -46,15 +46,9 @@ const updateTag = async (id, taskId, dataForUpdate) => {
 
 const deleteTag = async (id, taskId) => {
   const tags = await findByTaskId(taskId);
-
-  const all = await Tag.find({});
-  console.log(id, taskId, 'ID TASLK ID', all)
   if (tags.length === 0) {
-    console.log('first')
     throw new NotFoundError(`Tag with taskId ${taskId} not found`);
   } else {
-    console.log('second', tags)
-
     const isDeleted = (await Tag.deleteOne({ _id: id, taskId })).deletedCount;
     if (isDeleted === 0) {
       throw new NotFoundError(`Tag with id ${id} not found`);
@@ -65,15 +59,10 @@ const deleteTag = async (id, taskId) => {
 
 const deleteTagFromTask = async taskId => {
   const deletedTag = await findByTaskId(taskId);
-  // if (deletedTag.length === 0) {
-  //   return;
-  //   // throw new NotFoundError(`Tag with taskId ${taskId} not found`);
-  // } else {
     if (deletedTag.length !== 0) {
       await Tag.deleteMany({ taskId });
       return deletedTag;
     }
-  // }
   return [];
 };
 

@@ -5,8 +5,6 @@ const getAll = async () => {
   return Board.find({});
 };
 
-
-
 const getBoardById = async id => {
   const board = await Board.findById(id);
   if (board === null) {
