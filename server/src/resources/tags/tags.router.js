@@ -20,13 +20,13 @@ router.route('/').post(
     const { taskId } = req.params;
     const requestData = req.body;
     const tag = await tagsService.createTag(taskId, requestData);
+    console.log(taskService)
     await taskService.addTagToTask(taskId, tag);
     res.status(OK).json(Tag.toResponse(tag));
   })
 );
 
 router.route('/:id').put(
-  // catchErrors(validator.validateSchemaPut(commentsSchemas.schemaForPut)),
   catchErrors(async (req, res) => {
     const { id, taskId } = req.params;
     const requestData = req.body;

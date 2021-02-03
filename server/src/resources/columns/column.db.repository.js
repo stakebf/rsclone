@@ -9,8 +9,6 @@ const getAll = async boardId => {
   return findByBoardId(boardId);
 };
 
-// const getAllColumnData = async ()
-
 const getColumnById = async id => {
   const column = await Column.findById(id);
   if (Column === null) {
@@ -115,22 +113,6 @@ const updateTaskOnColumn = async (id, taskId, data) => {
   }
   return updatedBoard;
 }
-
-// const updateTaskOnColumn = async (id, taskId, data) => {
-//   const updatedBoard = await Column.findOneAndUpdate({
-//     'taskList._id': taskId
-//   }, {
-//     '$set': {
-//       'taskList.$': data,
-//     }
-//   }, {
-//     new: true
-//   });
-//   if (updatedBoard === null) {
-//     throw new NotFoundError(`Task with id ${taskId} on column not found`);
-//   }
-//   return updatedBoard;
-// }
 
 module.exports = {
   getAll,

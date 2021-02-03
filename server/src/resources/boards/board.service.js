@@ -1,4 +1,3 @@
-const { use } = require('../tags/tags.router');
 const boardsRepo = require('./board.db.repository');
 
 const getAll = async () => await boardsRepo.getAll();

@@ -1,7 +1,37 @@
-import {idText} from 'typescript';
+import logout from '../helpers/logout';
+import { notification } from 'antd';
+
+const openNotification = (message:string) => {
+  notification.error({
+    message: 'Ошибка!',
+    description: message,
+  });
+};
 
 class MainApiService {
-  _API_URL = 'http://localhost:4000';
+  getToken() {
+    return localStorage.getItem('rsclone_token');
+  }
+
+  statusHandler(status:number) {
+    switch(true) {
+      case (status === 401): {
+        logout();
+        window.location.href = '/';
+        break;
+      }
+
+      case (status === 409): {
+        openNotification('Пользователь с таким логином уже существует');
+        break;
+      }
+
+      case (status >= 500): {
+        openNotification('Ошбика на сервере, попробуйте позже.');
+        break;
+      }
+    }
+  }
 
   async getResource(url: string) {
     const res = await fetch(url);
@@ -9,16 +39,17 @@ class MainApiService {
     return await res.json();
   }
 
-  // 404, 401 - unautozed, 500 - bad request, 403 - forbidden, 
   // Get
 
   _getResource = async (url: string) => {
     const response = await fetch(url, {
       headers: {
-        // authorization: token
+        Authorization: `Bearer ${this.getToken()}`        
       }
     });
-    // console.log('response', response);
+
+    this.statusHandler(response.status);
+
     if (!response.ok) {
       throw new Error(`Could not fetch ${url}, received ${response.status}`);
     }
@@ -51,11 +82,14 @@ class MainApiService {
     const response: any = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
-        // authorization: token
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.getToken()}`
       },
       body: JSON.stringify(data)
     });
+
+    this.statusHandler(response.status);
+
     if (!response.ok) {
       if (Object.keys(data).length) throw await response.json();
       throw new Error(`Could not fetch ${url}, received ${response.status}`);
@@ -113,11 +147,14 @@ class MainApiService {
     const response = await fetch(url, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
-        // authorization: token
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.getToken()}`
       },
       body: JSON.stringify(data)
     });
+
+    this.statusHandler(response.status);
+
     if (!response.ok) {
       throw new Error(`Could not fetch ${url}, received ${response.status}`);
     }
@@ -163,10 +200,12 @@ class MainApiService {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        // authorization: token
+        Authorization: `Bearer ${this.getToken()}`
       },
       body: JSON.stringify(data)
     });
+
+    this.statusHandler(response.status);
 
     if (!response.ok) {
       throw new Error(`Could not fetch ${url}, received ${response.status}`);

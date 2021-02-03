@@ -33,7 +33,6 @@ router.route('/:id/todo').post(
 );
 
 router.route('/:id').put(
-  // catchErrors(validator.validateSchemaPut(todosSchema.schemaForPut)),
   catchErrors(async (req, res) => {
     const { id, taskId } = req.params;
     const requestData = req.body;
@@ -43,7 +42,6 @@ router.route('/:id').put(
 );
 
 router.route('/:id/todo/:itemId').put(
-  // catchErrors(validator.validateSchemaPut(todosSchema.schemaForPut)),
   catchErrors(async (req, res) => {
     const { itemId, taskId} = req.params;
     const requestData = req.body;
