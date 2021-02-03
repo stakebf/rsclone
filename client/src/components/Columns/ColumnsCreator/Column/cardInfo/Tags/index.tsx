@@ -37,7 +37,6 @@ const Tags:React.FC<any> = ({
     <div className={classes.Tags}>
       <h3><HighlightOutlined /> Метки</h3>
       <div className={classes.tagsWrapper}>
-        {console.log(tags.length)}
         {!!tags.length && tags.map((item:any) => <div
           className={`${classes.currentColors} ${classes[item.color]}`}
           onClick={() => removeTag(columnId, taskId, item._id)}

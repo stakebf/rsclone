@@ -108,7 +108,6 @@ const ColumnCreator: React.FC<PropsType> = ({
 
   return (
     <div className={classes.container}>
-      {console.log(background)}
       <DragDropContext
         onDragEnd={(result:any) => onDragEnd(result)}
       >

@@ -34,8 +34,6 @@ const CardInfo:React.FC<any> = ({
 
   const renameCardKeypressHandler = (e: React.KeyboardEvent<HTMLInputElement>):void => {
     
-  console.log(columnId, _id, title, comments);
-
     if (e.key === 'Enter') {
       if (!newCardTitle.trim() || title === newCardTitle) {
         return;
@@ -62,7 +60,6 @@ const CardInfo:React.FC<any> = ({
   };
 
   const removeCardClickHandler = () => {
-    console.log(columnId, _id);
     setIsCardRename(false);
     removeTaskList(columnId, _id);
   };

@@ -16,7 +16,6 @@ import classes from './Todo.module.scss';
 const Todo:React.FC<any> = ({ 
     columnId,
     taskId, 
-    columns, 
     todos, 
     addTodosTitle, 
     addTodo,

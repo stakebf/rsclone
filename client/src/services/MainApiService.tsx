@@ -47,8 +47,6 @@ class MainApiService {
       }
     });
 
-    console.log('_getResource', response);
-
     this.statusHandler(response.status);
 
     if (!response.ok) {

@@ -64,12 +64,7 @@ const Card:React.FC<CardProps> = ({
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
                 style={{
-                  // userSelect: "none",
-                  // margin: 16,
-                  // margin: "0 0 8px 0",
-                  // minHeight: "50px",
                   backgroundColor: '#fff',
-                  // color: "white",
                   ...provided.draggableProps.style
                 }}
               >

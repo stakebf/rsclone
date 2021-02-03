@@ -7,7 +7,6 @@ type propsHelp = {
   onClose: () => void;
 }
 const HelpModal: React.FC<propsHelp> = ({visible, onClose}) => {
-  // const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <Modal title="Горячие клавиши" visible={visible} onCancel={onClose}  centered={true} footer={null}>
       <h3><b>Esc</b> - Закрытие меню / Отмена изменений</h3>

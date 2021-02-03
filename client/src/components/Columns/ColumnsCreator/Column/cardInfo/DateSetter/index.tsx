@@ -9,7 +9,6 @@ import classes from './DateSetter.module.scss';
 
 const DateSetter:React.FC<any> = ({ columnId, taskId, date, setDate }) => {
   const getDate = (date:any, dateString:any) => {
-    console.log(date, dateString);
     setDate(columnId, taskId, dateString);
   };
 
@@ -17,7 +16,6 @@ const DateSetter:React.FC<any> = ({ columnId, taskId, date, setDate }) => {
   
   return (
     <div className={classes.dateWrapper}>
-      {console.log(date)}
       <h3 className={classes.title}>
         <CalendarOutlined /> Дата окончания (M/D/Y)
       </h3>

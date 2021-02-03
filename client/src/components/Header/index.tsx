@@ -5,7 +5,6 @@ import { Avatar, Button, Tooltip } from 'antd';
 import { ProjectOutlined, HomeOutlined } from '@ant-design/icons';
 import ProfileMenu from './ProfileMenu';
 import BoardsList from './BoardsList';
-// import Complete from './Complete';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/actions';
 import { Store } from '../../redux/store/store';
@@ -57,7 +56,6 @@ const Header: React.FC<any> = ({type, setCurrentUser, currentUser = {}}) => {
                   <span>{btnBoards}</span>
                 </Button>
                 <BoardsList boards={boards} visible={visibleBoardsList} onClose={closeBoardsList}/>
-                {/* <Complete userId={currentUser.id}/> */}
               </div>
             )
             : null

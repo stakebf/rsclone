@@ -72,7 +72,7 @@ export const addColumn = (boardId, title) => {
       newColumn = await service.postColumn(boardId, {title: title, boardId});
       dispatch(fetchColumnSuccess(newColumn));
     } catch (e) {
-      console.log('column has"t been created');
+      throw new Error('column has"t been created');
     }
   };
 };
@@ -90,7 +90,7 @@ export const renameColumn = (boardId, columnId, title) => {
       await service.renamePutColumn(boardId, columnId, {title: title});
       dispatch(fetchRenameColumnSuccess(columnId, title));
     } catch (e) {
-      console.log('column has not been updated');
+      throw new Error('column has not been updated');
     }
   };
 };
@@ -111,7 +111,7 @@ export const removeColumn = (boardId, _id) => {
       await service.removeColumn(boardId, _id);
       dispatch(fetchDeleteColumnSuccess(_id));
     } catch (e) {
-      console.log('column has not been deleted', e);
+      throw new Error('column has not been deleted', e);
     }
   };
 };
@@ -132,7 +132,7 @@ export const addTaskList = (columnId, title) => {
 
       dispatch(fetchAddTaskSuccess(columnId, reqTask));
     } catch (e) {
-      console.log('task has not been added', e);
+      throw new Error('task has not been added', e);
     }
   };
 };
@@ -154,7 +154,7 @@ export const renameTaskList = (id, taskId, title) => {
 
       dispatch(fetchRenameTaskSuccess(id, taskId, title));
     } catch (e) {
-      console.log('task has not been renamed', e);
+      throw new Error('task has not been renamed', e);
     }
   };
 };
@@ -177,7 +177,7 @@ export const removeTaskList = (id, taskId) => {
 
       dispatch(fetchRemoveTaskSuccess(id, taskId));
     } catch (e) {
-      console.log('task has not been deleted', e);
+      throw new Error('task has not been deleted', e);
     }
   };
 };
@@ -199,7 +199,7 @@ export const addDescription = (id, taskId, description) => {
 
       dispatch(fetchAddDescriptionSuccess(id, taskId, description));
     } catch (e) {
-      console.log('description has not been setted', e);
+      throw new Error('description has not been setted', e);
     }
   };
 };
@@ -222,7 +222,7 @@ export const addTodosTitle = (id, taskId, todosId, title) => {
 
       dispatch(fetchAddTodosTitleSuccess(id, taskId, title));
     } catch (e) {
-      console.log('Title for todos has not been setted', e);
+      throw new Error('Title for todos has not been setted', e);
     }
   };
 };
@@ -246,7 +246,7 @@ export const addTodo = (id, taskId, todosId, title, isComplete) => {
 
       dispatch(fetchAddTodoSuccess(id, taskId, todo.title, todo.isComplete, todo._id));
     } catch (e) {
-      console.log('Todo has not been added', e);
+      throw new Error('Todo has not been added', e);
     }
   };
 };
@@ -275,7 +275,7 @@ export const setTodoInfo = (id, taskId, todosId, title, isComplete, todoId) => {
 
       dispatch(fetchSetTodoInfoSuccess(id, taskId, title, isComplete, todoId));
     } catch (e) {
-      console.log('Todo info has not been setted', e);
+      throw new Error('Todo info has not been setted', e);
     }
   };
 };
@@ -300,7 +300,7 @@ export const removeTodo = (id, taskId, todoId, todosId) => {
 
       dispatch(fetchRemoveTodoSuccess(id, taskId, todoId));
     } catch (e) {
-      console.log('Todo has not been deleted', e);
+      throw new Error('Todo has not been deleted', e);
     }
   };
 };
@@ -325,7 +325,7 @@ export const removeTodos = (id, taskId, todosId) => {
 
       dispatch(fetchRemoveTodosSuccess(id, taskId, reqTodos));
     } catch (e) {
-      console.log('Todos has not been removed', e);
+      throw new Error('Todos has not been removed', e);
     }
   };
 };
@@ -348,7 +348,7 @@ export const setDate = (id, taskId, date) => {
 
       dispatch(fetchSetDateSuccess(id, taskId, date));
     } catch (e) {
-      console.log('date has not been setted', e);
+      throw new Error('date has not been setted', e);
     }
   };
 };
@@ -375,9 +375,7 @@ export const setCurrentUser = () => {
     } catch (e) {
         currentUser = await service.getUserById(currentUserId);
     } finally {
-      if (!currentUser) {
-        // window.location.href = '/';
-      } else {
+      if (currentUser) {
         dispatch(fetchUserSuccess(currentUser));
       }
     }
@@ -403,7 +401,7 @@ export const addComment = (id, taskId, message, userName, userId, date) => {
 
       dispatch(fetchAddCommentSuccess(id, taskId, message, userName, userId, date, comment._id));
     } catch (e) {
-      console.log('Comment has not been added', e);
+      throw new Error('Comment has not been added', e);
     }
   };
 };
@@ -430,7 +428,7 @@ export const removeComment = (id, taskId, commentId) => {
 
       dispatch(fetchRemoveCommentSuccess(id, taskId, commentId));
     } catch (e) {
-      console.log('Comment has not been removed', e);
+      throw new Error('Comment has not been removed', e);
     }
   };
 };
@@ -453,7 +451,7 @@ export const editComment = (id, taskId, commentId, message, date) => {
 
       await service.putCommentData(id, taskId, commentId, {message, date});
     } catch (e) {
-      console.log('Comment has not been edited', e);
+      throw new Error('Comment has not been edited', e);
     }
   };
 };
@@ -478,7 +476,7 @@ export const addTag = (id, taskId, color) => {
 
       dispatch(fetchAddTagSuccess(id, taskId, color, newTag._id));
     } catch (e) {
-      console.log('Tag has not been setted', e);
+      throw new Error('Tag has not been setted', e);
     }
   };
 };
@@ -502,7 +500,7 @@ export const removeTag = (id, taskId, tagId) => {
 
       dispatch(fetchRemoveTagSuccess(id, taskId, tagId));
     } catch (e) {
-      console.log('Tag has not been deleted', e);
+      throw new Error('Tag has not been deleted', e);
     }
   };
 };
@@ -525,7 +523,7 @@ export const attachUserToTask = (id, taskId, user) => {
 
       dispatch(fetchAttachUserToTaskSuccess(id, taskId, user));
     } catch (e) {
-      console.log('Comment has not been added', e);
+      throw new Error('Comment has not been added', e);
     }
   };
 };
@@ -549,7 +547,7 @@ export const removeUserFromTask = (id, taskId, userId) => {
 
       dispatch(fetchRemoveUserToTaskSuccess(id, taskId, userId));
     } catch (e) {
-      console.log('User has not been removed', e);
+      throw new Error('User has not been removed', e);
     }
   };
 };
@@ -575,7 +573,7 @@ export const refreshColumns = (source, destination, taskId) => {
 
       dispatch(fetchMoveTaskSuccess(source, destination));
     } catch (e) {
-      console.log('Task has not been moved', e);
+      throw new Error('Task has not been moved', e);
     }
   }
 };
