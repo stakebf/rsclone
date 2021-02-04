@@ -1,0 +1,124 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  word-break: break-word;
+  transition: all .3s;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+
+  flex-direction: column;
+
+  &:first-child {
+    margin-top: 5px;
+  }
+
+  .taskColors {
+    display: flex;
+    width: 100%;
+
+    & div {
+      height: 30px;
+    }
+    
+    .red {
+      background-color: red;
+    }
+    
+    .green {
+      background-color: green;
+    }
+    
+    .blue {
+    background-color: blue;
+    }
+    
+    .orange {
+      background-color: orange;
+    }
+    
+    .violet {
+      background-color: violet;
+    }
+  }
+
+  .taskInfoWrapper {
+    display: flex;
+    padding: 5px;
+
+    .titleWrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  
+      .componentsWrapper {
+        & span:not(:last-child) {
+          margin-right: 5px;
+        }
+  
+        .dateComponent {
+          color: #fff;
+          padding: 1px 3px;
+          border-radius: 3px;
+  
+          &.red {
+            background: red;
+          }
+          &.yellow {
+            background: #b9b939;
+          }
+          &.green {
+            background: green;
+          }
+        }
+  
+        .commentsComponent {
+          .commentIcon {
+            margin-right: 5px;
+          }
+        }
+
+        .additionalUsersComponent {
+          display: flex;
+          flex-wrap: wrap;
+
+          .avatarWrapper {
+            margin-right: 10px;
+            margin-top: 4px;
+            
+            .avatar {
+              width: 32px;
+              height: 32px;
+              background: orange;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: bold;
+            }
+          }
+        }
+  
+        .checkIcon,
+        .timeIcon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .editIcon {
+    opacity: 0;
+    transition: all .3s;
+    align-self: flex-end;
+    margin-bottom: 3px;
+  }
+
+  &:hover {
+    & .editIcon {
+      opacity: 1;
+    }
+
+    background-color: rgba(9,30,66,.08);
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "name": "trello-clone-service-starter",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "type": "commonjs",
+  "description": "REST service for Trello clone",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "server": "nodemon server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "lint": "eslint ./ --ignore-path .gitignore --fix"
+  },
+  "keywords": [
+    "rs",
+    "school",
+    "trello-clone",
+    "node",
+    "express"
+  ],
+  "license": "ISC",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./test/setup.js"
+    ]
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^4.0.1",
+    "commander": "^5.0.0",
+    "compression": "^1.7.4",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "cross-env": "6.0.3",
+    "dotenv": "8.2.0",
+    "ejs": "^3.0.2",
+    "express": "4.17.1",
+    "helmet": "^3.22.0",
+    "http-status-codes": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.5.6",
+    "mongoose": "^5.9.9",
+    "morgan": "^1.10.0",
+    "nodemon": "2.0.2",
+    "swagger-ui-express": "4.1.2",
+    "through2": "^3.0.1",
+    "uuid": "3.3.3",
+    "winston": "^3.2.1",
+    "yamljs": "0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "6.7.2",
+    "eslint-config-prettier": "6.7.0",
+    "eslint-plugin-node": "10.0.0",
+    "eslint-plugin-prettier": "3.1.1",
+    "husky": "3.1.0",
+    "lint-staged": "9.5.0",
+    "prettier": "1.19.1",
+    "chai": "4.2.0",
+    "debug": "4.1.1",
+    "dirty-chai": "2.0.1",
+    "jest": "24.9.0",
+    "supertest": "4.0.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "src/logs/*"
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+.column {
+  width: 270px;
+  background-color: #ebecf0;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  position: relative;
+  white-space: normal;
+  align-self: start;
+  flex-shrink: 0;
+  margin-right: 5px;
+  padding: 5px;
+  overflow: hidden;
+  margin-bottom: 8px;
+
+  &:first-child {
+    margin-left: 5px;
+  }
+
+  &:nth-last-child(2) {
+    margin-right: 0;
+  }
+
+  .columnEdit {
+    align-self: flex-end;
+    position: absolute;
+
+    button {
+      width: 35px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background-color: rgba(9, 30, 66, 0.08);
+        color: #fff;
+        border: 1px solid #fff;
+      }
+    }
+  }
+
+  .columnTitle {
+    word-break: break-all;
+    width: 210px;
+    min-height: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+    font-weight: 700;
+
+    &:hover {
+      background-color: rgba(9, 30, 66, 0.08);
+    }
+  }
+
+  .columnTitleInput {
+    padding: 0 5px;
+    width: 220px;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    width: 260px;
+  }
+
+  .btnCreateCard {
+    width: 100%;
+    position: relative;
+    left: 0;
+    background-color: #085d8beb;
+
+    &.hide {
+      opacity: 0;
+      height: 0;
+      pointer-events: none;
+      position: absolute;
+      left: -400px;
+    }
+
+    &:hover {
+      background-color: #1b85beeb;
+    }
+  }
+
+  .addCardBtn {
+    background-color: #085d8beb;
+    &:hover {
+      background-color: #1b85beeb;
+    }
+  }
+
+  .creationWrapper {
+    transition: all 0.5s;
+    background-color: #ebecf0;
+    padding: 5px;
+    width: 250px;
+    animation: smoothShow 0.5s ease-in-out;
+
+    .creationInput {
+      width: 250px;
+      margin-bottom: 5px;
+      padding: 0 5px;
+    }
+  }
+}
+
+@keyframes smoothShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

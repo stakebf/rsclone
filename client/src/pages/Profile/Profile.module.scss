@@ -1,0 +1,39 @@
+.wrapper {
+    padding: 45px 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 5px 0;
+}
+
+.Tabs {
+    height: 100%;
+}
+
+.tabProfile, .tabActions {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabProfile {
+    flex-direction: column;
+}
+
+.tabActions {
+    flex-direction: row;
+}

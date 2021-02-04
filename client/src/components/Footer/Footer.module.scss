@@ -1,0 +1,82 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #299adb;
+
+    .year {
+        margin-right: 10px;
+        font-weight: 800;
+    }
+
+    .logoRSS {
+        .test {
+            color:yellow;
+            width: 70px;
+        }
+    
+        width: 70px;
+    }
+
+    .git {
+        display: flex;
+    }
+
+    .link {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-weight: bold;
+        
+        &:visited,
+        &:link {
+          color: black;
+        }
+        
+        &:hover {
+          color: rgb(255, 255, 255);
+        }
+        
+        .logoGit {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+    }    
+}
+
+@media (max-width: 605px) {
+    .footer {
+        .year {
+            font-size: 14px;
+        }
+        .link {
+            font-size: 15px;
+            .logoGit {
+               display: none;
+            }
+        }
+        .logoRSS {
+            width: 30px;
+        }
+    }
+}
+
+@media (max-width: 490px) {
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+        .year {
+            margin: 0;
+            font-size: 10px;
+        }
+
+        .link {
+            font-size: 10px;
+        }
+    }
+}
